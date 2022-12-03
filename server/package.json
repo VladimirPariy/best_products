@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "dev": "nodemon --watch src src/index.ts",
+    "up": "knex migrate:up --knexfile src/database/knexfile.ts",
+    "down": "knex migrate:down --knexfile src/database/knexfile.ts",
+    "latest": "knex migrate:latest --knexfile src/database/knexfile.ts",
+    "seed": "knex seed:run --knexfile src/database/knexfile.ts",
+    "ts": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^2.3.0",
+    "mysql2": "^2.3.3",
+    "objection": "^3.0.1",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0"
+  }
+}
