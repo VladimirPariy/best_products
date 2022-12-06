@@ -1,26 +1,33 @@
+import './plugins/modul-alias';
+import {Category} from "@/database/models/products/categories";
+import {PriceHistory} from "@/database/models/products/price-history";
+import {Subcategory} from "@/database/models/products/subcatigories";
 import express, {Express} from "express";
+import {ErrorHandler} from "@/app/middleware/exceptions";
+import {connectingDb} from "@/database/connectingDb";
+import {createAuthRouter} from "@/app/auth/auth.router";
 
-import {cors} from "./app/middleware/cors";
-import {ErrorHandler} from "./app/middleware/exceptions";
+import { Product } from '@/database/models/products/product';
 
-import {setupDB} from "./database/setupDB";
-
-import {createAuthRouter} from "./app/auth/auth.router";
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 const HOST = "localhost";
 
 const createWebServer = (): Express => {
   const app = express();
-  setupDB();
-  app.use(cors);
+
+  // CORS
+
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
 
   app.use("/api", createAuthRouter());
 
-  const version = "1.0.0"
-  app.get('/', (req, res) => res.send({version}))
+
+  app.get('/', async (req, res) => {
+    const product = await Product.query().withGraphFetched('comments')
+
+    res.json(product)
+  })
 
   app.use(ErrorHandler);
   return app;
@@ -28,6 +35,7 @@ const createWebServer = (): Express => {
 
 const start = async (app: Express) => {
   app.listen(PORT);
+  connectingDb();
   console.info(`Server started and running on https://${HOST}:${PORT}`);
 };
 
