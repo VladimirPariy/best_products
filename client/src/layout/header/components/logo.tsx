@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import styles from "layout/header/header.module.scss";
+import styles from "layout/header/components/logo.module.scss";
 import logo from "assets/icon/header/logo.svg"
 
 interface Props {
