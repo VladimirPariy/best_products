@@ -1,14 +1,14 @@
-import {Product} from "@/database/models/products/product";
 import {Model} from "objection";
+import {Products} from "@/database/models/products/products";
 
-class ProdCharacteristic extends Model {
+class ProductCharacteristic extends Model {
 
   static get tableName() {
-    return "prod_characteristic";
+    return "product_characteristics";
   };
 
   static get idColumn() {
-    return "prod_characteristic_id";
+    return "product_characteristic_id";
   };
 
   static get relationMappings() {
@@ -17,21 +17,22 @@ class ProdCharacteristic extends Model {
         relation: Model.HasOneRelation,
         modelClass: Characteristics,
         join: {
-          from: "prod_characteristic.characteristic",
+          from: "product_characteristics.characteristic",
           to: "characteristics.characteristic_id"
         }
       },
       products: {
         relation: Model.HasOneRelation,
-        modelClass: Product,
+        modelClass: Products,
         join: {
-          from: "prod_characteristic.product",
+          from: "product_characteristics.product",
           to: "products.product_id"
         }
       }
     }
   };
 }
+
 
 class Characteristics extends Model {
 
@@ -46,13 +47,13 @@ class Characteristics extends Model {
   static relationMappings = {
     prod_characteristic: {
       relation: Model.HasManyRelation,
-      modelClass: ProdCharacteristic,
+      modelClass: ProductCharacteristic,
       join: {
         from: "characteristics.characteristic_id",
-        to: "prod_characteristic.characteristic"
+        to: "product_characteristics.characteristic"
       }
     }
   };
 }
 
-export {Characteristics, ProdCharacteristic};
+export {Characteristics, ProductCharacteristic};

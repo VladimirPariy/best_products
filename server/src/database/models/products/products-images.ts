@@ -3,25 +3,26 @@ import {Model} from "objection";
 import {Products} from "@/database/models/products/products";
 
 
-class PriceHistory extends Model {
+class ProductsImages extends Model {
+
   static get tableName() {
-    return "price_history";
-  };
+    return "products_images";
+  }
 
   static get idColumn() {
-    return "price_history_id";
-  };
+    return "image_id";
+  }
 
   static relationMappings = {
     products: {
       relation: Model.HasOneRelation,
       modelClass: Products,
       join: {
-        from: "price_history.product",
+        from: "products_images.product",
         to: "products.product_id"
       }
     }
   }
 }
 
-export {PriceHistory};
+export {ProductsImages};

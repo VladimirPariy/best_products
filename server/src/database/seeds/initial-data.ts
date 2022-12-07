@@ -3,14 +3,14 @@ import {Knex} from "knex";
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
   await knex("comments").del();
-  await knex("favourite_prod").del();
-  await knex("feedback").del();
-  await knex("feedback_types").del();
+  await knex("favorite_products").del();
+  await knex("feedbacks").del();
+  await knex("feedbacks_types").del();
   await knex("views").del();
   await knex("products_images").del();
-  await knex("prod_characteristic").del();
+  await knex("product_characteristics").del();
   await knex("price_history").del();
-  await knex("prod_subcategories").del();
+  await knex("product_subcategories").del();
   await knex("subcategories").del();
   await knex("categories").del();
   await knex("characteristics").del();
@@ -111,14 +111,12 @@ export async function seed(knex: Knex): Promise<void> {
       product_title: "phone",
       product_description: "new good phone",
       price: 999.99,
-      // category:1
     },
     {
       product_id: 2,
       product_title: "laptop",
       product_description: "bad old laptop",
       price: 2999.99,
-      // category:1
     },
   ]);
 
@@ -140,7 +138,7 @@ export async function seed(knex: Knex): Promise<void> {
     {characteristic_id: 2, characteristic_title: "Number of Cores"},
   ]);
 
-  await knex("prod_characteristic").insert([
+  await knex("prod_characteristics").insert([
     {
       prod_characteristic_id: 1,
       product: 1,
@@ -200,7 +198,6 @@ export async function seed(knex: Knex): Promise<void> {
   ]);
 
 
-
   await knex("subcategories").insert([
     {
       subcategory_id: 1,
@@ -231,28 +228,39 @@ export async function seed(knex: Knex): Promise<void> {
   ]);
   await knex("comments").insert([
     {
-      comments_id: 1,
+      comment_id: 1,
       user: 2,
-      product:2,
-      comments_msg:'Gooood!!!!'
+      product: 2,
+      comment_msg: 'Gooood!!!!',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now()
     },
     {
-      comments_id: 2,
+      comment_id: 2,
       user: 1,
-      product:1,
-      comments_msg:'Gooooddddd!!!!'
+      product: 1,
+      comment_msg: 'Gooooddddd!!!!',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now()
     },
     {
-      comments_id: 3,
+      comment_id: 3,
       user: 1,
-      product:1,
-      comments_msg:'Very Gooooddddd!!!!'
+      product: 1,
+      comment_msg: 'Very Gooooddddd!!!!',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now()
     },
     {
-      comments_id: 4,
+      comment_id: 4,
       user: 3,
-      product:1,
-      comments_msg:'Very very Gooooddddd!!!!'
+      product: 1,
+      comment_msg: 'Very very Gooooddddd!!!!',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now()
     },
   ]);
+
+
+
 }

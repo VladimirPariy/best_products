@@ -1,13 +1,14 @@
 import './plugins/modul-alias';
-import {Category} from "@/database/models/products/categories";
+import {Categories} from "@/database/models/products/categories";
 import {PriceHistory} from "@/database/models/products/price-history";
 import {Subcategory} from "@/database/models/products/subcatigories";
+import {Users} from "@/database/models/users/users";
 import express, {Express} from "express";
 import {ErrorHandler} from "@/app/middleware/exceptions";
 import {connectingDb} from "@/database/connectingDb";
 import {createAuthRouter} from "@/app/auth/auth.router";
 
-import { Product } from '@/database/models/products/product';
+import { Products } from '@/database/models/products/products';
 
 const PORT = process.env.PORT || 8000;
 const HOST = "localhost";
@@ -24,7 +25,7 @@ const createWebServer = (): Express => {
 
 
   app.get('/', async (req, res) => {
-    const product = await Product.query().withGraphFetched('comments')
+    const product = await Users.query().withGraphFetched('products_comments')
 
     res.json(product)
   })
