@@ -1,13 +1,15 @@
-@use "src/scss/index" as *;
+@use "scss/index" as *;
 
 .headerContainer {
   background: $sidebar_bg;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
   .visibleHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   }
 
   .not_visible_burger_menu_content {
@@ -41,5 +43,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
   }
 }

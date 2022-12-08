@@ -2,7 +2,6 @@ import React, {FC, useState} from "react";
 
 import styles from "layout/header/header.module.scss"
 
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
 import {useScreenWidth} from "lib/hooks/use-screen-width";
 
 import BurgerMenu from "layout/header/components/burger-menu";
@@ -16,8 +15,6 @@ const Header: FC = () => {
   const [checkedBurgerMenu, setCheckedBurgerMenu] = useState<boolean>(false)
 
   const userScreenWidth = useScreenWidth()
-
-  const classNameForBurgerContent = getClassNameByCondition(styles, 'visible_burger_menu_content', 'not_visible_burger_menu_content', checkedBurgerMenu)
 
   return (
     userScreenWidth > 768 ?
@@ -36,7 +33,7 @@ const Header: FC = () => {
             <BurgerMenu value={checkedBurgerMenu}
                         checkedHandler={setCheckedBurgerMenu}/>
           </div>
-          <div className={classNameForBurgerContent}>
+          <div className={`${checkedBurgerMenu ? styles['visible_burger_menu_content'] : styles['not_visible_burger_menu_content']}`}>
             <Search/>
             <User/>
             <Sidebar/>

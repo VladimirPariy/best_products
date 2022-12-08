@@ -1,27 +1,127 @@
+@use "scss/index" as *;
+
 .sidebarWrapper {
   width: 100%;
-  max-width: 560px;
+  max-width: 210px;
   margin-top: 20px;
   margin-bottom: 53px;
 
-  .link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    margin: 1rem 0.33rem ;
-
-    .icon {
-      margin-right: 1.33rem; //2rem
-      >svg{
-        width: 30px;
-        height: 30px;
-      }
+  > ul {
+    > li:first-child:hover > a > .icon > svg > path {
+      fill: $white;
     }
 
-    .title {
-      font-size: 1.33rem; //2rem
-      line-height: 1.5rem; //40
-      color: #524F5E;
+    > li:first-child > .active > .icon > svg > path {
+      fill: $white;
+    }
+
+    .link {
+      list-style: none;
+
+      > a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        margin: 1rem 0.33rem;
+        padding: 9px;
+        border-radius: 10px;
+
+        .icon {
+          margin-right: 1.33rem;
+          display: flex;
+          align-items: center;
+
+          > svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+
+        .title {
+          font-size: 1.33rem;
+          line-height: 1.5rem;
+          color: #524F5E;
+        }
+      }
+
+      > a:hover, .active {
+        background: $active_item_color;
+
+        .title, .icon > svg > path {
+          color: $white;
+          stroke: $white;
+        }
+
+        .icon > svg > g > path {
+          fill: $white;
+          stroke: $white;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .sidebarWrapper {
+    background: $sidebar_bg;
+    height: calc($h-screen - 75px);
+    margin: 0;
+    max-width: 64px;
+
+    > ul {
+      > .link {
+        > a {
+          padding: 12px;
+
+          .icon {
+            margin-right: 0;
+
+            > svg {
+              width: 31px;
+              height: 31px;
+            }
+          }
+
+          .title {
+            font-size: 1.66rem;
+          }
+        }
+      }
+
+      > li:first-child > a {
+        margin-top: 70px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .sidebarWrapper {
+    max-width: 84px;
+    height: calc($h-screen - 85px);
+
+    > ul {
+      .link {
+        > a {
+          padding: 18px;
+          //display: flex;
+          //justify-content: center;
+          //align-items: center;
+
+          .icon > svg {
+            width: 32px;
+            height: 32px;
+          }
+
+          .title {
+            font-size: 2rem;
+          }
+        }
+
+        .link:first-child {
+          margin-top: 130px;
+        }
+      }
     }
   }
 }

@@ -4,7 +4,6 @@
   display: flex;
   max-width: 560px;
   width: 100%;
-  margin: 0 1rem;
 
   .searchButton {
     width: 50px;
@@ -36,6 +35,7 @@
 
 @media screen and (min-width: 769px) {
   .searchContainer {
+    margin: 0 1rem;
     .searchButton {
       width: 60px;
       height: 52px;

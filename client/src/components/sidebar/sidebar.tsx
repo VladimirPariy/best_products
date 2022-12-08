@@ -1,4 +1,7 @@
-import React, {FC} from "react";
+import logo from "layout/header/components/logo";
+import {useScreenWidth} from "lib/hooks/use-screen-width";
+import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
+import React, {FC, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 import styles from "components/sidebar/sidebar.module.scss";
@@ -23,14 +26,28 @@ const sidebarList: ISidebarList[] = [
 ]
 
 const Sidebar: FC = () => {
+  const [onHover, setOnHover] = useState(false)
+  const userScreenWidth = useScreenWidth()
+  const onHoveredLink = getClassNameByCondition(styles, 'link', 'hoveredLink', onHover)
+  console.log(onHover)
   return (
-    <aside className={styles.sidebarWrapper}>
-      {sidebarList.map(item => (
-        <NavLink to={item.url} key={item.title} className={styles.link}>
-          <div className={styles.icon}>{item.icon}</div>
-          <div className={styles.title}>{item.title}</div>
-        </NavLink>
-      ))}
+    <aside className={styles.sidebarWrapper} onMouseEnter={() => setOnHover(true)} onMouseLeave={() => setOnHover(false)}>
+      <ul>
+        {sidebarList.map(item => (
+          <li className={onHoveredLink} key={item.title} >
+            <NavLink to={item.url} className={({isActive}) => isActive ? styles.active : undefined
+            }>
+              <div className={styles.icon}>{item.icon}</div>
+              {
+                onHover && userScreenWidth > 768 && <div className={styles.title}>{item.title}</div>
+              }
+              {
+                userScreenWidth < 768 && <div className={styles.title}>{item.title}</div>
+              }
+            </NavLink>
+          </li>
+        ))}
+      </ul>
     </aside>
   );
 };
