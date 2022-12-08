@@ -21,7 +21,5 @@
     "removeComments": true,
     "pretty": true
   },
-  "include": [
-    "../client/src"
-  ]
+  "include": ["../client/src"]
 }

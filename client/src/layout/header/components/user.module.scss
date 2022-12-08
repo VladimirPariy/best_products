@@ -1,4 +1,4 @@
-@use "src/scss/index" as *;
+@use "scss/index" as *;
 
 .userContainer {
   margin: 1rem 0;
@@ -7,39 +7,19 @@
   border-radius: 23px 12px 12px 23px;
   width: 100%;
   max-width: 560px;
+  position: relative;
 
   > img {
     margin: auto 0;
     height: 45px;
   }
-
-  > span {
-    padding: 10px;
-    font-weight: 500;
-    color: #524F5E;
-    font-size: 22px;
-    word-break: break-word;
-  }
-
-  > button {
-    margin-left: auto;
-    min-width: 70px;
-    min-height: 100%;
-    border: none;
-    padding: 7px 9px 6px 15px;
-    border-radius: 0 12px 12px 0;
-    font-size: 14px;
-    color: #524F5E;
-    line-height: 22px;
-    font-style: italic;
-  }
 }
-
 
 @media screen and (min-width: 769px) {
   .userContainer {
     margin: 10px 20px 10px 0;
     width: 55px;
+
     > img {
       height: 55px;
     }
@@ -50,6 +30,7 @@
   .userContainer {
     margin: 11px 32px 12px 0;
     width: 62px;
+
     > img {
       height: 62px;
     }

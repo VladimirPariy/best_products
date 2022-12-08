@@ -1,53 +1,65 @@
 @use "scss/index" as *;
 
-.sidebarWrapper {
-  width: 100%;
-  max-width: 210px;
-  margin-top: 20px;
-  margin-bottom: 53px;
+aside {
+  .sidebarWrapper {
+    width: 100%;
+    max-width: 210px;
+    margin-top: 20px;
+    margin-bottom: 53px;
+    overflow: hidden;
 
-  > ul {
-    > li:first-child:hover > a > .icon > svg > path {
-      fill: $white;
-    }
+    > ul {
+      background: $white;
 
-    > li:first-child > .active > .icon > svg > path {
-      fill: $white;
-    }
+      > li:first-child:hover > a > .icon > svg > path {
+        fill: $white;
+      }
 
-    .link {
-      list-style: none;
+      > li:first-child > .active > .icon > svg > path {
+        fill: $white;
+      }
 
-      > a {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        margin: 1rem 0.33rem;
-        padding: 9px;
+      .link {
+        list-style: none;
+        margin: 1rem 0.33rem 1rem;
         border-radius: 10px;
 
-        .icon {
-          margin-right: 1.33rem;
+        > a {
           display: flex;
           align-items: center;
+          text-decoration: none;
+          padding: 9px;
+          border-radius: 10px;
 
-          > svg {
-            width: 30px;
-            height: 30px;
+          .icon {
+            margin-right: 1.33rem;
+            display: flex;
+            align-items: center;
+
+            > svg {
+              width: 30px;
+              height: 30px;
+            }
+          }
+
+          .title {
+            font-size: 1.33rem;
+            line-height: 1.5rem;
+            color: #524f5e;
           }
         }
 
-        .title {
-          font-size: 1.33rem;
-          line-height: 1.5rem;
-          color: #524F5E;
+        .active > .title {
+          color: white;
         }
       }
 
-      > a:hover, .active {
+      .link:hover,
+      .active {
         background: $active_item_color;
 
-        .title, .icon > svg > path {
+        .title,
+        .icon > svg > path {
           color: $white;
           stroke: $white;
         }
@@ -62,66 +74,87 @@
 }
 
 @media screen and (min-width: 769px) {
-  .sidebarWrapper {
-    background: $sidebar_bg;
-    height: calc($h-screen - 75px);
-    margin: 0;
+  aside {
+    position: relative;
     max-width: 64px;
 
-    > ul {
-      > .link {
-        > a {
-          padding: 12px;
+    .sidebarWrapper {
+      min-width: 100%;
+      transition: min-width 0.5s ease-in-out;
+      background: $sidebar_bg;
+      min-height: calc($h-screen - 75px);
+      margin: 0;
+      padding-top: 70px;
 
-          .icon {
-            margin-right: 0;
+      > ul {
+        > .link {
+          margin: 0 0.33rem 1rem;
 
-            > svg {
-              width: 31px;
-              height: 31px;
+          > a {
+            padding: 12px;
+
+            .icon {
+              margin-right: 0;
+
+              > svg {
+                width: 31px;
+                height: 31px;
+              }
             }
-          }
 
-          .title {
-            font-size: 1.66rem;
+            .title {
+              margin-left: 1.66rem;
+              font-size: 1.66rem;
+            }
           }
         }
       }
+    }
 
-      > li:first-child > a {
-        margin-top: 70px;
-      }
+    .hoveredSidebarWrapper {
+      transition: min-width 0.5s ease-in-out;
+      min-width: 270px;
     }
   }
 }
 
 @media screen and (min-width: 1025px) {
-  .sidebarWrapper {
-    max-width: 84px;
-    height: calc($h-screen - 85px);
+  aside {
+    min-width: 78.5px;
 
-    > ul {
-      .link {
-        > a {
-          padding: 18px;
-          //display: flex;
-          //justify-content: center;
-          //align-items: center;
+    .sidebarWrapper {
+      min-width: 100%;
+      transition: min-width 0.5s ease-in-out;
+      height: calc($h-screen - 85px);
 
-          .icon > svg {
-            width: 32px;
-            height: 32px;
+      > ul {
+        .link {
+          margin: 0 0.33rem 1.375rem;
+
+          > a {
+            padding: 18px;
+
+            .icon {
+              margin-left: 0;
+
+              > svg {
+                width: 32px;
+                height: 32px;
+              }
+            }
+
+            .title {
+              margin-left: 2rem;
+              font-size: 2rem;
+            }
           }
-
-          .title {
-            font-size: 2rem;
-          }
-        }
-
-        .link:first-child {
-          margin-top: 130px;
         }
       }
+    }
+
+    .hoveredSidebarWrapper {
+      transition: min-width 0.5s ease-in-out;
+      min-width: 360px;
     }
   }
 }

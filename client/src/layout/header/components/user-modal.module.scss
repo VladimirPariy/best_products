@@ -1,0 +1,102 @@
+@use "src/scss/index" as *;
+
+.userModal {
+  width: 100%;
+  display: flex;
+
+  > span {
+    padding: 10px;
+    font-weight: 500;
+    color: #524f5e;
+    font-size: 22px;
+    word-break: break-word;
+  }
+
+  > button {
+    margin-left: auto;
+    min-width: 70px;
+    min-height: 100%;
+    border: none;
+    padding: 7px 9px 6px 15px;
+    border-radius: 0 12px 12px 0;
+    font-size: 14px;
+    color: #524f5e;
+    line-height: 22px;
+    font-style: italic;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .userModal {
+    position: absolute;
+    top: 99px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 175px;
+    background: $white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+
+    > span {
+      text-align: end;
+      z-index: 1;
+      font-size: 24px;
+      line-height: 30px;
+      height: 38px;
+    }
+
+    > button {
+      text-align: end;
+      width: 100%;
+      border-radius: 0 0 8px 8px;
+      padding: 7px 6px 0 0;
+      font-size: 16px;
+      line-height: 20px;
+      height: 32px;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      width: 22px;
+      height: 22px;
+      background: $white;
+      left: calc(85% - 11px);
+      top: -9px;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .userModal {
+    top: 109px;
+    right: 23px;
+    width: 225px;
+    border-radius: 10px;
+
+    > span {
+      font-size: 30px;
+      line-height: 36px;
+      height: 48px;
+    }
+
+    > button {
+      border-radius: 0 0 10px 10px;
+      padding: 9px 6px 0 0;
+      font-size: 18px;
+      line-height: 22px;
+      height: 37px;
+    }
+
+    &:before {
+      width: 28px;
+      height: 28px;
+      left: calc(82% - 14px);
+      top: -10px;
+    }
+  }
+}

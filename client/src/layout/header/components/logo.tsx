@@ -1,15 +1,14 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "layout/header/components/logo.module.scss";
-import logo from "assets/icon/header/logo.svg"
+import logo from "assets/icon/header/logo.svg";
 
-interface Props {
-}
+interface Props {}
 
 const Logo: FC<Props> = (props) => {
   return (
     <div className={styles.logoContainer}>
-      <img src={logo} alt="" className={styles.logoImage}/>
+      <img src={logo} alt="" className={styles.logoImage} />
       <div className={styles.logoText}>
         <div>BEST</div>
         <div>PRODUCTS</div>
