@@ -4,6 +4,7 @@
   width: 100%;
   display: flex;
 
+
   > span {
     padding: 10px;
     font-weight: 500;
@@ -13,6 +14,9 @@
   }
 
   > button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     margin-left: auto;
     min-width: 70px;
     min-height: 100%;
@@ -23,6 +27,23 @@
     color: #524f5e;
     line-height: 22px;
     font-style: italic;
+    text-decoration: none;
+    background: rgba(82, 79, 94, 0.1);
+  }
+
+  .registration {
+    border-right: 2px solid rgba(82, 79, 94, 0.1);
+  }
+
+
+  > div {
+    min-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #524f5e;
+    text-decoration: none;
+    word-break: break-word;
   }
 }
 
@@ -41,16 +62,17 @@
     > span {
       text-align: end;
       z-index: 1;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 30px;
       height: 38px;
+      padding: 6px 18px 0 0;
     }
 
     > button {
       text-align: end;
       width: 100%;
       border-radius: 0 0 8px 8px;
-      padding: 7px 6px 0 0;
+      padding: 6px 18px 4px 0;
       font-size: 16px;
       line-height: 20px;
       height: 32px;
@@ -67,6 +89,22 @@
       top: -9px;
       transform: rotate(45deg);
       border-radius: 2px;
+    }
+
+    .registration {
+      border-bottom: 2px solid rgba(82, 79, 94, 0.1);
+      border-right: none;
+      height: 38px;
+      z-index: 1;
+    }
+
+    .signIn {
+      height: 32px;
+    }
+
+    > div {
+      cursor: pointer;
+      font-size: 20px;
     }
   }
 }
@@ -86,7 +124,7 @@
 
     > button {
       border-radius: 0 0 10px 10px;
-      padding: 9px 6px 0 0;
+      padding: 8px 20px 5px 0;
       font-size: 18px;
       line-height: 22px;
       height: 37px;
@@ -97,6 +135,19 @@
       height: 28px;
       left: calc(82% - 14px);
       top: -10px;
+    }
+
+    .registration {
+      height: 48px;
+    }
+
+    .signIn {
+      height: 37px;
+    }
+
+    > div {
+      font-size: 24px;
+      line-height: 26px;
     }
   }
 }

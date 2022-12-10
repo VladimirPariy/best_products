@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {FC, useState} from "react";
+import {NavLink} from "react-router-dom";
 
 import styles from "components/sidebar/sidebar.module.scss";
 
-import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-import { appUrl } from "lib/enums/app-urls";
+import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
+import {appUrl} from "lib/enums/app-urls";
 
 import Home from "assets/icon/sidebar/home";
 import Favorites from "assets/icon/general/favorites";
@@ -17,12 +17,16 @@ interface ISidebarList {
 }
 
 const sidebarList: ISidebarList[] = [
-  { title: "Home", icon: <Home />, url: appUrl.home },
-  { title: "Favorites", icon: <Favorites />, url: appUrl.favorites },
-  { title: "Categories", icon: <Categories />, url: appUrl.categories },
+  {title: "Home", icon: <Home/>, url: appUrl.home},
+  {title: "Favorites", icon: <Favorites/>, url: appUrl.favorites},
+  {title: "Categories", icon: <Categories/>, url: appUrl.categories},
 ];
 
-const Sidebar: FC = () => {
+interface Props {
+  setCheckedBurgerMenu?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Sidebar: FC<Props> = ({ setCheckedBurgerMenu}) => {
   const [onHover, setOnHover] = useState(false);
   const onHoveredLink = getClassNameByCondition(
     styles,
@@ -49,7 +53,9 @@ const Sidebar: FC = () => {
             <li className={onHoveredLink} key={item.title}>
               <NavLink
                 to={item.url}
-                className={({ isActive }) => (isActive ? styles.active : null)}
+                className={({isActive}) => (isActive ? styles.active : null)}
+                onClick={() => setCheckedBurgerMenu && setCheckedBurgerMenu(false)}
+
               >
                 <div className={styles.icon}>{item.icon}</div>
                 <div className={styles.title}>{item.title}</div>

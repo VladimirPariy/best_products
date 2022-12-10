@@ -1,3 +1,4 @@
+import AppRouter from "components/app-router/app-router";
 import React, { FC } from "react";
 
 import styles from "layout/content/content.module.scss";
@@ -10,7 +11,7 @@ const Content: FC = () => {
   return (
     <div className={styles.mainWrapper}>
       {userScreenWidth <= 768 ? null : <Sidebar />}
-      <div>Content</div>
+      <AppRouter/>
     </div>
   );
 };
