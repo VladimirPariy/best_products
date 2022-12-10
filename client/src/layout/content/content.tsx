@@ -11,7 +11,7 @@ const Content: FC = () => {
   return (
     <div className={styles.mainWrapper}>
       {userScreenWidth <= 768 ? null : <Sidebar />}
-      <AppRouter/>
+      <AppRouter />
     </div>
   );
 };

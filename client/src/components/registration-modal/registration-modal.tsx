@@ -1,14 +1,9 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
-interface Props {
-}
+interface Props {}
 
 const RegistrationModal: FC<Props> = (props) => {
-  return (
-    <div>
-      asd
-    </div>
-  );
+  return <div>asd</div>;
 };
 
 export default RegistrationModal;
