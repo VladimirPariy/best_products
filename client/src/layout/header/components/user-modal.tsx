@@ -18,7 +18,7 @@ const UserModal: FC<Props> = (props) => {
     setIsShowLoginModal,
   } = props;
 
-  const isAuth = true;
+  const isAuth = false;
 
   const clickHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();

@@ -1,4 +1,4 @@
-@use "scss/index" as *;
+@use "src/scss/index" as *;
 
 aside {
   .sidebarWrapper {
@@ -7,6 +7,8 @@ aside {
     margin-top: 20px;
     margin-bottom: 53px;
     overflow: hidden;
+    min-height: 100%;
+
 
     > ul {
       background: $white;
@@ -82,7 +84,7 @@ aside {
       min-width: 100%;
       transition: min-width 0.5s ease-in-out;
       background: $sidebar_bg;
-      min-height: calc($h-screen - 75px);
+      min-height: calc($h-screen - 85px);
       margin: 0;
       padding-top: 70px;
 
@@ -125,7 +127,6 @@ aside {
     .sidebarWrapper {
       min-width: 100%;
       transition: min-width 0.5s ease-in-out;
-      height: calc($h-screen - 85px);
 
       > ul {
         .link {

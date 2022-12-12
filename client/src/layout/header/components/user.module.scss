@@ -1,7 +1,7 @@
-@use "scss/index" as *;
+@use "src/scss/index" as *;
 
 .userContainer {
-  margin: 1rem 0;
+  margin:  0;
   background: $search_bg;
   display: flex;
   border-radius: 23px 12px 12px 23px;
@@ -10,6 +10,7 @@
   position: relative;
 
   > img {
+
     margin: auto 0;
     height: 45px;
   }
@@ -17,7 +18,7 @@
 
 @media screen and (min-width: 769px) {
   .userContainer {
-    margin: 10px 20px 10px 0;
+    margin-right: 20px;
     width: 55px;
 
     > img {
@@ -28,7 +29,7 @@
 
 @media screen and (min-width: 1025px) {
   .userContainer {
-    margin: 11px 32px 12px 0;
+    margin-right: 32px ;
     width: 62px;
 
     > img {

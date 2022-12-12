@@ -1,0 +1,36 @@
+@use "src/scss/index" as *;
+.button{
+  background: inherit;
+  border: none;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  padding: 8px 0;
+  width: 100%;
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.purpleButton{
+  background: $active_item_color;
+  color: $white;
+
+}
+.whiteButton{
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: $white;
+  color: $active_item_color;
+}
+
+
+
+
+@media screen and (min-width: 769px) {
+
+}
+
+@media screen and (min-width: 1025px) {
+
+}

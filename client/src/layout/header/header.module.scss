@@ -3,7 +3,7 @@
 .headerContainer {
   background: $sidebar_bg;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
   .visibleHeader {
@@ -46,5 +46,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 85px;
   }
 }

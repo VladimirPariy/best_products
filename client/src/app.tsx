@@ -8,14 +8,9 @@ import Content from "layout/content/content";
 const App: FC = () => {
   const [isShowUserModal, setIsShowUserModal] = useState<boolean>(false);
   const [isShowRegistrationModal, setIsShowRegistrationModal] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const [isShowLoginModal, setIsShowLoginModal] = useState<boolean>(false);
   const [isShowAccountModal, setIsShowAccountModal] = useState<boolean>(false);
-
-  console.log(`isShowRegistrationModal:${isShowRegistrationModal}
-  isShowLoginModal:${isShowLoginModal}
-  isShowAccountModal:${isShowAccountModal}
-  `);
 
   const mainClickHandler = () => {
     setIsShowUserModal(false);
@@ -24,7 +19,7 @@ const App: FC = () => {
     setIsShowAccountModal(false);
   };
 
-  const modalContext = {
+  const setIsShowModals = {
     isShowUserModal,
     setIsShowUserModal,
     setIsShowRegistrationModal,
@@ -32,10 +27,17 @@ const App: FC = () => {
     setIsShowAccountModal,
   };
 
+  const isShowModalUseState = {
+    isShowRegistrationModal,
+    isShowLoginModal,
+    isShowAccountModal,
+    ...setIsShowModals
+  }
+
   return (
     <main className={styles.wrapper} onClick={mainClickHandler}>
-      <Header {...modalContext} />
-      <Content />
+      <Header {...setIsShowModals} />
+      <Content {...isShowModalUseState}/>
     </main>
   );
 };
