@@ -1,13 +1,13 @@
+import React, {Dispatch, FC, SetStateAction, useState} from "react";
+
+import {userRegistrationRejected, userRegistrationTrigger} from "store/actions/user-registration-actions";
+import {useAppDispatch} from "store/store-types";
+
+import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 import ModalButton from "components/ui/modal-button/modal-button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import ModalInput from "components/ui/modal-input/modal-input";
 import ModalTitle from "components/ui/modal-title/modal-title";
-import AuthApi from "lib/api/auth-api";
-import React, {Dispatch, FC, SetStateAction, useState} from "react";
-
-import styles from "components/registration-modal/registration-modal.module.scss";
-
-import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
 interface Props {
   isShowRegistrationModal: boolean;
@@ -15,6 +15,8 @@ interface Props {
 }
 
 const RegistrationModal: FC<Props> = (props) => {
+  const dispatch = useAppDispatch();
+
   const {isShowRegistrationModal, setIsShowRegistrationModal} = props;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -22,19 +24,17 @@ const RegistrationModal: FC<Props> = (props) => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  const [isGetUpdates, setIsGetUpdates] = useState<boolean>(false);
+  const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
+
+  const [passwordError, setPasswordError] = useState(false)
 
 
-
-
-
-  const fetch = () => {
-    if(password === confirmPassword) {
-      const data = AuthApi.registration(firstName, lastName, email, password, isGetUpdates)
-      console.log(data)
-    } else{
-      console.log('error confirm password')
+  const registrationHandler = () => {
+    if (password === confirmPassword) {
+      dispatch(userRegistrationTrigger({firstName, lastName, email, password, isGetUpdate}))
+      return;
     }
+    dispatch(userRegistrationRejected({status: 400, status_message: 'Error confirming password'}))
   }
 
 
@@ -76,12 +76,12 @@ const RegistrationModal: FC<Props> = (props) => {
         labelText="Confirm password"
         type="password"
       />
-
-      <ModalCheckbox value={isGetUpdates} changeHandler={setIsGetUpdates}>
+      {password && <div></div>}
+      <ModalCheckbox value={isGetUpdate} changeHandler={setIsGetUpdates}>
         Get updates on our shop news and promotions
       </ModalCheckbox>
 
-      <ModalButton submitHandler={fetch} isPurpleButton={true} type='submit'>
+      <ModalButton submitHandler={registrationHandler} isPurpleButton={true} type='submit'>
         Create account
       </ModalButton>
 

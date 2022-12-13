@@ -9,7 +9,7 @@ export const signUpSchema = yup.object({
     lastName: yup.string().nullable(false),
     email: yup.string().email().nullable(false),
     password: yup.string().min(5).max(25).nullable(false).matches(
-      /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+      /^([A-Za-z0-9]*)$/gi,
       'Password can only contain Latin letters.'
     ),
     isGetUpdates: yup.boolean().nullable(false)

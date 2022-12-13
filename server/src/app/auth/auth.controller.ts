@@ -4,6 +4,7 @@ import {HttpException} from "@/app/middlewares/exceptions-middleware";
 
 class AuthController {
   async registration(req: Request, res: Response, next: NextFunction) {
+    console.log(req.body)
     const {firstName, lastName, email, password, isGetUpdate} = req.body;
     const data = await AuthService.registration(firstName, lastName, email, password, isGetUpdate);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
