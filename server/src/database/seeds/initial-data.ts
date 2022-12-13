@@ -138,21 +138,21 @@ export async function seed(knex: Knex): Promise<void> {
     {characteristic_id: 2, characteristic_title: "Number of Cores"},
   ]);
 
-  await knex("prod_characteristics").insert([
+  await knex("product_characteristics").insert([
     {
-      prod_characteristic_id: 1,
+      product_characteristic_id: 1,
       product: 1,
       characteristic: 1,
       characteristic_description: 7.89
     },
     {
-      prod_characteristic_id: 2,
+      product_characteristic_id: 2,
       product: 1,
       characteristic: 2,
       characteristic_description: "4"
     },
     {
-      prod_characteristic_id: 3,
+      product_characteristic_id: 3,
       product: 2,
       characteristic: 2,
       characteristic_description: "1"
@@ -216,7 +216,7 @@ export async function seed(knex: Knex): Promise<void> {
     }
   ]);
 
-  await knex("prod_subcategories").insert([
+  await knex("product_subcategories").insert([
     {
       product: 1,
       subcategory: 2,

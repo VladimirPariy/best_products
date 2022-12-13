@@ -11,6 +11,7 @@ module.exports = {
       database: "best_products",
       charset: "utf8",
     },
+    debug: true
   },
   staging: {},
   production: {},

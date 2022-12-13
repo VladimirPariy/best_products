@@ -1,5 +1,6 @@
 /.idea
 /todo.txt
+/httpCode.txt
 
 /client/node_modules
 /client/.env

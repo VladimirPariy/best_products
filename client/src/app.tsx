@@ -8,7 +8,7 @@ import Content from "layout/content/content";
 const App: FC = () => {
   const [isShowUserModal, setIsShowUserModal] = useState<boolean>(false);
   const [isShowRegistrationModal, setIsShowRegistrationModal] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [isShowLoginModal, setIsShowLoginModal] = useState<boolean>(false);
   const [isShowAccountModal, setIsShowAccountModal] = useState<boolean>(false);
 
@@ -31,13 +31,13 @@ const App: FC = () => {
     isShowRegistrationModal,
     isShowLoginModal,
     isShowAccountModal,
-    ...setIsShowModals
-  }
+    ...setIsShowModals,
+  };
 
   return (
     <main className={styles.wrapper} onClick={mainClickHandler}>
       <Header {...setIsShowModals} />
-      <Content {...isShowModalUseState}/>
+      <Content {...isShowModalUseState} />
     </main>
   );
 };

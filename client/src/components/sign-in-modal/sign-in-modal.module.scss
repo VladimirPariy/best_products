@@ -1,0 +1,47 @@
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 18px;
+  border-bottom: 3px solid #766ED3;
+  height: 0;
+  color: rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 1;
+  padding: 30px 0 0;
+  margin-bottom: 22px;
+
+  > span {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    padding: 0 5px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .separator {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 34px 0 0;
+    margin-bottom: 26px;
+    > span {
+      padding: 0 6px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .separator {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 38px 0 0;
+    margin-bottom: 30px;
+
+    > span {
+      padding: 0 7px;
+    }
+  }
+}

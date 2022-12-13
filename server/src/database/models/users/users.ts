@@ -17,6 +17,7 @@ class Users extends Model {
   phone_number: string;
   user_photo: string;
   role: number;
+  is_get_update:boolean;
   created_at: Knex.Raw;
   updated_at: Knex.Raw;
 

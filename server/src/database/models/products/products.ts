@@ -3,7 +3,7 @@ import {Model} from "objection";
 import {Comments} from "@/database/models/comments/comments";
 import {FavoriteProducts} from "@/database/models/favorite-products/favorite-products";
 import {Feedbacks} from "@/database/models/feedbacks/feedbacks";
-import {Characteristics, ProdCharacteristic} from "@/database/models/products/characteristics";
+import {Characteristics, ProductCharacteristic} from "@/database/models/products/characteristics";
 import {PriceHistory} from "@/database/models/products/price-history";
 import {ProductsImages} from "@/database/models/products/products-images";
 import {Subcategory} from "@/database/models/products/subcatigories";
@@ -25,7 +25,7 @@ class Products extends Model {
   static relationMappings = {
     prod_characteristic: {
       relation: Model.HasManyRelation,
-      modelClass: ProdCharacteristic,
+      modelClass: ProductCharacteristic,
       join: {
         from: "product_characteristics.product",
         to: "products.product_id"

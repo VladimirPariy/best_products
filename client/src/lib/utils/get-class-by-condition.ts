@@ -15,7 +15,9 @@ export const getClassNameByCondition: getClassNameType = (
   mainClass,
   extraClass,
   condition,
-  secondExtraClass = ''
+  secondExtraClass = ""
 ) => {
-  return `${CSSModule[mainClass]} ${condition ? CSSModule[extraClass] : CSSModule[secondExtraClass]}`;
+  return `${CSSModule[mainClass]} ${
+    condition ? CSSModule[extraClass] : CSSModule[secondExtraClass]
+  }`;
 };

@@ -1,3 +1,5 @@
+@use "src/scss/index" as *;
+
 .modalWrapper {
   position: fixed;
   top: 0;
@@ -18,7 +20,7 @@
   justify-content: flex-start;
   align-items: center;
   z-index: 2;
-  .container{
+  .container {
     flex-shrink: 0;
     flex-grow: 0;
     width: 100%;
@@ -28,5 +30,25 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+    .modal {
+      transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+      transform: scale(1);
+      margin: 55px 10px 0;
+      background: $sidebar_bg;
+      max-width: 580px;
+      min-width: 300px;
+      padding: 24px 25px 30px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+    }
+  }
+}
+
+
+
+@media screen and (min-width: 769px) {
+  .modalWrapper.active .container .modal {
+    margin: 85px 10px 0;
+    padding: 24px 43px 37px;
   }
 }

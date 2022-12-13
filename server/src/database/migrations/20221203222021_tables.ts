@@ -22,17 +22,18 @@ export async function up(knex: Knex): Promise<void> {
   .createTable("roles", table => {
     table.increments("role_id");
     table.string("role_title", 10).unique().notNullable();
-  }) //
+  })
   .createTable("users", (table) => {
     table.increments("user_id");
     table.string("first_name", 20).notNullable();
     table.string("last_name", 20).notNullable();
-    table.string("email", 30).unique().notNullable();
+    table.string("email", 50).unique().notNullable();
     table.string("password", 255).notNullable();
-    table.string("phone_number", 15).unique().notNullable();
+    table.string("phone_number", 15).unique();
     table.string("user_photo");
+    table.boolean("is_get_update").notNullable().defaultTo(true);
     table.timestamps(true);
-    createForeignKeyHelper(table, "role", "role_id", "roles");
+    createForeignKeyHelper(table, "role", "role_id", "roles", 2);
   })
   .createTable("categories", (table) => {
     table.increments("category_id");
