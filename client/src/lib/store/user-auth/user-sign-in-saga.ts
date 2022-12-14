@@ -1,17 +1,22 @@
-import {AxiosError} from "axios";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {PayloadAction} from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { PayloadAction } from "@reduxjs/toolkit";
 
-import {userAuthFulfilled, userAuthRejected, userRegistrationTrigger, userAuthPending, userLoginTrigger} from "lib/store/user-auth/user-auth-actions";
+import {
+  userAuthFulfilled,
+  userAuthRejected,
+  userRegistrationTrigger,
+  userAuthPending,
+  userLoginTrigger,
+} from "lib/store/user-auth/user-auth-actions";
 
-import {ILoginData} from "lib/interfaces/login-data";
-import {IReturningUserData} from "lib/interfaces/returning-user-data";
+import { ILoginData } from "lib/interfaces/login-data";
+import { IReturningUserData } from "lib/interfaces/returning-user-data";
 import AuthApi from "lib/api/auth-api";
-
 
 function* userSignInWorker(action: PayloadAction<ILoginData>) {
   yield put(userAuthPending());
-  console.log(action.payload)
+  console.log(action.payload);
   try {
     const data: IReturningUserData = yield call(AuthApi.login, action.payload);
 

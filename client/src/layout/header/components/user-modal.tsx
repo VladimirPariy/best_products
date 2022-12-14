@@ -1,12 +1,12 @@
-import React, {FC, MouseEvent, Dispatch, SetStateAction} from "react";
+import React, { FC, MouseEvent, Dispatch, SetStateAction } from "react";
 
 import styles from "layout/header/components/user-modal.module.scss";
 
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {selectAuth, selectUser} from "lib/store/user-auth/user-auth-selector";
-import {clearUser} from "lib/store/user-auth/user-auth-actions";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { selectAuth, selectUser } from "lib/store/user-auth/user-auth-selector";
+import { clearUser } from "lib/store/user-auth/user-auth-actions";
 
-import {IModalScreens} from "lib/interfaces/modal-screens.interface";
+import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 
 interface Props extends IModalScreens {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
@@ -22,9 +22,9 @@ const UserModal: FC<Props> = (props) => {
     setIsShowLoginModal,
   } = props;
 
-  const dispatch = useAppDispatch()
-  const isAuth = useAppSelector(selectAuth)
-  const user = useAppSelector(selectUser)
+  const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(selectAuth);
+  const user = useAppSelector(selectUser);
 
   const clickHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -53,14 +53,16 @@ const UserModal: FC<Props> = (props) => {
   };
 
   const logOutHandler = () => {
-    dispatch(clearUser())
-  }
+    dispatch(clearUser());
+  };
 
   return (
     <div className={styles.userModal} onClick={clickHandler}>
       {isAuth ? (
         <>
-          <span onClick={showAcc}>{user.first_name} {user.last_name}</span>
+          <span onClick={showAcc}>
+            {user.first_name} {user.last_name}
+          </span>
           <button onClick={logOutHandler}>Log out</button>
         </>
       ) : (

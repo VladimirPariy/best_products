@@ -1,10 +1,19 @@
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {selectAuth, selectToken} from "lib/store/user-auth/user-auth-selector";
-import React, {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import {
+  selectAuth,
+  selectToken,
+} from "lib/store/user-auth/user-auth-selector";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import {userLoginTrigger} from "lib/store/user-auth/user-auth-actions";
+import { userLoginTrigger } from "lib/store/user-auth/user-auth-actions";
 import ModalButton from "components/ui/modal-button/modal-button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import ModalInput from "components/ui/modal-input/modal-input";
@@ -17,31 +26,34 @@ interface Props {
   isShowLoginModal: boolean;
 }
 
-const SignInModal: FC<Props> = ({setIsShowLoginModal, isShowLoginModal, setIsShowRegistrationModal}) => {
+const SignInModal: FC<Props> = ({
+  setIsShowLoginModal,
+  isShowLoginModal,
+  setIsShowRegistrationModal,
+}) => {
   const dispatch = useAppDispatch();
-  const auth = useAppSelector(selectAuth)
+  const auth = useAppSelector(selectAuth);
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isRemember, setIsRemember] = useState<boolean>(false);
 
-
   const loginHandler = () => {
     dispatch(
       userLoginTrigger({
-        login, password
+        login,
+        password,
       })
     );
   };
 
   const showRegistrationModalHandler = () => {
-    setIsShowLoginModal(false)
-    setIsShowRegistrationModal(true)
-  }
+    setIsShowLoginModal(false);
+    setIsShowRegistrationModal(true);
+  };
 
   useEffect(() => {
-    auth && setIsShowLoginModal(false)
-  }, [auth])
-
+    auth && setIsShowLoginModal(false);
+  }, [auth]);
 
   return (
     <ModalWrapper setVisible={setIsShowLoginModal} isVisible={isShowLoginModal}>
@@ -66,7 +78,10 @@ const SignInModal: FC<Props> = ({setIsShowLoginModal, isShowLoginModal, setIsSho
           <span>Don't have an account yet?</span>
         </div>
 
-        <ModalButton submitHandler={showRegistrationModalHandler} isPurpleButton={false}>
+        <ModalButton
+          submitHandler={showRegistrationModalHandler}
+          isPurpleButton={false}
+        >
           Create your Best Product account
         </ModalButton>
       </div>

@@ -1,9 +1,9 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ILoginData} from "lib/interfaces/login-data";
-import {IRegistrationData} from "lib/interfaces/registration-data.interface";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ILoginData } from "lib/interfaces/login-data";
+import { IRegistrationData } from "lib/interfaces/registration-data.interface";
 
-import {IUser} from "lib/interfaces/user.interface";
-import {ErrorPayload} from "lib/store/store-types";
+import { IUser } from "lib/interfaces/user.interface";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
   auth: boolean;
@@ -29,7 +29,7 @@ export const userAuthSlice = createSlice({
       state,
       action: PayloadAction<{ user: IUser; token: string }>
     ) => {
-      const {user, token} = action.payload;
+      const { user, token } = action.payload;
       state.userInfo = user;
       state.token = token;
       state.isFetching = false;
@@ -50,12 +50,13 @@ export const userAuthSlice = createSlice({
       state.isFetching = false;
       state.auth = false;
     },
-    userRegistrationTrigger: (_, action: PayloadAction<IRegistrationData>) => {
-    },
-    userLoginTrigger: (_, action: PayloadAction<ILoginData>) => {
-    },
+    userRegistrationTrigger: (
+      _,
+      action: PayloadAction<IRegistrationData>
+    ) => {},
+    userLoginTrigger: (_, action: PayloadAction<ILoginData>) => {},
     clearUser: () => {
-      return initialState
-    }
+      return initialState;
+    },
   },
 });
