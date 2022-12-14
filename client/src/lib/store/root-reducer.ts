@@ -1,6 +1,6 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { userRegistrationReducer } from "lib/store/user-registration/user-registration-reducer";
+import {combineReducers} from "@reduxjs/toolkit";
+import {userAuthReducer} from "lib/store/user-auth/user-auth-reducer";
 
 export const rootReducer = combineReducers({
-  user: userRegistrationReducer,
+  user: userAuthReducer,
 });

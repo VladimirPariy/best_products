@@ -1,13 +1,13 @@
 import AppRouter from "components/app-router/app-router";
 import RegistrationModal from "components/registration-modal/registration-modal";
 import SignInModal from "components/sign-in-modal/sign-in-modal";
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
-import React, { FC } from "react";
+import {IModalScreens} from "lib/interfaces/modal-screens.interface";
+import React, {FC} from "react";
 
 import styles from "layout/content/content.module.scss";
 
 import Sidebar from "components/sidebar/sidebar";
-import { useScreenWidth } from "lib/hooks/use-screen-width";
+import {useScreenWidth} from "lib/hooks/use-screen-width";
 
 interface Props extends IModalScreens {
   isShowRegistrationModal: boolean;
@@ -24,10 +24,11 @@ const Content: FC<Props> = (props) => {
     isShowAccountModal,
     setIsShowAccountModal,
   } = props;
+
   const userScreenWidth = useScreenWidth();
   return (
     <div className={styles.mainWrapper}>
-      {userScreenWidth <= 768 ? null : <Sidebar />}
+      {userScreenWidth <= 768 ? null : <Sidebar/>}
       {isShowRegistrationModal && (
         <RegistrationModal
           setIsShowRegistrationModal={setIsShowRegistrationModal}
@@ -38,9 +39,10 @@ const Content: FC<Props> = (props) => {
         <SignInModal
           isShowLoginModal={isShowLoginModal}
           setIsShowLoginModal={setIsShowLoginModal}
+          setIsShowRegistrationModal={setIsShowRegistrationModal}
         />
       )}
-      <AppRouter />
+      <AppRouter/>
     </div>
   );
 };

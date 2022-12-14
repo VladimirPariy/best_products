@@ -1,3 +1,4 @@
+import UserService from "@/app/user/user.service";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {Model} from "objection";
@@ -11,34 +12,10 @@ const generateJwtToken = (id: string, email: string, role: number): string => {
 
 
 class AuthService {
-  async getUserByEmailOrPhoneNumber(login: string) {
-    return Users.query()
-    .skipUndefined()
-    .where({email: login})
-    .orWhere({phone_number: login});
-  }
 
-  async getUserById(id: string) {
-    return Users.query()
-    .select([
-      'user_id',
-      'first_name',
-      'last_name',
-      'email',
-      'password',
-      'phone_number',
-      'user_photo',
-      'is_get_update',
-      'created_at',
-      'updated_at',
-      'roles.role_title as role'
-    ])
-    .join("roles", "users.role", "roles.role_id")
-    .where('user_id', '=', id)
-  }
 
   async registration(firstName: string, lastName: string, email: string, password: string, isGetUpdate: boolean) {
-    const candidate = await this.getUserByEmailOrPhoneNumber(email);
+    const candidate = await UserService.getUserByEmailOrPhoneNumber(email);
     if (candidate.length) {
       return new HttpException("User already exists", 409);
     }
@@ -54,14 +31,15 @@ class AuthService {
       is_get_update: isGetUpdate,
       updated_at: Model.knex().fn.now()
     })
-    const user = (await this.getUserById(insertingData.user_id))[0]
+
+    const user = (await UserService.getUserById(insertingData.user_id))[0]
 
     const token = generateJwtToken(user.user_id, user.email, user.role)
     return {user, token}
   }
 
   async login(login: string, password: string) {
-    const candidate = await this.getUserByEmailOrPhoneNumber(login);
+    const candidate = await UserService.getUserByEmailOrPhoneNumber(login);
     if (!candidate.length) {
       return new HttpException("User is not found", 404);
     }
@@ -71,7 +49,7 @@ class AuthService {
       return new HttpException(`User inputted invalid password`, 400);
     }
 
-    const user = (await this.getUserById(candidate[0].user_id))[0]
+    const user = (await UserService.getUserById(candidate[0].user_id))[0]
     const token = generateJwtToken(user.user_id, user.email, user.role);
     return {user, token}
   }

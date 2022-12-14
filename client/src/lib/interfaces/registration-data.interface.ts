@@ -5,3 +5,4 @@ export interface IRegistrationData {
   password: string;
   isGetUpdate: boolean;
 }
+

@@ -3,10 +3,9 @@ import express, {Express} from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 
-import {ErrorHandler} from "@/app/middlewares/exceptions-middleware";
-
 import {connectingDb} from "@/database/connectingDb";
-import {createAuthRouter} from "@/app/auth/auth.router";
+import {ErrorHandler} from "@/app/middlewares/exceptions-middleware";
+import {createRootRouter} from "@/app/common/root-router";
 
 dotenv.config()
 
@@ -22,11 +21,7 @@ const createWebServer = (): Express => {
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
 
-
-  // app.get('/', async (req, res) => {
-  // })
-
-  app.use("/api", createAuthRouter());
+  app.use("/api", createRootRouter());
 
   app.use(ErrorHandler);
   return app;
@@ -41,3 +36,6 @@ const start = async (app: Express) => {
 start(createWebServer()).catch(e => {
   if (e instanceof Error) console.error(e.message);
 });
+
+
+

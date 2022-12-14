@@ -1,8 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IRegistrationData } from "lib/interfaces/registration-data.interface";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {ILoginData} from "lib/interfaces/login-data";
+import {IRegistrationData} from "lib/interfaces/registration-data.interface";
 
-import { IUser } from "lib/interfaces/user.interface";
-import { ErrorPayload } from "lib/store/store-types";
+import {IUser} from "lib/interfaces/user.interface";
+import {ErrorPayload} from "lib/store/store-types";
 
 interface IInitialState {
   auth: boolean;
@@ -20,29 +21,29 @@ const initialState: IInitialState = {
   userInfo: {} as IUser,
 };
 
-export const userRegistrationSlice = createSlice({
+export const userAuthSlice = createSlice({
   name: "@@user",
   initialState,
   reducers: {
-    userRegistrationFulfilled: (
+    userAuthFulfilled: (
       state,
       action: PayloadAction<{ user: IUser; token: string }>
     ) => {
-      const { user, token } = action.payload;
+      const {user, token} = action.payload;
       state.userInfo = user;
       state.token = token;
       state.isFetching = false;
       state.error = null;
       state.auth = true;
     },
-    userRegistrationPending: (state) => {
+    userAuthPending: (state) => {
       state.isFetching = true;
       state.userInfo = {} as IUser;
       state.token = "";
       state.error = null;
       state.auth = false;
     },
-    userRegistrationRejected: (state, action: PayloadAction<ErrorPayload>) => {
+    userAuthRejected: (state, action: PayloadAction<ErrorPayload>) => {
       state.error = action.payload;
       state.userInfo = {} as IUser;
       state.token = "";
@@ -50,7 +51,11 @@ export const userRegistrationSlice = createSlice({
       state.auth = false;
     },
     userRegistrationTrigger: (_, action: PayloadAction<IRegistrationData>) => {
-      return initialState;
     },
+    userLoginTrigger: (_, action: PayloadAction<ILoginData>) => {
+    },
+    clearUser: () => {
+      return initialState
+    }
   },
 });
