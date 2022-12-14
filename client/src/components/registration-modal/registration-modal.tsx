@@ -1,7 +1,10 @@
-import React, {Dispatch, FC, SetStateAction, useState} from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 
-import {userRegistrationRejected, userRegistrationTrigger} from "store/actions/user-registration-actions";
-import {useAppDispatch} from "store/store-types";
+import {
+  userRegistrationRejected,
+  userRegistrationTrigger,
+} from "lib/store/user-registration/user-registration-actions";
+import { useAppDispatch } from "lib/store/store-types";
 
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 import ModalButton from "components/ui/modal-button/modal-button";
@@ -17,7 +20,7 @@ interface Props {
 const RegistrationModal: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
 
-  const {isShowRegistrationModal, setIsShowRegistrationModal} = props;
+  const { isShowRegistrationModal, setIsShowRegistrationModal } = props;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -26,24 +29,34 @@ const RegistrationModal: FC<Props> = (props) => {
 
   const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
 
-  const [passwordError, setPasswordError] = useState(false)
-
+  const [passwordError, setPasswordError] = useState(false);
 
   const registrationHandler = () => {
     if (password === confirmPassword) {
-      dispatch(userRegistrationTrigger({firstName, lastName, email, password, isGetUpdate}))
+      dispatch(
+        userRegistrationTrigger({
+          firstName,
+          lastName,
+          email,
+          password,
+          isGetUpdate,
+        })
+      );
       return;
     }
-    dispatch(userRegistrationRejected({status: 400, status_message: 'Error confirming password'}))
-  }
-
+    dispatch(
+      userRegistrationRejected({
+        status: 400,
+        status_message: "Error confirming password",
+      })
+    );
+  };
 
   return (
     <ModalWrapper
       setVisible={setIsShowRegistrationModal}
       isVisible={isShowRegistrationModal}
     >
-
       <ModalTitle>SIGN UP</ModalTitle>
 
       <ModalInput
@@ -81,10 +94,13 @@ const RegistrationModal: FC<Props> = (props) => {
         Get updates on our shop news and promotions
       </ModalCheckbox>
 
-      <ModalButton submitHandler={registrationHandler} isPurpleButton={true} type='submit'>
+      <ModalButton
+        submitHandler={registrationHandler}
+        isPurpleButton={true}
+        type="submit"
+      >
         Create account
       </ModalButton>
-
     </ModalWrapper>
   );
 };

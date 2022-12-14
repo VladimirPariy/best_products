@@ -19,11 +19,8 @@ const ModalWrapper: FC<Props> = ({ children, setVisible, isVisible }) => {
   return (
     <div onClick={() => setVisible(false)} className={wrapperClasses}>
       <div className={styles.container}>
-        <div
-          className={styles.modal}
-          onClick={(e) => e.stopPropagation()}
-        >
-        {children}
+        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          {children}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction, useState} from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
@@ -13,29 +13,32 @@ interface Props {
   isShowLoginModal: boolean;
 }
 
-const SignInModal: FC<Props> = ({setIsShowLoginModal, isShowLoginModal}) => {
-  const [login, setLogin] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [isRemember, setIsRemember] = useState<boolean>(false)
-
+const SignInModal: FC<Props> = ({ setIsShowLoginModal, isShowLoginModal }) => {
+  const [login, setLogin] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isRemember, setIsRemember] = useState<boolean>(false);
 
   return (
     <ModalWrapper setVisible={setIsShowLoginModal} isVisible={isShowLoginModal}>
-      <div
-        onClick={(e) => e.stopPropagation()}>
+      <div onClick={(e) => e.stopPropagation()}>
         <ModalTitle>SIGN IN</ModalTitle>
-        <ModalInput labelText='Email address or mobile phone number' changeHandler={setLogin} value={login}/>
-        <ModalInput labelText='Password' changeHandler={setPassword} value={password}/>
-        <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>Remember me</ModalCheckbox>
-        <ModalButton submitHandler={() => {
-        }}>
-          Continue
-        </ModalButton>
+        <ModalInput
+          labelText="Email address or mobile phone number"
+          changeHandler={setLogin}
+          value={login}
+        />
+        <ModalInput
+          labelText="Password"
+          changeHandler={setPassword}
+          value={password}
+        />
+        <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>
+          Remember me
+        </ModalCheckbox>
+        <ModalButton submitHandler={() => {}}>Continue</ModalButton>
 
         <div className={styles.separator}>
-          <span>
-          Don't have an account yet?
-          </span>
+          <span>Don't have an account yet?</span>
         </div>
 
         <ModalButton submitHandler={() => {}} isPurpleButton={false}>

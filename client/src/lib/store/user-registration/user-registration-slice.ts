@@ -1,32 +1,34 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IRegistrationData} from "lib/interfaces/registration-data.interface";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IRegistrationData } from "lib/interfaces/registration-data.interface";
 
-import {IUser} from "lib/interfaces/user.interface";
-import {ErrorPayload} from "store/store-types";
+import { IUser } from "lib/interfaces/user.interface";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
   auth: boolean;
   token: string;
   isFetching: boolean;
   error: ErrorPayload | null;
-  userInfo: IUser
+  userInfo: IUser;
 }
 
 const initialState: IInitialState = {
   auth: false,
-  token: '',
+  token: "",
   isFetching: true,
   error: null,
-  userInfo: {} as IUser
-}
-
+  userInfo: {} as IUser,
+};
 
 export const userRegistrationSlice = createSlice({
-  name: '@@user',
+  name: "@@user",
   initialState,
   reducers: {
-    userRegistrationFulfilled: (state, action: PayloadAction<{ user: IUser, token: string }>) => {
-      const {user, token} = action.payload
+    userRegistrationFulfilled: (
+      state,
+      action: PayloadAction<{ user: IUser; token: string }>
+    ) => {
+      const { user, token } = action.payload;
       state.userInfo = user;
       state.token = token;
       state.isFetching = false;
@@ -36,19 +38,19 @@ export const userRegistrationSlice = createSlice({
     userRegistrationPending: (state) => {
       state.isFetching = true;
       state.userInfo = {} as IUser;
-      state.token = '';
+      state.token = "";
       state.error = null;
       state.auth = false;
     },
     userRegistrationRejected: (state, action: PayloadAction<ErrorPayload>) => {
       state.error = action.payload;
       state.userInfo = {} as IUser;
-      state.token = '';
+      state.token = "";
       state.isFetching = false;
       state.auth = false;
     },
     userRegistrationTrigger: (_, action: PayloadAction<IRegistrationData>) => {
-      return initialState
+      return initialState;
     },
-  }
-})
+  },
+});
