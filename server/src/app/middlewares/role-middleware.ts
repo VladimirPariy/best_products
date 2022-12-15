@@ -1,4 +1,4 @@
-import {HttpException} from "@/app/middlewares/exceptions-middleware";
+import {HttpException} from "@/app/common/errors/exceptions";
 import {NextFunction, Request, Response} from "express";
 import jwt from "jsonwebtoken";
 import {checkToken} from "@/app/middlewares/auth-middleware"
@@ -10,13 +10,13 @@ export function checkRole(role: string) {
     if (token) {
       jwt.verify(token, process.env.SECRET || '', (err, user) => {
         if (err) {
-          return next(HttpException.invalidToken());
+          return next(HttpException.badRequest('Token is invalid'));
         }
         if (typeof user === 'string' || !user) {
-          return next(HttpException.invalidToken());
+          return next(HttpException.badRequest('Token is invalid'));
         }
         if (user.role !== role) {
-          return next(HttpException.forbidden());
+          return next(HttpException.forbidden('Entering forbidden'));
         }
         req.user = user;
       });

@@ -8,20 +8,16 @@ export class HttpException extends Error {
     this.message = message;
   }
 
-  static forbidden(message?: string) {
-    return new HttpException(message || 'Entering forbidden', 403);
+  static forbidden(message: string) {
+    return new HttpException(message, 403);
   }
 
-  static invalidToken(message?: string) {
-    return new HttpException(message || 'Token is invalid', 403);
+  static internalServErr(message: string) {
+    return new HttpException(message, 500);
   }
 
-  static unsuccessfulCreatingToken(message?: string) {
-    return new HttpException(message || `Unsuccessful attempt to create token`, 500);
-  }
-
-  static invalidPass(message?: string) {
-    return new HttpException(message || `User inputted invalid password`, 400);
+  static badRequest(message: string) {
+    return new HttpException(message, 400);
   }
 
   static notFound(message: string) {
@@ -30,5 +26,9 @@ export class HttpException extends Error {
 
   static alreadyExists(message: string) {
     return new HttpException(message, 409);
+  }
+
+  static unauthorized(message: string) {
+    return new HttpException(message, 401);
   }
 }

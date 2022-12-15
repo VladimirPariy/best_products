@@ -13,7 +13,7 @@ type getClassNameType = (
 export const getClassNameByCondition: getClassNameType = (
   CSSModule,
   mainClass,
-  extraClass,
+  extraClass = "",
   condition,
   secondExtraClass = ""
 ) => {

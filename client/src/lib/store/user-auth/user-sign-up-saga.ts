@@ -1,7 +1,6 @@
-import { AxiosError } from "axios";
-import { ILoginData } from "lib/interfaces/login-data";
-import { call, put, takeLatest } from "redux-saga/effects";
-import { PayloadAction } from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+import {call, put, takeLatest} from "redux-saga/effects";
+import {PayloadAction} from "@reduxjs/toolkit";
 
 import {
   userAuthFulfilled,
@@ -10,8 +9,8 @@ import {
   userAuthPending,
 } from "lib/store/user-auth/user-auth-actions";
 
-import { IRegistrationData } from "lib/interfaces/registration-data.interface";
-import { IReturningUserData } from "lib/interfaces/returning-user-data";
+import {IRegistrationData} from "lib/interfaces/registration-data.interface";
+import {IReturningUserData} from "lib/interfaces/returning-user-data";
 import AuthApi from "lib/api/auth-api";
 
 function* userSignUpWorker(action: PayloadAction<IRegistrationData>) {

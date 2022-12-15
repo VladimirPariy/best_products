@@ -1,10 +1,7 @@
 import {userUpdatingField} from "@/app/lib/utils/user-updating-field";
 import UserService from "@/app/user/user.service";
 import {Response, Request, NextFunction} from "express";
-import {HttpException} from "@/app/middlewares/exceptions-middleware";
-import {Model} from "objection";
-import knex, {Knex} from "knex";
-import {Users} from "@/database/models/users/users";
+import {HttpException} from "@/app/common/errors/exceptions";
 
 
 class UserController {
@@ -12,13 +9,13 @@ class UserController {
   async updateUserInfo(req: Request, res: Response, next: NextFunction) {
     const {id} = req.params;
     if (!id) {
-      return next(new HttpException(`User\`s id not specified`, 400));
+      return next(HttpException.badRequest(`User\`s id not specified`));
     }
 
     // Валидация на редактируемые поля. Любые не предусмотренные - будут отброшены.
     const fields = userUpdatingField(req);
     if (!Object.keys(fields).length) {
-      return next(new HttpException(`No fields allowed to update`, 400));
+      return next(HttpException.badRequest(`No fields allowed to update`));
     }
 
     const data = await UserService.updateUserById(+id, fields)

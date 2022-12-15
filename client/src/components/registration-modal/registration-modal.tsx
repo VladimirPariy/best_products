@@ -1,6 +1,5 @@
 import {
   selectAuth,
-  selectToken,
 } from "lib/store/user-auth/user-auth-selector";
 import React, {
   Dispatch,
@@ -10,8 +9,8 @@ import React, {
   useState,
 } from "react";
 
-import { userRegistrationTrigger } from "lib/store/user-auth/user-auth-actions";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import {userRegistrationTrigger} from "lib/store/user-auth/user-auth-actions";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
 
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 import ModalButton from "components/ui/modal-button/modal-button";
@@ -28,7 +27,7 @@ const RegistrationModal: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
 
-  const { isShowRegistrationModal, setIsShowRegistrationModal } = props;
+  const {isShowRegistrationModal, setIsShowRegistrationModal} = props;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

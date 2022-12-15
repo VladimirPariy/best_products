@@ -1,10 +1,9 @@
 import {Response, Request, NextFunction} from "express";
 import AuthService from "@/app/auth/auth.service";
-import {HttpException} from "@/app/middlewares/exceptions-middleware";
+import {HttpException} from "@/app/common/errors/exceptions";
 
 class AuthController {
   async registration(req: Request, res: Response, next: NextFunction) {
-    console.log(req.body)
     const {firstName, lastName, email, password, isGetUpdate} = req.body;
     const data = await AuthService.registration(firstName, lastName, email, password, isGetUpdate);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
@@ -16,7 +15,7 @@ class AuthController {
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 
-  async check(req:Request, res:Response, next:NextFunction){
+  async check(req: Request, res: Response, next: NextFunction) {
     const data = await AuthService.checkAuth(req.user)
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import {Model} from "objection";
 
 import {Users} from "@/database/models/users/users";
-import {HttpException} from "@/app/middlewares/exceptions-middleware";
+import {HttpException} from "@/app/common/errors/exceptions";
 
 const generateJwtToken = (id: string, email: string, role: number): string => {
   return jwt.sign({id, email, role}, process.env.SECRET || '', {expiresIn: '24h'})
@@ -35,7 +35,7 @@ class AuthService {
     const user = (await UserService.getUserById(insertingData.user_id))[0]
 
     const token = generateJwtToken(user.user_id, user.email, user.role)
-    if (!token) return HttpException.unsuccessfulCreatingToken();
+    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     return {user, token}
   }
 
@@ -47,19 +47,19 @@ class AuthService {
 
     const validPassword = bcrypt.compareSync(password, candidate[0].password);
     if (!validPassword) {
-      return HttpException.invalidPass();
+      return HttpException.badRequest(`User inputted invalid password`);
     }
 
     const user = (await UserService.getUserById(candidate[0].user_id))[0]
     const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) return HttpException.unsuccessfulCreatingToken();
+    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     return {user, token}
   }
 
 
   async checkAuth(user: jwt.JwtPayload) {
     const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) return HttpException.unsuccessfulCreatingToken();
+    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     return {token}
   }
 }

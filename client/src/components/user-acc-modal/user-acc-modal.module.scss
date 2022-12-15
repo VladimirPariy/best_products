@@ -1,0 +1,69 @@
+.container {
+  .photoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    .userPhoto {
+      width: 100px;
+      height: 100px;
+    }
+
+    > button {
+      max-width: 300px;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .container {
+    display: flex;
+    gap: 40px;
+
+    .photoContainer {
+      padding: 0 0 0 10px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+      min-width: 251px;
+
+      .userPhoto {
+        width: 100%;
+        height: max-content;
+        max-width: 356px;
+        max-height: 356px;
+      }
+    }
+
+    .userInfoContainer {
+      max-width: 400px;
+      padding: 0 0 4px 0;
+
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .container {
+    gap: 125px;
+
+    .photoContainer {
+      padding: 0 0 0 48px;
+      min-width: 337px;
+
+      .userPhoto {
+
+      }
+    }
+
+    .userInfoContainer {
+      max-width: 620px;
+      padding: 0 29px 4px 0;
+
+    }
+  }
+}
+
+

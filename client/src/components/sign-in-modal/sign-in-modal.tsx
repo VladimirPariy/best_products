@@ -1,7 +1,6 @@
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
 import {
   selectAuth,
-  selectToken,
 } from "lib/store/user-auth/user-auth-selector";
 import React, {
   Dispatch,
@@ -13,7 +12,7 @@ import React, {
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import { userLoginTrigger } from "lib/store/user-auth/user-auth-actions";
+import {userLoginTrigger} from "lib/store/user-auth/user-auth-actions";
 import ModalButton from "components/ui/modal-button/modal-button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import ModalInput from "components/ui/modal-input/modal-input";
@@ -27,10 +26,10 @@ interface Props {
 }
 
 const SignInModal: FC<Props> = ({
-  setIsShowLoginModal,
-  isShowLoginModal,
-  setIsShowRegistrationModal,
-}) => {
+                                  setIsShowLoginModal,
+                                  isShowLoginModal,
+                                  setIsShowRegistrationModal,
+                                }) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
   const [login, setLogin] = useState<string>("");

@@ -9,11 +9,10 @@ export const ErrorHandler = (
 ) => {
   console.log(error)
   if (error instanceof HttpException) {
-    return res.status(error.status).send(
-      {
-        message: error.message,
-        statusCode: error.status
-      });
+    return res.status(error.status).send({
+      message: error.message,
+      statusCode: error.status
+    });
   }
   res.status(500).send(JSON.stringify(error));
 };
