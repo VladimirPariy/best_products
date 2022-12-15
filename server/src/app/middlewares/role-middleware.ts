@@ -4,18 +4,21 @@ import jwt from "jsonwebtoken";
 import {checkToken} from "@/app/middlewares/auth-middleware"
 
 
-function checkRole(role: string) {
+export function checkRole(role: string) {
   return function (req: Request, res: Response, next: NextFunction) {
     const token = checkToken(req, res, next)
     if (token) {
       jwt.verify(token, process.env.SECRET || '', (err, user) => {
         if (err) {
-          return next(new HttpException('Token is invalid', 403));
+          return next(HttpException.invalidToken());
         }
-        if(typeof user !== 'string' && user?.role !== role){
-          return next(new HttpException('Entering forbidden', 403));
+        if (typeof user === 'string' || !user) {
+          return next(HttpException.invalidToken());
         }
-       req.user = user;
+        if (user.role !== role) {
+          return next(HttpException.forbidden());
+        }
+        req.user = user;
       });
 
       next()

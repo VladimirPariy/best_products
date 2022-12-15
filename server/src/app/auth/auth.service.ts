@@ -17,7 +17,7 @@ class AuthService {
   async registration(firstName: string, lastName: string, email: string, password: string, isGetUpdate: boolean) {
     const candidate = await UserService.getUserByEmailOrPhoneNumber(email);
     if (candidate.length) {
-      return new HttpException("User already exists", 409);
+      return HttpException.alreadyExists("User already exists");
     }
     const encryptedPass = await bcrypt.hash(password, 7);
 
@@ -35,29 +35,31 @@ class AuthService {
     const user = (await UserService.getUserById(insertingData.user_id))[0]
 
     const token = generateJwtToken(user.user_id, user.email, user.role)
+    if (!token) return HttpException.unsuccessfulCreatingToken();
     return {user, token}
   }
 
   async login(login: string, password: string) {
     const candidate = await UserService.getUserByEmailOrPhoneNumber(login);
     if (!candidate.length) {
-      return new HttpException("User is not found", 404);
+      return HttpException.notFound("User is not found");
     }
 
     const validPassword = bcrypt.compareSync(password, candidate[0].password);
     if (!validPassword) {
-      return new HttpException(`User inputted invalid password`, 400);
+      return HttpException.invalidPass();
     }
 
     const user = (await UserService.getUserById(candidate[0].user_id))[0]
     const token = generateJwtToken(user.user_id, user.email, user.role);
+    if (!token) return HttpException.unsuccessfulCreatingToken();
     return {user, token}
   }
 
 
   async checkAuth(user: jwt.JwtPayload) {
     const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) return new HttpException(`Unsuccessful attempt to create token`);
+    if (!token) return HttpException.unsuccessfulCreatingToken();
     return {token}
   }
 }

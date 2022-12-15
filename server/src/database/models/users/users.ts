@@ -1,5 +1,4 @@
-import {Knex} from "knex";
-import {Model} from "objection";
+import Objection, {Model} from "objection";
 
 import {Comments} from "@/database/models/comments/comments";
 import {FavoriteProducts} from "@/database/models/favorite-products/favorite-products";
@@ -17,9 +16,9 @@ class Users extends Model {
   phone_number: string;
   user_photo: string;
   role: number;
-  is_get_update:boolean;
-  created_at: Knex.Raw;
-  updated_at: Knex.Raw;
+  is_get_update: boolean;
+  created_at: Objection.FunctionBuilder;
+  updated_at: Objection.FunctionBuilder;
 
   static get tableName() {
     return "users";
@@ -131,12 +130,12 @@ class Users extends Model {
   }
 
   $beforeInsert() {
-    this.created_at = Model.knex().fn.now();
-    this.updated_at = Model.knex().fn.now();
+    this.created_at = Users.fn.now();
+    this.updated_at = Users.fn.now();
   }
 
   $beforeUpdate() {
-    this.updated_at = Model.knex().fn.now();
+    this.updated_at = Users.fn.now();
   }
 }
 

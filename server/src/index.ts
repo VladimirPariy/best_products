@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 
 import {connectingDb} from "@/database/connectingDb";
 import {ErrorHandler} from "@/app/middlewares/exceptions-middleware";
-import {createRootRouter} from "@/app/common/root-router";
+import {createRootRouter} from "@/app/common/router/root-router";
 
 dotenv.config()
 

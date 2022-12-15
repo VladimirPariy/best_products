@@ -1,3 +1,4 @@
+import {IUserUpdatingFields} from "@/app/lib/interfaces/user-updating-fields.interface";
 import {Users} from "@/database/models/users/users";
 
 class UserService {
@@ -21,13 +22,16 @@ class UserService {
       'is_get_update',
       'created_at',
       'updated_at',
-      'roles.role_title as role'
+      'role',
+      'roles.role_title as role_name'
     ])
     .join("roles", "users.role", "roles.role_id")
     .where('user_id', '=', id)
   }
 
-
+  async updateUserById(id: number, fields: IUserUpdatingFields) {
+    return Users.query().patchAndFetchById(id, fields);
+  }
 }
 
 export default new UserService();

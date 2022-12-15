@@ -32,7 +32,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("phone_number", 15).unique();
     table.string("user_photo");
     table.boolean("is_get_update").notNullable().defaultTo(true);
-    table.timestamps(true);
+    table.timestamps(true, true);
     createForeignKeyHelper(table, "role", "role_id", "roles", 2);
   })
   .createTable("categories", (table) => {
