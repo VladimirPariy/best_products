@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from "lib/store/store-types";
 import {
   selectAuth,
-} from "lib/store/user-auth/user-auth-selector";
+} from "lib/store/user/user-selector";
 import React, {
   Dispatch,
   FC,
@@ -12,7 +12,7 @@ import React, {
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import {userLoginTrigger} from "lib/store/user-auth/user-auth-actions";
+import {userLoginTrigger} from "lib/store/user/user-actions";
 import ModalButton from "components/ui/modal-button/modal-button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import ModalInput from "components/ui/modal-input/modal-input";

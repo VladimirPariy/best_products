@@ -15,7 +15,7 @@ export function checkRole(role: string) {
         if (typeof user === 'string' || !user) {
           return next(HttpException.badRequest('Token is invalid'));
         }
-        if (user.role !== role) {
+        if (user.role.toString() !== role.toString()) {
           return next(HttpException.forbidden('Entering forbidden'));
         }
         req.user = user;

@@ -1,9 +1,11 @@
+import {IUserUpdateData} from "lib/interfaces/user-update-data.interface";
+import {userUpdateTrigger} from "lib/store/user/user-actions";
 import React, {Dispatch, FC, SetStateAction, useState} from "react";
 
 import styles from "components/user-acc-modal/user-acc-modal.module.scss";
 
-import {useAppSelector} from "lib/store/store-types";
-import {selectUser} from "lib/store/user-auth/user-auth-selector";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import {selectToken, selectUser} from "lib/store/user/user-selector";
 
 import ModalButton from "components/ui/modal-button/modal-button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
@@ -19,7 +21,9 @@ interface Props {
 }
 
 const UserAccModal: FC<Props> = ({isShowAccountModal, setIsShowAccountModal}) => {
-  const {first_name, last_name, email, user_photo, is_get_update, phone_number} = useAppSelector(selectUser);
+  const {first_name, last_name, email, user_photo, is_get_update, phone_number, user_id: id, password} = useAppSelector(selectUser);
+  const token = useAppSelector(selectToken)
+  const dispatch = useAppDispatch();
 
   const [firstName, setFirstName] = useState<string>(first_name);
   const [lastName, setLastName] = useState<string>(last_name);
@@ -28,6 +32,21 @@ const UserAccModal: FC<Props> = ({isShowAccountModal, setIsShowAccountModal}) =>
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
   const [getUpdates, setGetUpdates] = useState<boolean>(!!is_get_update);
+
+  const updateHandling = () => {
+    let updatingInfo: IUserUpdateData = {id, token};
+    if (first_name !== firstName) updatingInfo = {...updatingInfo, first_name: firstName};
+    if (last_name !== lastName) updatingInfo = {...updatingInfo, last_name: lastName};
+    if (email !== emailAddress) updatingInfo = {...updatingInfo, email: emailAddress};
+    if (phone_number !== phone) updatingInfo = {...updatingInfo, phone_number: phone};
+    if (is_get_update !== +getUpdates) updatingInfo = {...updatingInfo, is_get_update: getUpdates};
+    if (newPassword === confirmNewPassword) updatingInfo = {...updatingInfo, password: newPassword};
+    // добавить изменение пароля
+
+    dispatch(userUpdateTrigger(updatingInfo))
+    setNewPassword('')
+    setConfirmNewPassword('')
+  }
 
 
   const clientFoto = user_photo ? user_photo : defaultFoto
@@ -52,8 +71,7 @@ const UserAccModal: FC<Props> = ({isShowAccountModal, setIsShowAccountModal}) =>
           <ModalInput labelText='New password' changeHandler={setNewPassword} value={newPassword}/>
           <ModalInput labelText='Confirm new password' changeHandler={setConfirmNewPassword} value={confirmNewPassword}/>
           <ModalCheckbox value={getUpdates} changeHandler={setGetUpdates}>Get updates on our shop news and promotions</ModalCheckbox>
-          <ModalButton submitHandler={() => {
-          }}>
+          <ModalButton submitHandler={updateHandling}>
             Save All Changes
           </ModalButton>
         </div>

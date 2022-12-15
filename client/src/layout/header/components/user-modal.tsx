@@ -3,8 +3,8 @@ import React, {FC, MouseEvent, Dispatch, SetStateAction} from "react";
 import styles from "layout/header/components/user-modal.module.scss";
 
 import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {selectAuth, selectUser} from "lib/store/user-auth/user-auth-selector";
-import {clearUser} from "lib/store/user-auth/user-auth-actions";
+import {selectAuth, selectUser} from "lib/store/user/user-selector";
+import {clearUser} from "lib/store/user/user-actions";
 
 import {IModalScreens} from "lib/interfaces/modal-screens.interface";
 

@@ -1,5 +1,8 @@
+import {generateJwtToken} from "@/app/auth/auth.service";
+import {HttpException} from "@/app/common/errors/exceptions";
 import {IUserUpdatingFields} from "@/app/lib/interfaces/user-updating-fields.interface";
 import {Users} from "@/database/models/users/users";
+import bcrypt from "bcryptjs";
 
 class UserService {
   async getUserByEmailOrPhoneNumber(login: string) {
@@ -30,7 +33,23 @@ class UserService {
   }
 
   async updateUserById(id: number, fields: IUserUpdatingFields) {
-    return Users.query().patchAndFetchById(id, fields);
+    let updatedFields = {...fields}
+    console.log(updatedFields)
+    if (updatedFields.password) {
+      updatedFields.password = await bcrypt.hash(updatedFields.password, 7);
+    }
+    console.log(updatedFields)
+    const isUpdate = await Users.query().patch(updatedFields).where({user_id: id});
+    if (!isUpdate) {
+      return HttpException.internalServErr(`Unsuccessful updating user`);
+    }
+    const user = (await this.getUserById(`${id}`))[0]
+
+    const token = generateJwtToken(user.user_id, user.email, user.role);
+    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+
+    return {user, token}
+
   }
 }
 

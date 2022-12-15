@@ -1,6 +1,6 @@
 import {
   selectAuth,
-} from "lib/store/user-auth/user-auth-selector";
+} from "lib/store/user/user-selector";
 import React, {
   Dispatch,
   FC,
@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 
-import {userRegistrationTrigger} from "lib/store/user-auth/user-auth-actions";
+import {userRegistrationTrigger} from "lib/store/user/user-actions";
 import {useAppDispatch, useAppSelector} from "lib/store/store-types";
 
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";

@@ -3,18 +3,18 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import {PayloadAction} from "@reduxjs/toolkit";
 
 import {
-  userAuthFulfilled,
-  userAuthRejected,
+  userInfoFulfilled,
+  userInfoRejected,
   userRegistrationTrigger,
-  userAuthPending,
-} from "lib/store/user-auth/user-auth-actions";
+  userInfoPending
+} from "lib/store/user/user-actions";
 
 import {IRegistrationData} from "lib/interfaces/registration-data.interface";
 import {IReturningUserData} from "lib/interfaces/returning-user-data";
 import AuthApi from "lib/api/auth-api";
 
 function* userSignUpWorker(action: PayloadAction<IRegistrationData>) {
-  yield put(userAuthPending());
+  yield put(userInfoPending());
 
   try {
     const data: IReturningUserData = yield call(
@@ -22,11 +22,11 @@ function* userSignUpWorker(action: PayloadAction<IRegistrationData>) {
       action.payload
     );
 
-    yield put(userAuthFulfilled(data));
+    yield put(userInfoFulfilled(data));
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(
-        userAuthRejected({
+        userInfoRejected({
           status_message: error.request.response,
           status: error.request.status,
         })

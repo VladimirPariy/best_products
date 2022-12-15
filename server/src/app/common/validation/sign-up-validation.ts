@@ -5,14 +5,14 @@ import {ValidationError} from "yup";
 
 export const signUpSchema = yup.object({
   body: yup.object({
-    fistName: yup.string().min(1).max(20).nullable(false).required(),
+    firstName: yup.string().min(1).max(20).nullable(false).required(),
     lastName: yup.string().min(1).max(20).nullable(false).required(),
     email: yup.string().min(1).max(50).email().nullable(false).required(),
     password: yup.string().min(5).nullable(false).matches(
       /^([A-Za-z0-9]*)$/gi,
       'Password can only contain Latin letters.'
     ).required(),
-    isGetUpdates: yup.boolean().nullable(false).required()
+    isGetUpdates: yup.boolean().nullable(false)
   }),
 });
 
