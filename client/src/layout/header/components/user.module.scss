@@ -12,6 +12,8 @@
   > img {
     margin: auto 0;
     height: 45px;
+    width: 45px;
+    border-radius: 50%;
   }
 }
 
@@ -22,6 +24,7 @@
 
     > img {
       height: 55px;
+      width: 55px;
     }
   }
 }
@@ -33,6 +36,7 @@
 
     > img {
       height: 62px;
+      width: 62px;
     }
   }
 }

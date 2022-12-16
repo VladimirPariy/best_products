@@ -102,10 +102,10 @@ const RegistrationModal: FC<Props> = (props) => {
       <ModalButton
         submitHandler={registrationHandler}
         isPurpleButton={true}
-        type="submit"
-      >
-        Create account
-      </ModalButton>
+        type="button"
+        children='Create account'
+      />
+
     </ModalWrapper>
   );
 };

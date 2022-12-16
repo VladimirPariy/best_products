@@ -62,7 +62,8 @@
       z-index: 1;
       font-size: 22px;
       line-height: 30px;
-      height: 38px;
+      min-height: 38px;
+      word-wrap: anywhere;
       padding: 6px 18px 0 0;
     }
 
@@ -117,7 +118,7 @@
     > span {
       font-size: 30px;
       line-height: 36px;
-      height: 48px;
+      min-height: 48px;
     }
 
     > button {

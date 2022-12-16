@@ -1,5 +1,5 @@
-import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-import React, { FC, ReactNode } from "react";
+import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
+import React, {FC, ReactNode} from "react";
 
 import styles from "components/ui/modal-button/modal-buttom.module.scss";
 

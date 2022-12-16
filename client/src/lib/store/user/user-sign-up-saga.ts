@@ -15,7 +15,6 @@ import AuthApi from "lib/api/auth-api";
 
 function* userSignUpWorker(action: PayloadAction<IRegistrationData>) {
   yield put(userInfoPending());
-
   try {
     const data: IReturningUserData = yield call(
       AuthApi.registration,

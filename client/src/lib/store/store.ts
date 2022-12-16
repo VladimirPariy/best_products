@@ -19,9 +19,7 @@ export const store = configureStore({
   devTools: true,
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      }, thunk: false
+      serializableCheck: false, thunk: false,
     }).prepend(SagaMiddleware);
   },
 });

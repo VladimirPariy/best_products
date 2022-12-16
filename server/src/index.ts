@@ -7,6 +7,7 @@ import fileUpload from 'express-fileupload';
 import {connectingDb} from "@/database/connectingDb";
 import {ErrorHandler} from "@/app/middlewares/exceptions-middleware";
 import {createRootRouter} from "@/app/common/router/root-router";
+import path from "path";
 
 
 dotenv.config()
@@ -21,6 +22,7 @@ const createWebServer = (): Express => {
   app.use(cors())
 
   app.use(express.json());
+  app.use(express.static(path.resolve(__dirname, 'app', 'static')))
   app.use(fileUpload({}))
   app.use(express.urlencoded({extended: true}));
 

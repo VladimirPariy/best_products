@@ -5,6 +5,7 @@ export interface IUserUpdatingFields {
   password?: string
   phone_number?: string
   is_get_update?: boolean
+  user_photo?: string
 }
 
 

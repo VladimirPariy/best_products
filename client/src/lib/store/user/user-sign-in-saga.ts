@@ -16,7 +16,10 @@ import AuthApi from "lib/api/auth-api";
 function* userSignInWorker(action: PayloadAction<ILoginData>) {
   yield put(userInfoPending());
   try {
-    const data: IReturningUserData = yield call(AuthApi.login, action.payload);
+    const data: IReturningUserData = yield call(
+      AuthApi.login,
+      action.payload
+    );
 
     yield put(userInfoFulfilled(data));
   } catch (error) {

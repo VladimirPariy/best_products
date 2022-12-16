@@ -71,7 +71,7 @@ const SignInModal: FC<Props> = ({
         <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>
           Remember me
         </ModalCheckbox>
-        <ModalButton submitHandler={loginHandler}>Continue</ModalButton>
+        <ModalButton submitHandler={loginHandler} type='button' children='Continue'/>
 
         <div className={styles.separator}>
           <span>Don't have an account yet?</span>
@@ -80,9 +80,10 @@ const SignInModal: FC<Props> = ({
         <ModalButton
           submitHandler={showRegistrationModalHandler}
           isPurpleButton={false}
-        >
-          Create your Best Product account
-        </ModalButton>
+          type='button'
+          children='Create your Best Product account'
+        />
+
       </div>
     </ModalWrapper>
   );

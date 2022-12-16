@@ -1,8 +1,13 @@
+import bcrypt from "bcryptjs";
+import {Request} from "express";
+import fileUpload from "express-fileupload";
+import path from "path";
+import {v4 as uuidv4} from "uuid";
+
 import {generateJwtToken} from "@/app/auth/auth.service";
 import {HttpException} from "@/app/common/errors/exceptions";
 import {IUserUpdatingFields} from "@/app/lib/interfaces/user-updating-fields.interface";
 import {Users} from "@/database/models/users/users";
-import bcrypt from "bcryptjs";
 
 class UserService {
   async getUserByEmailOrPhoneNumber(login: string) {
@@ -32,23 +37,45 @@ class UserService {
     .where('user_id', '=', id)
   }
 
-  async updateUserById(id: number, fields: IUserUpdatingFields) {
-    let updatedFields = {...fields}
-    console.log(updatedFields)
-    if (updatedFields.password) {
-      updatedFields.password = await bcrypt.hash(updatedFields.password, 7);
-    }
-    console.log(updatedFields)
-    const isUpdate = await Users.query().patch(updatedFields).where({user_id: id});
-    if (!isUpdate) {
-      return HttpException.internalServErr(`Unsuccessful updating user`);
-    }
+  async selectUserByIdAndCreateToken(id: string) {
     const user = (await this.getUserById(`${id}`))[0]
 
     const token = generateJwtToken(user.user_id, user.email, user.role);
     if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
 
     return {user, token}
+  }
+
+
+  async updateUserById(id: string, {body}: Request, img?: fileUpload.UploadedFile) {
+
+    // Валидация полей. Любые не предусмотренные - будут отброшены.
+    const fields = ['first_name', 'last_name', 'email', 'password', 'phone_number', 'is_get_update']
+    let infoFields = {} as IUserUpdatingFields;
+    for (const field in body) {
+      if (fields.includes(field)) {
+        infoFields = {...infoFields, [field]: body[field]}
+      }
+    }
+///////////////////////////////////////////////////////////////////////////////////////////
+    let fileName: string | undefined;
+    if (img) {
+      fileName = `${uuidv4()}.jpg`
+      await img.mv(path.resolve(__dirname, "..", "static", fileName))
+      infoFields = {...infoFields, user_photo: fileName}
+    }
+
+
+    if (infoFields.password) {
+      infoFields.password = await bcrypt.hash(infoFields.password, 7);
+    }
+
+    const updateInfo = await Users.query().patch(infoFields).where({user_id: +id});
+    if (!updateInfo) {
+      return HttpException.internalServErr(`Unsuccessful updating user`);
+    }
+
+    return await this.selectUserByIdAndCreateToken(id)
 
   }
 }

@@ -7,7 +7,7 @@ export const createUserRouter = (): Router => {
 
   userRouter.get("/all",);
   userRouter.get("/:id",);
-  userRouter.patch('/patch/:id', [checkRole('2')], UserController.updateUserInfo)
+  userRouter.patch('/info/:id', [checkRole('2')], UserController.updateUserInfo)
 
 
   return userRouter;
