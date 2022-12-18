@@ -4,6 +4,5 @@ export enum ApiUrls {
   registration = "auth/registration/",
   login = "auth/login/",
   auth = "auth/auth/",
-  userUpdate = "user/info/",
-  updateUserPhoto = "user/photo/",
+  oneUserById = "user/",
 }

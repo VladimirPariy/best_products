@@ -1,16 +1,17 @@
 import {Router} from "express";
 
+import {EndpointsList} from "@/app/common/enums/endpoints-list";
 import AuthController from "@/app/auth/auth.controller";
-import {signUpSchema, validatingSignUp,} from "@/app/common/validation/sign-up-validation";
-import {signInSchema, validatingSignIn} from "@/app/common/validation/sign-in-validation";
-import {authenticateJWT} from "@/app/middlewares/auth-middleware";
+import {signUpSchema, validatingSignUp,} from "@/app/common/validations/sign-up-validation";
+import {signInSchema, validatingSignIn} from "@/app/common/validations/sign-in-validation";
+import {authenticateJWT} from "@/app/common/middlewares/auth-middleware";
 
 export const createAuthRouter = (): Router => {
   const authRouter = Router();
 
-  authRouter.post("/registration", validatingSignUp(signUpSchema), AuthController.registration);
-  authRouter.post("/login", validatingSignIn(signInSchema), AuthController.login);
-  authRouter.get("/auth", authenticateJWT, AuthController.check)
+  authRouter.post(EndpointsList.SIGN_UP, validatingSignUp(signUpSchema), AuthController.registration);
+  authRouter.post(EndpointsList.SIGN_IN, validatingSignIn(signInSchema), AuthController.login);
+  authRouter.get(EndpointsList.CHECK_AUTH, authenticateJWT, AuthController.check)
 
   return authRouter;
 };

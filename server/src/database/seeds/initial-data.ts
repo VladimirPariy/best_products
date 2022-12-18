@@ -1,4 +1,5 @@
 import {Knex} from "knex";
+import {createUsers} from "../faker/create-random-users";
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
@@ -31,68 +32,8 @@ export async function seed(knex: Knex): Promise<void> {
     },
   ]);
 
-  await knex("users").insert([
-    {
-      user_id: 1,
-      first_name: "admin",
-      last_name: "admin",
-      email: "admin@test.com",
-      password: "admin",
-      phone_number: "+380989156326",
-      user_photo: null,
-      role: 1,
-      created_at: knex.fn.now(),
-      updated_at: knex.fn.now()
-    },
-    {
-      user_id: 2,
-      first_name: "user",
-      last_name: "user",
-      email: "user@test.com",
-      password: "user",
-      phone_number: "+380989156325",
-      user_photo: null,
-      role: 2,
-      created_at: knex.fn.now(),
-      updated_at: knex.fn.now()
-    },
-    {
-      user_id: 3,
-      first_name: "admin1",
-      last_name: "admin1",
-      email: "admin1@test.com",
-      password: "admin",
-      phone_number: "+380989156327",
-      user_photo: null,
-      role: 1,
-      created_at: knex.fn.now(),
-      updated_at: knex.fn.now()
-    },
-    {
-      user_id: 4,
-      first_name: "user1",
-      last_name: "user1",
-      email: "user1@test.com",
-      password: "user",
-      phone_number: "+380989156328",
-      user_photo: null,
-      role: 2,
-      created_at: knex.fn.now(),
-      updated_at: knex.fn.now()
-    },
-    {
-      user_id: 5,
-      first_name: "user2",
-      last_name: "user2",
-      email: "user2@test.com",
-      password: "user",
-      phone_number: "+380989156329",
-      user_photo: null,
-      role: 2,
-      created_at: knex.fn.now(),
-      updated_at: knex.fn.now()
-    },
-  ]);
+
+  await knex("users").insert(createUsers());
 
   await knex("categories").insert([
     {

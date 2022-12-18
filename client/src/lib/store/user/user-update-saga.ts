@@ -1,4 +1,4 @@
-import {AxiosError} from "axios";
+import {AxiosError, AxiosResponse} from "axios";
 import {call, put, takeLatest} from "redux-saga/effects";
 import {PayloadAction} from "@reduxjs/toolkit";
 
@@ -9,19 +9,23 @@ import {
   updateUserReject,
 } from "lib/store/user/user-actions";
 
-import UserUpdateApi from "lib/api/user-update-api";
+import UserApi from "lib/api/user-api";
 import {IUserUpdateData} from "lib/interfaces/user-update-data.interface";
 import {IReturningUserData} from "lib/interfaces/returning-user-data";
 
 function* userUpdateWorker({payload}: PayloadAction<IUserUpdateData>) {
   yield put(updateUserPending());
   try {
-    const data: IReturningUserData = yield call(
-      UserUpdateApi.updateUserInfo,
-      payload
-    );
 
-    yield put(updateUserFulfilled(data));
+    const updateUser: AxiosResponse = yield call(UserApi.updateUserInfo, payload)
+    if (updateUser.status === 200) {
+      const {id, token} = payload
+      const getUser: IReturningUserData = yield call(
+        UserApi.getUserInfo,
+        {id, token}
+      );
+      yield put(updateUserFulfilled(getUser));
+    }
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(

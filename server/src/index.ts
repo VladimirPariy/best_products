@@ -1,12 +1,13 @@
 import './plugins/modul-alias';
+import {EndpointsList} from "@/app/common/enums/endpoints-list";
 import express, {Express} from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import fileUpload from 'express-fileupload';
 
 import {connectingDb} from "@/database/connectingDb";
-import {ErrorHandler} from "@/app/middlewares/exceptions-middleware";
-import {createRootRouter} from "@/app/common/router/root-router";
+import {ErrorHandler} from "@/app/common/middlewares/exceptions-middleware";
+import {createRootRouter} from "@/app/common/root-router";
 import path from "path";
 
 
@@ -22,25 +23,27 @@ const createWebServer = (): Express => {
   app.use(cors())
 
   app.use(express.json());
-  app.use(express.static(path.resolve(__dirname, 'app', 'static')))
+  app.use(express.static(path.resolve(__dirname, 'static')))
   app.use(fileUpload({}))
   app.use(express.urlencoded({extended: true}));
 
-  app.use("/api", createRootRouter());
+  app.use(EndpointsList.API, createRootRouter());
 
   app.use(ErrorHandler);
   return app;
 };
 
 const start = async (app: Express) => {
-  app.listen(PORT);
-  connectingDb();
-  console.info(`Server started and running on http://${HOST}:${PORT}`);
+  try {
+    app.listen(PORT);
+    connectingDb();
+    console.info(`Server started and running on http://${HOST}:${PORT}`);
+  } catch (e) {
+    if (e instanceof Error) console.error(e.message);
+  }
 };
 
-start(createWebServer()).catch(e => {
-  if (e instanceof Error) console.error(e.message);
-});
+start(createWebServer());
 
 
 

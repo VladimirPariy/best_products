@@ -1,111 +1,39 @@
 import {Knex} from "knex";
 
+import {createCategoriesTable} from "./create-categories-table";
+import {createCharacteristicsTable} from "./create-characteristics-table";
+import {createCommentsTable} from "./create-comments-table";
+import {createFavoriteProductsTable} from "./create-favorite-products-table";
+import {createFeedbacksTable} from "./create-feedbacks-table";
+import {createFeedbacksTypesTable} from "./create-feedbacks-types-table";
+import {createPriceHistoryTable} from "./create-price-history-table";
+import {createProductCharacteristicsTable} from "./create-product-characteristics-table";
+import {createProductImageTable} from "./create-product-image-table";
+import {createProductSubcategoriesTable} from "./create-product-subcategories-table";
+import {createProductTable} from "./create-product-table";
+import {createRolesTable} from "./create-roles-table";
+import {createSubcategoriesTable} from "./create-subcategories-table";
+import {createUsersTable} from "./create-users-table";
+import {createViewsTable} from "./create-views-table";
+
 
 export async function up(knex: Knex): Promise<void> {
-
-  const createForeignKeyHelper = <T>(table: Knex.CreateTableBuilder,
-                                     field: string,
-                                     refer: string,
-                                     referTable: string,
-                                     defaultTo?: T) => {
-    if (defaultTo) {
-      table.integer(field).unsigned().notNullable().defaultTo(defaultTo);
-      table.foreign(field).references(refer).inTable(referTable);
-      return;
-    }
-    table.integer(field).unsigned().notNullable();
-    table.foreign(field).references(refer).inTable(referTable);
-  }
-
-
   return knex.schema
-  .createTable("roles", table => {
-    table.increments("role_id");
-    table.string("role_title", 10).unique().notNullable();
-  })
-  .createTable("users", (table) => {
-    table.increments("user_id");
-    table.string("first_name", 20).notNullable();
-    table.string("last_name", 20).notNullable();
-    table.string("email", 50).unique().notNullable();
-    table.string("password", 255).notNullable();
-    table.string("phone_number", 15).unique();
-    table.string("user_photo");
-    table.boolean("is_get_update").notNullable().defaultTo(true);
-    table.timestamps(true, true);
-    createForeignKeyHelper(table, "role", "role_id", "roles", 2);
-  })
-  .createTable("categories", (table) => {
-    table.increments("category_id");
-    table.string("category_title", 45).notNullable();
-  })
-  .createTable("subcategories", (table) => {
-    table.increments("subcategory_id");
-    createForeignKeyHelper(table, "category", "category_id", "categories")
-    table.string("subcategory_title", 45).notNullable();
-  })
-  .createTable("products", (table) => {
-    table.increments("product_id");
-    table.string("product_title", 45).notNullable();
-    table.string("product_description", 255).notNullable();
-    table.decimal("price", 20, 2).notNullable();
-  })
-  .createTable("products_images", (table) => {
-    table.increments("image_id");
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    table.string("image_title").notNullable();
-  })
-  .createTable("characteristics", (table) => {
-    table.increments("characteristic_id");
-    table.string("characteristic_title", 20).notNullable();
-  })
-  .createTable("product_characteristics", (table) => {
-    table.increments("product_characteristic_id");
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    createForeignKeyHelper(table, "characteristic", "characteristic_id", "characteristics")
-    table.string("characteristic_description", 50).notNullable();
-  })
-  .createTable("price_history", (table) => {
-    table.increments("price_history_id");
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    table.decimal("price_at_timestamp", 10, 2).notNullable();
-    table.timestamps(true);
-  })
-  .createTable("feedbacks_types", (table) => {
-    table.increments("feedback_type_id");
-    table.integer("type").notNullable();
-  })
-  .createTable("feedbacks", (table) => {
-    createForeignKeyHelper(table, "user", "user_id", "users")
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    createForeignKeyHelper(table, "feedback_type", "feedback_type_id", "feedbacks_types")
-    table.primary(["user", "product"])
-    table.timestamps(true);
-  })
-  .createTable("views", (table) => {
-    table.increments("view_id")
-    createForeignKeyHelper(table, "user", "user_id", "users")
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    table.timestamps(true);
-  })
-  .createTable("favorite_products", (table) => {
-    createForeignKeyHelper(table, "user", "user_id", "users")
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    table.primary(["user", "product"])
-    table.timestamps(true);
-  })
-  .createTable("comments", (table) => {
-    table.increments("comment_id");
-    createForeignKeyHelper(table, "user", "user_id", "users")
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    table.string("comment_msg", 255).notNullable();
-    table.timestamps(true);
-  })
-  .createTable("product_subcategories", (table) => {
-    createForeignKeyHelper(table, "product", "product_id", "products")
-    createForeignKeyHelper(table, "subcategory", "subcategory_id", "subcategories");
-    table.primary(["product", "subcategory"]);
-  });
+  .createTable("roles", createRolesTable)
+  .createTable("users", createUsersTable)
+  .createTable("categories", createCategoriesTable)
+  .createTable("subcategories", createSubcategoriesTable)
+  .createTable("products", createProductTable)
+  .createTable("products_images", createProductImageTable)
+  .createTable("characteristics", createCharacteristicsTable)
+  .createTable("product_characteristics", createProductCharacteristicsTable)
+  .createTable("price_history", createPriceHistoryTable)
+  .createTable("feedbacks_types", createFeedbacksTypesTable)
+  .createTable("feedbacks", createFeedbacksTable)
+  .createTable("views", createViewsTable)
+  .createTable("favorite_products", createFavoriteProductsTable)
+  .createTable("comments", createCommentsTable)
+  .createTable("product_subcategories", createProductSubcategoriesTable);
 }
 
 

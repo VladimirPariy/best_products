@@ -1,14 +1,11 @@
-import UserService from "@/app/user/user.service";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {Model} from "objection";
 
-import {Users} from "@/database/models/users/users";
+import UserService from "@/app/user/user.service";
+import {UsersModel} from "@/app/user/models/users.model";
 import {HttpException} from "@/app/common/errors/exceptions";
-
-export const generateJwtToken = (id: string, email: string, role: number): string => {
-  return jwt.sign({id, email, role}, process.env.SECRET || '', {expiresIn: '24h'})
-}
+import {generateJwtToken} from "@/app/common/utils/generate-jwt-token";
 
 
 class AuthService {
@@ -21,7 +18,7 @@ class AuthService {
     }
     const encryptedPass = await bcrypt.hash(password, 7);
 
-    const insertingData = await Users.query()
+    const insertingData = await UsersModel.query()
     .insert({
       email,
       password: encryptedPass,
@@ -35,9 +32,12 @@ class AuthService {
     const user = (await UserService.getUserById(insertingData.user_id))[0]
 
     const token = generateJwtToken(user.user_id, user.email, user.role)
-    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    if (!token) {
+      return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    }
     return {user, token}
   }
+
 
   async login(login: string, password: string) {
     const candidate = await UserService.getUserByEmailOrPhoneNumber(login);
@@ -52,14 +52,18 @@ class AuthService {
 
     const user = (await UserService.getUserById(candidate[0].user_id))[0]
     const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    if (!token) {
+      return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    }
     return {user, token}
   }
 
 
   async checkAuth(user: jwt.JwtPayload) {
     const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    if (!token) {
+      return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    }
     return {token}
   }
 }
