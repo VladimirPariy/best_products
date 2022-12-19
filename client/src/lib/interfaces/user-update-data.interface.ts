@@ -1,5 +1,8 @@
 export interface IUserUpdateData {
-  [key: string]: string | boolean | number | File | null | undefined
+  [key: string]: string | boolean | number | File | null | undefined;
+
+  id: number;
+  token?: string;
 
   first_name?: string;
   last_name?: string;
@@ -8,6 +11,4 @@ export interface IUserUpdateData {
   phone_number?: string;
   is_get_update?: number;
   user_photo?: File | null;
-  id: number;
-  token: string;
 }

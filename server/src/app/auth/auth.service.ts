@@ -13,7 +13,7 @@ class AuthService {
 
   async registration(firstName: string, lastName: string, email: string, password: string, isGetUpdate: boolean) {
     const candidate = await UserService.getUserByEmailOrPhoneNumber(email);
-    if (candidate.length) {
+    if (candidate) {
       return HttpException.alreadyExists("User already exists");
     }
     const encryptedPass = await bcrypt.hash(password, 7);
@@ -29,33 +29,34 @@ class AuthService {
       updated_at: Model.knex().fn.now()
     })
 
-    const user = (await UserService.getUserById(insertingData.user_id))[0]
+    const user = await UserService.getUserById(insertingData.user_id)
+    if (user instanceof HttpException) {
+      return user
+    }
 
     const token = generateJwtToken(user.user_id, user.email, user.role)
     if (!token) {
       return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
-    return {user, token}
+    return token
   }
 
 
   async login(login: string, password: string) {
     const candidate = await UserService.getUserByEmailOrPhoneNumber(login);
-    if (!candidate.length) {
+    if (!candidate) {
       return HttpException.notFound("User is not found");
     }
-
-    const validPassword = bcrypt.compareSync(password, candidate[0].password);
+    
+    const validPassword = bcrypt.compareSync(password, candidate.password);
     if (!validPassword) {
       return HttpException.badRequest(`User inputted invalid password`);
     }
-
-    const user = (await UserService.getUserById(candidate[0].user_id))[0]
-    const token = generateJwtToken(user.user_id, user.email, user.role);
+    const token = generateJwtToken(candidate.user_id, candidate.email, candidate.role);
     if (!token) {
       return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
-    return {user, token}
+    return token
   }
 
 
@@ -64,7 +65,7 @@ class AuthService {
     if (!token) {
       return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
-    return {token}
+    return token
   }
 }
 

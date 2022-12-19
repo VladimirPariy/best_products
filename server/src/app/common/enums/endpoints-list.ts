@@ -11,4 +11,5 @@ export const enum EndpointsList {
   //user-router
   ALL_USERS = "/all",
   ONE_USER_BY_ID = "/:id",
+  UPDATE_TOKEN = "/token/:id"
 }

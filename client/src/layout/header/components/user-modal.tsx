@@ -1,12 +1,13 @@
-import React, {FC, MouseEvent, Dispatch, SetStateAction} from "react";
+import React, { FC, MouseEvent, Dispatch, SetStateAction } from "react";
 
 import styles from "layout/header/components/user-modal.module.scss";
 
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {selectAuth, selectUser} from "lib/store/user/user-selector";
-import {clearUser} from "lib/store/user/user-actions";
+import { deleteTokenFromStorage } from "lib/utils/TokenFromStorage";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { selectAuth, selectUser } from "lib/store/user/user-selector";
+import { clearUser } from "lib/store/user/user-actions";
 
-import {IModalScreens} from "lib/interfaces/modal-screens.interface";
+import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 
 interface Props extends IModalScreens {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
@@ -54,6 +55,7 @@ const UserModal: FC<Props> = (props) => {
 
   const logOutHandler = () => {
     dispatch(clearUser());
+    deleteTokenFromStorage();
     setIsShowAccountModal(false);
   };
 

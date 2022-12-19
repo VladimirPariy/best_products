@@ -1,14 +1,18 @@
-import {userSlice} from "lib/store/user/user-slice";
+import { userSlice } from "lib/store/user/user-slice";
 
 export const {
   userInfoRejected,
   userInfoFulfilled,
   userInfoPending,
+  userInfoTrigger,
+  userTokenRejected,
+  userTokenFulfilled,
+  userTokenPending,
+  userTokenTrigger,
+
   updateUserPending,
   updateUserReject,
   updateUserFulfilled,
-  userRegistrationTrigger,
-  userLoginTrigger,
   userUpdateTrigger,
   clearUser,
 } = userSlice.actions;

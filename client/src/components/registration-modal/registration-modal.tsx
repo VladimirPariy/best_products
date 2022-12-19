@@ -1,6 +1,6 @@
-import {
-  selectAuth,
-} from "lib/store/user/user-selector";
+import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
+import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
+import { selectAuth, selectToken } from "lib/store/user/user-selector";
 import React, {
   Dispatch,
   FC,
@@ -9,8 +9,7 @@ import React, {
   useState,
 } from "react";
 
-import {userRegistrationTrigger} from "lib/store/user/user-actions";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 import ModalButton from "components/ui/modal-button/modal-button";
@@ -26,8 +25,9 @@ interface Props {
 const RegistrationModal: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
+  const token = useAppSelector(selectToken);
 
-  const {isShowRegistrationModal, setIsShowRegistrationModal} = props;
+  const { isShowRegistrationModal, setIsShowRegistrationModal } = props;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -38,21 +38,30 @@ const RegistrationModal: FC<Props> = (props) => {
 
   const [passwordError, setPasswordError] = useState(false);
 
-  const registrationHandler = () => {
+  const registrationHandler = async () => {
     if (password === confirmPassword) {
       dispatch(
-        userRegistrationTrigger({
-          firstName,
-          lastName,
-          email,
-          password,
-          isGetUpdate,
-        })
+        userTokenTrigger(
+          new IRegistrationData({
+            firstName,
+            lastName,
+            email,
+            password,
+            isGetUpdate,
+          })
+        )
       );
       return;
     }
     // обработка ошибки на некорректный пароль (не одинаковый)
   };
+
+  useEffect(() => {
+    if (token) {
+      sessionStorage.setItem("token", token);
+      dispatch(userInfoTrigger(token));
+    }
+  }, [token]);
 
   useEffect(() => {
     auth && setIsShowRegistrationModal(false);
@@ -103,9 +112,8 @@ const RegistrationModal: FC<Props> = (props) => {
         submitHandler={registrationHandler}
         isPurpleButton={true}
         type="button"
-        children='Create account'
+        children="Create account"
       />
-
     </ModalWrapper>
   );
 };

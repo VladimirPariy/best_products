@@ -1,7 +1,7 @@
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {
-  selectAuth,
-} from "lib/store/user/user-selector";
+import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
+import { selectAuth, selectToken } from "lib/store/user/user-selector";
 import React, {
   Dispatch,
   FC,
@@ -12,7 +12,6 @@ import React, {
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import {userLoginTrigger} from "lib/store/user/user-actions";
 import ModalButton from "components/ui/modal-button/modal-button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import ModalInput from "components/ui/modal-input/modal-input";
@@ -26,24 +25,36 @@ interface Props {
 }
 
 const SignInModal: FC<Props> = ({
-                                  setIsShowLoginModal,
-                                  isShowLoginModal,
-                                  setIsShowRegistrationModal,
-                                }) => {
+  setIsShowLoginModal,
+  isShowLoginModal,
+  setIsShowRegistrationModal,
+}) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
+  const token = useAppSelector(selectToken);
+
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isRemember, setIsRemember] = useState<boolean>(false);
 
   const loginHandler = () => {
     dispatch(
-      userLoginTrigger({
-        login,
-        password,
-      })
+      userTokenTrigger(
+        new ILoginData({
+          login,
+          password,
+        })
+      )
     );
   };
+
+  useEffect(() => {
+    if (token) {
+      if (isRemember) localStorage.setItem("token", token);
+      else sessionStorage.setItem("token", token);
+      dispatch(userInfoTrigger(token));
+    }
+  }, [token]);
 
   const showRegistrationModalHandler = () => {
     setIsShowLoginModal(false);
@@ -71,7 +82,11 @@ const SignInModal: FC<Props> = ({
         <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>
           Remember me
         </ModalCheckbox>
-        <ModalButton submitHandler={loginHandler} type='button' children='Continue'/>
+        <ModalButton
+          submitHandler={loginHandler}
+          type="button"
+          children="Continue"
+        />
 
         <div className={styles.separator}>
           <span>Don't have an account yet?</span>
@@ -80,10 +95,9 @@ const SignInModal: FC<Props> = ({
         <ModalButton
           submitHandler={showRegistrationModalHandler}
           isPurpleButton={false}
-          type='button'
-          children='Create your Best Product account'
+          type="button"
+          children="Create your Best Product account"
         />
-
       </div>
     </ModalWrapper>
   );

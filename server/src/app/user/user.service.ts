@@ -11,17 +11,17 @@ import {UsersModel} from "@/app/user/models/users.model";
 
 class UserService {
 
-
   async getUserByEmailOrPhoneNumber(login: string) {
-    return UsersModel.query()
+    const user = await UsersModel.query()
     .skipUndefined()
     .where({email: login})
     .orWhere({phone_number: login});
+    return user[0]
   }
 
 
   async getUserById(id: string) {
-    return UsersModel.query()
+    const user = await UsersModel.query()
     .select([
       'user_id',
       'first_name',
@@ -38,21 +38,12 @@ class UserService {
     ])
     .join("roles", "users.role", "roles.role_id")
     .where('user_id', '=', id)
-  }
 
-
-  async selectUserByIdAndCreateToken(id: string) {
-    const user = (await this.getUserById(`${id}`))[0]
     if (!user) {
       return HttpException.notFound(`User not found`);
     }
 
-    const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) {
-      return HttpException.internalServErr(`Unsuccessful attempt to create token`);
-    }
-
-    return {user, token}
+    return user[0]
   }
 
 
@@ -66,6 +57,7 @@ class UserService {
       }
     }
 
+
     const img = files?.img
     if (Array.isArray(img)) {
       return HttpException.badRequest('Attached array of pictures')
@@ -77,6 +69,9 @@ class UserService {
       userInfo = {...userInfo, user_photo: fileName}
     }
 
+    if (!Object.keys(userInfo).length) {
+      return HttpException.badRequest('You missed fields for update')
+    }
 
     if (userInfo.password) {
       userInfo.password = await bcrypt.hash(userInfo.password, 7);
@@ -89,6 +84,19 @@ class UserService {
     }
 
     return 'Successful updated user'
+  }
+
+
+  async createNewToken(id: string) {
+    const user = await this.getUserById(id);
+    if (user instanceof HttpException) {
+      return user
+    }
+    const token = generateJwtToken(user.user_id, user.email, user.role);
+    if (!token) {
+      return HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    }
+    return token
   }
 }
 

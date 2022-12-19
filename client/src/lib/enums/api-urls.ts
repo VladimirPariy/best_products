@@ -5,4 +5,5 @@ export enum ApiUrls {
   login = "auth/login/",
   auth = "auth/auth/",
   oneUserById = "user/",
+  newTokenForUser = "user/token/:id",
 }
