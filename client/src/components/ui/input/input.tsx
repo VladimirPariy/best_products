@@ -1,17 +1,18 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, {ChangeEvent, FC} from "react";
 
-import styles from "components/ui/modal-input/modal-input.module.scss";
+import styles from "components/ui/input/input.module.scss";
 
 interface Props {
   labelText: string;
   type?: string;
-  changeHandler: Dispatch<SetStateAction<string>>;
+  changeHandler: (() => void) | ((e: ChangeEvent<HTMLInputElement>) => void);
   value: string;
   placeholder?: string;
   children?: string;
+  min?: number
 }
 
-const ModalInput: FC<Props> = (props) => {
+const Input: FC<Props> = (props) => {
   const {
     labelText,
     type = "text",
@@ -19,6 +20,7 @@ const ModalInput: FC<Props> = (props) => {
     value,
     placeholder,
     children,
+    min
   } = props;
   return (
     <label className={styles.label}>
@@ -28,11 +30,12 @@ const ModalInput: FC<Props> = (props) => {
         className={styles.input}
         placeholder={placeholder ? placeholder : ""}
         value={value}
-        onChange={(e) => changeHandler(e.target.value)}
+        onChange={changeHandler}
+        min={min}
       />
       <div className={styles.inputExplanation}>{children}</div>
     </label>
   );
 };
 
-export default ModalInput;
+export default Input;

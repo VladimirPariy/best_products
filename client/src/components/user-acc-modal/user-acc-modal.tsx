@@ -1,27 +1,28 @@
+import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import React, {
+  ChangeEvent,
   Dispatch,
   FC,
   SetStateAction,
   useEffect,
-  useRef,
   useState,
 } from "react";
 
 import styles from "components/user-acc-modal/user-acc-modal.module.scss";
-import cl from "components/ui/modal-button/modal-buttom.module.scss";
+import cl from "components/ui/button/buttom.module.scss";
 
 import {getTokenFromStorage} from "lib/utils/TokenFromStorage";
 import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {selectToken, selectUser} from "lib/store/user/user-selector";
-import {IUserUpdateData} from "lib/interfaces/user-update-data.interface";
+import {selectUser} from "lib/store/user/user-selector";
+import {IUserUpdateData} from "lib/interfaces/user-interfaces/user-update-data.interface";
 import {userUpdateTrigger} from "lib/store/user/user-actions";
 import {addTwoClassNames} from "lib/utils/add-two-class-names";
 import {ApiUrls} from "lib/enums/api-urls";
 
-import ModalButton from "components/ui/modal-button/modal-button";
+import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
-import ModalInput from "components/ui/modal-input/modal-input";
-import ModalTitle from "components/ui/modal-title/modal-title";
+import Input from "components/ui/input/input";
+import Title from "components/ui/title/title";
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
 import defaultFoto from "assets/icon/header/user.svg";
@@ -44,7 +45,7 @@ const UserAccModal: FC<Props> = ({
     phone_number,
     user_id: id,
   } = useAppSelector(selectUser);
-  const token = useAppSelector(selectToken);
+  const token = getTokenFromStorage();
   const dispatch = useAppDispatch();
 
   const [firstName, setFirstName] = useState<string>(first_name);
@@ -76,13 +77,12 @@ const UserAccModal: FC<Props> = ({
       updatingInfo = {...updatingInfo, password: newPassword};
     if (previewPhoto && previewPhoto !== user_photo)
       updatingInfo = {...updatingInfo, user_photo: uploadFile};
-
     dispatch(userUpdateTrigger(updatingInfo));
     setNewPassword("");
     setConfirmNewPassword("");
   };
 
-  const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
     if (file) {
       setUploadFile(file[0]);
@@ -121,56 +121,57 @@ const UserAccModal: FC<Props> = ({
       isVisible={isShowAccountModal}
       isAccModal={true}
     >
-      <ModalTitle>Account Setting</ModalTitle>
+      <Title>Account Setting</Title>
       <div className={styles.container}>
         <div className={styles.photoContainer}>
           <img src={userImage} alt="" className={styles.userPhoto}/>
-          <label className={buttonClasses}>
-            Change Foto
-            <input
-              type="file"
-              style={{display: "none"}}
-              accept="image/*"
-              onChange={fileHandler}
-            />
-          </label>
+          {/*<label className={buttonClasses}>*/}
+          {/*  Change Foto*/}
+          {/*  <input*/}
+          {/*    type="file"*/}
+          {/*    style={{display: "none"}}*/}
+          {/*    accept="image/*"*/}
+          {/*    onChange={fileHandler}*/}
+          {/*  />*/}
+          {/*</label>*/}
+          <BtnForAddImage fileHandler={fileHandler}>Change Foto</BtnForAddImage>
         </div>
         <div className={styles.userInfoContainer}>
-          <ModalInput
+          <Input
             labelText="First Name"
-            changeHandler={setFirstName}
+            changeHandler={e => setFirstName(e.target.value)}
             value={firstName}
           />
-          <ModalInput
+          <Input
             labelText="Last Name"
-            changeHandler={setLastName}
+            changeHandler={e => setLastName(e.target.value)}
             value={lastName}
           />
-          <ModalInput
+          <Input
             labelText="Email address"
-            changeHandler={setEmailAddress}
+            changeHandler={e => setEmailAddress(e.target.value)}
             value={emailAddress}
           />
-          <ModalInput
+          <Input
             labelText="Phone"
-            changeHandler={setPhone}
+            changeHandler={e => setPhone(e.target.value)}
             value={phone}
             type="tel"
           />
-          <ModalInput
+          <Input
             labelText="New password"
-            changeHandler={setNewPassword}
+            changeHandler={e => setNewPassword(e.target.value)}
             value={newPassword}
           />
-          <ModalInput
+          <Input
             labelText="Confirm new password"
-            changeHandler={setConfirmNewPassword}
+            changeHandler={e => setConfirmNewPassword(e.target.value)}
             value={confirmNewPassword}
           />
           <ModalCheckbox value={getUpdates} changeHandler={setGetUpdates}>
             Get updates on our shop news and promotions
           </ModalCheckbox>
-          <ModalButton
+          <Button
             submitHandler={updateHandling}
             type="button"
             children="Save All Changes"

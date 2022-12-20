@@ -1,0 +1,29 @@
+.mainContainer {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+}
+
+.admin {
+  padding-top: 50px;
+}
+
+@media screen and (min-width: 769px) {
+  .mainContainer {
+    padding: 30px;
+  }
+
+  .admin {
+    padding-top: 60px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .mainContainer {
+    padding: 40px;
+  }
+
+  .admin {
+    padding-top: 70px;
+  }
+}

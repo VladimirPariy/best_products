@@ -9,5 +9,6 @@ export interface IUser {
   is_get_update: number;
   created_at: string;
   updated_at: string;
-  role: string;
+  role: number;
+  role_name: string;
 }

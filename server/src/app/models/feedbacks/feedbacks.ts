@@ -1,7 +1,7 @@
 import {Model} from "objection";
 
 import {FeedbacksTypes} from "@/app/models/feedbacks/feedbacks-types";
-import {Products} from "@/app/models/products/products";
+import {ProductsModel} from "@/app/product/models/products.model";
 import {UsersModel} from "@/app/user/models/users.model";
 
 
@@ -33,7 +33,7 @@ class Feedbacks extends Model {
     },
     products: {
       relation: Model.HasOneRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "feedbacks.product",
         to: "products.product_id"

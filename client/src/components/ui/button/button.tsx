@@ -1,21 +1,23 @@
-import React, {FC, ReactNode} from "react";
+import React, {FC, ReactNode, MouseEvent} from "react";
 
-import styles from "components/ui/modal-button/modal-buttom.module.scss";
+import styles from "components/ui/button/buttom.module.scss";
 import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
 
 interface Props {
   children: ReactNode;
   isPurpleButton?: boolean;
   type?: "submit" | "button" | "reset" | undefined;
-  submitHandler: () => void;
+  submitHandler: (() => void) | ((e: MouseEvent<HTMLButtonElement>) => void);
+  style?: React.CSSProperties | undefined;
 }
 
-const ModalButton: FC<Props> = (props) => {
+const Button: FC<Props> = (props) => {
   const {
     children,
     submitHandler,
     isPurpleButton = true,
     type = "submit",
+    style
   } = props;
 
   const buttonStyles = getClassNameByCondition(
@@ -27,10 +29,10 @@ const ModalButton: FC<Props> = (props) => {
   );
 
   return (
-    <button className={buttonStyles} type={type} onClick={submitHandler}>
+    <button className={buttonStyles} type={type} onClick={submitHandler} style={style}>
       {children}
     </button>
   );
 };
 
-export default ModalButton;
+export default Button;

@@ -3,15 +3,15 @@ import {Model} from "objection";
 import {Comments} from "@/app/models/comments/comments";
 import {FavoriteProducts} from "@/app/models/favorite-products/favorite-products";
 import {Feedbacks} from "@/app/models/feedbacks/feedbacks";
-import {Characteristics, ProductCharacteristic} from "@/app/models/products/characteristics";
-import {PriceHistory} from "@/app/models/products/price-history";
-import {ProductsImages} from "@/app/models/products/products-images";
-import {Subcategory} from "@/app/models/products/subcatigories";
+import {Characteristics, ProductCharacteristic} from "@/app/product/models/characteristics";
+import {PriceHistoryModel} from "@/app/product/models/price-history.model";
+import {ProductsImagesModel} from "@/app/product/models/products-images.model";
+import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
 import {UsersModel} from "@/app/user/models/users.model";
 import {Views} from "@/app/models/views/views";
 
 
-class Products extends Model {
+class ProductsModel extends Model {
   static get tableName() {
     return "products";
   }
@@ -20,6 +20,21 @@ class Products extends Model {
   static get idColumn() {
     return "product_id";
   }
+
+
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: ['product_title', 'product_description', 'price'],
+
+      properties: {
+        product_id: {type: 'integer'},
+        product_title: {type: 'string', minLength: 1, maxLength: 45},
+        product_description: {type: 'string', minLength: 1, maxLength: 255},
+        price: {type: 'integer'},
+      }
+    }
+  };
 
 
   static relationMappings = {
@@ -48,7 +63,7 @@ class Products extends Model {
 
     products_images: {
       relation: Model.HasManyRelation,
-      modelClass: ProductsImages,
+      modelClass: ProductsImagesModel,
       join: {
         from: "products_images.product",
         to: "products.product_id"
@@ -58,7 +73,7 @@ class Products extends Model {
 
     price_history: {
       relation: Model.HasManyRelation,
-      modelClass: PriceHistory,
+      modelClass: PriceHistoryModel,
       join: {
         from: "price_history.product",
         to: "products.product_id"
@@ -68,12 +83,12 @@ class Products extends Model {
 
     subcategories: {
       relation: Model.ManyToManyRelation,
-      modelClass: Subcategory,
+      modelClass: SubcategoryModel,
       join: {
         from: "products.product_id",
         through: {
-          from: "prod_subcategories.product",
-          to: "prod_subcategories.subcategory"
+          from: "product_subcategories.product",
+          to: "product_subcategories.subcategory"
         },
         to: "subcategories.subcategory_id"
       }
@@ -172,6 +187,6 @@ class Products extends Model {
   };
 }
 
-export {Products};
+export {ProductsModel};
 
 

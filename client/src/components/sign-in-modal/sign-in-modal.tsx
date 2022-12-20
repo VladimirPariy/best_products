@@ -1,7 +1,3 @@
-import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
-import { selectAuth, selectToken } from "lib/store/user/user-selector";
 import React, {
   Dispatch,
   FC,
@@ -12,10 +8,14 @@ import React, {
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import ModalButton from "components/ui/modal-button/modal-button";
+import {ILoginData} from "lib/interfaces/user-interfaces/login-data";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import {userInfoTrigger, userTokenTrigger} from "lib/store/user/user-actions";
+import {selectAuth, selectToken} from "lib/store/user/user-selector";
+import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
-import ModalInput from "components/ui/modal-input/modal-input";
-import ModalTitle from "components/ui/modal-title/modal-title";
+import Input from "components/ui/input/input";
+import Title from "components/ui/title/title";
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
 interface Props {
@@ -25,10 +25,10 @@ interface Props {
 }
 
 const SignInModal: FC<Props> = ({
-  setIsShowLoginModal,
-  isShowLoginModal,
-  setIsShowRegistrationModal,
-}) => {
+                                  setIsShowLoginModal,
+                                  isShowLoginModal,
+                                  setIsShowRegistrationModal,
+                                }) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
   const token = useAppSelector(selectToken);
@@ -54,6 +54,7 @@ const SignInModal: FC<Props> = ({
       else sessionStorage.setItem("token", token);
       dispatch(userInfoTrigger(token));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const showRegistrationModalHandler = () => {
@@ -63,26 +64,27 @@ const SignInModal: FC<Props> = ({
 
   useEffect(() => {
     auth && setIsShowLoginModal(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
   return (
     <ModalWrapper setVisible={setIsShowLoginModal} isVisible={isShowLoginModal}>
       <div onClick={(e) => e.stopPropagation()}>
-        <ModalTitle>SIGN IN</ModalTitle>
-        <ModalInput
+        <Title>SIGN IN</Title>
+        <Input
           labelText="Email address or mobile phone number"
-          changeHandler={setLogin}
+          changeHandler={e => setLogin(e.target.value)}
           value={login}
         />
-        <ModalInput
+        <Input
           labelText="Password"
-          changeHandler={setPassword}
+          changeHandler={e => setPassword(e.target.value)}
           value={password}
         />
         <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>
           Remember me
         </ModalCheckbox>
-        <ModalButton
+        <Button
           submitHandler={loginHandler}
           type="button"
           children="Continue"
@@ -92,7 +94,7 @@ const SignInModal: FC<Props> = ({
           <span>Don't have an account yet?</span>
         </div>
 
-        <ModalButton
+        <Button
           submitHandler={showRegistrationModalHandler}
           isPurpleButton={false}
           type="button"

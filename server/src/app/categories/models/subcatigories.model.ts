@@ -1,27 +1,20 @@
 import {Model} from "objection";
 
-import {Categories} from "@/app/models/products/categories";
-import {Products} from "@/app/models/products/products";
+import {CategoriesModel} from "@/app/categories/models/categories.model";
+import {ProductsModel} from "@/app/product/models/products.model";
 
 
-class Subcategory extends Model {
+class SubcategoryModel extends Model {
 
   static tableName = "subcategories";
 
   static idColumn = "subcategory_id";
 
   static relationMappings = {
-    categories: {
-      relation: Model.HasOneRelation,
-      modelClass: Categories,
-      join: {
-        from: "subcategories.category",
-        to: "categories.category_id"
-      }
-    },
+   
     products: {
       relation: Model.ManyToManyRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "subcategories.subcategory_id",
         through: {
@@ -34,9 +27,9 @@ class Subcategory extends Model {
   }
 }
 
-class ProductSubcategory extends Model {
+class ProductSubcategoryModal extends Model {
   static get tableName() {
-    return "prod_subcategories";
+    return "product_subcategories";
   }
 
   static get idColumn() {
@@ -47,7 +40,7 @@ class ProductSubcategory extends Model {
   static relationMappings = {
     products: {
       relation: Model.HasOneRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "product_subcategories.product",
         to: "products.product_id"
@@ -55,7 +48,7 @@ class ProductSubcategory extends Model {
     },
     subcategories: {
       relation: Model.HasOneRelation,
-      modelClass: Subcategory,
+      modelClass: SubcategoryModel,
       join: {
         from: "product_subcategories.subcategory",
         to: "subcategories.subcategory_id"
@@ -64,4 +57,4 @@ class ProductSubcategory extends Model {
   }
 }
 
-export {Subcategory, ProductSubcategory}
+export {SubcategoryModel, ProductSubcategoryModal}

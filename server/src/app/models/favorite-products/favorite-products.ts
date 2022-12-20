@@ -1,6 +1,6 @@
 import {Model} from "objection";
 
-import {Products} from "@/app/models/products/products";
+import {ProductsModel} from "@/app/product/models/products.model";
 import {UsersModel} from "@/app/user/models/users.model";
 
 
@@ -16,7 +16,7 @@ class FavoriteProducts extends Model {
   static relationMappings = {
     products: {
       relation: Model.HasOneRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "favorite_products.product",
         to: "products.product_id"

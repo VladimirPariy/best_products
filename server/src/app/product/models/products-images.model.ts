@@ -1,9 +1,9 @@
 import {Model} from "objection";
 
-import {Products} from "@/app/models/products/products";
+import {ProductsModel} from "@/app/product/models/products.model";
 
 
-class ProductsImages extends Model {
+class ProductsImagesModel extends Model {
 
   static get tableName() {
     return "products_images";
@@ -16,7 +16,7 @@ class ProductsImages extends Model {
   static relationMappings = {
     products: {
       relation: Model.HasOneRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "products_images.product",
         to: "products.product_id"
@@ -25,4 +25,4 @@ class ProductsImages extends Model {
   }
 }
 
-export {ProductsImages};
+export {ProductsImagesModel};

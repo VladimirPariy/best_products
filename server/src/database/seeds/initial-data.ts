@@ -14,7 +14,6 @@ export async function seed(knex: Knex): Promise<void> {
   await knex("product_subcategories").del();
   await knex("subcategories").del();
   await knex("categories").del();
-  await knex("characteristics").del();
   await knex("products").del();
   await knex("users").del();
   await knex("roles").del();
@@ -74,28 +73,24 @@ export async function seed(knex: Knex): Promise<void> {
     },
   ]);
 
-  await knex("characteristics").insert([
-    {characteristic_id: 1, characteristic_title: "Screen size"},
-    {characteristic_id: 2, characteristic_title: "Number of Cores"},
-  ]);
 
   await knex("product_characteristics").insert([
     {
       product_characteristic_id: 1,
       product: 1,
-      characteristic: 1,
+      characteristic_title: "Screen size",
       characteristic_description: 7.89
     },
     {
       product_characteristic_id: 2,
       product: 1,
-      characteristic: 2,
+      characteristic_title: "Number of Cores",
       characteristic_description: "4"
     },
     {
       product_characteristic_id: 3,
       product: 2,
-      characteristic: 2,
+      characteristic_title: "Number of Cores",
       characteristic_description: "1"
     },
   ]);

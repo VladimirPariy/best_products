@@ -57,7 +57,7 @@ class UserService {
       }
     }
 
-
+// исправить (приходит обьекта, а не массив.
     const img = files?.img
     if (Array.isArray(img)) {
       return HttpException.badRequest('Attached array of pictures')

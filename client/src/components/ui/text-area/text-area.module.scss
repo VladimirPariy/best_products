@@ -1,0 +1,71 @@
+.label {
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 10px;
+  display: inline-block;
+  width: 100%;
+
+  .textArea {
+    width: 100%;
+    max-width: 100%;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 7px;
+    margin-top: 6px;
+    border: 1px solid rgba(118, 110, 211, 0.75);
+    font-size: 14px;
+    line-height: 18px;
+    outline: 1px solid rgba(118, 110, 211, 0.75);
+    padding: 6px 12px;
+    font-family: inherit;
+    resize: none;
+    height: 120px;
+  }
+
+  .labelText {
+    font-size: 10px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .label {
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 13px;
+
+    .textArea {
+      margin-top: 8px;
+      border: 1.5px solid rgba(118, 110, 211, 0.75);
+      font-size: 16px;
+      line-height: 20px;
+      outline: 1.5px solid rgba(118, 110, 211, 0.75);
+      padding: 8px 18px;
+    }
+
+    .labelText {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .label {
+    margin-top: 16px;
+
+    .textArea {
+      margin-top: 10px;
+      border: 2px solid rgba(118, 110, 211, 0.75);
+      font-size: 18px;
+      line-height: 22px;
+      outline: 2px solid rgba(118, 110, 211, 0.75);
+      padding: 10px 23px;
+    }
+
+    .labelText {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+}

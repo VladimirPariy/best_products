@@ -4,7 +4,7 @@ import {Comments} from "@/app/models/comments/comments";
 import {FavoriteProducts} from "@/app/models/favorite-products/favorite-products";
 import {Feedbacks} from "@/app/models/feedbacks/feedbacks";
 import {RolesModel} from "@/app/user/models/roles.model";
-import {Products} from "@/app/models/products/products";
+import {ProductsModel} from "@/app/product/models/products.model";
 
 
 class UsersModel extends Model {
@@ -42,7 +42,7 @@ class UsersModel extends Model {
 
     users_products_comments: {
       relation: Model.ManyToManyRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "users.user_id",
         through: {
@@ -64,7 +64,7 @@ class UsersModel extends Model {
 
     users_products_feedbacks: {
       relation: Model.ManyToManyRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "users.user_id",
         through: {
@@ -86,7 +86,7 @@ class UsersModel extends Model {
 
     users_favorite_products: {
       relation: Model.ManyToManyRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "users.user_id",
         through: {
@@ -108,7 +108,7 @@ class UsersModel extends Model {
 
     users_views_products: {
       relation: Model.ManyToManyRelation,
-      modelClass: Products,
+      modelClass: ProductsModel,
       join: {
         from: "users.user_id",
         through: {

@@ -1,6 +1,3 @@
-import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
-import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
-import { selectAuth, selectToken } from "lib/store/user/user-selector";
 import React, {
   Dispatch,
   FC,
@@ -9,13 +6,16 @@ import React, {
   useState,
 } from "react";
 
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import {IRegistrationData} from "lib/interfaces/user-interfaces/registration-data";
+import {userInfoTrigger, userTokenTrigger} from "lib/store/user/user-actions";
+import {selectAuth, selectToken} from "lib/store/user/user-selector";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
 
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
-import ModalButton from "components/ui/modal-button/modal-button";
+import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
-import ModalInput from "components/ui/modal-input/modal-input";
-import ModalTitle from "components/ui/modal-title/modal-title";
+import Input from "components/ui/input/input";
+import Title from "components/ui/title/title";
 
 interface Props {
   isShowRegistrationModal: boolean;
@@ -25,9 +25,9 @@ interface Props {
 const RegistrationModal: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
-  const token = useAppSelector(selectToken);
+  const token = useAppSelector(selectToken)
 
-  const { isShowRegistrationModal, setIsShowRegistrationModal } = props;
+  const {isShowRegistrationModal, setIsShowRegistrationModal} = props;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -36,7 +36,6 @@ const RegistrationModal: FC<Props> = (props) => {
 
   const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
 
-  const [passwordError, setPasswordError] = useState(false);
 
   const registrationHandler = async () => {
     if (password === confirmPassword) {
@@ -61,10 +60,12 @@ const RegistrationModal: FC<Props> = (props) => {
       sessionStorage.setItem("token", token);
       dispatch(userInfoTrigger(token));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   useEffect(() => {
     auth && setIsShowRegistrationModal(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
   return (
@@ -72,35 +73,35 @@ const RegistrationModal: FC<Props> = (props) => {
       setVisible={setIsShowRegistrationModal}
       isVisible={isShowRegistrationModal}
     >
-      <ModalTitle>SIGN UP</ModalTitle>
+      <Title>SIGN UP</Title>
 
-      <ModalInput
+      <Input
         value={firstName}
-        changeHandler={setFirstName}
+        changeHandler={e => setFirstName(e.target.value)}
         labelText="First name"
       />
-      <ModalInput
+      <Input
         value={lastName}
-        changeHandler={setLastName}
+        changeHandler={e => setLastName(e.target.value)}
         labelText="Last name"
       />
-      <ModalInput
+      <Input
         value={email}
-        changeHandler={setEmail}
+        changeHandler={e => setEmail(e.target.value)}
         labelText="Email address"
       />
-      <ModalInput
+      <Input
         value={password}
-        changeHandler={setPassword}
+        changeHandler={e => setPassword(e.target.value)}
         labelText="Password"
         type="password"
       >
         Password must contain at least five characters. A strong password
         contains a combination of letters, numbers and symbols.
-      </ModalInput>
-      <ModalInput
+      </Input>
+      <Input
         value={confirmPassword}
-        changeHandler={setConfirmPassword}
+        changeHandler={e => setConfirmPassword(e.target.value)}
         labelText="Confirm password"
         type="password"
       />
@@ -108,7 +109,7 @@ const RegistrationModal: FC<Props> = (props) => {
         Get updates on our shop news and promotions
       </ModalCheckbox>
 
-      <ModalButton
+      <Button
         submitHandler={registrationHandler}
         isPurpleButton={true}
         type="button"
