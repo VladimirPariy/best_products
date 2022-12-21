@@ -10,7 +10,6 @@ import {generateJwtToken} from "@/app/common/utils/generate-jwt-token";
 
 class AuthService {
 
-
   async registration(firstName: string, lastName: string, email: string, password: string, isGetUpdate: boolean) {
     const candidate = await UserService.getUserByEmailOrPhoneNumber(email);
     if (candidate) {
@@ -24,9 +23,7 @@ class AuthService {
       password: encryptedPass,
       first_name: firstName,
       last_name: lastName,
-      created_at: Model.knex().fn.now(),
       is_get_update: isGetUpdate,
-      updated_at: Model.knex().fn.now()
     })
 
     const user = await UserService.getUserById(insertingData.user_id)
@@ -47,7 +44,7 @@ class AuthService {
     if (!candidate) {
       return HttpException.notFound("User is not found");
     }
-    
+
     const validPassword = bcrypt.compareSync(password, candidate.password);
     if (!validPassword) {
       return HttpException.badRequest(`User inputted invalid password`);

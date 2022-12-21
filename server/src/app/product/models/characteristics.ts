@@ -1,7 +1,11 @@
 import {Model} from "objection";
 import {ProductsModel} from "@/app/product/models/products.model";
 
-class ProductCharacteristic extends Model {
+export class ProductCharacteristicModel extends Model {
+  characteristic_description: string;
+  characteristic_title: string;
+
+
   static get tableName() {
     return "product_characteristics";
   };

@@ -1,9 +1,11 @@
 import {Model} from "objection";
+import {IPriceHistory, IProductCharacteristic, IProductImage, IProductSubcategory} from "@/app/product/product.interfaces";
 
+import {ProductSubcategoryModal} from "@/app/categories/models/product-subcategories.model";
 import {Comments} from "@/app/models/comments/comments";
 import {FavoriteProducts} from "@/app/models/favorite-products/favorite-products";
 import {Feedbacks} from "@/app/models/feedbacks/feedbacks";
-import {Characteristics, ProductCharacteristic} from "@/app/product/models/characteristics";
+import {ProductCharacteristicModel} from "@/app/product/models/characteristics";
 import {PriceHistoryModel} from "@/app/product/models/price-history.model";
 import {ProductsImagesModel} from "@/app/product/models/products-images.model";
 import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
@@ -12,6 +14,15 @@ import {Views} from "@/app/models/views/views";
 
 
 class ProductsModel extends Model {
+  product_title: string;
+  product_description: string;
+  price: number;
+  product_characteristics: IProductCharacteristic[];
+  product_images: IProductImage[];
+  price_history: IPriceHistory[];
+  product_subcategory: IProductSubcategory[]
+
+
   static get tableName() {
     return "products";
   }
@@ -22,46 +33,17 @@ class ProductsModel extends Model {
   }
 
 
-  static get jsonSchema() {
-    return {
-      type: 'object',
-      required: ['product_title', 'product_description', 'price'],
-
-      properties: {
-        product_id: {type: 'integer'},
-        product_title: {type: 'string', minLength: 1, maxLength: 45},
-        product_description: {type: 'string', minLength: 1, maxLength: 255},
-        price: {type: 'integer'},
-      }
-    }
-  };
-
-
   static relationMappings = {
-    prod_characteristic: {
+    product_characteristics: {
       relation: Model.HasManyRelation,
-      modelClass: ProductCharacteristic,
+      modelClass: ProductCharacteristicModel,
       join: {
         from: "product_characteristics.product",
         to: "products.product_id"
       }
     },
-    characteristics: {
-      relation: Model.ManyToManyRelation,
-      modelClass: Characteristics,
-      join: {
-        from: "products.product_id",
-        through: {
-          from: "product_characteristics.product",
-          extra: ["characteristic_description"],
-          to: "product_characteristics.characteristic"
-        },
-        to: "characteristics.characteristic_id"
-      }
-    },
 
-
-    products_images: {
+    product_images: {
       relation: Model.HasManyRelation,
       modelClass: ProductsImagesModel,
       join: {
@@ -80,7 +62,17 @@ class ProductsModel extends Model {
       }
     },
 
+    product_subcategory: {
+      relation: Model.HasManyRelation,
+      modelClass: ProductSubcategoryModal,
+      join: {
+        from: "product_subcategories.product",
+        to: "products.product_id"
+      }
+    },
 
+
+    //
     subcategories: {
       relation: Model.ManyToManyRelation,
       modelClass: SubcategoryModel,

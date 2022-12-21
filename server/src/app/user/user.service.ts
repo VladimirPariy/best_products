@@ -1,3 +1,4 @@
+import {RolesModel} from "@/app/user/models/roles.model";
 import bcrypt from "bcryptjs";
 import {Request} from "express";
 import path from "path";
@@ -5,11 +6,28 @@ import {v4 as uuidv4} from "uuid";
 
 import {generateJwtToken} from "@/app/common/utils/generate-jwt-token";
 import {HttpException} from "@/app/common/errors/exceptions";
-import {IUserUpdatingFields} from "@/app/user/user-updating-fields.interface";
+import {IUserUpdatingFields} from "@/app/user/user.interfaces";
 import {UsersModel} from "@/app/user/models/users.model";
 
 
 class UserService {
+
+  async getAllUsers() {
+    const users = await UsersModel.query().withGraphFetched('users_roles')
+    if (!users.length) {
+      return HttpException.internalServErr('Unsuccessful users request')
+    }
+    return users
+  }
+
+  async getRoles() {
+    const roles = await RolesModel.query();
+    if (!roles.length) {
+      return HttpException.internalServErr('Unsuccessful roles request')
+    }
+    return roles
+  }
+
 
   async getUserByEmailOrPhoneNumber(login: string) {
     const user = await UsersModel.query()
@@ -21,23 +39,7 @@ class UserService {
 
 
   async getUserById(id: string) {
-    const user = await UsersModel.query()
-    .select([
-      'user_id',
-      'first_name',
-      'last_name',
-      'email',
-      'password',
-      'phone_number',
-      'user_photo',
-      'is_get_update',
-      'created_at',
-      'updated_at',
-      'role',
-      'roles.role_title as role_name'
-    ])
-    .join("roles", "users.role", "roles.role_id")
-    .where('user_id', '=', id)
+    const user = await UsersModel.query().withGraphFetched('users_roles').where('user_id', '=', id)
 
     if (!user) {
       return HttpException.notFound(`User not found`);
@@ -98,6 +100,8 @@ class UserService {
     }
     return token
   }
+
+
 }
 
 export default new UserService();

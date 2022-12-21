@@ -6,6 +6,16 @@ import {HttpException} from "@/app/common/errors/exceptions";
 
 class UserController {
 
+  async getAllUsers(req: Request, res: Response, next: NextFunction) {
+    const data = await UserService.getAllUsers()
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
+
+  async getAllRoles(req: Request, res: Response, next: NextFunction) {
+    const data = await UserService.getRoles()
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
+
   async getUserInfo(req: Request, res: Response, next: NextFunction) {
     const {id} = req.user;
     if (!id) {
