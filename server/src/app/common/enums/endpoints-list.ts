@@ -15,6 +15,7 @@ export const enum EndpointsList {
   ONE_USER_BY_ID = "/:id",
   UPDATE_TOKEN = "/token/:id",
   ROLE_LIST = "/roles",
+  UPDATE_ROLE = "/update_role/:id",
 
   //categories
   GET_ALL_CATEGORIES = "/all",

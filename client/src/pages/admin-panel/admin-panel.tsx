@@ -12,7 +12,7 @@ const AdminPanel: FC<Props> = (props) => {
         Add new product
       </Link>
 
-      <Link to={appUrl.user_control}>
+      <Link to={appUrl.users_table}>
         User control
       </Link>
     </div>

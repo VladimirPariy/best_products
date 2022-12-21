@@ -1,9 +1,13 @@
-import {RolesModel} from "@/app/user/models/roles.model";
+import {CommentsModel} from "@/app/models/comments/comments.model";
+import {FavoriteProductsModel} from "@/app/models/favorite-products/favorite-products.model";
+import {FeedbacksModel} from "@/app/models/feedbacks/feedbacks.model";
+import {ViewsModel} from "@/app/models/views/views.model";
 import bcrypt from "bcryptjs";
 import {Request} from "express";
 import path from "path";
 import {v4 as uuidv4} from "uuid";
 
+import {RolesModel} from "@/app/user/models/roles.model";
 import {generateJwtToken} from "@/app/common/utils/generate-jwt-token";
 import {HttpException} from "@/app/common/errors/exceptions";
 import {IUserUpdatingFields} from "@/app/user/user.interfaces";
@@ -26,6 +30,14 @@ class UserService {
       return HttpException.internalServErr('Unsuccessful roles request')
     }
     return roles
+  }
+
+  async updateUserRoleById(user_id: number, role: number) {
+    const updatedUser = await UsersModel.query().update({role}).where({user_id})
+    if (!updatedUser) {
+      return HttpException.internalServErr('Role change request failed')
+    }
+    return {updatedUser}
   }
 
 
@@ -101,6 +113,22 @@ class UserService {
     return token
   }
 
+
+  async removeOneById(id: string) {
+
+    const user = await UsersModel.query().findById(id)
+
+    if (user) {
+      await user.$relatedQuery('users_views').delete();
+      await user.$relatedQuery('users_favorite').delete();
+      await user.$relatedQuery('users_comments').delete();
+      await user.$relatedQuery('users_feedback').delete();
+      await user.$query().delete()
+    } else {
+      return HttpException.notFound(`User not found`);
+    }
+    return 'User was successfully deleted'
+  }
 
 }
 

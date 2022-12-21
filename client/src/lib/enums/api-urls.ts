@@ -7,12 +7,14 @@ export enum ApiUrls {
   newTokenForUser = "user/token/:id",
   auth = "auth/auth/",
 
+  oneUser = "user/",
   oneUserById = "user/",
-  allUsers = "user/all",
-  allRoles = "user/roles",
+  allUsers = "user/all/",
+  allRoles = "user/roles/",
+  updateRole = "user/update_role/",
 
   allCategories = "categories/all/",
   subcategoriesOfCategory = "subcategories/category/",
 
-  createProduct = "products/create"
+  createProduct = "products/create/"
 }

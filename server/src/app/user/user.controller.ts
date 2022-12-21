@@ -45,6 +45,20 @@ class UserController {
     const data = await UserService.createNewToken(id)
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
+
+  async updateRole(req: Request, res: Response, next: NextFunction) {
+    const {id} = req.params
+    const {role} = req.body
+    const data = await UserService.updateUserRoleById(+id, +role);
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
+
+  async removeUser(req: Request, res: Response, next: NextFunction) {
+    const {id} = req.params;
+    console.log(req.params, 1)
+    const data = await UserService.removeOneById(id);
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
 }
 
 export default new UserController();

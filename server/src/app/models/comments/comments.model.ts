@@ -4,33 +4,33 @@ import {ProductsModel} from "@/app/product/models/products.model";
 import {UsersModel} from "@/app/user/models/users.model";
 
 
-class FavoriteProducts extends Model {
+class CommentsModel extends Model {
   static get tableName() {
-    return "favorite_products";
+    return "comments";
   };
 
   static get idColumn() {
-    return ["user", "product"];
+    return "comment_id";
   }
 
   static relationMappings = {
-    products: {
-      relation: Model.HasOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "favorite_products.product",
-        to: "products.product_id"
-      }
-    },
     users: {
       relation: Model.HasOneRelation,
       modelClass: UsersModel,
       join: {
-        from: "favorite_products.user",
+        from: "comments.user",
         to: "users.user_id"
+      }
+    },
+    products: {
+      relation: Model.HasOneRelation,
+      modelClass: ProductsModel,
+      join: {
+        from: "comments.product",
+        to: "products.product_id"
       }
     }
   }
 }
 
-export {FavoriteProducts};
+export {CommentsModel};

@@ -2,15 +2,15 @@ import {Model} from "objection";
 import {IPriceHistory, IProductCharacteristic, IProductImage, IProductSubcategory} from "@/app/product/product.interfaces";
 
 import {ProductSubcategoryModal} from "@/app/categories/models/product-subcategories.model";
-import {Comments} from "@/app/models/comments/comments";
-import {FavoriteProducts} from "@/app/models/favorite-products/favorite-products";
-import {Feedbacks} from "@/app/models/feedbacks/feedbacks";
+import {CommentsModel} from "@/app/models/comments/comments.model";
+import {FavoriteProductsModel} from "@/app/models/favorite-products/favorite-products.model";
+import {FeedbacksModel} from "@/app/models/feedbacks/feedbacks.model";
 import {ProductCharacteristicModel} from "@/app/product/models/characteristics";
 import {PriceHistoryModel} from "@/app/product/models/price-history.model";
 import {ProductsImagesModel} from "@/app/product/models/products-images.model";
 import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
 import {UsersModel} from "@/app/user/models/users.model";
-import {Views} from "@/app/models/views/views";
+import {ViewsModel} from "@/app/models/views/views.model";
 
 
 class ProductsModel extends Model {
@@ -102,7 +102,7 @@ class ProductsModel extends Model {
     },
     comments: {
       relation: Model.HasManyRelation,
-      modelClass: Comments,
+      modelClass: CommentsModel,
       join: {
         from: "comments.product",
         to: "products.product_id"
@@ -112,7 +112,7 @@ class ProductsModel extends Model {
 
     feedbacks: {
       relation: Model.HasManyRelation,
-      modelClass: Feedbacks,
+      modelClass: FeedbacksModel,
       join: {
         from: "products.product_id",
         to: "feedbacks.product"
@@ -135,7 +135,7 @@ class ProductsModel extends Model {
 
     favorite_products: {
       relation: Model.HasManyRelation,
-      modelClass: FavoriteProducts,
+      modelClass: FavoriteProductsModel,
       join: {
         from: "products.product_id",
         to: "favorite_products.product"
@@ -170,7 +170,7 @@ class ProductsModel extends Model {
     },
     views: {
       relation: Model.HasManyRelation,
-      modelClass: Views,
+      modelClass: ViewsModel,
       join: {
         from: "products.product_id",
         to: "views.product"

@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from "react";
 
-import styles from "components/main-container/main-container.module.scss";
+import styles from "components/ui/main-container/main-container.module.scss";
 
 import AppRouter from "components/app-router/app-router";
 import AdminPanelLink from "components/ui/admin-panel-link/admin-panel-link";
@@ -27,11 +27,10 @@ const MainContainer: FC = () => {
       dispatch(userInfoTrigger(token));
     }
   }, [token]);
-  let mainContainerClasses;
-  if (role_title) mainContainerClasses = getClassNameByCondition(styles, 'mainContainer', 'admin', !!role_title && role_title === 'admin')
+  const mainContainerClasses = getClassNameByCondition(styles, 'mainContainer', 'admin', !!role_title && role_title === 'admin')
   return (
     <div className={mainContainerClasses}>
-      {role_title && role_title === 'admin' && <AdminPanelLink/>}
+      {(role_title && role_title === 'admin') && <AdminPanelLink/>}
       <AppRouter/>
     </div>
   );

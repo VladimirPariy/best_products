@@ -1,11 +1,11 @@
 import {Model} from "objection";
 
-import {FeedbacksTypes} from "@/app/models/feedbacks/feedbacks-types";
+import {FeedbacksTypesModel} from "@/app/models/feedbacks/feedbacks-types.model";
 import {ProductsModel} from "@/app/product/models/products.model";
 import {UsersModel} from "@/app/user/models/users.model";
 
 
-class Feedbacks extends Model {
+class FeedbacksModel extends Model {
   static get tableName() {
     return "feedbacks";
   };
@@ -17,7 +17,7 @@ class Feedbacks extends Model {
   static relationMappings = {
     feedback_types: {
       relation: Model.HasOneRelation,
-      modelClass: FeedbacksTypes,
+      modelClass: FeedbacksTypesModel,
       join: {
         from: "feedbacks.feedback_type",
         to: "feedbacks_types.feedback_type_id"
@@ -43,4 +43,4 @@ class Feedbacks extends Model {
 }
 
 
-export {Feedbacks};
+export {FeedbacksModel};

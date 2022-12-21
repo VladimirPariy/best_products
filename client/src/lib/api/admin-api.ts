@@ -21,6 +21,16 @@ export class AdminApi {
 
   async getAllRoles() {
     const {data} = await authAxios.get<IRole[]>(ApiUrls.allRoles)
+    return data
+  }
+
+  async changeUserRole(user_id: number, role: number) {
+    const {data} = await authAxios.patch(`${ApiUrls.updateRole}${user_id}`, {role})
+    return data
+  }
+
+  async removeOneUser(id: string) {
+    const {data} = await authAxios.delete(`${ApiUrls.oneUserById}${id}`)
     console.log(data)
     return data
   }

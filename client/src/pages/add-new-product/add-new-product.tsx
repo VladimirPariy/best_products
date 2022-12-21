@@ -82,10 +82,16 @@ const AddNewProduct: FC<Props> = (props) => {
       </Title>
       <label className={styles.label}>
         Choose category
-        <select onChange={e => setCategoryId(+e.target.value)} defaultValue="0">
-          <option value="0" disabled hidden>Choose category</option>
-          {categories && categories.map(category => (
-            <option value={category.category_id} key={category.category_id}>
+        <select onChange={e => setCategoryId(+e.target.value)}
+                defaultValue="0">
+          <option value="0"
+                  disabled
+                  hidden>
+            Choose category
+          </option>
+          {categories.map(category => (
+            <option value={category.category_id}
+                    key={category.category_id}>
               {category.category_title}
             </option>
           ))}
@@ -93,10 +99,16 @@ const AddNewProduct: FC<Props> = (props) => {
       </label>
       <label className={styles.label}>
         Choose subcategory
-        <select onChange={e => setSubcategoryId(+e.target.value)} defaultValue="0">
-          <option value="0" disabled hidden>Choose subcategory</option>
+        <select onChange={e => setSubcategoryId(+e.target.value)}
+                defaultValue="0">
+          <option value="0"
+                  disabled
+                  hidden>
+            Choose subcategory
+          </option>
           {categories[categoryId - 1]?.subcategories.map(subcategory => (
-            <option value={subcategory.subcategory_id} key={subcategory.subcategory_id}>
+            <option value={subcategory.subcategory_id}
+                    key={subcategory.subcategory_id}>
               {subcategory.subcategory_title}
             </option>
           ))

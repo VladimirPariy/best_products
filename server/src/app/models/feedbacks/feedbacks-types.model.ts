@@ -1,9 +1,9 @@
 import {Model} from "objection";
 
-import {Feedbacks} from "@/app/models/feedbacks/feedbacks";
+import {FeedbacksModel} from "@/app/models/feedbacks/feedbacks.model";
 
 
-class FeedbacksTypes extends Model {
+class FeedbacksTypesModel extends Model {
   static get tableName() {
     return "feedbacks_types";
   };
@@ -15,7 +15,7 @@ class FeedbacksTypes extends Model {
   static relationMappings = {
     feedbacks: {
       relation: Model.HasManyRelation,
-      modelClass: Feedbacks,
+      modelClass: FeedbacksModel,
       join: {
         from: 'feedbacks_types.feedback_type_id',
         to: 'feedbacks.feedback_type'
@@ -24,4 +24,4 @@ class FeedbacksTypes extends Model {
   }
 }
 
-export {FeedbacksTypes}
+export {FeedbacksTypesModel}

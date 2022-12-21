@@ -4,5 +4,5 @@ export enum appUrl {
   categories = "/categories",
   admin_panel = "/admin",
   new_product = "/admin/create",
-  user_control = "/admin/users"
+  users_table = "/admin/users"
 }

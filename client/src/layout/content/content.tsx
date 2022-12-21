@@ -1,5 +1,5 @@
-import MainContainer from "components/main-container/main-container";
-import ModalContainer from "components/modal-container/modal-container";
+import MainContainer from "components/ui/main-container/main-container";
+import ModalContainer from "components/ui/modal-container/modal-container";
 import React, {FC, useEffect} from "react";
 
 import styles from "layout/content/content.module.scss";
