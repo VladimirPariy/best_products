@@ -27,8 +27,8 @@ function* userUpdateWorker({payload}: PayloadAction<IUserUpdateData>) {
     if (updateUser.status === 200) {
       const {id, token} = payload;
       if (token) {
-        getUser = yield call(UserApi.getUserInfo, {id, token});
-        newToken = yield call(UserApi.getNewToken, {id, token});
+        getUser = yield call(UserApi.getUserInfo, id);
+        newToken = yield call(UserApi.getNewToken, id);
         yield put(updateUserFulfilled({user: getUser, token: newToken}));
       }
     }

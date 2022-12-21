@@ -11,6 +11,10 @@ const AdminPanel: FC<Props> = (props) => {
       <Link to={appUrl.new_product}>
         Add new product
       </Link>
+
+      <Link to={appUrl.user_control}>
+        User control
+      </Link>
     </div>
   );
 };

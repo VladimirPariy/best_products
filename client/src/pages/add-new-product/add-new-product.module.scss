@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use "scss/index" as *;
 
 .wrapper {
   display: flex;
@@ -6,6 +6,9 @@
   max-width: 1250px;
   margin-left: auto;
   margin-right: auto;
+  padding: 30px;
+  background: $white;
+  border-radius: 20px;
 
   .label {
     font-size: 10px;
@@ -155,8 +158,8 @@
       gap: 45px;
 
       > img {
-        max-width: 600px;
-        max-height: 450px;
+        max-width: 550px;
+        max-height: 420px;
       }
     }
   }

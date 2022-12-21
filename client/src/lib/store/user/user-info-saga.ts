@@ -1,11 +1,11 @@
-import { PayloadAction } from "@reduxjs/toolkit";
+import {PayloadAction} from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
-import { call, put, takeLatest } from "redux-saga/effects";
-import { AxiosError } from "axios";
+import {call, put, takeLatest} from "redux-saga/effects";
+import {AxiosError} from "axios";
 
 import UserApi from "lib/api/user-api";
-import { IToken, TokenType } from "lib/interfaces/user-interfaces/token";
-import { IUser } from "lib/interfaces/user-interfaces/user";
+import {IToken, TokenType} from "lib/interfaces/user-interfaces/token";
+import {IUser} from "lib/interfaces/user-interfaces/user";
 
 import {
   userInfoFulfilled,
@@ -18,9 +18,9 @@ function* userInfoWorker(action: PayloadAction<TokenType>) {
   const token = action.payload;
   yield put(userInfoPending());
   try {
-    const { id }: IToken = jwt_decode(token);
+    const {id}: IToken = jwt_decode(token);
 
-    const user: IUser = yield call(UserApi.getUserInfo, { id, token });
+    const user: IUser = yield call(UserApi.getUserInfo, id);
 
     yield put(userInfoFulfilled(user));
   } catch (error) {

@@ -10,7 +10,7 @@ import Title from "components/ui/title/title";
 
 import {categoriesSelector} from "lib/store/categories/categories-selectors";
 import {useAppSelector} from "lib/store/store-types";
-import {createNewProduct} from "lib/api/admin-api";
+import AdminApi from "lib/api/admin-api";
 import {ICharacteristic} from "lib/interfaces/characteristics/characteristic";
 
 interface Props {
@@ -70,7 +70,7 @@ const AddNewProduct: FC<Props> = (props) => {
       formData.append(`img${i}`, file)
       i++
     }
-    const data = createNewProduct(formData)
+    const data = AdminApi.createNewProduct(formData)
     console.log(data)
   }
 

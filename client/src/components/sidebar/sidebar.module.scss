@@ -1,9 +1,8 @@
 @use "../../scss/index" as *;
 
 aside {
+
   .sidebarWrapper {
-    width: 100%;
-    max-width: 210px;
     margin-top: 20px;
     margin-bottom: 53px;
     overflow: hidden;
@@ -80,12 +79,14 @@ aside {
     max-width: 64px;
 
     .sidebarWrapper {
-      min-width: 100%;
-      transition: min-width 0.5s ease-in-out;
+      transition: max-width 0.5s ease-in-out;
       background: $sidebar_bg;
-      min-height: calc($h-screen - 85px);
+      max-width: 64px;
       margin: 0;
-      padding-top: 70px;
+      padding-top: 150px;
+      position: fixed;
+      top: 0;
+      z-index: 1;
 
       > ul {
         > .link {
@@ -112,20 +113,24 @@ aside {
       }
     }
 
-    .hoveredSidebarWrapper {
-      transition: min-width 0.5s ease-in-out;
-      min-width: 270px;
+    .sidebarWrapper:hover {
+      transition: max-width 0.5s ease-in-out;
+      max-width: 270px;
     }
   }
+
 }
 
 @media screen and (min-width: 1025px) {
   aside {
-    min-width: 78.5px;
+    max-width: 78.5px;
 
     .sidebarWrapper {
-      min-width: 100%;
-      transition: min-width 0.5s ease-in-out;
+
+      padding-top: 210px;
+
+      max-width: 78.5px;
+      transition: max-width 0.5s ease-in-out;
 
       > ul {
         .link {
@@ -152,9 +157,9 @@ aside {
       }
     }
 
-    .hoveredSidebarWrapper {
-      transition: min-width 0.5s ease-in-out;
-      min-width: 360px;
+    .sidebarWrapper:hover {
+      transition: max-width 0.5s ease-in-out;
+      max-width: 360px;
     }
   }
 }

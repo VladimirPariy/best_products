@@ -1,20 +1,16 @@
-import {defaultAxios} from "lib/api/axios-instances";
+import {authAxios} from "lib/api/axios-instances";
 import {ApiUrls} from "lib/enums/api-urls";
 import {IUser} from "lib/interfaces/user-interfaces/user";
 import {IUserUpdateData} from "lib/interfaces/user-interfaces/user-update-data.interface";
 
 class UserApi {
-  async getUserInfo({id, token}: { id: number; token: string }) {
-    const data = await defaultAxios.get<IUser>(`${ApiUrls.oneUserById}${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  async getUserInfo(id: number) {
+    const data = await authAxios.get<IUser>(`${ApiUrls.oneUserById}${id}`);
     return data.data;
   }
 
   async updateUserInfo(userInfo: IUserUpdateData) {
-    const {id, token, user_photo, ...updatingData} = userInfo;
+    const {id, user_photo, ...updatingData} = userInfo;
     let formData = new FormData();
     if (user_photo) {
       formData.append("img", user_photo);
@@ -24,27 +20,20 @@ class UserApi {
       formData.append(formItem, updatingData[formItem]);
     }
 
-    return await defaultAxios.patch<string>(
+    return await authAxios.patch<string>(
       `${ApiUrls.oneUserById}${id}`,
       formData,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       }
     );
   }
 
-  async getNewToken({id, token}: { id: number; token: string }) {
-    const data = await defaultAxios.get<IUser>(
-      `${ApiUrls.newTokenForUser}${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  async getNewToken(id: number) {
+    const data = await authAxios.get<IUser>(
+      `${ApiUrls.newTokenForUser}${id}`);
     return data.data;
   }
 }
