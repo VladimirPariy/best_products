@@ -1,5 +1,7 @@
 import {Knex} from "knex";
 import {createUsers} from "../faker/create-random-users";
+import {createProducts} from "../faker/create-fake-products";
+import {addPhotoToProduct} from "../faker/add-photo-to-product";
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
@@ -45,33 +47,8 @@ export async function seed(knex: Knex): Promise<void> {
     }
   ]);
 
-  await knex("products").insert([
-    {
-      product_id: 1,
-      product_title: "phone",
-      product_description: "new good phone",
-      price: 999.99,
-    },
-    {
-      product_id: 2,
-      product_title: "laptop",
-      product_description: "bad old laptop",
-      price: 2999.99,
-    },
-  ]);
-
-  await knex("products_images").insert([
-    {
-      image_id: 1,
-      product: "1",
-      image_title: "abc.jpg"
-    },
-    {
-      image_id: 2,
-      product: "1",
-      image_title: "abcdef.jpg"
-    },
-  ]);
+  await knex("products").insert(createProducts());
+  await knex("products_images").insert(addPhotoToProduct());
 
 
   await knex("product_characteristics").insert([

@@ -8,10 +8,10 @@ import React, {
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import {ILoginData} from "lib/interfaces/user-interfaces/login-data";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {userInfoTrigger, userTokenTrigger} from "lib/store/user/user-actions";
-import {selectAuth, selectToken} from "lib/store/user/user-selector";
+import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
+import { selectAuth, selectToken } from "lib/store/user/user-selector";
 import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import Input from "components/ui/input/input";
@@ -25,10 +25,10 @@ interface Props {
 }
 
 const SignInModal: FC<Props> = ({
-                                  setIsShowLoginModal,
-                                  isShowLoginModal,
-                                  setIsShowRegistrationModal,
-                                }) => {
+  setIsShowLoginModal,
+  isShowLoginModal,
+  setIsShowRegistrationModal,
+}) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
   const token = useAppSelector(selectToken);
@@ -73,12 +73,12 @@ const SignInModal: FC<Props> = ({
         <Title>SIGN IN</Title>
         <Input
           labelText="Email address or mobile phone number"
-          changeHandler={e => setLogin(e.target.value)}
+          changeHandler={(e) => setLogin(e.target.value)}
           value={login}
         />
         <Input
           labelText="Password"
-          changeHandler={e => setPassword(e.target.value)}
+          changeHandler={(e) => setPassword(e.target.value)}
           value={password}
         />
         <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>

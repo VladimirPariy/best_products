@@ -1,16 +1,16 @@
-import React, {FC, MouseEvent, Dispatch, SetStateAction} from "react";
+import React, { FC, MouseEvent, Dispatch, SetStateAction } from "react";
 
 import styles from "layout/header/components/user.module.scss";
 import defaultUserImg from "assets/icon/header/user.svg";
 
-import {useScreenWidth} from "lib/hooks/use-screen-width";
+import { useScreenWidth } from "lib/hooks/use-screen-width";
 
-import {selectUser} from "lib/store/user/user-selector";
-import {useAppSelector} from "lib/store/store-types";
+import { selectUser } from "lib/store/user/user-selector";
+import { useAppSelector } from "lib/store/store-types";
 
-import {ApiUrls} from "lib/enums/api-urls";
+import { ApiUrls } from "lib/enums/api-urls";
 
-import {IModalScreens} from "lib/interfaces/modal-screens.interface";
+import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 
 import UserModal from "layout/header/components/user-modal";
 
@@ -20,7 +20,7 @@ interface Props extends IModalScreens {
 }
 
 const User: FC<Props> = (props) => {
-  const {setIsShowUserModal, setCheckedBurgerMenu, ...setIsShowModals} =
+  const { setIsShowUserModal, setCheckedBurgerMenu, ...setIsShowModals } =
     props;
 
   const userScreenWidth = useScreenWidth();

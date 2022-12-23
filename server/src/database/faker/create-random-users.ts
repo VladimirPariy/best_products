@@ -29,8 +29,28 @@ const createRandomUser = (i: number) => {
 
 export const createUsers = () => {
   let arr = []
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 200; i++) {
     arr.push(createRandomUser(i));
   }
+	const encAdminPass = bcrypt.hashSync('admin', 7)
+	const encUserPass = bcrypt.hashSync('user1', 7)
+	arr.push({
+		user_id: 201,
+		first_name:"admin",
+		last_name:"admin",
+		email:"admin@mail.com",
+		password: encAdminPass,
+		phone_number:'+0989156326',
+		is_get_update:1,
+		role:'1',})
+	arr.push({
+		user_id: 202,
+		first_name:"user",
+		last_name:"user",
+		email:"user@mail.com",
+		password: encUserPass,
+		phone_number:'+380989156326',
+		is_get_update:2,
+		role:'2',})
   return arr;
 }

@@ -6,10 +6,10 @@ import React, {
   useState,
 } from "react";
 
-import {IRegistrationData} from "lib/interfaces/user-interfaces/registration-data";
-import {userInfoTrigger, userTokenTrigger} from "lib/store/user/user-actions";
-import {selectAuth, selectToken} from "lib/store/user/user-selector";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
+import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
+import { selectAuth, selectToken } from "lib/store/user/user-selector";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 import Button from "components/ui/button/button";
@@ -25,9 +25,9 @@ interface Props {
 const RegistrationModal: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
-  const token = useAppSelector(selectToken)
+  const token = useAppSelector(selectToken);
 
-  const {isShowRegistrationModal, setIsShowRegistrationModal} = props;
+  const { isShowRegistrationModal, setIsShowRegistrationModal } = props;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -35,7 +35,6 @@ const RegistrationModal: FC<Props> = (props) => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
-
 
   const registrationHandler = async () => {
     if (password === confirmPassword) {
@@ -77,22 +76,22 @@ const RegistrationModal: FC<Props> = (props) => {
 
       <Input
         value={firstName}
-        changeHandler={e => setFirstName(e.target.value)}
+        changeHandler={(e) => setFirstName(e.target.value)}
         labelText="First name"
       />
       <Input
         value={lastName}
-        changeHandler={e => setLastName(e.target.value)}
+        changeHandler={(e) => setLastName(e.target.value)}
         labelText="Last name"
       />
       <Input
         value={email}
-        changeHandler={e => setEmail(e.target.value)}
+        changeHandler={(e) => setEmail(e.target.value)}
         labelText="Email address"
       />
       <Input
         value={password}
-        changeHandler={e => setPassword(e.target.value)}
+        changeHandler={(e) => setPassword(e.target.value)}
         labelText="Password"
         type="password"
       >
@@ -101,7 +100,7 @@ const RegistrationModal: FC<Props> = (props) => {
       </Input>
       <Input
         value={confirmPassword}
-        changeHandler={e => setConfirmPassword(e.target.value)}
+        changeHandler={(e) => setConfirmPassword(e.target.value)}
         labelText="Confirm password"
         type="password"
       />

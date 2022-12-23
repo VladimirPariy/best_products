@@ -1,4 +1,5 @@
-import AdminUsersTable from "pages/admin-user-table/admin-users-table";
+import ProductControl from "pages/product-control/product-control";
+import UsersControl from "pages/users-control/users-control";
 import React, {FC} from "react";
 import {Route, Routes} from "react-router-dom";
 
@@ -7,16 +8,31 @@ import AddNewProduct from "pages/add-new-product/add-new-product";
 
 import {appUrl} from "lib/enums/app-urls";
 
+interface IRoutes {
+  path: string;
+  elem: JSX.Element;
+}
+
+const routes: IRoutes[] = [
+  {elem: <div></div>, path: appUrl.home},
+  {elem: <div></div>, path: appUrl.favorites},
+  {elem: <div></div>, path: appUrl.categories},
+  {elem: <AdminPanel/>, path: appUrl.admin_panel},
+  {elem: <ProductControl/>, path: appUrl.products},
+  {elem: <AddNewProduct/>, path: appUrl.new_product},
+  {elem: <UsersControl/>, path: appUrl.users_table},
+  // {elem:, path:},
+
+]
 
 const AppRouter: FC = () => {
   return (
     <Routes>
-      <Route path={appUrl.home} element={<div></div>}/>
-      <Route path={appUrl.favorites} element={<div></div>}/>
-      <Route path={appUrl.categories} element={<div></div>}/>
-      <Route path={appUrl.admin_panel} element={<AdminPanel/>}/>
-      <Route path={appUrl.new_product} element={<AddNewProduct/>}/>
-      <Route path={appUrl.users_table} element={<AdminUsersTable/>}/>
+      {
+        routes.map((route) => (
+          <Route path={route.path} element={route.elem} key={route.path}/>
+        ))
+      }
     </Routes>
   );
 };

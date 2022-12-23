@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from "react";
+import React, { ChangeEvent, FC } from "react";
 
 import styles from "components/ui/text-area/text-area.module.scss";
 
@@ -9,11 +9,7 @@ interface Props {
 }
 
 const TextArea: FC<Props> = (props) => {
-  const {
-    labelText,
-    changeHandler,
-    value,
-  } = props;
+  const { labelText, changeHandler, value } = props;
   return (
     <label className={styles.label}>
       <div className={styles.labelText}>{labelText}</div>

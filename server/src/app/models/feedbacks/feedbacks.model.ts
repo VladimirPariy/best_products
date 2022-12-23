@@ -8,7 +8,7 @@ import {UsersModel} from "@/app/user/models/users.model";
 class FeedbacksModel extends Model {
   static get tableName() {
     return "feedbacks";
-  };
+  }
 
   static get idColumn() {
     return ["user", "product"];
@@ -31,14 +31,14 @@ class FeedbacksModel extends Model {
         to: "users.user_id"
       }
     },
-    products: {
-      relation: Model.HasOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "feedbacks.product",
-        to: "products.product_id"
-      }
-    }
+    // products: {
+    //   relation: Model.HasOneRelation,
+    //   modelClass: ProductsModel,
+    //   join: {
+    //     from: "feedbacks.product",
+    //     to: "products.product_id"
+    //   }
+    // }
   }
 }
 

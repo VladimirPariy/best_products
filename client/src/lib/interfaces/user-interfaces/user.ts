@@ -1,6 +1,6 @@
 export interface IRole {
-  role_id: number
-  role_title: string
+  role_id: number;
+  role_title: string;
 }
 
 export interface IUser {
@@ -15,6 +15,5 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   role: number;
-  users_roles: IRole
+  users_roles: IRole;
 }
-

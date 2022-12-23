@@ -1,166 +1,154 @@
 @use "scss/index" as *;
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  max-width: 1250px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px;
-  background: $white;
-  border-radius: 20px;
 
-  .label {
-    font-size: 10px;
-    line-height: 13px;
-    margin-top: 10px;
-    display: inline-block;
+.label {
+  font-size: 10px;
+  line-height: 13px;
+  margin-top: 10px;
+  display: inline-block;
+  width: 100%;
+
+  > select {
+    display: block;
     width: 100%;
+    border-radius: 7px;
+    margin-top: 6px;
+    border: 1px solid rgba(118, 110, 211, 0.75);
+    height: 2rem;
+    font-size: 14px;
+    line-height: 18px;
+    outline: 1px solid rgba(118, 110, 211, 0.75);
+    padding: 0 12px;
+    background: $white;
 
-    > select {
-      display: block;
-      width: 100%;
-      border-radius: 7px;
-      margin-top: 6px;
-      border: 1px solid rgba(118, 110, 211, 0.75);
-      height: 2rem;
+    > option {
+      background: white;
       font-size: 14px;
       line-height: 18px;
-      outline: 1px solid rgba(118, 110, 211, 0.75);
-      padding: 0 12px;
-      background: $white;
+    }
+  }
+}
+
+.characteristicTitle {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.characteristicContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > button {
+    max-width: 250px;
+  }
+}
+
+.imageContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+  > img {
+    max-width: 300px;
+    max-height: 200px;
+    width: 100%;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+}
+
+
+@media screen and (min-width: 769px) {
+
+  .label {
+    font-size: 12px;
+    line-height: 15px;
+    margin-top: 13px;
+
+    > select {
+      border-radius: 7px;
+      margin-top: 8px;
+      border: 1.5px solid rgba(118, 110, 211, 0.75);
+      height: 2.5rem;
+      font-size: 16px;
+      line-height: 20px;
+      outline: 1.5px solid rgba(118, 110, 211, 0.75);
+      padding: 0 18px;
 
       > option {
-        background: white;
-        font-size: 14px;
-        line-height: 18px;
+        font-size: 16px;
+        line-height: 20px;
       }
     }
   }
 
   .characteristicTitle {
-    text-align: center;
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 10px;
+    font-size: 14px;
+    margin-top: 13px;
   }
 
   .characteristicContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > button {
-      max-width: 250px;
-    }
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 20px;
   }
 
   .imageContainer {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    margin-top: 30px;
 
     > img {
-      max-width: 300px;
-      max-height: 200px;
-      width: 100%;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
-    }
-  }
-
-}
-
-@media screen and (min-width: 769px) {
-  .wrapper {
-    .label {
-      font-size: 12px;
-      line-height: 15px;
-      margin-top: 13px;
-
-      > select {
-        border-radius: 7px;
-        margin-top: 8px;
-        border: 1.5px solid rgba(118, 110, 211, 0.75);
-        height: 2.5rem;
-        font-size: 16px;
-        line-height: 20px;
-        outline: 1.5px solid rgba(118, 110, 211, 0.75);
-        padding: 0 18px;
-
-        > option {
-          font-size: 16px;
-          line-height: 20px;
-        }
-      }
-    }
-
-    .characteristicTitle {
-      font-size: 14px;
-      margin-top: 13px;
-    }
-
-    .characteristicContainer {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 20px;
-    }
-
-    .imageContainer {
-      margin-top: 30px;
-      gap: 30px;
-
-      > img {
-        max-width: 400px;
-        max-height: 320px;
-      }
+      max-width: 400px;
+      max-height: 320px;
     }
   }
 }
+
 
 @media screen and (min-width: 1025px) {
-  .wrapper {
-    .label {
-      font-size: 14px;
-      line-height: 17px;
-      margin-top: 16px;
 
-      > select {
-        margin-top: 10px;
-        border: 2px solid rgba(118, 110, 211, 0.75);
-        height: 3rem;
+  .label {
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 16px;
+
+    > select {
+      margin-top: 10px;
+      border: 2px solid rgba(118, 110, 211, 0.75);
+      height: 3rem;
+      font-size: 18px;
+      line-height: 22px;
+      outline: 2px solid rgba(118, 110, 211, 0.75);
+      padding: 0 23px;
+
+      > option {
         font-size: 18px;
         line-height: 22px;
-        outline: 2px solid rgba(118, 110, 211, 0.75);
-        padding: 0 23px;
-
-        > option {
-          font-size: 18px;
-          line-height: 22px;
-        }
-      }
-    }
-
-    .characteristicTitle {
-      font-size: 16px;
-      margin-top: 17px;
-    }
-
-    .characteristicContainer {
-      gap: 30px;
-    }
-
-    .imageContainer {
-      margin-top: 50px;
-      gap: 45px;
-
-      > img {
-        max-width: 550px;
-        max-height: 420px;
       }
     }
   }
+
+  .characteristicTitle {
+    font-size: 16px;
+    margin-top: 17px;
+  }
+
+  .characteristicContainer {
+    gap: 30px;
+  }
+
+  .imageContainer {
+    margin-top: 50px;
+
+    > img {
+      max-width: 550px;
+      max-height: 420px;
+    }
+  }
 }
+

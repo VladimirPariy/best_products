@@ -4,6 +4,9 @@ import {ProductsModel} from "@/app/product/models/products.model";
 
 
 class ProductsImagesModel extends Model {
+	
+	product:number;
+	image_title:string;
 
   static get tableName() {
     return "products_images";

@@ -1,9 +1,9 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ICategory} from "lib/interfaces/categories/categories.interface";
-import {ErrorPayload} from "lib/store/store-types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ICategory } from "lib/interfaces/categories/categories.interface";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
-  categoriesList: ICategory[]
+  categoriesList: ICategory[];
   isFetching: boolean;
   error: ErrorPayload | null;
 }
@@ -11,17 +11,17 @@ interface IInitialState {
 const initialState: IInitialState = {
   categoriesList: [],
   error: null,
-  isFetching: false
-}
+  isFetching: false,
+};
 
 export const categoriesSlice = createSlice({
-  name: '@@categories',
+  name: "@@categories",
   initialState,
   reducers: {
     categoriesFulfilled: (state, action: PayloadAction<ICategory[]>) => {
       state.isFetching = false;
       state.error = null;
-      state.categoriesList = action.payload
+      state.categoriesList = action.payload;
     },
     categoriesPending: (state) => {
       state.error = null;
@@ -33,7 +33,6 @@ export const categoriesSlice = createSlice({
       state.isFetching = false;
       state.categoriesList = [];
     },
-    categoriesTrigger: () => {
-    }
+    categoriesTrigger: () => {},
   },
-})
+});

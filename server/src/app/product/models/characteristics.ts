@@ -8,11 +8,11 @@ export class ProductCharacteristicModel extends Model {
 
   static get tableName() {
     return "product_characteristics";
-  };
+  }
 
   static get idColumn() {
     return "product_characteristic_id";
-  };
+  }
 
   static get relationMappings() {
     return {
@@ -25,6 +25,6 @@ export class ProductCharacteristicModel extends Model {
         }
       }
     }
-  };
+  }
 }
 

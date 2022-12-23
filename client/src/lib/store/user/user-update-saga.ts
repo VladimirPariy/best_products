@@ -1,8 +1,8 @@
-import {AxiosError, AxiosResponse} from "axios";
-import {TokenType} from "lib/interfaces/user-interfaces/token";
-import {IUser} from "lib/interfaces/user-interfaces/user";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {PayloadAction} from "@reduxjs/toolkit";
+import { AxiosError, AxiosResponse } from "axios";
+import { TokenType } from "lib/interfaces/user-interfaces/token";
+import { IUser } from "lib/interfaces/user-interfaces/user";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 import {
   userUpdateTrigger,
@@ -12,11 +12,9 @@ import {
 } from "lib/store/user/user-actions";
 
 import UserApi from "lib/api/user-api";
-import {IUserUpdateData} from "lib/interfaces/user-interfaces/user-update-data.interface";
+import { IUserUpdateData } from "lib/interfaces/user-interfaces/user-update-data.interface";
 
-function* userUpdateWorker({payload}: PayloadAction<IUserUpdateData>) {
-  let getUser: IUser;
-  let newToken: string;
+function* userUpdateWorker({ payload }: PayloadAction<IUserUpdateData>) {
   yield put(updateUserPending());
   try {
     const updateUser: AxiosResponse = yield call(
@@ -25,11 +23,11 @@ function* userUpdateWorker({payload}: PayloadAction<IUserUpdateData>) {
     );
 
     if (updateUser.status === 200) {
-      const {id, token} = payload;
+      const { id, token } = payload;
       if (token) {
-        getUser = yield call(UserApi.getUserInfo, id);
-        newToken = yield call(UserApi.getNewToken, id);
-        yield put(updateUserFulfilled({user: getUser, token: newToken}));
+        const getUser: IUser = yield call(UserApi.getUserInfo, id);
+        const newToken: string = yield call(UserApi.getNewToken, id);
+        yield put(updateUserFulfilled({ user: getUser, token: newToken }));
       }
     }
   } catch (error) {

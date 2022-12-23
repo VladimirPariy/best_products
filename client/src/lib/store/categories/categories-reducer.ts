@@ -1,3 +1,3 @@
-import {categoriesSlice} from "lib/store/categories/categories-slice";
+import { categoriesSlice } from "lib/store/categories/categories-slice";
 
-export const categoriesReducer = categoriesSlice.reducer
+export const categoriesReducer = categoriesSlice.reducer;

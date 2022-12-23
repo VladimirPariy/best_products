@@ -3,6 +3,10 @@ import {ProductsModel} from "@/app/product/models/products.model";
 import {Model} from "objection";
 
 export class ProductSubcategoryModal extends Model {
+	
+	product:number;
+	subcategory:number;
+	
   static get tableName() {
     return "product_subcategories";
   }

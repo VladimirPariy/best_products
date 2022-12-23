@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from "react";
+import React, { ChangeEvent, FC } from "react";
 
 import styles from "components/ui/input/input.module.scss";
 
@@ -9,7 +9,7 @@ interface Props {
   value: string;
   placeholder?: string;
   children?: string;
-  min?: number
+  min?: number;
 }
 
 const Input: FC<Props> = (props) => {
@@ -20,7 +20,7 @@ const Input: FC<Props> = (props) => {
     value,
     placeholder,
     children,
-    min
+    min,
   } = props;
   return (
     <label className={styles.label}>

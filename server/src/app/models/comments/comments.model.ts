@@ -7,7 +7,7 @@ import {UsersModel} from "@/app/user/models/users.model";
 class CommentsModel extends Model {
   static get tableName() {
     return "comments";
-  };
+  }
 
   static get idColumn() {
     return "comment_id";
@@ -22,14 +22,14 @@ class CommentsModel extends Model {
         to: "users.user_id"
       }
     },
-    products: {
-      relation: Model.HasOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "comments.product",
-        to: "products.product_id"
-      }
-    }
+    // products: {
+    //   relation: Model.HasOneRelation,
+    //   modelClass: ProductsModel,
+    //   join: {
+    //     from: "comments.product",
+    //     to: "products.product_id"
+    //   }
+    // }
   }
 }
 

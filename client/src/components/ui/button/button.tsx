@@ -1,7 +1,7 @@
-import React, {FC, ReactNode, MouseEvent} from "react";
+import React, { FC, ReactNode, MouseEvent } from "react";
 
 import styles from "components/ui/button/buttom.module.scss";
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
+import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 
 interface Props {
   children: ReactNode;
@@ -17,7 +17,7 @@ const Button: FC<Props> = (props) => {
     submitHandler,
     isPurpleButton = true,
     type = "submit",
-    style
+    style,
   } = props;
 
   const buttonStyles = getClassNameByCondition(
@@ -29,7 +29,12 @@ const Button: FC<Props> = (props) => {
   );
 
   return (
-    <button className={buttonStyles} type={type} onClick={submitHandler} style={style}>
+    <button
+      className={buttonStyles}
+      type={type}
+      onClick={submitHandler}
+      style={style}
+    >
       {children}
     </button>
   );

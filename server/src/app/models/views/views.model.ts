@@ -16,21 +16,21 @@ class ViewsModel extends Model {
 
   static relationMappings = {
     users: {
-      relation: Model.BelongsToOneRelation,
+      relation: Model.HasOneRelation,
       modelClass: UsersModel,
       join: {
         from: "views.user",
         to: "users.user_id"
       }
     },
-    products: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "views.product",
-        to: "products.product_id"
-      }
-    }
+    // products: {
+    //   relation: Model.HasOneRelation,
+    //   modelClass: ProductsModel,
+    //   join: {
+    //     from: "views.product",
+    //     to: "products.product_id"
+    //   }
+    // }
   }
 }
 

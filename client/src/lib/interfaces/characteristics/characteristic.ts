@@ -1,5 +1,5 @@
 export interface ICharacteristic {
-  characteristic_title: string,
-  characteristic_description: string,
+  characteristic_title: string;
+  characteristic_description: string;
   id: number;
 }

@@ -1,5 +1,4 @@
 import {ViewsModel} from "@/app/models/views/views.model";
-import {IUserComment, IUserFavorite, IUserFeedback, IUserView} from "@/app/user/user.interfaces";
 import Objection, {Model} from "objection";
 
 import {CommentsModel} from "@/app/models/comments/comments.model";
@@ -21,10 +20,7 @@ class UsersModel extends Model {
   is_get_update: boolean;
   created_at: Objection.FunctionBuilder;
   updated_at: Objection.FunctionBuilder;
-  // users_comments: IUserComment[];
-  // users_feedback: IUserFeedback[];
-  // users_favorite: IUserFavorite[];
-  // users_views: IUserView[];
+
 
   static get tableName() {
     return "users";

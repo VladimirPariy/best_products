@@ -1,4 +1,4 @@
-import {userSlice} from "lib/store/user/user-slice";
+import { userSlice } from "lib/store/user/user-slice";
 
 export const {
   userInfoRejected,

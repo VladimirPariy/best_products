@@ -21,6 +21,8 @@ export const enum EndpointsList {
   GET_ALL_CATEGORIES = "/all",
 
   //products
+	GET_ALL_PRODUCTS = "/all",
   CREATE_PRODUCT = "/create",
+	ONE_PRODUCT_BY_ID = "/:id"
 
 }

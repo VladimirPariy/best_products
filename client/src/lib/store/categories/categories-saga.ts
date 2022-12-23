@@ -1,14 +1,19 @@
-import {AxiosError} from "axios";
-import {call, put, takeLatest} from "redux-saga/effects";
+import { AxiosError } from "axios";
+import { call, put, takeLatest } from "redux-saga/effects";
 
-import {getCategories} from "lib/api/get-categories";
-import {ICategory} from "lib/interfaces/categories/categories.interface";
-import {categoriesFulfilled, categoriesPending, categoriesRejected, categoriesTrigger} from "lib/store/categories/categories-actions";
+import { categoriesApi } from "lib/api/categories-api";
+import { ICategory } from "lib/interfaces/categories/categories.interface";
+import {
+  categoriesFulfilled,
+  categoriesPending,
+  categoriesRejected,
+  categoriesTrigger,
+} from "lib/store/categories/categories-actions";
 
 function* categoriesWorker() {
   yield put(categoriesPending());
   try {
-    const categories: ICategory[] = yield call(getCategories);
+    const categories: ICategory[] = yield call(categoriesApi);
 
     yield put(categoriesFulfilled(categories));
   } catch (error) {

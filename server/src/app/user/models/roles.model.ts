@@ -1,5 +1,4 @@
 import {Model} from 'objection'
-import {UsersModel} from "@/app/user/models/users.model";
 
 
 class RolesModel extends Model {

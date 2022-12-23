@@ -4,18 +4,21 @@ import {getTokenFromStorage} from "lib/utils/TokenFromStorage";
 
 const defaultAxios = axios.create({baseURL: ApiUrls.BASE_URL});
 
-const authAxios = axios.create({baseURL: ApiUrls.BASE_URL})
+const authAxios = axios.create({baseURL: ApiUrls.BASE_URL});
 
-const authInterceptor = (config: AxiosRequestConfig): AxiosRequestConfig | void => {
-  const token = getTokenFromStorage()
+const authInterceptor = (
+  config: AxiosRequestConfig
+): AxiosRequestConfig | void => {
+  const token = getTokenFromStorage();
   if (config && token) {
     config.headers = {
-      Authorization: `Bearer ${token}`
-    }
-    return config
+      Authorization: `Bearer ${token}`,
+    };
+
   }
-}
+  return config;
+};
 
-authAxios.interceptors.request.use(authInterceptor)
+authAxios.interceptors.request.use(authInterceptor);
 
-export {defaultAxios, authAxios}
+export {defaultAxios, authAxios};

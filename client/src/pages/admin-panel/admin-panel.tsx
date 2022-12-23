@@ -1,21 +1,25 @@
+import ContentContainer from "components/ui/content-container/content-container";
 import {appUrl} from "lib/enums/app-urls";
+import {useNavigateHome} from "lib/hooks/useNavigateHome";
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
 
-interface Props {
-}
+const adminPanelList: { url: string, title: string }[] = [
+  {url: appUrl.users_table, title: 'Users control'},
+  {url: appUrl.products, title: 'Products control'}
+]
 
-const AdminPanel: FC<Props> = (props) => {
+
+const AdminPanel: FC = () => {
+  useNavigateHome()
   return (
-    <div>
-      <Link to={appUrl.new_product}>
-        Add new product
-      </Link>
-
-      <Link to={appUrl.users_table}>
-        User control
-      </Link>
-    </div>
+    <ContentContainer>
+      {
+        adminPanelList.map(item => (
+          <Link to={item.url} key={item.url}>{item.title}</Link>
+        ))
+      }
+    </ContentContainer>
   );
 };
 

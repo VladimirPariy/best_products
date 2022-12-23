@@ -1,13 +1,11 @@
 @use "../../scss/index" as *;
 
 aside {
-
   .sidebarWrapper {
     margin-top: 20px;
     margin-bottom: 53px;
     overflow: hidden;
     min-height: 100%;
-
 
     > ul {
       background: $white;
@@ -120,7 +118,6 @@ aside {
       max-width: 270px;
     }
   }
-
 }
 
 @media screen and (min-width: 1025px) {
@@ -128,7 +125,6 @@ aside {
     max-width: 78.5px;
 
     .sidebarWrapper {
-
       padding-top: 210px;
 
       max-width: 78.5px;
