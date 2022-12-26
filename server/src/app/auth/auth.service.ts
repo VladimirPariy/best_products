@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import {Model} from "objection";
 
 import UserService from "@/app/user/user.service";
 import {UsersModel} from "@/app/user/models/users.model";

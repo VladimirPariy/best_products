@@ -7,11 +7,11 @@ export class CategoriesModel extends Model {
 
   static get tableName() {
     return "categories";
-  };
+  }
 
   static get idColumn() {
     return "category_id";
-  };
+  }
 
   static relationMappings = {
     subcategories: {

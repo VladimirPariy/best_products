@@ -11,7 +11,7 @@ export const createAuthRouter = (): Router => {
 
   authRouter.post(EndpointsList.SIGN_UP, validatingSignUp(signUpSchema), AuthController.registration);
   authRouter.post(EndpointsList.SIGN_IN, validatingSignIn(signInSchema), AuthController.login);
-  authRouter.get(EndpointsList.CHECK_AUTH, authenticateJWT, AuthController.check)
+  authRouter.get(EndpointsList.ME, authenticateJWT, AuthController.check)
 
   return authRouter;
 };

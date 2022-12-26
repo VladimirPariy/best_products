@@ -17,7 +17,7 @@ export const createUserRouter = (): Router => {
     [checkRole('1'), authenticateJWT],
     UserController.getAllRoles);
   userRouter.patch(
-    EndpointsList.UPDATE_ROLE,
+    EndpointsList.ROLE_BY_USER_ID,
     [checkRole('1'), authenticateJWT],
     UserController.updateRole
   )
@@ -37,7 +37,7 @@ export const createUserRouter = (): Router => {
     UserController.removeUser
   );
   userRouter.get(
-    EndpointsList.UPDATE_TOKEN,
+    EndpointsList.TOKEN_BY_USER_ID,
     authenticateJWT,
     UserController.getNewToken
   );

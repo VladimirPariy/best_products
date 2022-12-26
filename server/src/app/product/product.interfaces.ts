@@ -13,10 +13,7 @@ export interface ICharacteristic {
   id: number;
 }
 
-export interface IProductCharacteristic {
-  characteristic_description: string;
-  characteristic_title: string;
-}
+
 
 export interface IProductImage {
   image_title: string

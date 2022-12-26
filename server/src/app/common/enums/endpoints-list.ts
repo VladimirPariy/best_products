@@ -9,20 +9,18 @@ export const enum EndpointsList {
   //auth-router
   SIGN_UP = "/registration",
   SIGN_IN = "/login",
-  CHECK_AUTH = "/auth",
+  ME = "/me", //????????????????
   //user-router
-  ALL_USERS = "/all",
+  ALL_USERS = "/",
   ONE_USER_BY_ID = "/:id",
-  UPDATE_TOKEN = "/token/:id",
+  TOKEN_BY_USER_ID = "/token/:id", // ?????
   ROLE_LIST = "/roles",
-  UPDATE_ROLE = "/update_role/:id",
+  ROLE_BY_USER_ID = "/roles/:id",
 
   //categories
-  GET_ALL_CATEGORIES = "/all",
+  CATEGORIES = "/",
 
   //products
-	GET_ALL_PRODUCTS = "/all",
-  CREATE_PRODUCT = "/create",
-	ONE_PRODUCT_BY_ID = "/:id"
-
+	PRODUCTS = "/",
+	ONE_PRODUCT_BY_ID = "/:id",
 }

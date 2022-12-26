@@ -14,11 +14,11 @@ class PriceHistoryModel extends Model {
 
   static get tableName() {
     return "price_history";
-  };
+  }
 
   static get idColumn() {
     return "price_history_id";
-  };
+  }
 
   static relationMappings = {
     products: {

@@ -7,8 +7,6 @@ import {FeedbacksModel} from "@/app/models/feedbacks/feedbacks.model";
 import {ProductCharacteristicModel} from "@/app/product/models/characteristics";
 import {PriceHistoryModel} from "@/app/product/models/price-history.model";
 import {ProductsImagesModel} from "@/app/product/models/products-images.model";
-import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
-import {UsersModel} from "@/app/user/models/users.model";
 import {ViewsModel} from "@/app/models/views/views.model";
 
 

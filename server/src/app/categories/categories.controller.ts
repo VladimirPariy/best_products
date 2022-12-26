@@ -1,6 +1,5 @@
 import CategoriesService from "@/app/categories/categories.service";
-import {HttpException} from "@/app/common/errors/exceptions";
-import {Response, Request, NextFunction} from "express";
+import {Response, Request} from "express";
 
 class CategoriesController {
   async getAll(req: Request, res: Response) {

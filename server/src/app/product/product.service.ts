@@ -25,28 +25,33 @@ class ProductService {
 			price,
 			characteristics
 		} = body;
-		
-		if (!category || !subcategory || !productTitle || !productDescription || !price || characteristics.length < 2) {
+		console.log(body.characteristics.length)
+		if (!category || !subcategory || !productTitle || !productDescription || !price || characteristics.length < 3) {
 			return HttpException.badRequest('Missing required fields')
 		}
 		
-		const modifyCharacteristicsObject = (JSON.parse(characteristics) as ICharacteristic[]).map(item => {
-				const {characteristic_description, characteristic_title, ...rest} = item
+		const modifyCharacteristicsObject = (JSON.parse(characteristics) as ICharacteristic[])
+			.map(item => {
+				const {
+					characteristic_description,
+					characteristic_title,
+					...rest} = item
 				return {characteristic_description, characteristic_title}
 			}
 		)
+		
 		let images: IProductImage[] = [];
 		if (files) {
 			for (const img in files) {
 				const fileName = `${uuidv4()}.jpg`
-				await (files[img] as UploadedFile).mv(path.resolve(__dirname, "..", "..", "static", fileName))
+				await (files[img] as UploadedFile)
+					.mv(path.resolve(__dirname, "..", "..", "static", fileName))
 				images = [...images, {image_title: fileName}]
 			}
 		}
 		
 		const price_history: IPriceHistory = {price_at_timestamp: +price}
 		const product_subcategory: IProductSubcategory = {subcategory: +subcategory}
-		
 		
 		const prod = await ProductsModel.query().insertGraph({
 			product_title: productTitle,

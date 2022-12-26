@@ -13,7 +13,6 @@ import {UsersModel} from "@/app/user/models/users.model";
 class UserService {
 	
 	async getAllUsers() {
-
 		const users = await UsersModel.query().withGraphFetched('users_roles')
 		if (!Object.keys(users)) {
 			return HttpException.internalServErr('Unsuccessful users request')
@@ -43,18 +42,16 @@ class UserService {
 			.skipUndefined()
 			.where({email: login})
 			.orWhere({phone_number: login});
-		return user[0]
+		return user[0];
 	}
 	
 	
 	async getUserById(id: string) {
 		const user = await UsersModel.query().withGraphFetched('users_roles').where('user_id', '=', id)
-		
 		if (!user) {
 			return HttpException.notFound(`User not found`);
 		}
-		
-		return user[0]
+		return user[0];
 	}
 	
 	
@@ -68,7 +65,6 @@ class UserService {
 			}
 		}
 
-// исправить (приходит обьекта, а не массив.
 		const img = files?.img
 		if (Array.isArray(img)) {
 			return HttpException.badRequest('Attached array of pictures')
@@ -88,8 +84,17 @@ class UserService {
 			userInfo.password = await bcrypt.hash(userInfo.password, 7);
 		}
 		
-		const updateInfo = await UsersModel.query().patch(userInfo).where({user_id: +id});
+		if(userInfo.email || userInfo.phone_number){
+			const user = await UsersModel.query()
+				.skipUndefined()
+				.where({email: userInfo.email})
+				.orWhere({phone_number: userInfo.phone_number});
+			if(user.length > 0){
+				return HttpException.alreadyExists("User with the same email or phone exist")
+			}
+		}
 		
+		const updateInfo = await UsersModel.query().patch(userInfo).where({user_id: +id});
 		if (!updateInfo) {
 			return HttpException.internalServErr(`Unsuccessful updating user`);
 		}
@@ -112,9 +117,7 @@ class UserService {
 	
 	
 	async removeOneById(id: string) {
-		
 		const user = await UsersModel.query().findById(id)
-		
 		if (user) {
 			await user.$relatedQuery('users_views').delete();
 			await user.$relatedQuery('users_favorite').delete();

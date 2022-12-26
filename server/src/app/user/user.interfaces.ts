@@ -9,26 +9,3 @@ export interface IUserUpdatingFields {
 }
 
 
-export interface IUserComment {
-  comment_id: number;
-  comment_msg: string;
-  user: number;
-  product: number;
-}
-
-export interface IUserFeedback {
-  user: number;
-  product: number;
-  feedback_type: number;
-}
-
-export interface IUserFavorite {
-  user: number;
-  product: number;
-}
-
-export interface IUserView {
-  user: number;
-  product: number;
-  view_id: number;
-}
