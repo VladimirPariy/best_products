@@ -10,19 +10,20 @@ interface Props {
 }
 
 const Select: FC<Props> = (props) => {
+  const {selectTitle, labelTitle, selectDefaultValue, children, changeHandler} = props
   return (
     <label className={styles.label}>
-      {props.labelTitle}
+      {labelTitle}
       <select
-        onChange={props.changeHandler}
-        defaultValue={props.selectDefaultValue}
+        onChange={changeHandler}
+        defaultValue={selectDefaultValue}
       >
         <option value="0"
                 disabled
                 hidden>
-          {props.selectTitle}
+          {selectTitle}
         </option>
-        {props.children}
+        {children}
       </select>
     </label>
   );

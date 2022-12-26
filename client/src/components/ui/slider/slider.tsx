@@ -51,7 +51,6 @@ const Slider: FC<Props> = (props) => {
       setElementShift((imagesLength - 1) * -SHIFT)
       return;
     }
-
     setIdeaSerialNr(prev => prev - 1)
     setElementShift(prev => prev + SHIFT
     )
@@ -60,7 +59,6 @@ const Slider: FC<Props> = (props) => {
   const prevImage = !images.length ? defaultImg : images[imgSerialNr - 1] ? images[imgSerialNr - 1]?.preview : defaultImg;
 
   const deleteImage = () => {
-
     deleteUploadFileHandler(prev =>
       prev.filter(item => item.size !== images[imgSerialNr - 1].file.size
         && item.name !== images[imgSerialNr - 1].file.name)
@@ -72,8 +70,6 @@ const Slider: FC<Props> = (props) => {
   const shiftingSlider = elementShift > -76 && elementShift < 1 ? 0 : elementShift + (3 * SHIFT)
 
 
-  console.log("imgSerialNr:", imgSerialNr,
-    "elementShift:", elementShift, "shiftingSlider:", shiftingSlider)
 
   return (
     <>

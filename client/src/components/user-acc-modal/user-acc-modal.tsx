@@ -103,14 +103,13 @@ const UserAccModal: FC<Props> = ({
     }
   };
 
-  let userImage;
-  if (previewPhoto && previewPhoto !== user_photo) {
-    userImage = previewPhoto;
-  } else if (previewPhoto && previewPhoto === user_photo) {
-    userImage = `${apiUrls.BASE_Image_URL}${user_photo}`;
-  } else {
-    userImage = defaultPhoto;
-  }
+  const userImage =
+    (previewPhoto && previewPhoto !== user_photo)
+      ? previewPhoto
+      : (previewPhoto && previewPhoto === user_photo)
+        ? `${apiUrls.BASE_Image_URL}${user_photo}`
+        : defaultPhoto;
+
 
   useEffect(() => {
     const tokenInSessionStorage = sessionStorage.getItem("token");
