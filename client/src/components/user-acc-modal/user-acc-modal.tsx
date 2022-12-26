@@ -1,4 +1,3 @@
-import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import React, {
   ChangeEvent,
   Dispatch,
@@ -9,23 +8,21 @@ import React, {
 } from "react";
 
 import styles from "components/user-acc-modal/user-acc-modal.module.scss";
-import cl from "components/ui/button/buttom.module.scss";
 
-import { getTokenFromStorage } from "lib/utils/TokenFromStorage";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { selectUser } from "lib/store/user/user-selector";
-import { IUserUpdateData } from "lib/interfaces/user-interfaces/user-update-data.interface";
-import { userUpdateTrigger } from "lib/store/user/user-actions";
-import { addTwoClassNames } from "lib/utils/add-two-class-names";
-import { ApiUrls } from "lib/enums/api-urls";
+import {getTokenFromStorage} from "lib/utils/token-from-storage";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import {selectUser} from "lib/store/user/user-selector";
+import {userUpdateTrigger} from "lib/store/user/user-actions";
+import {apiUrls} from "lib/enums/api-urls";
 
+import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import Input from "components/ui/input/input";
 import Title from "components/ui/title/title";
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
-import defaultFoto from "assets/icon/header/user.svg";
+import defaultPhoto from "assets/icon/header/user.svg";
 
 interface Props {
   isShowAccountModal: boolean;
@@ -33,9 +30,9 @@ interface Props {
 }
 
 const UserAccModal: FC<Props> = ({
-  isShowAccountModal,
-  setIsShowAccountModal,
-}) => {
+                                   isShowAccountModal,
+                                   setIsShowAccountModal,
+                                 }) => {
   const {
     first_name,
     last_name,
@@ -61,23 +58,34 @@ const UserAccModal: FC<Props> = ({
   const [uploadFile, setUploadFile] = useState<File | null>(null);
 
   const updateHandling = () => {
-    let updatingInfo: IUserUpdateData = { id };
-    if (token) updatingInfo = { ...updatingInfo, token };
-    if (first_name !== firstName)
-      updatingInfo = { ...updatingInfo, first_name: firstName };
-    if (last_name !== lastName)
-      updatingInfo = { ...updatingInfo, last_name: lastName };
-    if (email !== emailAddress)
-      updatingInfo = { ...updatingInfo, email: emailAddress };
-    if (phone_number !== phone && phone.length > 0)
-      updatingInfo = { ...updatingInfo, phone_number: phone };
-    if (is_get_update !== +getUpdates)
-      updatingInfo = { ...updatingInfo, is_get_update: +getUpdates };
-    if (newPassword === confirmNewPassword && newPassword.length >= 5)
-      updatingInfo = { ...updatingInfo, password: newPassword };
-    if (previewPhoto && previewPhoto !== user_photo)
-      updatingInfo = { ...updatingInfo, user_photo: uploadFile };
-    dispatch(userUpdateTrigger(updatingInfo));
+    const formData = new FormData();
+
+    if (token) {
+      formData.append("token", token)
+    }
+    if (first_name !== firstName) {
+      formData.append("first_name", firstName)
+    }
+    if (last_name !== lastName) {
+      formData.append("last_name", lastName)
+    }
+    if (email !== emailAddress) {
+      formData.append("email", emailAddress)
+    }
+    if (phone_number !== phone && phone.length > 0) {
+      formData.append("phone_number", phone)
+    }
+    if (is_get_update !== +getUpdates) {
+      formData.append("is_get_update", `${+getUpdates}`)
+    }
+    if (newPassword === confirmNewPassword && newPassword.length >= 5) {
+      formData.append("password", newPassword)
+    }
+    if (previewPhoto && previewPhoto !== user_photo && uploadFile) {
+      formData.append("img", uploadFile)
+    }
+
+    dispatch(userUpdateTrigger({formData, id}));
     setNewPassword("");
     setConfirmNewPassword("");
   };
@@ -94,14 +102,14 @@ const UserAccModal: FC<Props> = ({
       if (file[0]) reader.readAsDataURL(file[0]);
     }
   };
-  let userImage;
 
+  let userImage;
   if (previewPhoto && previewPhoto !== user_photo) {
     userImage = previewPhoto;
   } else if (previewPhoto && previewPhoto === user_photo) {
-    userImage = `${ApiUrls.BASE_Image_URL}${user_photo}`;
+    userImage = `${apiUrls.BASE_Image_URL}${user_photo}`;
   } else {
-    userImage = defaultFoto;
+    userImage = defaultPhoto;
   }
 
   useEffect(() => {
@@ -114,7 +122,6 @@ const UserAccModal: FC<Props> = ({
     }
   }, [token]);
 
-  const buttonClasses = addTwoClassNames(cl, "button", "whiteButton");
   return (
     <ModalWrapper
       setVisible={setIsShowAccountModal}
@@ -124,17 +131,8 @@ const UserAccModal: FC<Props> = ({
       <Title>Account Setting</Title>
       <div className={styles.container}>
         <div className={styles.photoContainer}>
-          <img src={userImage} alt="" className={styles.userPhoto} />
-          {/*<label className={buttonClasses}>*/}
-          {/*  Change Foto*/}
-          {/*  <input*/}
-          {/*    type="file"*/}
-          {/*    style={{display: "none"}}*/}
-          {/*    accept="image/*"*/}
-          {/*    onChange={fileHandler}*/}
-          {/*  />*/}
-          {/*</label>*/}
-          <BtnForAddImage fileHandler={fileHandler}>Change Foto</BtnForAddImage>
+          <img src={userImage} alt="" className={styles.userPhoto}/>
+          <BtnForAddImage fileHandler={fileHandler}>Change Photo</BtnForAddImage>
         </div>
         <div className={styles.userInfoContainer}>
           <Input

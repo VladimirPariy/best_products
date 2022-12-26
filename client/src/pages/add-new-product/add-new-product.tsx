@@ -1,23 +1,27 @@
+import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
+
+import Arrow from "assets/icon/general/arrow";
+import styles from "pages/add-new-product/add-new-product.module.scss";
+import defaultImg from "assets/images/goods/grey_square.jpg";
+
+
+import Slider from "components/ui/slider/slider";
 import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import ContentContainer from "components/ui/content-container/content-container";
-import {useNavigateHome} from "lib/hooks/useNavigateHome";
-import React, {FC, useState, MouseEvent} from "react";
-
-import styles from "pages/add-new-product/add-new-product.module.scss";
-
+import Select from "components/ui/select/select";
 import Button from "components/ui/button/button";
 import Input from "components/ui/input/input";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
+import productsApi from "lib/api/products-api";
+import {useNavigateHome} from "lib/hooks/useNavigateHome";
 import {categoriesSelector} from "lib/store/categories/categories-selectors";
 import {useAppSelector} from "lib/store/store-types";
-import AdminApi from "lib/api/admin-api";
 import {ICharacteristic} from "lib/interfaces/characteristics/characteristic";
 
-
 const AddNewProduct: FC = () => {
-  useNavigateHome()
+  useNavigateHome();
   const [categoryId, setCategoryId] = useState(0);
   const categories = useAppSelector(categoriesSelector);
 
@@ -25,9 +29,10 @@ const AddNewProduct: FC = () => {
   const [productDescription, setProductDescription] = useState("");
   const [price, setPrice] = useState("");
   const [characteristics, setCharacteristics] = useState<ICharacteristic[]>([]);
-  const [uploadImage, setUploadImage] = useState<File[]>([]);
+  const [uploadImages, setUploadImages] = useState<File[]>([]);
+  console.log(uploadImages, 1)
 
-  const [previewPhoto, setPreviewPhoto] = useState<string[]>([]);
+  const [previewPhoto, setPreviewPhoto] = useState<{ preview: string, file: File }[]>([]);
   const [subcategoryId, setSubcategoryId] = useState(0);
 
   const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
@@ -54,22 +59,36 @@ const AddNewProduct: FC = () => {
     );
   };
 
-  const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
-    if (file && uploadImage) {
-      setUploadImage([...uploadImage, file[0]]);
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        if (e.target?.result && !(e.target?.result instanceof ArrayBuffer))
-          if (previewPhoto)
-            setPreviewPhoto([...previewPhoto, e.target?.result]);
-          else setPreviewPhoto([e.target?.result]);
-      };
-      if (file) reader.readAsDataURL(file[0]);
+
+    if (file && file.length > 0 && uploadImages) {
+      const duplicateImg = uploadImages
+      .find(img => {
+        return (img.name === file[0].name
+          && img.size === file[0].size)
+          ? file[0]
+          : null
+      })
+      if (!duplicateImg) {
+
+        setUploadImages([...uploadImages, file[0]]);
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          if (e.target?.result && !(e.target?.result instanceof ArrayBuffer))
+            setPreviewPhoto([...previewPhoto, {preview: e.target?.result, file: file[0]}]);
+
+        };
+        if (file) {
+          reader.readAsDataURL(file[0]);
+        }
+      }
     }
   };
 
-  const createProduct = () => {
+
+  const createProduct = async () => {
     let formData = new FormData();
     formData.append("category", `${categoryId}`);
     formData.append("subcategory", `${subcategoryId}`);
@@ -78,52 +97,42 @@ const AddNewProduct: FC = () => {
     formData.append("price", price);
     formData.append("characteristics", JSON.stringify(characteristics));
     let i = 0;
-    for (const file of uploadImage) {
+    for (const file of uploadImages) {
       formData.append(`img${i}`, file);
       i++;
     }
-    const data = AdminApi.createNewProduct(formData);
-    console.log(data);
+
+    ///////////
+    const data = await productsApi.createNewProduct(formData);
   };
 
   return (
     <ContentContainer>
       <Title>Add new product</Title>
-      <label className={styles.label}>
-        Choose category
-        <select
-          onChange={(e) => setCategoryId(+e.target.value)}
-          defaultValue="0"
-        >
-          <option value="0" disabled hidden>
-            Choose category
+      <Select labelTitle='Choose category'
+              changeHandler={(e) => setCategoryId(+e.target.value)}
+              selectDefaultValue='0'
+              selectTitle='Choose category'>
+        {categories.map((category) => (
+          <option value={category.category_id}
+                  key={category.category_id}>
+            {category.category_title}
           </option>
-          {categories.map((category) => (
-            <option value={category.category_id} key={category.category_id}>
-              {category.category_title}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className={styles.label}>
-        Choose subcategory
-        <select
-          onChange={(e) => setSubcategoryId(+e.target.value)}
-          defaultValue="0"
-        >
-          <option value="0" disabled hidden>
-            Choose subcategory
+        ))}
+      </Select>
+      <Select labelTitle='Choose subcategory'
+              changeHandler={(e) => setSubcategoryId(+e.target.value)}
+              selectDefaultValue='0'
+              selectTitle='Choose subcategory'>
+        {categories[categoryId - 1]?.subcategories.map((subcategory) => (
+          <option
+            value={subcategory.subcategory_id}
+            key={subcategory.subcategory_id}
+          >
+            {subcategory.subcategory_title}
           </option>
-          {categories[categoryId - 1]?.subcategories.map((subcategory) => (
-            <option
-              value={subcategory.subcategory_id}
-              key={subcategory.subcategory_id}
-            >
-              {subcategory.subcategory_title}
-            </option>
-          ))}
-        </select>
-      </label>
+        ))}
+      </Select>
 
       <Input
         labelText="Enter product name"
@@ -146,7 +155,8 @@ const AddNewProduct: FC = () => {
         min={0}
       />
 
-      <Button submitHandler={addCharacteristic} isPurpleButton={false}>
+      <Button submitHandler={addCharacteristic}
+              isPurpleButton={false}>
         Add characteristic
       </Button>
 
@@ -191,8 +201,7 @@ const AddNewProduct: FC = () => {
         ))}
 
       <div className={styles.imageContainer}>
-        {previewPhoto &&
-          previewPhoto.map((photo) => <img src={photo} alt="" key={photo}/>)}
+        <Slider images={previewPhoto} deleteUploadFileHandler={setUploadImages} deletePreviewPhotoHandler={setPreviewPhoto} onDelete={true}/>
       </div>
       <BtnForAddImage fileHandler={fileHandler}>Add images</BtnForAddImage>
 

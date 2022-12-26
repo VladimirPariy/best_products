@@ -19,7 +19,9 @@ const ModalCheckbox: FC<Props> = (props) => {
         onChange={(e) => changeHandler(e.target.checked)}
         checked={value}
       />
-      <div className={styles.checkboxExplanation}>{children}</div>
+      <div className={styles.checkboxExplanation}>
+        {children}
+      </div>
     </label>
   );
 };

@@ -1,23 +1,21 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IUser} from "lib/interfaces/user-interfaces/user";
-import {ErrorPayload} from "lib/store/store-types";
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IUser } from "lib/interfaces/user-interfaces/user";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
   isFetching: boolean;
   error: null | ErrorPayload;
   usersList: IUser[];
-
 }
 
 const initialState: IInitialState = {
   isFetching: false,
   error: null,
-  usersList: []
-}
+  usersList: [],
+};
 
 export const usersListSlice = createSlice({
-  name: '@@users-list',
+  name: "@@users-list",
   initialState,
   reducers: {
     usersListFulfilled: (state, action: PayloadAction<IUser[]>) => {
@@ -28,14 +26,13 @@ export const usersListSlice = createSlice({
     usersListPending: (state) => {
       state.isFetching = true;
       state.error = null;
-      state.usersList = []
+      state.usersList = [];
     },
     usersListRejected: (state, action: PayloadAction<ErrorPayload>) => {
       state.isFetching = false;
       state.error = action.payload;
-      state.usersList = []
+      state.usersList = [];
     },
-    usersListTrigger: () => {
-    }
-  }
-})
+    usersListTrigger: () => {},
+  },
+});

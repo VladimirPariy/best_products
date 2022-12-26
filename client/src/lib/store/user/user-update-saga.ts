@@ -14,7 +14,8 @@ import {
 import UserApi from "lib/api/user-api";
 import { IUserUpdateData } from "lib/interfaces/user-interfaces/user-update-data.interface";
 
-function* userUpdateWorker({ payload }: PayloadAction<IUserUpdateData>) {
+function* userUpdateWorker({ payload }: PayloadAction<{ formData:FormData, id:number }>) {
+  const {id} = payload
   yield put(updateUserPending());
   try {
     const updateUser: AxiosResponse = yield call(
@@ -23,12 +24,10 @@ function* userUpdateWorker({ payload }: PayloadAction<IUserUpdateData>) {
     );
 
     if (updateUser.status === 200) {
-      const { id, token } = payload;
-      if (token) {
+
         const getUser: IUser = yield call(UserApi.getUserInfo, id);
         const newToken: string = yield call(UserApi.getNewToken, id);
         yield put(updateUserFulfilled({ user: getUser, token: newToken }));
-      }
     }
   } catch (error) {
     if (error instanceof AxiosError)

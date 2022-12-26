@@ -59,8 +59,7 @@ const RegistrationModal: FC<Props> = (props) => {
       sessionStorage.setItem("token", token);
       dispatch(userInfoTrigger(token));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [token, dispatch]);
 
   useEffect(() => {
     auth && setIsShowRegistrationModal(false);

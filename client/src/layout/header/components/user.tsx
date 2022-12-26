@@ -8,7 +8,7 @@ import { useScreenWidth } from "lib/hooks/use-screen-width";
 import { selectUser } from "lib/store/user/user-selector";
 import { useAppSelector } from "lib/store/store-types";
 
-import { ApiUrls } from "lib/enums/api-urls";
+import { apiUrls } from "lib/enums/api-urls";
 
 import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 
@@ -34,7 +34,7 @@ const User: FC<Props> = (props) => {
   };
 
   const userImg = user.user_photo
-    ? `${ApiUrls.BASE_Image_URL}${user.user_photo}`
+    ? `${apiUrls.BASE_Image_URL}${user.user_photo}`
     : defaultUserImg;
 
   return (

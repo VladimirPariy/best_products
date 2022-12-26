@@ -1,3 +1,8 @@
-import {usersRolesSlice} from "lib/store/users-roles/users-roles-slice";
+import { usersRolesSlice } from "lib/store/users-roles/users-roles-slice";
 
-export const {usersRolesFulfilled, usersRolesRejected, usersRolesTrigger, usersRolesPending} = usersRolesSlice.actions
+export const {
+  usersRolesFulfilled,
+  usersRolesRejected,
+  usersRolesTrigger,
+  usersRolesPending,
+} = usersRolesSlice.actions;

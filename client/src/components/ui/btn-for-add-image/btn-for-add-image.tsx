@@ -1,6 +1,6 @@
+import React, { ChangeEvent, FC, ReactNode } from "react";
 import cl from "components/ui/button/buttom.module.scss";
 import { addTwoClassNames } from "lib/utils/add-two-class-names";
-import React, { ChangeEvent, FC, ReactNode } from "react";
 
 interface Props {
   fileHandler: (e: ChangeEvent<HTMLInputElement>) => void;

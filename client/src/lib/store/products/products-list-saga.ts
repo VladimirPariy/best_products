@@ -1,17 +1,18 @@
 import ProductsApi from "lib/api/products-api";
-import {IProduct} from "lib/interfaces/products/product";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {AxiosError} from "axios";
-
+import { IProduct } from "lib/interfaces/products/product";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosError } from "axios";
 
 import {
-   productsListFulfilled, productsListPending, productsListRejected, productsListTrigger
+  productsListFulfilled,
+  productsListPending,
+  productsListRejected,
+  productsListTrigger,
 } from "lib/store/products/products-actions";
 
 function* productsListWorker() {
   yield put(productsListPending());
   try {
-
     const res: IProduct[] = yield call(ProductsApi.getAllProducts);
 
     yield put(productsListFulfilled(res));

@@ -1,18 +1,19 @@
-import AdminApi from "lib/api/admin-api";
-import {IRole} from "lib/interfaces/user-interfaces/user";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {AxiosError} from "axios";
-
+import userApi from "lib/api/user-api";
+import { IRole } from "lib/interfaces/user-interfaces/user";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosError } from "axios";
 
 import {
-  usersRolesFulfilled, usersRolesRejected, usersRolesTrigger, usersRolesPending
+  usersRolesFulfilled,
+  usersRolesRejected,
+  usersRolesTrigger,
+  usersRolesPending,
 } from "lib/store/users-roles/users-roles-actions";
 
 function* usersRolesWorker() {
   yield put(usersRolesPending());
   try {
-
-    const res: IRole[] = yield call(AdminApi.getAllRoles);
+    const res: IRole[] = yield call(userApi.getAllRoles);
 
     yield put(usersRolesFulfilled(res));
   } catch (error) {

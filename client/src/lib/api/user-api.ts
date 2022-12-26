@@ -1,39 +1,51 @@
-import { authAxios } from "lib/api/axios-instances";
-import { ApiUrls } from "lib/enums/api-urls";
-import { IUser } from "lib/interfaces/user-interfaces/user";
-import { IUserUpdateData } from "lib/interfaces/user-interfaces/user-update-data.interface";
+import {authAxios} from "lib/api/axios-instances";
+import {apiUrls} from "lib/enums/api-urls";
+import {IRole, IUser} from "lib/interfaces/user-interfaces/user";
 
 class UserApi {
-  async getUserInfo(id: number) {
-    const data = await authAxios.get<IUser>(`${ApiUrls.oneUserById}${id}`);
-    return data.data;
+  async getAllUsers() {
+    const {data} = await authAxios.get<IUser[]>(apiUrls.all_users);
+    return data;
   }
 
-  async updateUserInfo(userInfo: IUserUpdateData) {
-    const { id, user_photo, ...updatingData } = userInfo;
-    let formData = new FormData();
-    if (user_photo) {
-      formData.append("img", user_photo);
-    }
-    for (const formItem in updatingData) {
-      // @ts-ignore
-      formData.append(formItem, updatingData[formItem]);
-    }
+  async getAllRoles() {
+    const {data} = await authAxios.get<IRole[]>(apiUrls.all_roles);
+    return data;
+  }
 
-    return await authAxios.patch<string>(
-      `${ApiUrls.oneUserById}${id}`,
+  async changeUserRole(user_id: number, role: number) {
+    const {data} = await authAxios.patch<{ updatedUser: number }>(`${apiUrls.role_by_user_id}${user_id}`, {
+      role,
+    });
+    return data;
+  }
+
+  async removeOneUser(id: string) {
+    const {data} = await authAxios.delete<string>(`${apiUrls.one_user_by_id}${id}`);
+    return data;
+  }
+
+  async getUserInfo(id: number) {
+    const {data} = await authAxios.get<IUser>(`${apiUrls.one_user_by_id}${id}`);
+    return data;
+  }
+
+  async updateUserInfo({formData, id}: { formData: FormData, id: number }) {
+    const {data} = await authAxios.patch<string>(
+      `${apiUrls.one_user_by_id}${id}`,
       formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",
-        },
+        }
       }
     );
+    return data;
   }
 
   async getNewToken(id: number) {
-    const data = await authAxios.get<IUser>(`${ApiUrls.newTokenForUser}${id}`);
-    return data.data;
+    const {data} = await authAxios.get<IUser>(`${apiUrls.newTokenForUser}${id}`); //when changed user info
+    return data;
   }
 }
 

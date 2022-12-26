@@ -1,4 +1,5 @@
 import ProductControl from "pages/product-control/product-control";
+import UpdateProduct from "pages/update-product/update-product";
 import UsersControl from "pages/users-control/users-control";
 import React, {FC} from "react";
 import {Route, Routes} from "react-router-dom";
@@ -21,18 +22,15 @@ const routes: IRoutes[] = [
   {elem: <ProductControl/>, path: appUrl.products},
   {elem: <AddNewProduct/>, path: appUrl.new_product},
   {elem: <UsersControl/>, path: appUrl.users_table},
-  // {elem:, path:},
-
-]
+  {elem: <UpdateProduct/>, path: appUrl.update_product},
+];
 
 const AppRouter: FC = () => {
   return (
     <Routes>
-      {
-        routes.map((route) => (
-          <Route path={route.path} element={route.elem} key={route.path}/>
-        ))
-      }
+      {routes.map((route) => (
+        <Route path={route.path} element={route.elem} key={route.path}/>
+      ))}
     </Routes>
   );
 };

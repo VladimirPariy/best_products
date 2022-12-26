@@ -1,6 +1,5 @@
 @use "scss/index" as *;
 
-
 .table {
   font-size: 10px;
   width: 100%;
@@ -70,10 +69,7 @@
   }
 }
 
-
 @media screen and (min-width: 769px) {
-
-
   .table {
     font-size: 14px;
     margin-top: 10px;
@@ -117,7 +113,6 @@
 }
 
 @media screen and (min-width: 1025px) {
-
   .table {
     margin-top: 20px;
     font-size: 16px;
@@ -156,5 +151,4 @@
       }
     }
   }
-
 }

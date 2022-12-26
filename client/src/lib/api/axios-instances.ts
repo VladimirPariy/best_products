@@ -1,10 +1,10 @@
-import axios, {AxiosRequestConfig} from "axios";
-import {ApiUrls} from "lib/enums/api-urls";
-import {getTokenFromStorage} from "lib/utils/TokenFromStorage";
+import axios, { AxiosRequestConfig } from "axios";
+import { apiUrls } from "lib/enums/api-urls";
+import { getTokenFromStorage } from "lib/utils/token-from-storage";
 
-const defaultAxios = axios.create({baseURL: ApiUrls.BASE_URL});
+const defaultAxios = axios.create({ baseURL: apiUrls.BASE_URL });
 
-const authAxios = axios.create({baseURL: ApiUrls.BASE_URL});
+const authAxios = axios.create({ baseURL: apiUrls.BASE_URL });
 
 const authInterceptor = (
   config: AxiosRequestConfig
@@ -14,11 +14,10 @@ const authInterceptor = (
     config.headers = {
       Authorization: `Bearer ${token}`,
     };
-
   }
   return config;
 };
 
 authAxios.interceptors.request.use(authInterceptor);
 
-export {defaultAxios, authAxios};
+export { defaultAxios, authAxios };
