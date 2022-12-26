@@ -1,8 +1,6 @@
 import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
 
-import Arrow from "assets/icon/general/arrow";
 import styles from "pages/add-new-product/add-new-product.module.scss";
-import defaultImg from "assets/images/goods/grey_square.jpg";
 
 
 import Slider from "components/ui/slider/slider";
@@ -30,7 +28,6 @@ const AddNewProduct: FC = () => {
   const [price, setPrice] = useState("");
   const [characteristics, setCharacteristics] = useState<ICharacteristic[]>([]);
   const [uploadImages, setUploadImages] = useState<File[]>([]);
-  console.log(uploadImages, 1)
 
   const [previewPhoto, setPreviewPhoto] = useState<{ preview: string, file: File }[]>([]);
   const [subcategoryId, setSubcategoryId] = useState(0);

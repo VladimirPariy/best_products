@@ -16,7 +16,8 @@ const Slider: FC<Props> = (props) => {
 
   const {images, deleteUploadFileHandler, deletePreviewPhotoHandler, onDelete} = props
   const imagesLength = images.length
-  const START_SHIFT = 25;
+  const START_SHIFT = 0;
+  const SHIFT = 25;
   const initStateIdeaSerialNr = images.length ? 1 : 0
 
   const [imgSerialNr, setIdeaSerialNr] = useState(initStateIdeaSerialNr)
@@ -36,17 +37,24 @@ const Slider: FC<Props> = (props) => {
       return
     }
     setIdeaSerialNr(prev => prev + 1)
-    setElementShift(prev => prev - START_SHIFT)
+    setElementShift(prev => prev - SHIFT)
   }
 
   const onPrevIdeaHandler = () => {
-    if (imgSerialNr - 1 === 0 || imgSerialNr === 0) {
-      setIdeaSerialNr(imagesLength)
-      setElementShift(-(imagesLength - 2) * START_SHIFT)
-      return
+    if (imagesLength === 0) {
+      setIdeaSerialNr(1)
+      setElementShift(START_SHIFT)
+      return;
     }
+    if (imagesLength > 0 && imgSerialNr - 1 === 0) {
+      setIdeaSerialNr(imagesLength)
+      setElementShift((imagesLength - 1) * -SHIFT)
+      return;
+    }
+
     setIdeaSerialNr(prev => prev - 1)
-    setElementShift(prev => prev + START_SHIFT)
+    setElementShift(prev => prev + SHIFT
+    )
   }
 
   const prevImage = !images.length ? defaultImg : images[imgSerialNr - 1] ? images[imgSerialNr - 1]?.preview : defaultImg;
@@ -61,12 +69,18 @@ const Slider: FC<Props> = (props) => {
       prev.filter(item => item.file.size !== images[imgSerialNr - 1].file.size
         && item.file.name !== images[imgSerialNr - 1].file.name))
   }
+  const shiftingSlider = elementShift > -76 && elementShift < 1 ? 0 : elementShift + (3 * SHIFT)
+
+
+  console.log("imgSerialNr:", imgSerialNr,
+    "elementShift:", elementShift, "shiftingSlider:", shiftingSlider)
+
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.previewImgContainer}>
           {
-            onDelete && images.length>0 &&
+            onDelete && images.length > 0 &&
 						<button onClick={deleteImage}
 										className={styles.deleteImg}
 						>
@@ -83,13 +97,18 @@ const Slider: FC<Props> = (props) => {
             <Arrow/>
           </button>
           <div className={styles.slider}>
-            <div style={{marginLeft: `calc(${elementShift}% )`}}
+            <div style={{marginLeft: `calc(${shiftingSlider}% )`}}
                  className={styles.slideWrap}>
               {images.length
-                ? images.map(item => (
-                  <img src={item.preview} alt="product"/>
+                ? images.map((item, index) => (
+                  <div className={index === imgSerialNr - 1 && styles.active}>
+                    <img src={item.preview} alt="product"/>
+                  </div>
                 ))
-                : <img src={defaultImg} alt="product"/>}
+                : <div>
+                  <img src={defaultImg} alt="product"/>
+                </div>
+              }
             </div>
           </div>
           <button className={styles.btnNext}
@@ -99,7 +118,8 @@ const Slider: FC<Props> = (props) => {
         </div>
       </div>
     </>
-  );
+  )
+    ;
 };
 
 export default Slider;
