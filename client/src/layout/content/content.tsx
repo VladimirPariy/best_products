@@ -1,13 +1,12 @@
-import MainContainer from "components/ui/main-container/main-container";
-import ModalContainer from "components/ui/modal-container/modal-container";
 import React, { FC, useEffect } from "react";
 
 import styles from "layout/content/content.module.scss";
 
 import { IModalScreens } from "lib/interfaces/modal-screens.interface";
-
 import { useScreenWidth } from "lib/hooks/use-screen-width";
 
+import MainContainer from "components/ui/main-container/main-container";
+import ModalContainer from "components/ui/modal-container/modal-container";
 import Sidebar from "components/sidebar/sidebar";
 
 interface Props extends IModalScreens {

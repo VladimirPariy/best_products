@@ -29,10 +29,12 @@ interface Props {
   setIsShowAccountModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const UserAccModal: FC<Props> = ({
-                                   isShowAccountModal,
-                                   setIsShowAccountModal,
-                                 }) => {
+const UserAccModal: FC<Props> = (props) => {
+  const {
+    isShowAccountModal,
+    setIsShowAccountModal
+  } = props;
+
   const {
     first_name,
     last_name,

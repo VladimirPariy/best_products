@@ -10,12 +10,12 @@ interface Props {
   isAccModal?: boolean;
 }
 
-const ModalWrapper: FC<Props> = ({
-                                   children,
-                                   setVisible,
-                                   isVisible,
-                                   isAccModal,
-                                 }) => {
+const ModalWrapper: FC<Props> = (props) => {
+  const {
+    isAccModal,
+    isVisible,
+    setVisible, children
+  } = props;
   const wrapperClasses = getClassNameByCondition(
     styles,
     "modalWrapper",

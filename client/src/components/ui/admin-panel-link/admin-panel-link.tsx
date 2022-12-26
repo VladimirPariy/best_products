@@ -1,9 +1,9 @@
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
 import React, {FC} from "react";
 import {NavLink} from "react-router-dom";
 
 import styles from "components/ui/admin-panel-link/admin-panel-link.module.scss";
 
+import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
 import {appUrl} from "lib/enums/app-urls";
 
 

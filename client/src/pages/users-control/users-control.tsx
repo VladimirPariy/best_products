@@ -27,11 +27,12 @@ const UsersControl: FC = () => {
     e: ChangeEvent<HTMLSelectElement>,
     user_id: number
   ) => {
+    /////////////////////////////////
     await userApi.changeUserRole(user_id, +e.target.value);
     dispatch(usersListTrigger());
   };
-
   const removeUserHandler = async (id: number) => {
+////////////////////////////////////////
     await userApi.removeOneUser(id.toString());
     dispatch(usersListTrigger());
   };

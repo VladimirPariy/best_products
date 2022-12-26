@@ -1,4 +1,3 @@
-import Price from "assets/icon/goods-statistics/price";
 import React, { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -16,6 +15,7 @@ import {
 import { selectProductList } from "lib/store/products/products-selectors";
 import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 
+import Price from "assets/icon/goods-statistics/price";
 import defaultImageForProduct from "assets/images/goods/grey_square.jpg";
 
 const ProductControl: FC = () => {

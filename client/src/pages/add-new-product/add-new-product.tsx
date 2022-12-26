@@ -2,7 +2,6 @@ import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
 
 import styles from "pages/add-new-product/add-new-product.module.scss";
 
-
 import Slider from "components/ui/slider/slider";
 import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import ContentContainer from "components/ui/content-container/content-container";
@@ -68,14 +67,11 @@ const AddNewProduct: FC = () => {
           : null
       })
       if (!duplicateImg) {
-
         setUploadImages([...uploadImages, file[0]]);
-
         const reader = new FileReader();
         reader.onload = function (e) {
           if (e.target?.result && !(e.target?.result instanceof ArrayBuffer))
             setPreviewPhoto([...previewPhoto, {preview: e.target?.result, file: file[0]}]);
-
         };
         if (file) {
           reader.readAsDataURL(file[0]);

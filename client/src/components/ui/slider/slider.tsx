@@ -13,8 +13,12 @@ interface Props {
 }
 
 const Slider: FC<Props> = (props) => {
-
-  const {images, deleteUploadFileHandler, deletePreviewPhotoHandler, onDelete} = props
+  const {
+    images,
+    deleteUploadFileHandler,
+    deletePreviewPhotoHandler,
+    onDelete
+  } = props
   const imagesLength = images.length
   const START_SHIFT = 0;
   const SHIFT = 25;
@@ -70,7 +74,6 @@ const Slider: FC<Props> = (props) => {
   const shiftingSlider = elementShift > -76 && elementShift < 1 ? 0 : elementShift + (3 * SHIFT)
 
 
-
   return (
     <>
       <div className={styles.wrapper}>
@@ -97,7 +100,7 @@ const Slider: FC<Props> = (props) => {
                  className={styles.slideWrap}>
               {images.length
                 ? images.map((item, index) => (
-                  <div className={index === imgSerialNr - 1 && styles.active}>
+                  <div className={index === imgSerialNr - 1 ? styles.active : undefined} key={item.preview}>
                     <img src={item.preview} alt="product"/>
                   </div>
                 ))

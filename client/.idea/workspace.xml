@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/admin-panel-link/admin-panel-link.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/admin-panel-link/admin-panel-link.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/btn-for-add-image/btn-for-add-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/btn-for-add-image/btn-for-add-image.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/modal-checkbox/modal-checkbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/modal-checkbox/modal-checkbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/modal-wrapper/modal-wrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/modal-wrapper/modal-wrapper.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/select/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/select/select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/content/content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/content/content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/header/components/logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/add-new-product/add-new-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/add-new-product/add-new-product.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/product-control/product-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-control/product-control.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/users-control/users-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/users-control/users-control.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +68,7 @@
       <workItem from="1671858633032" duration="9973000" />
       <workItem from="1671913157171" duration="4542000" />
       <workItem from="1671957113344" duration="36366000" />
-      <workItem from="1672041192131" duration="8177000" />
+      <workItem from="1672041192131" duration="8886000" />
     </task>
     <servers />
   </component>

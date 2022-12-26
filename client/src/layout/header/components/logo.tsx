@@ -3,9 +3,9 @@ import React, { FC } from "react";
 import styles from "layout/header/components/logo.module.scss";
 import logo from "assets/icon/header/logo.svg";
 
-interface Props {}
 
-const Logo: FC<Props> = (props) => {
+
+const Logo: FC = () => {
   return (
     <div className={styles.logoContainer}>
       <img src={logo} alt="" className={styles.logoImage} />

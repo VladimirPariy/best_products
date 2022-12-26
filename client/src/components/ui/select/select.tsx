@@ -1,4 +1,5 @@
 import React, {ChangeEvent, FC, ReactNode} from "react";
+
 import styles from "components/ui/select/select.module.scss";
 
 interface Props {
@@ -10,7 +11,13 @@ interface Props {
 }
 
 const Select: FC<Props> = (props) => {
-  const {selectTitle, labelTitle, selectDefaultValue, children, changeHandler} = props
+  const {
+    selectTitle,
+    labelTitle,
+    selectDefaultValue,
+    children,
+    changeHandler
+  } = props
   return (
     <label className={styles.label}>
       {labelTitle}
