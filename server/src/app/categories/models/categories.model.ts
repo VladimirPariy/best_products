@@ -4,6 +4,8 @@ import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
 
 
 export class CategoriesModel extends Model {
+	category_id:number;
+	category_title:string;
 
   static get tableName() {
     return "categories";

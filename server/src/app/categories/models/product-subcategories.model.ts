@@ -1,9 +1,9 @@
-import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
-import {ProductsModel} from "@/app/product/models/products.model";
 import {Model} from "objection";
 
+import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
+import {ProductsModel} from "@/app/products/models/products.model";
+
 export class ProductSubcategoryModal extends Model {
-	
 	product:number;
 	subcategory:number;
 	
@@ -14,8 +14,7 @@ export class ProductSubcategoryModal extends Model {
   static get idColumn() {
     return ["product", "subcategory"];
   }
-
-
+	
   static relationMappings = {
     products: {
       relation: Model.HasOneRelation,

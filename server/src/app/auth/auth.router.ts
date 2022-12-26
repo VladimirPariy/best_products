@@ -2,6 +2,7 @@ import {Router} from "express";
 
 import {EndpointsList} from "@/app/common/enums/endpoints-list";
 import AuthController from "@/app/auth/auth.controller";
+
 import {signUpSchema, validatingSignUp,} from "@/app/common/validations/sign-up-validation";
 import {signInSchema, validatingSignIn} from "@/app/common/validations/sign-in-validation";
 import {authenticateJWT} from "@/app/common/middlewares/auth-middleware";

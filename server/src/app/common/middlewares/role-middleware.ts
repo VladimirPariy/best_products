@@ -1,6 +1,7 @@
-import {HttpException} from "@/app/common/errors/exceptions";
 import {NextFunction, Request, Response} from "express";
 import jwt from "jsonwebtoken";
+
+import {HttpException} from "@/app/common/errors/exceptions";
 import {checkToken} from "@/app/common/middlewares/auth-middleware"
 
 

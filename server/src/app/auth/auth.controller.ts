@@ -1,5 +1,7 @@
 import {Response, Request, NextFunction} from "express";
+
 import AuthService from "@/app/auth/auth.service";
+
 import {HttpException} from "@/app/common/errors/exceptions";
 
 class AuthController {

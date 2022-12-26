@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import UserService from "@/app/user/user.service";
-import {UsersModel} from "@/app/user/models/users.model";
+import UserService from "@/app/users/user.service";
+import {UsersModel} from "@/app/users/models/users.model";
 import {HttpException} from "@/app/common/errors/exceptions";
 import {generateJwtToken} from "@/app/common/utils/generate-jwt-token";
 

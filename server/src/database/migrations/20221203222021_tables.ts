@@ -1,19 +1,19 @@
 import {Knex} from "knex";
 
-import {createCategoriesTable} from "./create-categories-table";
-import {createCommentsTable} from "./create-comments-table";
-import {createFavoriteProductsTable} from "./create-favorite-products-table";
-import {createFeedbacksTable} from "./create-feedbacks-table";
-import {createFeedbacksTypesTable} from "./create-feedbacks-types-table";
-import {createPriceHistoryTable} from "./create-price-history-table";
-import {createProductCharacteristicsTable} from "./create-product-characteristics-table";
-import {createProductImageTable} from "./create-product-image-table";
-import {createProductSubcategoriesTable} from "./create-product-subcategories-table";
-import {createProductTable} from "./create-product-table";
-import {createRolesTable} from "./create-roles-table";
-import {createSubcategoriesTable} from "./create-subcategories-table";
-import {createUsersTable} from "./create-users-table";
-import {createViewsTable} from "./create-views-table";
+import {createCategoriesTable} from "./create-table/create-categories-table";
+import {createCommentsTable} from "./create-table/create-comments-table";
+import {createFavoriteProductsTable} from "./create-table/create-favorite-products-table";
+import {createFeedbacksTable} from "./create-table/create-feedbacks-table";
+import {createFeedbacksTypesTable} from "./create-table/create-feedbacks-types-table";
+import {createPriceHistoryTable} from "./create-table/create-price-history-table";
+import {createProductCharacteristicsTable} from "./create-table/create-product-characteristics-table";
+import {createProductImageTable} from "./create-table/create-product-image-table";
+import {createProductSubcategoriesTable} from "./create-table/create-product-subcategories-table";
+import {createProductTable} from "./create-table/create-product-table";
+import {createRolesTable} from "./create-table/create-roles-table";
+import {createSubcategoriesTable} from "./create-table/create-subcategories-table";
+import {createUsersTable} from "./create-table/create-users-table";
+import {createViewsTable} from "./create-table/create-views-table";
 
 
 export async function up(knex: Knex): Promise<void> {

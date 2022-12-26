@@ -1,9 +1,11 @@
+import {Router} from "express";
+
+import {EndpointsList} from "@/app/common/enums/endpoints-list";
+
 import {createAuthRouter} from "@/app/auth/auth.router";
 import {createCategoriesRouter} from "@/app/categories/categories.router";
-import {EndpointsList} from "@/app/common/enums/endpoints-list";
-import {createProductsRouter} from "@/app/product/product.router";
-import {createUserRouter} from "@/app/user/user.router";
-import {Router} from "express";
+import {createProductsRouter} from "@/app/products/product.router";
+import {createUserRouter} from "@/app/users/user.router";
 
 
 export const createRootRouter = (): Router => {
