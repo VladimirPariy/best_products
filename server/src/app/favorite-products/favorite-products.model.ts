@@ -1,16 +1,14 @@
-import Objection, {Model} from "objection";
+import Objection, { Model } from "objection";
 
-import {ProductsModel} from "@/app/products/models/products.model";
-import {UsersModel} from "@/app/users/models/users.model";
-
+import { ProductsModel } from "@/app/products/models/products.model";
+import { UsersModel } from "@/app/users/models/users.model";
 
 export class FavoriteProductsModel extends Model {
-	user:number;
-	product:number;
-	created_at: Objection.FunctionBuilder;
-	updated_at: Objection.FunctionBuilder;
-	
-	
+  user: number;
+  product: number;
+  created_at: Objection.FunctionBuilder;
+  updated_at: Objection.FunctionBuilder;
+
   static get tableName() {
     return "favorite_products";
   }
@@ -33,17 +31,16 @@ export class FavoriteProductsModel extends Model {
       modelClass: UsersModel,
       join: {
         from: "favorite_products.user",
-        to: "users.user_id"
-      }
-    }
+        to: "users.user_id",
+      },
+    },
+  };
+  $beforeInsert() {
+    this.created_at = FavoriteProductsModel.fn.now();
+    this.updated_at = FavoriteProductsModel.fn.now();
   }
-	$beforeInsert() {
-		this.created_at = FavoriteProductsModel.fn.now();
-		this.updated_at = FavoriteProductsModel.fn.now();
-	}
-	
-	$beforeUpdate() {
-		this.updated_at = FavoriteProductsModel.fn.now();
-	}
-}
 
+  $beforeUpdate() {
+    this.updated_at = FavoriteProductsModel.fn.now();
+  }
+}

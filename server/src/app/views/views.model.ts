@@ -1,16 +1,15 @@
-import Objection, {Model} from "objection";
+import Objection, { Model } from "objection";
 
-import {ProductsModel} from "@/app/products/models/products.model";
-import {UsersModel} from "@/app/users/models/users.model";
-
+import { ProductsModel } from "@/app/products/models/products.model";
+import { UsersModel } from "@/app/users/models/users.model";
 
 class ViewsModel extends Model {
-	view_id:number;
-	user:number;
-	product:number;
-	created_at: Objection.FunctionBuilder;
-	updated_at: Objection.FunctionBuilder;
-	
+  view_id: number;
+  user: number;
+  product: number;
+  created_at: Objection.FunctionBuilder;
+  updated_at: Objection.FunctionBuilder;
+
   static get tableName() {
     return "views";
   }
@@ -19,15 +18,14 @@ class ViewsModel extends Model {
     return "view_id";
   }
 
-
   static relationMappings = {
     users: {
       relation: Model.HasOneRelation,
       modelClass: UsersModel,
       join: {
         from: "views.user",
-        to: "users.user_id"
-      }
+        to: "users.user_id",
+      },
     },
     // products: {
     //   relation: Model.HasOneRelation,
@@ -37,16 +35,16 @@ class ViewsModel extends Model {
     //     to: "products.product_id"
     //   }
     // }
+  };
+
+  $beforeInsert() {
+    this.created_at = ViewsModel.fn.now();
+    this.updated_at = ViewsModel.fn.now();
   }
-	
-	$beforeInsert() {
-		this.created_at = ViewsModel.fn.now();
-		this.updated_at = ViewsModel.fn.now();
-	}
-	
-	$beforeUpdate() {
-		this.updated_at = ViewsModel.fn.now();
-	}
+
+  $beforeUpdate() {
+    this.updated_at = ViewsModel.fn.now();
+  }
 }
 
-export {ViewsModel};
+export { ViewsModel };

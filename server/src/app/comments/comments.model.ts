@@ -1,15 +1,15 @@
-import Objection, {Model} from "objection";
+import Objection, { Model } from "objection";
 
-import {UsersModel} from "@/app/users/models/users.model";
+import { UsersModel } from "@/app/users/models/users.model";
 
 export class CommentsModel extends Model {
-	comment_id:number;
-	user:number;
-	product:number;
-	comment_msg:string;
-	created_at: Objection.FunctionBuilder;
-	updated_at: Objection.FunctionBuilder;
-	
+  comment_id: number;
+  user: number;
+  product: number;
+  comment_msg: string;
+  created_at: Objection.FunctionBuilder;
+  updated_at: Objection.FunctionBuilder;
+
   static get tableName() {
     return "comments";
   }
@@ -24,8 +24,8 @@ export class CommentsModel extends Model {
       modelClass: UsersModel,
       join: {
         from: "comments.user",
-        to: "users.user_id"
-      }
+        to: "users.user_id",
+      },
     },
     // products: {
     //   relation: Model.HasOneRelation,
@@ -35,15 +35,14 @@ export class CommentsModel extends Model {
     //     to: "products.product_id"
     //   }
     // }
-  }
-	
-	$beforeInsert() {
-		this.created_at = CommentsModel.fn.now();
-		this.updated_at = CommentsModel.fn.now();
-	}
-	
-	$beforeUpdate() {
-		this.updated_at = CommentsModel.fn.now();
-	}
-}
+  };
 
+  $beforeInsert() {
+    this.created_at = CommentsModel.fn.now();
+    this.updated_at = CommentsModel.fn.now();
+  }
+
+  $beforeUpdate() {
+    this.updated_at = CommentsModel.fn.now();
+  }
+}

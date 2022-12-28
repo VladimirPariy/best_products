@@ -1,8 +1,8 @@
-import {CategoriesModel} from "@/app/categories/models/categories.model";
+import { CategoriesModel } from "@/app/categories/models/categories.model";
 
 class CategoriesService {
   async allCategories() {
-    return CategoriesModel.query().withGraphJoined('subcategories');
+    return CategoriesModel.query().withGraphJoined("subcategories");
   }
 }
 

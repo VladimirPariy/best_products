@@ -1,10 +1,9 @@
-import {Model} from 'objection'
-
+import { Model } from "objection";
 
 class RolesModel extends Model {
-	role_id:number;
-	role_title:string;
-	
+  role_id: number;
+  role_title: string;
+
   static get tableName() {
     return "roles";
   }
@@ -14,4 +13,4 @@ class RolesModel extends Model {
   }
 }
 
-export {RolesModel};
+export { RolesModel };

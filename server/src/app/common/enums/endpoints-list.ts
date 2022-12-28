@@ -1,6 +1,6 @@
 export const enum EndpointsList {
   //index
-  API = '/api',
+  API = "/api",
   //root-router
   ROOT_AUTH = "/auth",
   ROOT_USER = "/user",
@@ -21,9 +21,9 @@ export const enum EndpointsList {
   CATEGORIES = "/",
 
   //products
-	PRODUCTS = "/",
-	ONE_PRODUCT_BY_ID = "/:id",
-	TEMP_IMAGES = "/temp",
-	REMOVE_TEMP_IMAGES = "/temp/:id",
-	REMOVE_IMAGE="/img/:id"
+  PRODUCTS = "/",
+  ONE_PRODUCT_BY_ID = "/:id",
+  TEMP_IMAGES = "/temp",
+  REMOVE_TEMP_IMAGES = "/temp/:id",
+  REMOVE_IMAGE = "/img/:id",
 }

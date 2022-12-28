@@ -1,12 +1,11 @@
-import Objection, {Model} from "objection";
+import Objection, { Model } from "objection";
 
-import {ViewsModel} from "@/app/views/views.model";
-import {CommentsModel} from "@/app/comments/comments.model";
-import {FavoriteProductsModel} from "@/app/favorite-products/favorite-products.model";
-import {FeedbacksModel} from "@/app/feedbacks/models/feedbacks.model";
-import {RolesModel} from "@/app/users/models/roles.model";
-import {ProductsModel} from "@/app/products/models/products.model";
-
+import { ViewsModel } from "@/app/views/views.model";
+import { CommentsModel } from "@/app/comments/comments.model";
+import { FavoriteProductsModel } from "@/app/favorite-products/favorite-products.model";
+import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
+import { RolesModel } from "@/app/users/models/roles.model";
+import { ProductsModel } from "@/app/products/models/products.model";
 
 class UsersModel extends Model {
   user_id: string;
@@ -21,16 +20,13 @@ class UsersModel extends Model {
   updated_at: Objection.FunctionBuilder;
   role: number;
 
-
   static get tableName() {
     return "users";
   }
 
-
   static get idColumn() {
     return "user_id";
   }
-
 
   static get relationMappings() {
     return {
@@ -39,8 +35,8 @@ class UsersModel extends Model {
         modelClass: RolesModel,
         join: {
           from: "users.role",
-          to: "roles.role_id"
-        }
+          to: "roles.role_id",
+        },
       },
 
       users_views: {
@@ -48,34 +44,33 @@ class UsersModel extends Model {
         modelClass: ViewsModel,
         join: {
           from: "users.user_id",
-          to: "views.user"
-        }
+          to: "views.user",
+        },
       },
       users_comments: {
         relation: Model.HasManyRelation,
         modelClass: CommentsModel,
         join: {
           from: "comments.user",
-          to: "users.user_id"
-        }
+          to: "users.user_id",
+        },
       },
       users_feedback: {
         relation: Model.HasManyRelation,
         modelClass: FeedbacksModel,
         join: {
           from: "feedbacks.user",
-          to: "users.user_id"
-        }
+          to: "users.user_id",
+        },
       },
       users_favorite: {
         relation: Model.HasManyRelation,
         modelClass: FavoriteProductsModel,
         join: {
           from: "favorite_products.user",
-          to: "users.user_id"
-        }
+          to: "users.user_id",
+        },
       },
-
 
       users_products_comments: {
         relation: Model.ManyToManyRelation,
@@ -85,10 +80,10 @@ class UsersModel extends Model {
           through: {
             from: "comments.user",
             extra: ["comment_id", "comment_msg", "created_at", "updated_at"],
-            to: "comments.product"
+            to: "comments.product",
           },
-          to: "products.product_id"
-        }
+          to: "products.product_id",
+        },
       },
 
       users_products_feedbacks: {
@@ -99,12 +94,11 @@ class UsersModel extends Model {
           through: {
             from: "feedbacks.user",
             extra: ["feedback_type", "created_at", "updated_at"],
-            to: "feedbacks.product"
+            to: "feedbacks.product",
           },
-          to: "products.product_id"
-        }
+          to: "products.product_id",
+        },
       },
-
 
       users_favorite_products: {
         relation: Model.ManyToManyRelation,
@@ -114,12 +108,11 @@ class UsersModel extends Model {
           through: {
             from: "favorite_products.user",
             extra: ["created_at", "updated_at"],
-            to: "favorite_products.product"
+            to: "favorite_products.product",
           },
-          to: "products.product_id"
-        }
+          to: "products.product_id",
+        },
       },
-
 
       users_views_products: {
         relation: Model.ManyToManyRelation,
@@ -129,12 +122,12 @@ class UsersModel extends Model {
           through: {
             from: "views.user",
             extra: ["created_at", "updated_at"],
-            to: "views.product"
+            to: "views.product",
           },
-          to: "products.product_id"
-        }
+          to: "products.product_id",
+        },
       },
-    }
+    };
   }
 
   $beforeInsert() {
@@ -147,4 +140,4 @@ class UsersModel extends Model {
   }
 }
 
-export {UsersModel};
+export { UsersModel };

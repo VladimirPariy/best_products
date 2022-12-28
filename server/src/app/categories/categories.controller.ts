@@ -1,4 +1,4 @@
-import {Response, Request} from "express";
+import { Response, Request } from "express";
 
 import CategoriesService from "@/app/categories/categories.service";
 

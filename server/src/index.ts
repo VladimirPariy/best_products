@@ -1,18 +1,16 @@
-import './plugins/modul-alias';
-import {EndpointsList} from "@/app/common/enums/endpoints-list";
-import express, {Express} from "express";
+import "./plugins/modul-alias";
+import { EndpointsList } from "@/app/common/enums/endpoints-list";
+import express, { Express } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import fileUpload from 'express-fileupload';
+import fileUpload from "express-fileupload";
 
-import {connectingDb} from "@/database/connectingDb";
-import {ErrorHandler} from "@/app/common/middlewares/exceptions-middleware";
-import {createRootRouter} from "@/app/common/root-router";
+import { connectingDb } from "@/database/connectingDb";
+import { ErrorHandler } from "@/app/common/middlewares/exceptions-middleware";
+import { createRootRouter } from "@/app/common/root-router";
 import path from "path";
 
-
-dotenv.config()
-
+dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 const HOST = "localhost";
@@ -20,12 +18,12 @@ const HOST = "localhost";
 const createWebServer = (): Express => {
   const app = express();
 
-  app.use(cors())
+  app.use(cors());
 
   app.use(express.json());
-  app.use(express.static(path.resolve(__dirname, 'static')))
-  app.use(fileUpload({}))
-  app.use(express.urlencoded({extended: true}));
+  app.use(express.static(path.resolve(__dirname, "static")));
+  app.use(fileUpload({}));
+  app.use(express.urlencoded({ extended: true }));
 
   app.use(EndpointsList.API, createRootRouter());
 
@@ -44,6 +42,3 @@ const start = async (app: Express) => {
 };
 
 start(createWebServer());
-
-
-

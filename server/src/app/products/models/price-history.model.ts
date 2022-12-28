@@ -1,16 +1,13 @@
-import Objection, {Model} from "objection";
+import Objection, { Model } from "objection";
 
-import {ProductsModel} from "@/app/products/models/products.model";
-
+import { ProductsModel } from "@/app/products/models/products.model";
 
 class PriceHistoryModel extends Model {
-
   price_history_id: number;
   product: number;
   price_at_timestamp: number;
   created_at: Objection.FunctionBuilder;
   updated_at: Objection.FunctionBuilder;
-
 
   static get tableName() {
     return "price_history";
@@ -26,10 +23,10 @@ class PriceHistoryModel extends Model {
       modelClass: ProductsModel,
       join: {
         from: "price_history.product",
-        to: "products.product_id"
-      }
-    }
-  }
+        to: "products.product_id",
+      },
+    },
+  };
 
   $beforeInsert() {
     this.created_at = PriceHistoryModel.fn.now();
@@ -41,4 +38,4 @@ class PriceHistoryModel extends Model {
   }
 }
 
-export {PriceHistoryModel};
+export { PriceHistoryModel };

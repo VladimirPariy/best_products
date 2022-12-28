@@ -1,28 +1,27 @@
-import {NextFunction, Request, Response} from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import {HttpException} from "@/app/common/errors/exceptions";
-import {checkToken} from "@/app/common/middlewares/auth-middleware"
-
+import { HttpException } from "@/app/common/errors/exceptions";
+import { checkToken } from "@/app/common/middlewares/auth-middleware";
 
 export function checkRole(role: string) {
   return function (req: Request, res: Response, next: NextFunction) {
-    const token = checkToken(req, res, next)
+    const token = checkToken(req, res, next);
     if (token) {
-      jwt.verify(token, process.env.SECRET || '', (err, user) => {
+      jwt.verify(token, process.env.SECRET || "", (err, user) => {
         if (err) {
-          return next(HttpException.badRequest('Token is invalid'));
+          return next(HttpException.badRequest("Token is invalid"));
         }
-        if (typeof user === 'string' || !user) {
-          return next(HttpException.badRequest('Token is invalid'));
+        if (typeof user === "string" || !user) {
+          return next(HttpException.badRequest("Token is invalid"));
         }
         if (user.role.toString() !== role.toString()) {
-          return next(HttpException.forbidden('Entering forbidden'));
+          return next(HttpException.forbidden("Entering forbidden"));
         }
         req.user = user;
       });
 
-      next()
+      next();
     }
-  }
+  };
 }

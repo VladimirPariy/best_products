@@ -13,18 +13,33 @@ export interface ICharacteristic {
   id: number;
 }
 
-
-
 export interface IProductImage {
-  image_title: string
-	original_title:string;
-	size:number;
+  image_title: string;
+  original_title: string;
+  size: number;
 }
 
 export interface IPriceHistory {
-  price_at_timestamp: number
+  price_at_timestamp: number;
 }
 
 export interface IProductSubcategory {
-  subcategory: number
+  subcategory: number;
+}
+
+export interface IUpdatingProductFields {
+  product_subcategory?: number;
+  category?: number;
+  product_title?: string;
+  product_description?: string;
+  price?: string;
+  product_characteristics?: string;
+}
+
+export interface ProdCharacteristicReq {
+  product_characteristic_id?: number;
+  product?: number;
+  id?: number;
+  characteristic_title: string;
+  characteristic_description: string;
 }

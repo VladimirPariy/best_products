@@ -1,5 +1,5 @@
-import {createForeignKeyHelper} from "./helper";
-import {Knex} from "knex";
+import { createForeignKeyHelper } from "./helper";
+import { Knex } from "knex";
 
 export const createUsersTable = (table: Knex.CreateTableBuilder) => {
   table.increments("user_id");
@@ -12,4 +12,4 @@ export const createUsersTable = (table: Knex.CreateTableBuilder) => {
   table.boolean("is_get_update").notNullable().defaultTo(true);
   table.timestamps(true, true);
   createForeignKeyHelper(table, "role", "role_id", "roles", 2);
-}
+};

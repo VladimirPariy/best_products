@@ -7,4 +7,6 @@ const connectingDb = () => {
   Model.knex(db);
 };
 
-export {connectingDb}
+export { connectingDb };
+
+export const knexInstance = knex(development);

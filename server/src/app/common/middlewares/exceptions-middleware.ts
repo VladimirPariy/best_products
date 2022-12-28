@@ -1,5 +1,5 @@
-import {HttpException} from "@/app/common/errors/exceptions";
-import {NextFunction, Request, Response} from "express";
+import { HttpException } from "@/app/common/errors/exceptions";
+import { NextFunction, Request, Response } from "express";
 
 export const ErrorHandler = (
   error: unknown,
@@ -7,11 +7,11 @@ export const ErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log(error)
+  console.log(error);
   if (error instanceof HttpException) {
     return res.status(error.status).send({
       message: error.message,
-      statusCode: error.status
+      statusCode: error.status,
     });
   }
   res.status(500).send(JSON.stringify(error));

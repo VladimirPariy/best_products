@@ -1,11 +1,10 @@
-import {Model} from "objection";
+import { Model } from "objection";
 
-import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
-
+import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
 
 export class CategoriesModel extends Model {
-	category_id:number;
-	category_title:string;
+  category_id: number;
+  category_title: string;
 
   static get tableName() {
     return "categories";
@@ -21,11 +20,8 @@ export class CategoriesModel extends Model {
       modelClass: SubcategoryModel,
       join: {
         from: "subcategories.category",
-        to: "categories.category_id"
-      }
-    }
-  }
+        to: "categories.category_id",
+      },
+    },
+  };
 }
-
-
-
