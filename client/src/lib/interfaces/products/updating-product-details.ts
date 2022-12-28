@@ -5,5 +5,5 @@ export interface UpdatingProductDetails {
   product_title?: string;
   product_description?: string;
   price?: string;
-  product_characteristics?: string
+  product_characteristics?: string;
 }

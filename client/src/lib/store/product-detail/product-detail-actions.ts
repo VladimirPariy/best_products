@@ -1,4 +1,4 @@
-import {productDetailSlice} from "lib/store/product-detail/product-detail-slice";
+import { productDetailSlice } from "lib/store/product-detail/product-detail-slice";
 
 export const {
   getProductDetailFulfilled,
@@ -17,5 +17,5 @@ export const {
   updateProductDetailFulfilled,
   updateProductDetailRejected,
   updateProductDetailTrigger,
-  updateProductDetailPending
+  updateProductDetailPending,
 } = productDetailSlice.actions;

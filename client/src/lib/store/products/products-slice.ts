@@ -53,12 +53,8 @@ export const productsSlice = createSlice({
     },
     removeProductTrigger: (_, action: PayloadAction<number>) => {},
 
-
     clearProductsList: (state) => {
       state = initialState;
     },
-
-
-
   },
 });

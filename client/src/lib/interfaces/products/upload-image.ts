@@ -3,23 +3,22 @@ export interface IUploadImage {
   id: number;
 }
 
-
-interface IImages{
+interface IImages {
   image_id: number;
   image_title: string;
   product?: number;
-  size:number;
+  size: number;
 }
 
-export interface IProductImages extends IImages{
-  original_title:string;
+export interface IProductImages extends IImages {
+  original_title: string;
 }
 
-export interface IModifyProductImages extends IImages{
-  name:string;
+export interface IModifyProductImages extends IImages {
+  name: string;
 }
 
-export interface IPreview{
+export interface IPreview {
   preview: string;
   file: File;
 }

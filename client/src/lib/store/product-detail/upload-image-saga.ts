@@ -1,17 +1,19 @@
-import {PayloadAction} from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import {IProductImages, IUploadImage} from "lib/interfaces/products/upload-image";
+import {
+  IProductImages,
+  IUploadImage,
+} from "lib/interfaces/products/upload-image";
 import {
   uploadProductImageTrigger,
   uploadProductImageFulfilled,
   uploadProductImagePending,
-  uploadProductImageRejected
+  uploadProductImageRejected,
 } from "lib/store/product-detail/product-detail-actions";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {AxiosError} from "axios";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosError } from "axios";
 
-
-function* uploadImageWorker({payload}: PayloadAction<IUploadImage>) {
+function* uploadImageWorker({ payload }: PayloadAction<IUploadImage>) {
   yield put(uploadProductImagePending());
   try {
     const res: IProductImages = yield call(ProductsApi.uploadFile, payload);

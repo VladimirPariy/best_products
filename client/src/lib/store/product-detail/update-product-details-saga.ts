@@ -1,27 +1,33 @@
-import {PayloadAction} from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import {IProduct} from "lib/interfaces/products/product";
-import {UpdatingProductDetails} from "lib/interfaces/products/updating-product-details";
-import {IProductImages, IUploadImage} from "lib/interfaces/products/upload-image";
+import { IProduct } from "lib/interfaces/products/product";
+import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
+import {
+  IProductImages,
+  IUploadImage,
+} from "lib/interfaces/products/upload-image";
 import {
   updateProductDetailFulfilled,
   updateProductDetailRejected,
   updateProductDetailTrigger,
-  updateProductDetailPending
+  updateProductDetailPending,
 } from "lib/store/product-detail/product-detail-actions";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {AxiosError, AxiosResponse} from "axios";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosError, AxiosResponse } from "axios";
 
-
-function* updateProductDetailsWorker({payload}: PayloadAction<UpdatingProductDetails>) {
-
+function* updateProductDetailsWorker({
+  payload,
+}: PayloadAction<UpdatingProductDetails>) {
   yield put(updateProductDetailPending());
   try {
-    const res: AxiosResponse = yield call(ProductsApi.updateProductDetails, payload);
+    const res: AxiosResponse = yield call(
+      ProductsApi.updateProductDetails,
+      payload
+    );
 
     if (res.status === 200) {
-      const {id} = payload
-      const product: IProduct = yield call(ProductsApi.getProductDetail, id)
+      const { id } = payload;
+      const product: IProduct = yield call(ProductsApi.getProductDetail, id);
 
       yield put(updateProductDetailFulfilled(product));
     }

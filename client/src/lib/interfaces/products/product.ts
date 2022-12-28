@@ -1,7 +1,9 @@
-import {ICategory, ISubcategory} from "lib/interfaces/categories/categories.interface";
-import {ICharacteristic} from "lib/interfaces/characteristics/characteristic";
-import {IProductImages} from "lib/interfaces/products/upload-image";
-
+import {
+  ICategory,
+  ISubcategory,
+} from "lib/interfaces/categories/categories.interface";
+import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
+import { IProductImages } from "lib/interfaces/products/upload-image";
 
 export interface IPriceHistory {
   created_at: string;

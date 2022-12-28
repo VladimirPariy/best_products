@@ -5,61 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/add-product-characteristic-container/add-product-characteristic-container.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/add-product-characteristic-container/add-product-characteristic-container.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/add-product-characteristic-title/add-product-characteristic-title.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/add-product-characteristic-title/add-product-characteristic-title.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/add-product-image-container/add-product-image-container.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/add-product-image-container/add-product-image-container.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/products/updating-product-details.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/product-detail-actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/product-detail-reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/product-detail-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/product-detail-selector.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/product-detail-slice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/remove-image-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/update-product-details-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/product-detail/upload-image-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/users-list/change-user-role-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/users-list/remove-user-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/app/products/models/temp-images.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/database/migrations/create-table/create-temp-images-table.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/api/categories-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/categories-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/enums/app-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/app-urls.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/categories/categories.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/categories/categories.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/characteristics/characteristic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/characteristics/characteristic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/user-interfaces/user-update-data.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/categories/categories-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/categories/categories-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/categories/categories-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/categories/categories-selectors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/categories/categories-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/categories/categories-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/root-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/root-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/rootSaga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/rootSaga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/user/user-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/user/user-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/user/user-update-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/user/user-update-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/add-new-product/add-new-product.module.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/add-new-product/add-new-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/add-new-product/add-new-product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/product-control/product-control.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-control/product-control.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/product-control/product-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-control/product-control.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/update-product/update-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/update-product/update-product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/categories/models/subcatigories.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/categories/models/subcatigories.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/products-images.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/products-images.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/migrations/20221203222021_tables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/migrations/20221203222021_tables.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/migrations/create-table/create-product-image-table.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/migrations/create-table/create-product-image-table.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/seeds/faker/create-fake-photo-to-product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/seeds/faker/create-fake-products_images.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/seeds/initial-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/seeds/initial-data.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +68,7 @@
       <workItem from="1672041192131" duration="11314000" />
       <workItem from="1672099581088" duration="43000" />
       <workItem from="1672122762729" duration="32241000" />
-      <workItem from="1672201148134" duration="28557000" />
+      <workItem from="1672201148134" duration="36847000" />
     </task>
     <servers />
   </component>

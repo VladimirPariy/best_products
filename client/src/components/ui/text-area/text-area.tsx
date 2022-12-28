@@ -12,9 +12,7 @@ const TextArea: FC<Props> = (props) => {
   const { labelText, changeHandler, value } = props;
   return (
     <label className={styles.label}>
-      <div className={styles.labelText}>
-        {labelText}
-      </div>
+      <div className={styles.labelText}>{labelText}</div>
       <textarea
         className={styles.textArea}
         value={value}

@@ -32,7 +32,7 @@ const UsersControl: FC = () => {
     dispatch(usersListTrigger());
   };
   const removeUserHandler = async (id: number) => {
-////////////////////////////////////////
+    ////////////////////////////////////////
     await userApi.removeOneUser(id.toString());
     dispatch(usersListTrigger());
   };

@@ -9,11 +9,11 @@ import React, {
 
 import styles from "components/user-acc-modal/user-acc-modal.module.scss";
 
-import {getTokenFromStorage} from "lib/utils/token-from-storage";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {selectUser} from "lib/store/user/user-selector";
-import {userUpdateTrigger} from "lib/store/user/user-actions";
-import {apiUrls} from "lib/enums/api-urls";
+import { getTokenFromStorage } from "lib/utils/token-from-storage";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { selectUser } from "lib/store/user/user-selector";
+import { userUpdateTrigger } from "lib/store/user/user-actions";
+import { apiUrls } from "lib/enums/api-urls";
 
 import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import Button from "components/ui/button/button";
@@ -30,10 +30,7 @@ interface Props {
 }
 
 const UserAccModal: FC<Props> = (props) => {
-  const {
-    isShowAccountModal,
-    setIsShowAccountModal
-  } = props;
+  const { isShowAccountModal, setIsShowAccountModal } = props;
 
   const {
     first_name,
@@ -63,31 +60,31 @@ const UserAccModal: FC<Props> = (props) => {
     const formData = new FormData();
 
     if (token) {
-      formData.append("token", token)
+      formData.append("token", token);
     }
     if (first_name !== firstName) {
-      formData.append("first_name", firstName)
+      formData.append("first_name", firstName);
     }
     if (last_name !== lastName) {
-      formData.append("last_name", lastName)
+      formData.append("last_name", lastName);
     }
     if (email !== emailAddress) {
-      formData.append("email", emailAddress)
+      formData.append("email", emailAddress);
     }
     if (phone_number !== phone && phone.length > 0) {
-      formData.append("phone_number", phone)
+      formData.append("phone_number", phone);
     }
     if (is_get_update !== +getUpdates) {
-      formData.append("is_get_update", `${+getUpdates}`)
+      formData.append("is_get_update", `${+getUpdates}`);
     }
     if (newPassword === confirmNewPassword && newPassword.length >= 5) {
-      formData.append("password", newPassword)
+      formData.append("password", newPassword);
     }
     if (previewPhoto && previewPhoto !== user_photo && uploadFile) {
-      formData.append("img", uploadFile)
+      formData.append("img", uploadFile);
     }
 
-    dispatch(userUpdateTrigger({formData, id}));
+    dispatch(userUpdateTrigger({ formData, id }));
     setNewPassword("");
     setConfirmNewPassword("");
   };
@@ -106,12 +103,11 @@ const UserAccModal: FC<Props> = (props) => {
   };
 
   const userImage =
-    (previewPhoto && previewPhoto !== user_photo)
+    previewPhoto && previewPhoto !== user_photo
       ? previewPhoto
-      : (previewPhoto && previewPhoto === user_photo)
-        ? `${apiUrls.BASE_Image_URL}${user_photo}`
-        : defaultPhoto;
-
+      : previewPhoto && previewPhoto === user_photo
+      ? `${apiUrls.BASE_Image_URL}${user_photo}`
+      : defaultPhoto;
 
   useEffect(() => {
     const tokenInSessionStorage = sessionStorage.getItem("token");
@@ -132,8 +128,10 @@ const UserAccModal: FC<Props> = (props) => {
       <Title>Account Setting</Title>
       <div className={styles.container}>
         <div className={styles.photoContainer}>
-          <img src={userImage} alt="" className={styles.userPhoto}/>
-          <BtnForAddImage fileHandler={fileHandler}>Change Photo</BtnForAddImage>
+          <img src={userImage} alt="" className={styles.userPhoto} />
+          <BtnForAddImage fileHandler={fileHandler}>
+            Change Photo
+          </BtnForAddImage>
         </div>
         <div className={styles.userInfoContainer}>
           <Input

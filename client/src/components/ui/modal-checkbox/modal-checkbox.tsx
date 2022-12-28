@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 
 import styles from "components/ui/modal-checkbox/modal-checkbox.module.scss";
 
@@ -10,12 +10,7 @@ interface Props {
 }
 
 const ModalCheckbox: FC<Props> = (props) => {
-  const {
-    children,
-    type = "checkbox",
-    changeHandler,
-    value
-  } = props;
+  const { children, type = "checkbox", changeHandler, value } = props;
   return (
     <label className={styles.label}>
       <input
@@ -24,9 +19,7 @@ const ModalCheckbox: FC<Props> = (props) => {
         onChange={(e) => changeHandler(e.target.checked)}
         checked={value}
       />
-      <div className={styles.checkboxExplanation}>
-        {children}
-      </div>
+      <div className={styles.checkboxExplanation}>{children}</div>
     </label>
   );
 };

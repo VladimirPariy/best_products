@@ -1,12 +1,12 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ILoginData} from "lib/interfaces/user-interfaces/login-data";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
 
-import {IRegistrationData} from "lib/interfaces/user-interfaces/registration-data";
-import {TokenType} from "lib/interfaces/user-interfaces/token";
+import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
+import { TokenType } from "lib/interfaces/user-interfaces/token";
 
-import {IUser} from "lib/interfaces/user-interfaces/user";
-import {ErrorPayload} from "lib/store/store-types";
-import {deleteTokenFromStorage} from "lib/utils/token-from-storage";
+import { IUser } from "lib/interfaces/user-interfaces/user";
+import { ErrorPayload } from "lib/store/store-types";
+import { deleteTokenFromStorage } from "lib/utils/token-from-storage";
 
 interface IInitialState {
   auth: boolean;
@@ -46,8 +46,7 @@ export const userSlice = createSlice({
     userTokenTrigger: (
       _,
       action: PayloadAction<IRegistrationData | ILoginData>
-    ) => {
-    },
+    ) => {},
 
     userInfoFulfilled: (state, action: PayloadAction<IUser>) => {
       state.userInfo = action.payload;
@@ -68,14 +67,13 @@ export const userSlice = createSlice({
       state.auth = false;
       deleteTokenFromStorage();
     },
-    userInfoTrigger: (_, action: PayloadAction<TokenType>) => {
-    },
+    userInfoTrigger: (_, action: PayloadAction<TokenType>) => {},
 
     updateUserFulfilled: (
       state,
       action: PayloadAction<{ user: IUser; token: string }>
     ) => {
-      const {user, token} = action.payload;
+      const { user, token } = action.payload;
       state.userInfo = user;
       state.token = token;
       state.isFetching = false;
@@ -85,12 +83,14 @@ export const userSlice = createSlice({
       state.isFetching = true;
       state.error = null;
     },
-    updateUserReject: (state, {payload}: PayloadAction<ErrorPayload>) => {
+    updateUserReject: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.isFetching = false;
       state.error = payload;
     },
-    userUpdateTrigger: (_, action: PayloadAction<{ formData: FormData, id: number }>) => {
-    },
+    userUpdateTrigger: (
+      _,
+      action: PayloadAction<{ formData: FormData; id: number }>
+    ) => {},
 
     clearUser: () => {
       return initialState;

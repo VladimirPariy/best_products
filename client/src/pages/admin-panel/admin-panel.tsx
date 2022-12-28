@@ -1,14 +1,14 @@
-import React, {FC} from "react";
-import {Link} from "react-router-dom";
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
 import ContentContainer from "components/ui/content-container/content-container";
 
-import {appUrl} from "lib/enums/app-urls";
-import {useNavigateHome} from "lib/hooks/useNavigateHome";
+import { appUrl } from "lib/enums/app-urls";
+import { useNavigateHome } from "lib/hooks/useNavigateHome";
 
 const adminPanelList: { url: string; title: string }[] = [
-  {url: appUrl.users_table, title: "Users control"},
-  {url: appUrl.products, title: "Products control"},
+  { url: appUrl.users_table, title: "Users control" },
+  { url: appUrl.products, title: "Products control" },
 ];
 
 const AdminPanel: FC = () => {

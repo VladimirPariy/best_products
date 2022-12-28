@@ -1,7 +1,7 @@
-import {AxiosError} from "axios";
+import { AxiosError } from "axios";
 import ProductsApi from "lib/api/products-api";
-import {uploadProductImageTrigger} from "lib/store/product-detail/product-detail-actions";
-import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
+import { uploadProductImageTrigger } from "lib/store/product-detail/product-detail-actions";
+import React, { FC, useState, ChangeEvent, MouseEvent } from "react";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
@@ -15,21 +15,25 @@ import Input from "components/ui/input/input";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
-import {IModifyProductImages, IPreview, IProductImages} from "lib/interfaces/products/upload-image";
+import {
+  IModifyProductImages,
+  IPreview,
+  IProductImages,
+} from "lib/interfaces/products/upload-image";
 import productsApi from "lib/api/products-api";
-import {useNavigateHome} from "lib/hooks/useNavigateHome";
-import {selectCategories} from "lib/store/categories/categories-selectors";
-import {useAppSelector} from "lib/store/store-types";
-import {useNavigate} from "react-router";
+import { useNavigateHome } from "lib/hooks/useNavigateHome";
+import { selectCategories } from "lib/store/categories/categories-selectors";
+import { useAppSelector } from "lib/store/store-types";
+import { useNavigate } from "react-router";
 
 interface IChar {
   characteristic_title: string;
   characteristic_description: string;
-  id: number
+  id: number;
 }
 
 const AddNewProduct: FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useNavigateHome();
   const [categoryId, setCategoryId] = useState(0);
   const categories = useAppSelector(selectCategories);
@@ -43,8 +47,8 @@ const AddNewProduct: FC = () => {
 
   const [subcategoryId, setSubcategoryId] = useState(0);
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<AxiosError | null>(null)
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<AxiosError | null>(null);
 
   const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -65,7 +69,7 @@ const AddNewProduct: FC = () => {
   const changeCharacteristic = (key: string, value: string, id: number) => {
     setCharacteristics(
       characteristics.map((char) =>
-        char.id === id ? {...char, [key]: value} : char
+        char.id === id ? { ...char, [key]: value } : char
       )
     );
   };
@@ -73,25 +77,23 @@ const AddNewProduct: FC = () => {
   const fileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
     if (file && file.length > 0) {
-      const duplicateImg = uploadImages
-      .find(img => {
-        return (img.original_title === file[0].name
-          && img.size === file[0].size)
+      const duplicateImg = uploadImages.find((img) => {
+        return img.original_title === file[0].name && img.size === file[0].size
           ? file[0]
-          : null
-      })
+          : null;
+      });
       if (!duplicateImg) {
         const formData = new FormData();
         if (file instanceof FileList) formData.append(`img`, file[0]);
-        const image = await ProductsApi.uploadTempImage(formData)
+        const image = await ProductsApi.uploadTempImage(formData);
         setUploadImages([...uploadImages, image]);
       }
     }
   };
 
   const dropFile = (image_id: number) => {
-    console.log(image_id)
-  }
+    console.log(image_id);
+  };
 
   // const createProduct = async () => {
   //   let formData = new FormData();
@@ -121,21 +123,24 @@ const AddNewProduct: FC = () => {
   return (
     <ContentContainer>
       <Title>Add new product</Title>
-      <Select labelTitle='Choose category'
-              changeHandler={(e) => setCategoryId(+e.target.value)}
-              selectDefaultValue='0'
-              selectTitle='Choose category'>
+      <Select
+        labelTitle="Choose category"
+        changeHandler={(e) => setCategoryId(+e.target.value)}
+        selectDefaultValue="0"
+        selectTitle="Choose category"
+      >
         {categories.map((category) => (
-          <option value={category.category_id}
-                  key={category.category_id}>
+          <option value={category.category_id} key={category.category_id}>
             {category.category_title}
           </option>
         ))}
       </Select>
-      <Select labelTitle='Choose subcategory'
-              changeHandler={(e) => setSubcategoryId(+e.target.value)}
-              selectDefaultValue='0'
-              selectTitle='Choose subcategory'>
+      <Select
+        labelTitle="Choose subcategory"
+        changeHandler={(e) => setSubcategoryId(+e.target.value)}
+        selectDefaultValue="0"
+        selectTitle="Choose subcategory"
+      >
         {categories[categoryId - 1]?.subcategories.map((subcategory) => (
           <option
             value={subcategory.subcategory_id}
@@ -167,15 +172,14 @@ const AddNewProduct: FC = () => {
         min={0}
       />
 
-      <Button submitHandler={addCharacteristic}
-              isPurpleButton={false}>
+      <Button submitHandler={addCharacteristic} isPurpleButton={false}>
         Add characteristic
       </Button>
 
       {characteristics &&
         characteristics.map((char, index) => (
           <div key={char.id}>
-            <AddProductCharacteristicTitle index={index}/>
+            <AddProductCharacteristicTitle index={index} />
             <AddProductCharacteristicContainer>
               <Input
                 labelText="Enter characteristic title"
@@ -202,7 +206,7 @@ const AddNewProduct: FC = () => {
 
               <Button
                 submitHandler={() => dropCharacteristic(char.id)}
-                style={{background: "red"}}
+                style={{ background: "red" }}
               >
                 Delete
               </Button>
@@ -211,7 +215,11 @@ const AddNewProduct: FC = () => {
         ))}
 
       <AddProductImageContainer>
-        <Slider images={uploadImages} deleteHandler={dropFile} onDelete={true}/>
+        <Slider
+          images={uploadImages}
+          deleteHandler={dropFile}
+          onDelete={true}
+        />
       </AddProductImageContainer>
       <BtnForAddImage fileHandler={fileHandler}>Add images</BtnForAddImage>
 

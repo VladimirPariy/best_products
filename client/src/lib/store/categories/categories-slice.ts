@@ -8,8 +8,6 @@ interface IInitialState {
   error: ErrorPayload | null;
 }
 
-
-
 const initialState: IInitialState = {
   categoriesList: [],
   error: null,
@@ -20,7 +18,10 @@ export const categoriesSlice = createSlice({
   name: "@@categories",
   initialState,
   reducers: {
-    categoriesFulfilled: (state, action: PayloadAction<ICategoryWithSubcategory[]>) => {
+    categoriesFulfilled: (
+      state,
+      action: PayloadAction<ICategoryWithSubcategory[]>
+    ) => {
       state.isFetching = false;
       state.error = null;
       state.categoriesList = action.payload;

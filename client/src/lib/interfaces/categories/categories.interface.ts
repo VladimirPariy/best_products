@@ -1,4 +1,4 @@
-export interface ISubcategory{
+export interface ISubcategory {
   subcategory_id: number;
   category: number;
   subcategory_title: string;
@@ -10,7 +10,7 @@ export interface ICategoryWithSubcategory {
   subcategories: ISubcategory[];
 }
 
-export interface ICategory{
+export interface ICategory {
   category_id: number;
   category_title: string;
 }

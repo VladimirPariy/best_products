@@ -24,9 +24,7 @@ const Input: FC<Props> = (props) => {
   } = props;
   return (
     <label className={styles.label}>
-      <div className={styles.labelText}>
-        {labelText}
-      </div>
+      <div className={styles.labelText}>{labelText}</div>
       <input
         type={type}
         className={styles.input}
@@ -35,9 +33,7 @@ const Input: FC<Props> = (props) => {
         onChange={changeHandler}
         min={min}
       />
-      <div className={styles.inputExplanation}>
-        {children}
-      </div>
+      <div className={styles.inputExplanation}>{children}</div>
     </label>
   );
 };

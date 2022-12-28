@@ -36,5 +36,3 @@ function* removeProductWorker(action: PayloadAction<number>) {
 export function* removeProductWatcher() {
   yield takeLatest(removeProductTrigger.type, removeProductWorker);
 }
-
-

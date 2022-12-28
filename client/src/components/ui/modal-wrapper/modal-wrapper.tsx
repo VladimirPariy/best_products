@@ -1,7 +1,7 @@
-import React, {Dispatch, FC, ReactNode, SetStateAction} from "react";
+import React, { Dispatch, FC, ReactNode, SetStateAction } from "react";
 
 import styles from "components/ui/modal-wrapper/modal-wrapper.module.scss";
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
+import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 
 interface Props {
   children: ReactNode;
@@ -11,11 +11,7 @@ interface Props {
 }
 
 const ModalWrapper: FC<Props> = (props) => {
-  const {
-    isAccModal,
-    isVisible,
-    setVisible, children
-  } = props;
+  const { isAccModal, isVisible, setVisible, children } = props;
   const wrapperClasses = getClassNameByCondition(
     styles,
     "modalWrapper",
@@ -29,11 +25,9 @@ const ModalWrapper: FC<Props> = (props) => {
     !!isAccModal
   );
   return (
-    <div onClick={() => setVisible(false)}
-         className={wrapperClasses}>
+    <div onClick={() => setVisible(false)} className={wrapperClasses}>
       <div className={styles.container}>
-        <div className={modal}
-             onClick={(e) => e.stopPropagation()}>
+        <div className={modal} onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
       </div>
