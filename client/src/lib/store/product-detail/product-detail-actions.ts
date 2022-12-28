@@ -1,0 +1,21 @@
+import {productDetailSlice} from "lib/store/product-detail/product-detail-slice";
+
+export const {
+  getProductDetailFulfilled,
+  getProductDetailPending,
+  getProductDetailRejected,
+  getProductDetailTrigger,
+  clearProductDetail,
+  uploadProductImageTrigger,
+  uploadProductImageFulfilled,
+  uploadProductImagePending,
+  uploadProductImageRejected,
+  removeProductImageTrigger,
+  removeProductImageFulfilled,
+  removeProductImageRejected,
+  removeProductImagePending,
+  updateProductDetailFulfilled,
+  updateProductDetailRejected,
+  updateProductDetailTrigger,
+  updateProductDetailPending
+} = productDetailSlice.actions;

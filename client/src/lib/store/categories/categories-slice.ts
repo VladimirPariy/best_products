@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICategory } from "lib/interfaces/categories/categories.interface";
+import { ICategoryWithSubcategory } from "lib/interfaces/categories/categories.interface";
 import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
-  categoriesList: ICategory[];
+  categoriesList: ICategoryWithSubcategory[];
   isFetching: boolean;
   error: ErrorPayload | null;
 }
+
+
 
 const initialState: IInitialState = {
   categoriesList: [],
@@ -18,7 +20,7 @@ export const categoriesSlice = createSlice({
   name: "@@categories",
   initialState,
   reducers: {
-    categoriesFulfilled: (state, action: PayloadAction<ICategory[]>) => {
+    categoriesFulfilled: (state, action: PayloadAction<ICategoryWithSubcategory[]>) => {
       state.isFetching = false;
       state.error = null;
       state.categoriesList = action.payload;

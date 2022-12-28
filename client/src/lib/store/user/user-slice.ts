@@ -3,12 +3,10 @@ import {ILoginData} from "lib/interfaces/user-interfaces/login-data";
 
 import {IRegistrationData} from "lib/interfaces/user-interfaces/registration-data";
 import {TokenType} from "lib/interfaces/user-interfaces/token";
-import {IUserUpdateData} from "lib/interfaces/user-interfaces/user-update-data.interface";
 
 import {IUser} from "lib/interfaces/user-interfaces/user";
 import {ErrorPayload} from "lib/store/store-types";
 import {deleteTokenFromStorage} from "lib/utils/token-from-storage";
-import {act} from "react-dom/test-utils";
 
 interface IInitialState {
   auth: boolean;

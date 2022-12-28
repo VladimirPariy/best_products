@@ -53,7 +53,29 @@
       justify-content: center;
       margin-right: 14px;
 
-      > button {
+
+      > a {
+        text-decoration: none;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+        border: none;
+        border-radius: 10px;
+        background: $active_item_color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .editBtn {
+          padding: 10px 15px;
+          cursor: pointer;
+          background: none;
+          border: none;
+          font-size: 14px;
+          color: $white;
+          font-weight: 600;
+        }
+      }
+
+      .deleteBtn {
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
         border: none;
         color: $white;
@@ -61,18 +83,6 @@
         font-size: 14px;
         border-radius: 10px;
         font-weight: 600;
-
-      }
-
-      .editBtn {
-        background: $active_item_color;
-        >a{
-          text-decoration: none;
-          color: $white;
-        }
-      }
-
-      .deleteBtn {
         background: rgb(207, 21, 21);
       }
     }
@@ -114,7 +124,13 @@
         gap: 30px;
         margin-right: 34px;
 
-        > button {
+        > a .editBtn {
+          padding: 12px 22px;
+          font-size: 16px;
+        }
+
+
+        .deleteBtn {
           padding: 12px 22px;
           font-size: 16px;
         }
@@ -160,7 +176,12 @@
         gap: 40px;
         margin-right: 64px;
 
-        > button {
+        > a .editBtn {
+          padding: 15px 30px;
+          font-size: 20px;
+        }
+
+        .deleteBtn {
           padding: 15px 30px;
           font-size: 20px;
         }

@@ -1,5 +1,4 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { TokenType } from "lib/interfaces/user-interfaces/token";
 import { IUser } from "lib/interfaces/user-interfaces/user";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -12,7 +11,6 @@ import {
 } from "lib/store/user/user-actions";
 
 import UserApi from "lib/api/user-api";
-import { IUserUpdateData } from "lib/interfaces/user-interfaces/user-update-data.interface";
 
 function* userUpdateWorker({ payload }: PayloadAction<{ formData:FormData, id:number }>) {
   const {id} = payload

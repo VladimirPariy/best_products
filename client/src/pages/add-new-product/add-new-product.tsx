@@ -1,7 +1,11 @@
+import {AxiosError} from "axios";
+import ProductsApi from "lib/api/products-api";
+import {uploadProductImageTrigger} from "lib/store/product-detail/product-detail-actions";
 import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
 
-import styles from "pages/add-new-product/add-new-product.module.scss";
-
+import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
+import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
+import AddProductImageContainer from "components/ui/add-product-image-container/add-product-image-container";
 import Slider from "components/ui/slider/slider";
 import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
 import ContentContainer from "components/ui/content-container/content-container";
@@ -11,25 +15,36 @@ import Input from "components/ui/input/input";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
+import {IModifyProductImages, IPreview, IProductImages} from "lib/interfaces/products/upload-image";
 import productsApi from "lib/api/products-api";
 import {useNavigateHome} from "lib/hooks/useNavigateHome";
-import {categoriesSelector} from "lib/store/categories/categories-selectors";
+import {selectCategories} from "lib/store/categories/categories-selectors";
 import {useAppSelector} from "lib/store/store-types";
-import {ICharacteristic} from "lib/interfaces/characteristics/characteristic";
+import {useNavigate} from "react-router";
+
+interface IChar {
+  characteristic_title: string;
+  characteristic_description: string;
+  id: number
+}
 
 const AddNewProduct: FC = () => {
+  const navigate = useNavigate()
   useNavigateHome();
   const [categoryId, setCategoryId] = useState(0);
-  const categories = useAppSelector(categoriesSelector);
+  const categories = useAppSelector(selectCategories);
 
   const [productTitle, setProductTitle] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [characteristics, setCharacteristics] = useState<ICharacteristic[]>([]);
-  const [uploadImages, setUploadImages] = useState<File[]>([]);
+  const [characteristics, setCharacteristics] = useState<IChar[]>([]);
 
-  const [previewPhoto, setPreviewPhoto] = useState<{ preview: string, file: File }[]>([]);
+  const [uploadImages, setUploadImages] = useState<IProductImages[]>([]);
+
   const [subcategoryId, setSubcategoryId] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<AxiosError | null>(null)
 
   const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -55,50 +70,54 @@ const AddNewProduct: FC = () => {
     );
   };
 
-  const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const fileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
-
-    if (file && file.length > 0 && uploadImages) {
+    if (file && file.length > 0) {
       const duplicateImg = uploadImages
       .find(img => {
-        return (img.name === file[0].name
+        return (img.original_title === file[0].name
           && img.size === file[0].size)
           ? file[0]
           : null
       })
       if (!duplicateImg) {
-        setUploadImages([...uploadImages, file[0]]);
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          if (e.target?.result && !(e.target?.result instanceof ArrayBuffer))
-            setPreviewPhoto([...previewPhoto, {preview: e.target?.result, file: file[0]}]);
-        };
-        if (file) {
-          reader.readAsDataURL(file[0]);
-        }
+        const formData = new FormData();
+        if (file instanceof FileList) formData.append(`img`, file[0]);
+        const image = await ProductsApi.uploadTempImage(formData)
+        setUploadImages([...uploadImages, image]);
       }
     }
   };
 
+  const dropFile = (image_id: number) => {
+    console.log(image_id)
+  }
 
-  const createProduct = async () => {
-    let formData = new FormData();
-    formData.append("category", `${categoryId}`);
-    formData.append("subcategory", `${subcategoryId}`);
-    formData.append("productTitle", productTitle);
-    formData.append("productDescription", productDescription);
-    formData.append("price", price);
-    formData.append("characteristics", JSON.stringify(characteristics));
-    let i = 0;
-    for (const file of uploadImages) {
-      formData.append(`img${i}`, file);
-      i++;
-    }
-
-    ///////////
-    const data = await productsApi.createNewProduct(formData);
-  };
-
+  // const createProduct = async () => {
+  //   let formData = new FormData();
+  //   formData.append("category", `${categoryId}`);
+  //   formData.append("subcategory", `${subcategoryId}`);
+  //   formData.append("productTitle", productTitle);
+  //   formData.append("productDescription", productDescription);
+  //   formData.append("price", price);
+  //   formData.append("characteristics", JSON.stringify(characteristics));
+  //   let i = 0;
+  //   for (const file of uploadImages) {
+  //     if (file instanceof File) formData.append(`img${i}`, file);
+  //     i++;
+  //   }
+  //
+  //   // try {
+  //   //   setIsLoading(true)
+  //   //   const data = await productsApi.createNewProduct(formData);
+  //   //   if (data) navigate(-1)
+  //   // } catch (e) {
+  //   //   if (e instanceof AxiosError) setError(e)
+  //   // } finally {
+  //   //   setIsLoading(false)
+  //   // }
+  // };
+  // console.log(uploadImages)
   return (
     <ContentContainer>
       <Title>Add new product</Title>
@@ -156,10 +175,8 @@ const AddNewProduct: FC = () => {
       {characteristics &&
         characteristics.map((char, index) => (
           <div key={char.id}>
-            <div className={styles.characteristicTitle}>
-              {index + 1} characteristic
-            </div>
-            <div className={styles.characteristicContainer}>
+            <AddProductCharacteristicTitle index={index}/>
+            <AddProductCharacteristicContainer>
               <Input
                 labelText="Enter characteristic title"
                 changeHandler={(e) =>
@@ -189,16 +206,18 @@ const AddNewProduct: FC = () => {
               >
                 Delete
               </Button>
-            </div>
+            </AddProductCharacteristicContainer>
           </div>
         ))}
 
-      <div className={styles.imageContainer}>
-        <Slider images={previewPhoto} deleteUploadFileHandler={setUploadImages} deletePreviewPhotoHandler={setPreviewPhoto} onDelete={true}/>
-      </div>
+      <AddProductImageContainer>
+        <Slider images={uploadImages} deleteHandler={dropFile} onDelete={true}/>
+      </AddProductImageContainer>
       <BtnForAddImage fileHandler={fileHandler}>Add images</BtnForAddImage>
 
-      <Button submitHandler={createProduct}>Create new product</Button>
+      {/*<Button submitHandler={createProduct}>*/}
+      {/*  Create new product*/}
+      {/*</Button>*/}
     </ContentContainer>
   );
 };
