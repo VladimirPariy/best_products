@@ -8,6 +8,7 @@ import {ProductCharacteristicModel} from "@/app/products/models/product-characte
 import {PriceHistoryModel} from "@/app/products/models/price-history.model";
 import {ProductsImagesModel} from "@/app/products/models/products-images.model";
 import {ViewsModel} from "@/app/views/views.model";
+import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
 
 
 class ProductsModel extends Model {
@@ -103,21 +104,21 @@ class ProductsModel extends Model {
 				to: "products.product_id"
 			}
 		},
-		//
-		// subcategories: {
-		// 	relation: Model.ManyToManyRelation,
-		// 	modelClass: SubcategoryModel,
-		// 	join: {
-		// 		from: "products.product_id",
-		// 		through: {
-		// 			from: "product_subcategories.product",
-		// 			to: "product_subcategories.subcategory"
-		// 		},
-		// 		to: "subcategories.subcategory_id"
-		// 	}
-		// },
-		//
-		//
+
+		subcategories: {
+			relation: Model.ManyToManyRelation,
+			modelClass: SubcategoryModel,
+			join: {
+				from: "products.product_id",
+				through: {
+					from: "product_subcategories.product",
+					to: "product_subcategories.subcategory"
+				},
+				to: "subcategories.subcategory_id"
+			}
+		},
+
+
 		// users_comments: {
 		// 	relation: Model.ManyToManyRelation,
 		// 	modelClass: UsersModel,

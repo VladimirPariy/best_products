@@ -2,7 +2,7 @@ import {Knex} from "knex";
 
 import {createUsers} from "./faker/create-fake-random-users";
 import {createProducts} from "./faker/create-fake-products";
-import {createFakePhotoToProduct} from "./faker/create-fake-photo-to-product";
+import {createFakeProductsImages} from "./faker/create-fake-products_images";
 import {createCharacteristics} from "./faker/create-fake-product-characteristic";
 import {createPriceHistory} from "./faker/create-fake-price-history";
 import {createSubcategories} from "./faker/create-fake-subcategory";
@@ -37,7 +37,7 @@ export async function seed(knex: Knex): Promise<void> {
 	await knex("categories").insert(categories);
 	await knex("users").insert(createUsers());
 	await knex("products").insert(createProducts());
-	await knex("products_images").insert(createFakePhotoToProduct());
+	await knex("products_images").insert(createFakeProductsImages());
 	await knex("product_characteristics").insert(createCharacteristics());
 	await knex("price_history").insert(createPriceHistory(knex));
 	await knex("subcategories").insert(createSubcategories());

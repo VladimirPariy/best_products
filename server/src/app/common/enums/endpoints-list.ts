@@ -23,4 +23,7 @@ export const enum EndpointsList {
   //products
 	PRODUCTS = "/",
 	ONE_PRODUCT_BY_ID = "/:id",
+	TEMP_IMAGES = "/temp",
+	REMOVE_TEMP_IMAGES = "/temp/:id",
+	REMOVE_IMAGE="/img/:id"
 }

@@ -10,6 +10,10 @@ import {
 	IProductImage,
 	IProductSubcategory
 } from "@/app/products/product.interfaces";
+import {CategoriesModel} from "@/app/categories/models/categories.model";
+import {SubcategoryModel} from "@/app/categories/models/subcatigories.model";
+import {ProductsImagesModel} from "@/app/products/models/products-images.model";
+import {TempImagesModel} from "@/app/products/models/temp-images.model";
 
 
 class ProductService {
@@ -50,10 +54,11 @@ class ProductService {
 		let images: IProductImage[] = [];
 		if (files) {
 			for (const img in files) {
+				
 				const fileName = `${uuidv4()}.jpg`
 				await (files[img] as UploadedFile)
 					.mv(path.resolve(__dirname, "..", "..", "static", fileName))
-				images = [...images, {image_title: fileName}]
+				images = [...images, {image_title: fileName, size: (files[img] as UploadedFile).size, original_title: (files[img] as UploadedFile).name}]
 			}
 		}
 		
@@ -83,7 +88,6 @@ class ProductService {
 			return HttpException.badRequest("Missing product id")
 		}
 		const product = await ProductsModel.query().findById(id)
-		console.log(product)
 		if (product && Object.keys(product).length) {
 			await product.$relatedQuery('price_history').del();
 			await product.$relatedQuery('product_images').del();
@@ -98,6 +102,92 @@ class ProductService {
 			return HttpException.notFound(`Product not found`);
 		}
 		return 'Product was successfully deleted'
+	}
+	
+	async getProductById(id: number) {
+		if (!id) {
+			return HttpException.badRequest("Missing product id")
+		}
+		const product = await ProductsModel.query().findById(id)
+		if (!product) {
+			return HttpException.internalServErr(`Unsuccessful selecting data into table`);
+		}
+		const priceHistory = await product.$relatedQuery('price_history');
+		const productImages = await product.$relatedQuery('product_images');
+		const productCharacteristics = await product.$relatedQuery('product_characteristics');
+		const productSubcategory = await product.$relatedQuery('subcategories') as SubcategoryModel[]
+		const subCatId = productSubcategory[0].category
+		const productCategory = await CategoriesModel.query().where('categories.category_id', '=', subCatId)
+		
+		const prod = {
+			...product,
+			price_history: priceHistory,
+			product_images: productImages,
+			product_characteristics: productCharacteristics,
+			product_subcategory: productSubcategory,
+			category: productCategory,
+		}
+		
+		return prod
+	}
+	
+	async uploadImage(id: number, file: fileUpload.FileArray | null | undefined) {
+		if (!id || !file) {
+			return HttpException.badRequest("Missing product id or file")
+		}
+		if (Object.keys(file).length > 1) {
+			return HttpException.badRequest("Upload one file")
+		}
+		
+		for (const img in file) {
+			const fileName = `${uuidv4()}.jpg`
+			await (file[img] as UploadedFile).mv(path.resolve(__dirname, "..", "..", "static", fileName))
+			
+			const image = await ProductsImagesModel.query().insert({
+				product: id,
+				size: (file[img] as UploadedFile).size,
+				original_title: (file[img] as UploadedFile).name,
+				image_title: fileName
+			})
+			if (!Object.keys(image).length) {
+				return HttpException.internalServErr(`Unsuccessful inserting data into table`)
+			}
+			
+			return image
+		}
+	}
+	
+	async removeImage(id: number) {
+		if (!id) {
+			return HttpException.badRequest("Missing image id")
+		}
+		const removed = await ProductsImagesModel.query().del().where({image_id: id})
+		return {removed}
+	}
+	
+	async uploadTempImages(file: fileUpload.FileArray | null | undefined) {
+		if (!file) {
+			return HttpException.badRequest("Missing file")
+		}
+		if (Object.keys(file).length > 1) {
+			return HttpException.badRequest("Upload one file")
+		}
+		
+		for (const img in file) {
+			const fileName = `${uuidv4()}.jpg`
+			await (file[img] as UploadedFile).mv(path.resolve(__dirname, "..", "..", "static", fileName))
+			
+			const image = await TempImagesModel.query().insert({
+				size: (file[img] as UploadedFile).size,
+				original_title: (file[img] as UploadedFile).name,
+				image_title: fileName
+			})
+			if (!Object.keys(image).length) {
+				return HttpException.internalServErr(`Unsuccessful inserting data into table`)
+			}
+			
+			return image
+		}
 	}
 	
 	async updateOneProduct(id: string) {

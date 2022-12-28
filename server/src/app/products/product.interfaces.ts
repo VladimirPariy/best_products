@@ -17,6 +17,8 @@ export interface ICharacteristic {
 
 export interface IProductImage {
   image_title: string
+	original_title:string;
+	size:number;
 }
 
 export interface IPriceHistory {
