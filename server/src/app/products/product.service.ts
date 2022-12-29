@@ -23,9 +23,9 @@ import { knexInstance } from "@/database/connectingDb";
 
 class ProductService {
   async getAllProducts() {
-    const products = await ProductsModel.query().withGraphFetched(
-      "product_images"
-    );
+    const products = await ProductsModel.query()
+      .withGraphFetched("product_images")
+      .withGraphFetched("product_characteristics");
     if (!products.length) {
       return HttpException.internalServErr(
         "Unsuccessful selecting data from table"
@@ -34,101 +34,7 @@ class ProductService {
     return products;
   }
 
-  async createNewProduct(
-    body: IInfoForCreateProduct,
-    files: fileUpload.FileArray | null | undefined
-  ) {
-    const {
-      category,
-      subcategory,
-      productTitle,
-      productDescription,
-      price,
-      characteristics,
-    } = body;
-    if (
-      !category ||
-      !subcategory ||
-      !productTitle ||
-      !productDescription ||
-      !price ||
-      characteristics.length < 3
-    ) {
-      return HttpException.badRequest("Missing required fields");
-    }
-
-    const modifyCharacteristicsObject = (
-      JSON.parse(characteristics) as ICharacteristic[]
-    ).map((item) => {
-      const { characteristic_description, characteristic_title, ...rest } =
-        item;
-      return { characteristic_description, characteristic_title };
-    });
-
-    let images: IProductImage[] = [];
-    if (files) {
-      for (const img in files) {
-        const fileName = `${uuidv4()}.jpg`;
-        await (files[img] as UploadedFile).mv(
-          path.resolve(__dirname, "..", "..", "static", fileName)
-        );
-        images = [
-          ...images,
-          {
-            image_title: fileName,
-            size: (files[img] as UploadedFile).size,
-            original_title: (files[img] as UploadedFile).name,
-          },
-        ];
-      }
-    }
-
-    const price_history: IPriceHistory = { price_at_timestamp: +price };
-    const product_subcategory: IProductSubcategory = {
-      subcategory: +subcategory,
-    };
-
-    const prod = await ProductsModel.query().insertGraph({
-      product_title: productTitle,
-      product_description: productDescription,
-      price: +price,
-      product_characteristics: modifyCharacteristicsObject,
-      product_images: images,
-      price_history: [price_history],
-      product_subcategory: [product_subcategory],
-    });
-
-    if (!prod) {
-      return HttpException.internalServErr(
-        `Unsuccessful inserting data into table`
-      );
-    }
-
-    return "Data successfully inserted";
-  }
-
-  async removeOneProduct(id: string) {
-    if (!id) {
-      return HttpException.badRequest("Missing product id");
-    }
-    const product = await ProductsModel.query().findById(id);
-    if (product && Object.keys(product).length) {
-      await product.$relatedQuery("price_history").del();
-      await product.$relatedQuery("product_images").del();
-      await product.$relatedQuery("product_characteristics").del();
-      await product.$relatedQuery("product_subcategory").del();
-      await product.$relatedQuery("comments").del();
-      await product.$relatedQuery("feedbacks").del();
-      await product.$relatedQuery("favorite_products").del();
-      await product.$relatedQuery("views").del();
-      await product.$query().del();
-    } else {
-      return HttpException.notFound(`Product not found`);
-    }
-    return "Product was successfully deleted";
-  }
-
-  async getProductById(id: number) {
+  async getProductDetailsById(id: number) {
     if (!id) {
       return HttpException.badRequest("Missing product id");
     }
@@ -165,44 +71,94 @@ class ProductService {
     return prod;
   }
 
-  async uploadImage(id: number, file: fileUpload.FileArray | null | undefined) {
-    if (!id || !file) {
-      return HttpException.badRequest("Missing product id or file");
+  async removeOneProduct(id: string) {
+    if (!id) {
+      return HttpException.badRequest("Missing product id");
     }
-    if (Object.keys(file).length > 1) {
-      return HttpException.badRequest("Upload one file");
+    const product = await ProductsModel.query().findById(id);
+    if (product && Object.keys(product).length) {
+      await product.$relatedQuery("price_history").del();
+      await product.$relatedQuery("product_images").del();
+      await product.$relatedQuery("product_characteristics").del();
+      await product.$relatedQuery("product_subcategory").del();
+      await product.$relatedQuery("comments").del();
+      await product.$relatedQuery("feedbacks").del();
+      await product.$relatedQuery("favorite_products").del();
+      await product.$relatedQuery("views").del();
+      await product.$query().del();
+    } else {
+      return HttpException.notFound(`Product not found`);
     }
-
-    for (const img in file) {
-      const fileName = `${uuidv4()}.jpg`;
-      await (file[img] as UploadedFile).mv(
-        path.resolve(__dirname, "..", "..", "static", fileName)
-      );
-
-      const image = await ProductsImagesModel.query().insert({
-        product: id,
-        size: (file[img] as UploadedFile).size,
-        original_title: (file[img] as UploadedFile).name,
-        image_title: fileName,
-      });
-      if (!Object.keys(image).length) {
-        return HttpException.internalServErr(
-          `Unsuccessful inserting data into table`
-        );
-      }
-
-      return image;
-    }
+    return "Product was successfully deleted";
   }
 
-  async removeImage(id: number) {
-    if (!id) {
-      return HttpException.badRequest("Missing image id");
+  async createNewProduct(
+    body: IInfoForCreateProduct,
+    files: fileUpload.FileArray | null | undefined
+  ) {
+    const {
+      category,
+      subcategory,
+      productTitle,
+      productDescription,
+      price,
+      characteristics,
+      images,
+    } = body;
+    if (
+      !category ||
+      !subcategory ||
+      !productTitle ||
+      !productDescription ||
+      !price ||
+      characteristics.length < 3 ||
+      images.length < 3
+    ) {
+      return HttpException.badRequest("Missing required fields");
     }
-    const removed = await ProductsImagesModel.query()
-      .del()
-      .where({ image_id: id });
-    return { removed };
+
+    const modifyCharacteristicsObject = (
+      JSON.parse(characteristics) as ICharacteristic[]
+    ).map((item) => {
+      const { characteristic_description, characteristic_title, ...rest } =
+        item;
+      return { characteristic_description, characteristic_title };
+    });
+
+    const modifyImagesObject = (JSON.parse(images) as IProductImage[]).map(
+      (img) => {
+        const { original_title, image_title, size } = img;
+        return { original_title, image_title, size };
+      }
+    );
+
+    const price_history: IPriceHistory = { price_at_timestamp: +price };
+    const product_subcategory: IProductSubcategory = {
+      subcategory: +subcategory,
+    };
+
+    const prod = await ProductsModel.query().insertGraph({
+      product_title: productTitle,
+      product_description: productDescription,
+      price: +price,
+      product_characteristics: modifyCharacteristicsObject,
+      product_images: modifyImagesObject,
+      price_history: [price_history],
+      product_subcategory: [product_subcategory],
+    });
+
+    if (!prod) {
+      return HttpException.internalServErr(
+        `Unsuccessful inserting data into table`
+      );
+    }
+
+    await TempImagesModel.query().del();
+
+    return ProductsModel.query()
+      .withGraphFetched("product_images")
+      .withGraphFetched("product_characteristics")
+      .where("product_id", prod.$id());
   }
 
   async uploadTempImages(file: fileUpload.FileArray | null | undefined) {
@@ -232,6 +188,11 @@ class ProductService {
 
       return image;
     }
+  }
+
+  async removeTempImages(id: number) {
+    const removed = await TempImagesModel.query().del().where({ image_id: id });
+    return { removed };
   }
 
   async updateOneProduct(id: string, { body }: Request) {
@@ -325,6 +286,46 @@ class ProductService {
     }
 
     return `Product was successfully updating`;
+  }
+
+  async uploadImage(id: number, file: fileUpload.FileArray | null | undefined) {
+    if (!id || !file) {
+      return HttpException.badRequest("Missing product id or file");
+    }
+    if (Object.keys(file).length > 1) {
+      return HttpException.badRequest("Upload one file");
+    }
+
+    for (const img in file) {
+      const fileName = `${uuidv4()}.jpg`;
+      await (file[img] as UploadedFile).mv(
+        path.resolve(__dirname, "..", "..", "static", fileName)
+      );
+
+      const image = await ProductsImagesModel.query().insert({
+        product: id,
+        size: (file[img] as UploadedFile).size,
+        original_title: (file[img] as UploadedFile).name,
+        image_title: fileName,
+      });
+      if (!Object.keys(image).length) {
+        return HttpException.internalServErr(
+          `Unsuccessful inserting data into table`
+        );
+      }
+
+      return image;
+    }
+  }
+
+  async removeImage(id: number) {
+    if (!id) {
+      return HttpException.badRequest("Missing image id");
+    }
+    const removed = await ProductsImagesModel.query()
+      .del()
+      .where({ image_id: id });
+    return { removed };
   }
 }
 

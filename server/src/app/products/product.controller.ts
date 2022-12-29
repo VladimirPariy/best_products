@@ -9,9 +9,15 @@ class ProductController {
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 
-  async getOneProduct(req: Request, res: Response, next: NextFunction) {
+  async getProductDetailsById(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const data = await ProductService.getProductById(+id);
+    const data = await ProductService.getProductDetailsById(+id);
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
+
+  async removeProduct(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    const data = await ProductService.removeOneProduct(id);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 
@@ -20,9 +26,23 @@ class ProductController {
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 
-  async removeProduct(req: Request, res: Response, next: NextFunction) {
+  async uploadTempImages(req: Request, res: Response, next: NextFunction) {
+    const data = await ProductService.uploadTempImages(req.files);
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
+
+  async removeTempImage(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const data = await ProductService.removeOneProduct(id);
+    if (!id || isNaN(+id)) {
+      return next(HttpException.badRequest(`Image id not specified`));
+    }
+    const data = await ProductService.removeTempImages(+id);
+    res.status(200).send(data);
+  }
+
+  async updateProduct(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    const data = await ProductService.updateOneProduct(id, req);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 
@@ -35,17 +55,6 @@ class ProductController {
   async removeImage(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
     const data = await ProductService.removeImage(+id);
-    data instanceof HttpException ? next(data) : res.status(200).send(data);
-  }
-
-  async uploadTempImages(req: Request, res: Response, next: NextFunction) {
-    const data = await ProductService.uploadTempImages(req.files);
-    data instanceof HttpException ? next(data) : res.status(200).send(data);
-  }
-
-  async updateProduct(req: Request, res: Response, next: NextFunction) {
-    const { id } = req.params;
-    const data = await ProductService.updateOneProduct(id, req);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 }

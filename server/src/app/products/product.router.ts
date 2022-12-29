@@ -12,7 +12,7 @@ export const createProductsRouter = (): Router => {
   productsRouter.get(EndpointsList.PRODUCTS, productController.getAllProducts);
   productsRouter.get(
     EndpointsList.ONE_PRODUCT_BY_ID,
-    productController.getOneProduct
+    productController.getProductDetailsById
   );
   productsRouter.delete(
     EndpointsList.ONE_PRODUCT_BY_ID,
@@ -34,7 +34,11 @@ export const createProductsRouter = (): Router => {
     [checkRole("1"), authenticateJWT],
     productController.uploadTempImages
   );
-
+  productsRouter.delete(
+    EndpointsList.REMOVE_TEMP_IMAGES,
+    [checkRole("1"), authenticateJWT],
+    productController.removeTempImage
+  );
   productsRouter.post(
     EndpointsList.ONE_PRODUCT_BY_ID,
     [checkRole("1"), authenticateJWT],

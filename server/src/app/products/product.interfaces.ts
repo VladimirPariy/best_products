@@ -5,6 +5,7 @@ export interface IInfoForCreateProduct {
   productDescription: string;
   price: string;
   characteristics: string;
+  images: string;
 }
 
 export interface ICharacteristic {
@@ -17,6 +18,7 @@ export interface IProductImage {
   image_title: string;
   original_title: string;
   size: number;
+  image_id?: number;
 }
 
 export interface IPriceHistory {
