@@ -1,22 +1,34 @@
 import { faker } from "@faker-js/faker";
 
-const addFakeCharacteristics = (id: number, index: number) => {
-  const characteristic_title = faker.lorem.word();
-  const characteristic_description = faker.commerce.productAdjective();
+const addFakeProductCharacteristics = (index: number) => {
+	
+	
+	const productID: number[] = [];
+	for (let i = 1; i <= 200; i++) {
+		productID.push(i);
+	}
+	
+	const characteristicId: number[] = [];
+	for (let i = 1; i <= 180; i++) {
+		characteristicId.push(i);
+	}
+	const characteristic = faker.helpers.arrayElement(characteristicId);
+	const product = faker.helpers.arrayElement(productID);
 
   return {
-    product_characteristic_id: id,
-    product: index,
-    characteristic_title,
-    characteristic_description,
+		product_characteristic_id: index,
+    product,
+		characteristic
   };
 };
 
-export const createCharacteristics = () => {
+export const createProductCharacteristics = () => {
   let arr = [];
+	let index = 1;
   for (let i = 1; i <= 200; i++) {
-    for (let k = 0; k < 3; k++) {
-      arr.push(addFakeCharacteristics(+`${i}${k}`, i));
+    for (let k = 0; k < 5; k++) {
+      arr.push(addFakeProductCharacteristics(index));
+			index++
     }
   }
   return arr;
