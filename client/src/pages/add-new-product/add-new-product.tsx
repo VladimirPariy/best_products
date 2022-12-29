@@ -1,7 +1,6 @@
-import { AxiosError } from "axios";
+import {AxiosError} from "axios";
 import ProductsApi from "lib/api/products-api";
-import { uploadProductImageTrigger } from "lib/store/product-detail/product-detail-actions";
-import React, { FC, useState, ChangeEvent, MouseEvent } from "react";
+import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
@@ -15,24 +14,19 @@ import Input from "components/ui/input/input";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
+import {IDataForCreating, ITempChar} from "lib/interfaces/products/creating-product";
 import {
-  IModifyProductImages,
-  IPreview,
   IProductImages,
 } from "lib/interfaces/products/upload-image";
-import productsApi from "lib/api/products-api";
-import { useNavigateHome } from "lib/hooks/useNavigateHome";
-import { selectCategories } from "lib/store/categories/categories-selectors";
-import { useAppSelector } from "lib/store/store-types";
-import { useNavigate } from "react-router";
+import {useNavigateHome} from "lib/hooks/useNavigateHome";
+import {selectCategories} from "lib/store/categories/categories-selectors";
+import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import {useNavigate} from "react-router";
+import { addNewProduct } from "lib/store/products/products-actions";
 
-interface IChar {
-  characteristic_title: string;
-  characteristic_description: string;
-  id: number;
-}
 
 const AddNewProduct: FC = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
   useNavigateHome();
   const [categoryId, setCategoryId] = useState(0);
@@ -41,7 +35,7 @@ const AddNewProduct: FC = () => {
   const [productTitle, setProductTitle] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [characteristics, setCharacteristics] = useState<IChar[]>([]);
+  const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
 
   const [uploadImages, setUploadImages] = useState<IProductImages[]>([]);
 
@@ -69,7 +63,7 @@ const AddNewProduct: FC = () => {
   const changeCharacteristic = (key: string, value: string, id: number) => {
     setCharacteristics(
       characteristics.map((char) =>
-        char.id === id ? { ...char, [key]: value } : char
+        char.id === id ? {...char, [key]: value} : char
       )
     );
   };
@@ -87,39 +81,50 @@ const AddNewProduct: FC = () => {
         if (file instanceof FileList) formData.append(`img`, file[0]);
         const image = await ProductsApi.uploadTempImage(formData);
         setUploadImages([...uploadImages, image]);
+
       }
     }
   };
 
-  const dropFile = (image_id: number) => {
-    console.log(image_id);
+
+  const dropFile = async (image_id: number) => {
+    const remove = await ProductsApi.dropTempImage(image_id)
+    if (remove.status === 200) {
+      setUploadImages(prev => prev.filter(img => img.image_id !== image_id))
+    }
   };
 
-  // const createProduct = async () => {
-  //   let formData = new FormData();
-  //   formData.append("category", `${categoryId}`);
-  //   formData.append("subcategory", `${subcategoryId}`);
-  //   formData.append("productTitle", productTitle);
-  //   formData.append("productDescription", productDescription);
-  //   formData.append("price", price);
-  //   formData.append("characteristics", JSON.stringify(characteristics));
-  //   let i = 0;
-  //   for (const file of uploadImages) {
-  //     if (file instanceof File) formData.append(`img${i}`, file);
-  //     i++;
-  //   }
-  //
-  //   // try {
-  //   //   setIsLoading(true)
-  //   //   const data = await productsApi.createNewProduct(formData);
-  //   //   if (data) navigate(-1)
-  //   // } catch (e) {
-  //   //   if (e instanceof AxiosError) setError(e)
-  //   // } finally {
-  //   //   setIsLoading(false)
-  //   // }
-  // };
-  // console.log(uploadImages)
+  const createProduct = async () => {
+    const isPossibleCreate = categoryId && subcategoryId && productTitle && productDescription && price && characteristics.length && uploadImages.length
+    if (isPossibleCreate) {
+      const dataForInserting: IDataForCreating = {
+        category: categoryId,
+        subcategory: subcategoryId,
+        productTitle,
+        productDescription,
+        price: +price,
+        characteristics: JSON.stringify(characteristics),
+        images: JSON.stringify(uploadImages)
+      };
+
+      try {
+        setIsLoading(true)
+        const data = await ProductsApi.createNewProduct(dataForInserting);
+        if (data) {
+          dispatch(addNewProduct(data[0]))
+          navigate(-1)
+        }
+      } catch (e) {
+        if (e instanceof AxiosError) setError(e)
+      } finally {
+        setIsLoading(false)
+      }
+
+      return;
+    }
+    //обработать всплытие уведомления о том, что не заполнены обязательные поля
+  };
+  console.log(uploadImages)
   return (
     <ContentContainer>
       <Title>Add new product</Title>
@@ -179,7 +184,7 @@ const AddNewProduct: FC = () => {
       {characteristics &&
         characteristics.map((char, index) => (
           <div key={char.id}>
-            <AddProductCharacteristicTitle index={index} />
+            <AddProductCharacteristicTitle index={index}/>
             <AddProductCharacteristicContainer>
               <Input
                 labelText="Enter characteristic title"
@@ -206,7 +211,7 @@ const AddNewProduct: FC = () => {
 
               <Button
                 submitHandler={() => dropCharacteristic(char.id)}
-                style={{ background: "red" }}
+                style={{background: "red"}}
               >
                 Delete
               </Button>
@@ -223,9 +228,9 @@ const AddNewProduct: FC = () => {
       </AddProductImageContainer>
       <BtnForAddImage fileHandler={fileHandler}>Add images</BtnForAddImage>
 
-      {/*<Button submitHandler={createProduct}>*/}
-      {/*  Create new product*/}
-      {/*</Button>*/}
+      <Button submitHandler={createProduct}>
+        Create new product
+      </Button>
     </ContentContainer>
   );
 };

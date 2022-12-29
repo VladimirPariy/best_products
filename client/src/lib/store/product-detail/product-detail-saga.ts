@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import { IProduct } from "lib/interfaces/products/product";
+import {IProductDetails} from "lib/interfaces/products/product-details";
 import {
   getProductDetailFulfilled,
   getProductDetailPending,
@@ -14,7 +14,7 @@ function* productDetailWorker(action: PayloadAction<{ id: number }>) {
   const { id } = action.payload;
   yield put(getProductDetailPending());
   try {
-    const res: IProduct = yield call(ProductsApi.getProductDetail, id);
+    const res: IProductDetails = yield call(ProductsApi.getProductDetail, id);
 
     yield put(getProductDetailFulfilled(res));
   } catch (error) {

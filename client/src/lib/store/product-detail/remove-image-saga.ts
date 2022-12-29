@@ -1,10 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
 import {
-  IProductImages,
-  IUploadImage,
-} from "lib/interfaces/products/upload-image";
-import {
   removeProductImageFulfilled,
   removeProductImagePending,
   removeProductImageTrigger,

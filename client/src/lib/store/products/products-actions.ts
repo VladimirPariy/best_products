@@ -1,4 +1,4 @@
-import { productsSlice } from "lib/store/products/products-slice";
+import {productsSlice} from "lib/store/products/products-slice";
 
 export const {
   productsListFulfilled,
@@ -10,4 +10,6 @@ export const {
   removeProductRejected,
   removeProductTrigger,
   removeProductPending,
+  updateProductAction,
+  addNewProduct
 } = productsSlice.actions;

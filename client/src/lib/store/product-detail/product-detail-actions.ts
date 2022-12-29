@@ -14,8 +14,4 @@ export const {
   removeProductImageFulfilled,
   removeProductImageRejected,
   removeProductImagePending,
-  updateProductDetailFulfilled,
-  updateProductDetailRejected,
-  updateProductDetailTrigger,
-  updateProductDetailPending,
 } = productDetailSlice.actions;
