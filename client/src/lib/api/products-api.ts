@@ -1,9 +1,9 @@
-import {authAxios, defaultAxios} from "lib/api/axios-instances";
-import {apiUrls} from "lib/enums/api-urls";
-import {IDataForCreating} from "lib/interfaces/products/creating-product";
-import {IProduct} from "lib/interfaces/products/product";
-import {IProductDetails} from "lib/interfaces/products/product-details";
-import {UpdatingProductDetails} from "lib/interfaces/products/updating-product-details";
+import { authAxios, defaultAxios } from "lib/api/axios-instances";
+import { apiUrls } from "lib/enums/api-urls";
+import { IDataForCreating } from "lib/interfaces/products/creating-product";
+import { IProduct } from "lib/interfaces/products/product";
+import { IProductDetails } from "lib/interfaces/products/product-details";
+import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
 import {
   IProductImages,
   IUploadImage,
@@ -11,30 +11,31 @@ import {
 
 class ProductsApi {
   async getAllProducts() {
-    const {data} = await defaultAxios.get<IProduct[]>(apiUrls.products);
+    const { data } = await defaultAxios.get<IProduct[]>(apiUrls.products);
     return data;
   }
 
   async createNewProduct(infoForCreat: IDataForCreating) {
-    const {data} = await authAxios.post<IProduct[]>(apiUrls.products, infoForCreat);
+    const { data } = await authAxios.post<IProduct[]>(
+      apiUrls.products,
+      infoForCreat
+    );
     return data;
   }
 
   async removeOneProduct(id: number) {
-    return await authAxios.delete<string>(
-      `${apiUrls.one_product_by_id}${id}`
-    );
+    return await authAxios.delete<string>(`${apiUrls.one_product_by_id}${id}`);
   }
 
   async getProductDetail(id: number) {
-    const {data} = await defaultAxios.get<IProductDetails>(
+    const { data } = await defaultAxios.get<IProductDetails>(
       `${apiUrls.one_product_by_id}${id}`
     );
     return data;
   }
 
-  async uploadFile({file, id}: IUploadImage) {
-    const {data} = await authAxios.post<IProductImages>(
+  async uploadFile({ file, id }: IUploadImage) {
+    const { data } = await authAxios.post<IProductImages>(
       `${apiUrls.one_product_by_id}${id}`,
       file
     );
@@ -46,14 +47,14 @@ class ProductsApi {
   }
 
   async uploadTempImage(file: FormData) {
-    const {data} = await authAxios.post<IProductImages>(
+    const { data } = await authAxios.post<IProductImages>(
       apiUrls.temp_images,
       file
     );
     return data;
   }
 
-  async updateProductDetails({id, ...infoForUpdate}: UpdatingProductDetails) {
+  async updateProductDetails({ id, ...infoForUpdate }: UpdatingProductDetails) {
     return await authAxios.patch<string>(
       `${apiUrls.one_product_by_id}${id}`,
       infoForUpdate

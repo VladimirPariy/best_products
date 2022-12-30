@@ -18,7 +18,7 @@ function* removeProductWorker(action: PayloadAction<number>) {
       ProductsApi.removeOneProduct,
       action.payload
     );
-    console.log(res)
+    console.log(res);
     if (res.status === 200) {
       const products: IProduct[] = yield call(ProductsApi.getAllProducts);
       yield put(removeProductFulfilled(products));

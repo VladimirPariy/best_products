@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import ContentContainer from "components/ui/content-container/content-container";
 
 import { appUrl } from "lib/enums/app-urls";
-import { useNavigateHome } from "lib/hooks/useNavigateHome";
 
 const adminPanelList: { url: string; title: string }[] = [
   { url: appUrl.users_table, title: "Users control" },
@@ -12,7 +11,6 @@ const adminPanelList: { url: string; title: string }[] = [
 ];
 
 const AdminPanel: FC = () => {
-  useNavigateHome();
   return (
     <ContentContainer>
       {adminPanelList.map((item) => (

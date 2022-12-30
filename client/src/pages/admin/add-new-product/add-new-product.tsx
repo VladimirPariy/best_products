@@ -1,6 +1,6 @@
-import {AxiosError} from "axios";
+import { AxiosError } from "axios";
 import ProductsApi from "lib/api/products-api";
-import React, {FC, useState, ChangeEvent, MouseEvent} from "react";
+import React, { FC, useState, ChangeEvent, MouseEvent } from "react";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
@@ -14,21 +14,19 @@ import Input from "components/ui/input/input";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
-import {IDataForCreating, ITempChar} from "lib/interfaces/products/creating-product";
 import {
-  IProductImages,
-} from "lib/interfaces/products/upload-image";
-import {useNavigateHome} from "lib/hooks/useNavigateHome";
-import {selectCategories} from "lib/store/categories/categories-selectors";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
-import {useNavigate} from "react-router";
+  IDataForCreating,
+  ITempChar,
+} from "lib/interfaces/products/creating-product";
+import { IProductImages } from "lib/interfaces/products/upload-image";
+import { selectCategories } from "lib/store/categories/categories-selectors";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { useNavigate } from "react-router";
 import { addNewProduct } from "lib/store/products/products-actions";
 
-
 const AddNewProduct: FC = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  useNavigateHome();
   const [categoryId, setCategoryId] = useState(0);
   const categories = useAppSelector(selectCategories);
 
@@ -63,7 +61,7 @@ const AddNewProduct: FC = () => {
   const changeCharacteristic = (key: string, value: string, id: number) => {
     setCharacteristics(
       characteristics.map((char) =>
-        char.id === id ? {...char, [key]: value} : char
+        char.id === id ? { ...char, [key]: value } : char
       )
     );
   };
@@ -81,21 +79,28 @@ const AddNewProduct: FC = () => {
         if (file instanceof FileList) formData.append(`img`, file[0]);
         const image = await ProductsApi.uploadTempImage(formData);
         setUploadImages([...uploadImages, image]);
-
       }
     }
   };
 
-
   const dropFile = async (image_id: number) => {
-    const remove = await ProductsApi.dropTempImage(image_id)
+    const remove = await ProductsApi.dropTempImage(image_id);
     if (remove.status === 200) {
-      setUploadImages(prev => prev.filter(img => img.image_id !== image_id))
+      setUploadImages((prev) =>
+        prev.filter((img) => img.image_id !== image_id)
+      );
     }
   };
 
   const createProduct = async () => {
-    const isPossibleCreate = categoryId && subcategoryId && productTitle && productDescription && price && characteristics.length && uploadImages.length
+    const isPossibleCreate =
+      categoryId &&
+      subcategoryId &&
+      productTitle &&
+      productDescription &&
+      price &&
+      characteristics.length &&
+      uploadImages.length;
     if (isPossibleCreate) {
       const dataForInserting: IDataForCreating = {
         category: categoryId,
@@ -104,27 +109,27 @@ const AddNewProduct: FC = () => {
         productDescription,
         price: +price,
         characteristics: JSON.stringify(characteristics),
-        images: JSON.stringify(uploadImages)
+        images: JSON.stringify(uploadImages),
       };
 
       try {
-        setIsLoading(true)
+        setIsLoading(true);
         const data = await ProductsApi.createNewProduct(dataForInserting);
         if (data) {
-          dispatch(addNewProduct(data[0]))
-          navigate(-1)
+          dispatch(addNewProduct(data[0]));
+          navigate(-1);
         }
       } catch (e) {
-        if (e instanceof AxiosError) setError(e)
+        if (e instanceof AxiosError) setError(e);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
 
       return;
     }
     //обработать всплытие уведомления о том, что не заполнены обязательные поля
   };
-  console.log(uploadImages)
+  console.log(uploadImages);
   return (
     <ContentContainer>
       <Title>Add new product</Title>
@@ -184,7 +189,7 @@ const AddNewProduct: FC = () => {
       {characteristics &&
         characteristics.map((char, index) => (
           <div key={char.id}>
-            <AddProductCharacteristicTitle index={index}/>
+            <AddProductCharacteristicTitle index={index} />
             <AddProductCharacteristicContainer>
               <Input
                 labelText="Enter characteristic title"
@@ -211,7 +216,7 @@ const AddNewProduct: FC = () => {
 
               <Button
                 submitHandler={() => dropCharacteristic(char.id)}
-                style={{background: "red"}}
+                style={{ background: "red" }}
               >
                 Delete
               </Button>
@@ -228,9 +233,7 @@ const AddNewProduct: FC = () => {
       </AddProductImageContainer>
       <BtnForAddImage fileHandler={fileHandler}>Add images</BtnForAddImage>
 
-      <Button submitHandler={createProduct}>
-        Create new product
-      </Button>
+      <Button submitHandler={createProduct}>Create new product</Button>
     </ContentContainer>
   );
 };

@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import {IProductDetails} from "lib/interfaces/products/product-details";
+import { IProductDetails } from "lib/interfaces/products/product-details";
 import {
   getProductDetailFulfilled,
   getProductDetailPending,

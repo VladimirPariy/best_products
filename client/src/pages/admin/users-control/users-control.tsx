@@ -1,7 +1,6 @@
 import ContentContainer from "components/ui/content-container/content-container";
 import Title from "components/ui/title/title";
 import userApi from "lib/api/user-api";
-import { useNavigateHome } from "lib/hooks/useNavigateHome";
 import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 import { usersListTrigger } from "lib/store/users-list/users-list-actions";
 import { selectUsersList } from "lib/store/users-list/users-list-selectors";
@@ -9,14 +8,13 @@ import { selectUser } from "lib/store/user/user-selector";
 import { usersRolesTrigger } from "lib/store/users-roles/users-roles-actions";
 import { selectUsersRoles } from "lib/store/users-roles/users-roles-selectors";
 import React, { ChangeEvent, FC, useEffect } from "react";
-import styles from "pages/users-control/users-control.module.scss";
+import styles from "pages/admin/users-control/users-control.module.scss";
 
 const UsersControl: FC = () => {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectUser);
   const usersList = useAppSelector(selectUsersList);
   const rolesList = useAppSelector(selectUsersRoles);
-  useNavigateHome();
 
   useEffect(() => {
     dispatch(usersRolesTrigger());
@@ -27,12 +25,10 @@ const UsersControl: FC = () => {
     e: ChangeEvent<HTMLSelectElement>,
     user_id: number
   ) => {
-    /////////////////////////////////
     await userApi.changeUserRole(user_id, +e.target.value);
     dispatch(usersListTrigger());
   };
   const removeUserHandler = async (id: number) => {
-    ////////////////////////////////////////
     await userApi.removeOneUser(id.toString());
     dispatch(usersListTrigger());
   };

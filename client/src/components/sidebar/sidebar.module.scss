@@ -9,65 +9,6 @@ aside {
 
     > ul {
       background: $white;
-
-      > li:first-child:hover > a > .icon > svg > path {
-        fill: $white;
-      }
-
-      > li:first-child > .active > .icon > svg > path {
-        fill: $white;
-      }
-
-      .link {
-        list-style: none;
-        margin: 1rem 0.33rem 1rem;
-        border-radius: 10px;
-
-        > a {
-          display: flex;
-          align-items: center;
-          text-decoration: none;
-          padding: 9px;
-          border-radius: 10px;
-
-          .icon {
-            margin-right: 1.33rem;
-            display: flex;
-            align-items: center;
-
-            > svg {
-              width: 30px;
-              height: 30px;
-            }
-          }
-
-          .title {
-            font-size: 1.33rem;
-            line-height: 1.5rem;
-            color: #524f5e;
-          }
-        }
-
-        .active > .title {
-          color: white;
-        }
-      }
-
-      .link:hover,
-      .active {
-        background: $active_item_color;
-
-        .title,
-        .icon > svg > path {
-          color: $white;
-          stroke: $white;
-        }
-
-        .icon > svg > g > path {
-          fill: $white;
-          stroke: $white;
-        }
-      }
     }
   }
 }
@@ -87,30 +28,6 @@ aside {
       top: 0;
       z-index: 1;
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-
-      > ul {
-        > .link {
-          margin: 0 0.33rem 1rem;
-
-          > a {
-            padding: 12px;
-
-            .icon {
-              margin-right: 0;
-
-              > svg {
-                width: 31px;
-                height: 31px;
-              }
-            }
-
-            .title {
-              margin-left: 1.66rem;
-              font-size: 1.66rem;
-            }
-          }
-        }
-      }
     }
 
     .sidebarWrapper:hover {
@@ -126,33 +43,8 @@ aside {
 
     .sidebarWrapper {
       padding-top: 210px;
-
       max-width: 78.5px;
       transition: max-width 0.5s ease-in-out;
-
-      > ul {
-        .link {
-          margin: 0 0.33rem 1.375rem;
-
-          > a {
-            padding: 18px;
-
-            .icon {
-              margin-left: 0;
-
-              > svg {
-                width: 32px;
-                height: 32px;
-              }
-            }
-
-            .title {
-              margin-left: 2rem;
-              font-size: 2rem;
-            }
-          }
-        }
-      }
     }
 
     .sidebarWrapper:hover {

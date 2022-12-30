@@ -1,13 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "pages/product-control/product-control.module.scss";
+import styles from "pages/admin/product-control/product-control.module.scss";
 
 import ContentContainer from "components/ui/content-container/content-container";
 import Title from "components/ui/title/title";
 import { apiUrls } from "lib/enums/api-urls";
 import { appUrl } from "lib/enums/app-urls";
-import { useNavigateHome } from "lib/hooks/useNavigateHome";
 import {
   productsListTrigger,
   removeProductTrigger,
@@ -20,7 +19,6 @@ import defaultImageForProduct from "assets/images/goods/grey_square.jpg";
 
 const ProductControl: FC = () => {
   const dispatch = useAppDispatch();
-  useNavigateHome();
   const productsList = useAppSelector(selectProductList);
 
   useEffect(() => {

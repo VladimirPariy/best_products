@@ -1,7 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IProduct} from "lib/interfaces/products/product";
-import {IProductDetails} from "lib/interfaces/products/product-details";
-import {ErrorPayload} from "lib/store/store-types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IProduct } from "lib/interfaces/products/product";
+import { IProductDetails } from "lib/interfaces/products/product-details";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
   isFetch: boolean;
@@ -19,7 +19,7 @@ export const productsSlice = createSlice({
   name: "@@products",
   initialState,
   reducers: {
-    productsListFulfilled: (state, {payload}: PayloadAction<IProduct[]>) => {
+    productsListFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
       state.error = null;
       state.isFetch = false;
       state.productsList = payload;
@@ -29,15 +29,14 @@ export const productsSlice = createSlice({
       state.isFetch = true;
       state.productsList = [];
     },
-    productsListRejected: (state, {payload}: PayloadAction<ErrorPayload>) => {
+    productsListRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.error = payload;
       state.isFetch = false;
       state.productsList = [];
     },
-    productsListTrigger: () => {
-    },
+    productsListTrigger: () => {},
 
-    removeProductFulfilled: (state, {payload}: PayloadAction<IProduct[]>) => {
+    removeProductFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
       state.error = null;
       state.isFetch = false;
       state.productsList = payload;
@@ -48,33 +47,52 @@ export const productsSlice = createSlice({
     },
     removeProductRejected: (
       state,
-      {payload}: PayloadAction<ErrorPayload>
+      { payload }: PayloadAction<ErrorPayload>
     ) => {
       state.error = payload;
       state.isFetch = false;
     },
-    removeProductTrigger: (_, action: PayloadAction<number>) => {
-    },
+    removeProductTrigger: (_, action: PayloadAction<number>) => {},
 
     clearProductsList: (state) => {
       state = initialState;
     },
-    addNewProduct: (state, {payload}: PayloadAction<IProduct>) => {
+    addNewProduct: (state, { payload }: PayloadAction<IProduct>) => {
       state.productsList.push(payload);
     },
-    updateProductAction: (state, {payload}: PayloadAction<IProductDetails>) => {
-      const {product_id, product_characteristics, product_description, product_images, product_title, price} = payload;
-      const modifyProduct: IProduct = {product_id, product_characteristics, product_description, product_images, product_title, price};
+    updateProductAction: (
+      state,
+      { payload }: PayloadAction<IProductDetails>
+    ) => {
+      const {
+        product_id,
+        product_characteristics,
+        product_description,
+        product_images,
+        product_title,
+        price,
+      } = payload;
+      const modifyProduct: IProduct = {
+        product_id,
+        product_characteristics,
+        product_description,
+        product_images,
+        product_title,
+        price,
+      };
 
       return {
-        ...state, productsList: [...state.productsList.map(prod => {
-          if (prod.product_id === product_id) {
-            return modifyProduct
-          } else {
-            return prod
-          }
-        })]
-      }
-    }
+        ...state,
+        productsList: [
+          ...state.productsList.map((prod) => {
+            if (prod.product_id === product_id) {
+              return modifyProduct;
+            } else {
+              return prod;
+            }
+          }),
+        ],
+      };
+    },
   },
 });

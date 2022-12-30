@@ -1,6 +1,6 @@
-import {AxiosError} from "axios";
-import React, {ChangeEvent, FC, MouseEvent, useEffect, useState} from "react";
-import {useParams} from "react-router";
+import { AxiosError } from "axios";
+import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
@@ -15,35 +15,35 @@ import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
 import ProductsApi from "lib/api/products-api";
-import {IProductDetails} from "lib/interfaces/products/product-details";
-import {ICharacteristic} from "lib/interfaces/characteristics/characteristic";
-import {UpdatingProductDetails} from "lib/interfaces/products/updating-product-details";
-import {selectCategories} from "lib/store/categories/categories-selectors";
+import { IProductDetails } from "lib/interfaces/products/product-details";
+import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
+import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
+import { selectCategories } from "lib/store/categories/categories-selectors";
 import {
   clearProductDetail,
   getProductDetailTrigger,
   removeProductImageTrigger,
   uploadProductImageTrigger,
 } from "lib/store/product-detail/product-detail-actions";
-import {updateProductAction} from "lib/store/products/products-actions"
+import { updateProductAction } from "lib/store/products/products-actions";
 import {
   selectProductDetail,
   selectProductImages,
 } from "lib/store/product-detail/product-detail-selector";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 
 const UpdateProduct: FC = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const productDetails = useAppSelector(selectProductDetail);
   const productImages = useAppSelector(selectProductImages);
   const categories = useAppSelector(selectCategories);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<AxiosError|null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<AxiosError | null>(null);
 
   useEffect(() => {
-    if (id) dispatch(getProductDetailTrigger({id: +id}));
+    if (id) dispatch(getProductDetailTrigger({ id: +id }));
 
     return function () {
       dispatch(clearProductDetail());
@@ -89,7 +89,7 @@ const UpdateProduct: FC = () => {
   const changeCharacteristic = (key: string, value: string, id: number) => {
     setCharacteristics(
       characteristics.map((char) =>
-        char.product_characteristic_id === id ? {...char, [key]: value} : char
+        char.product_characteristic_id === id ? { ...char, [key]: value } : char
       )
     );
   };
@@ -103,28 +103,28 @@ const UpdateProduct: FC = () => {
       if (!duplicate && id) {
         const formData = new FormData();
         if (file instanceof FileList) formData.append(`img`, file[0]);
-        dispatch(uploadProductImageTrigger({file: formData, id: +id}));
+        dispatch(uploadProductImageTrigger({ file: formData, id: +id }));
       }
     }
   };
 
   const dropFile = async (image_id: number) => {
-    dispatch(removeProductImageTrigger({id: image_id}));
+    dispatch(removeProductImageTrigger({ id: image_id }));
   };
 
   const updateProduct = async () => {
     if (id) {
-      let updatingData: UpdatingProductDetails = {id: +id};
+      let updatingData: UpdatingProductDetails = { id: +id };
       if (categoryId !== productDetails.category[0].category_id) {
-        updatingData = {...updatingData, category: categoryId};
+        updatingData = { ...updatingData, category: categoryId };
       }
       if (
         subcategoryId !== productDetails.product_subcategory[0].subcategory_id
       ) {
-        updatingData = {...updatingData, product_subcategory: subcategoryId};
+        updatingData = { ...updatingData, product_subcategory: subcategoryId };
       }
       if (productTitle !== productDetails.product_title) {
-        updatingData = {...updatingData, product_title: productTitle};
+        updatingData = { ...updatingData, product_title: productTitle };
       }
       if (productDescription !== productDetails.product_description) {
         updatingData = {
@@ -133,7 +133,7 @@ const UpdateProduct: FC = () => {
         };
       }
       if (price !== productDetails.price) {
-        updatingData = {...updatingData, price};
+        updatingData = { ...updatingData, price };
       }
       if (
         JSON.stringify(characteristics) !==
@@ -146,17 +146,18 @@ const UpdateProduct: FC = () => {
       }
 
       try {
-        setIsLoading(true)
-        await ProductsApi.updateProductDetails(updatingData)
-        const {id} = updatingData;
-        const updatingProduct: IProductDetails = await ProductsApi.getProductDetail(id)
+        setIsLoading(true);
+        await ProductsApi.updateProductDetails(updatingData);
+        const { id } = updatingData;
+        const updatingProduct: IProductDetails =
+          await ProductsApi.getProductDetail(id);
 
-        console.log(updatingProduct)
-        dispatch(updateProductAction(updatingProduct))
+        console.log(updatingProduct);
+        dispatch(updateProductAction(updatingProduct));
       } catch (e) {
-        if(e instanceof AxiosError) setError(e)
+        if (e instanceof AxiosError) setError(e);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
   };
@@ -222,7 +223,7 @@ const UpdateProduct: FC = () => {
           {characteristics.length > 0 &&
             characteristics.map((char, index) => (
               <div key={char.product_characteristic_id}>
-                <AddProductCharacteristicTitle index={index}/>
+                <AddProductCharacteristicTitle index={index} />
                 <AddProductCharacteristicContainer>
                   <Input
                     labelText={"Add characteristic title"}
@@ -251,7 +252,7 @@ const UpdateProduct: FC = () => {
                     submitHandler={() =>
                       dropCharacteristic(char.product_characteristic_id)
                     }
-                    style={{background: "red"}}
+                    style={{ background: "red" }}
                   >
                     Delete
                   </Button>
@@ -259,13 +260,13 @@ const UpdateProduct: FC = () => {
               </div>
             ))}
           <AddProductImageContainer>
-            {productImages &&
-							<Slider
-								images={productImages}
-								deleteHandler={dropFile}
-								onDelete={true}
-							/>
-            }
+            {productImages && (
+              <Slider
+                images={productImages}
+                deleteHandler={dropFile}
+                onDelete={true}
+              />
+            )}
           </AddProductImageContainer>
           <BtnForAddImage fileHandler={uploadFileHandler}>
             Add images

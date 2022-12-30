@@ -1,42 +1,27 @@
-import React, { FC, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 import styles from "components/sidebar/sidebar.module.scss";
+import SidebarItem from "components/sidebar/components/sidebar-item";
+import { sidebarList } from "components/sidebar/sidebar.data";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-import { appUrl } from "lib/enums/app-urls";
 import { useAppDispatch } from "lib/store/store-types";
 import { categoriesTrigger } from "lib/store/categories/categories-actions";
 
-import Home from "assets/icon/sidebar/home";
-import Favorites from "assets/icon/general/favorites";
-import Categories from "assets/icon/sidebar/categories";
-
-interface ISidebarList {
-  title: string;
-  url: string;
-  icon: JSX.Element;
-}
-
-const sidebarList: ISidebarList[] = [
-  { title: "Home", icon: <Home />, url: appUrl.home },
-  { title: "Favorites", icon: <Favorites />, url: appUrl.favorites },
-  { title: "Categories", icon: <Categories />, url: appUrl.categories },
-];
-
 interface Props {
-  setCheckedBurgerMenu?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
 }
 
 const Sidebar: FC<Props> = ({ setCheckedBurgerMenu }) => {
   const dispatch = useAppDispatch();
   const [onHover, setOnHover] = useState(false);
-  const onHoveredLink = getClassNameByCondition(
-    styles,
-    "link",
-    "hoveredLink",
-    onHover
-  );
+
   const onHoveredWrapper = getClassNameByCondition(
     styles,
     "sidebarWrapper",
@@ -57,18 +42,12 @@ const Sidebar: FC<Props> = ({ setCheckedBurgerMenu }) => {
       >
         <ul>
           {sidebarList.map((item) => (
-            <li className={onHoveredLink} key={item.title}>
-              <NavLink
-                to={item.url}
-                className={({ isActive }) => (isActive ? styles.active : null)}
-                onClick={() =>
-                  setCheckedBurgerMenu && setCheckedBurgerMenu(false)
-                }
-              >
-                <div className={styles.icon}>{item.icon}</div>
-                <div className={styles.title}>{item.title}</div>
-              </NavLink>
-            </li>
+            <SidebarItem
+              onHover={onHover}
+              item={item}
+              setChecked={setCheckedBurgerMenu}
+              key={item.title}
+            />
           ))}
         </ul>
       </nav>

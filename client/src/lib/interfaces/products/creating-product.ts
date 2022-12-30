@@ -4,12 +4,12 @@ export interface ITempChar {
   id: number;
 }
 
-export interface IDataForCreating{
-  category:number;
-  subcategory:number;
-  productTitle:string;
-  productDescription:string;
-  price:number;
-  characteristics:string;
-  images:string;
+export interface IDataForCreating {
+  category: number;
+  subcategory: number;
+  productTitle: string;
+  productDescription: string;
+  price: number;
+  characteristics: string;
+  images: string;
 }

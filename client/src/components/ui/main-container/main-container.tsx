@@ -1,8 +1,9 @@
+import AppRouter from "components/app-router/app-router";
 import React, { FC, useEffect } from "react";
 
 import styles from "components/ui/main-container/main-container.module.scss";
 
-import AppRouter from "components/app-router/app-router";
+// import AppRouter from "components/app-router/app-router";
 import AdminPanelLink from "components/ui/admin-panel-link/admin-panel-link";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";

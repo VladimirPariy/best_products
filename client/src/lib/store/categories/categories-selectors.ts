@@ -1,4 +1,7 @@
-import { ICategoryWithSubcategory } from "lib/interfaces/categories/categories.interface";
+import {
+  ICategoryWithSubcategory,
+  ISubcategory,
+} from "lib/interfaces/categories/categories.interface";
 import { ErrorPayload, RootState } from "lib/store/store-types";
 
 const selectCategories = (state: RootState): ICategoryWithSubcategory[] =>
@@ -8,4 +11,17 @@ const selectCategoriesError = (state: RootState): null | ErrorPayload =>
 const selectCategoriesIsFetching = (state: RootState): boolean =>
   state.categories.isFetching;
 
-export { selectCategoriesIsFetching, selectCategoriesError, selectCategories };
+const selectSubcategories = (state: RootState) => {
+  let subcategory: ISubcategory[] = [];
+  state.categories.categoriesList.forEach((category) => {
+    subcategory.push(...category.subcategories);
+  });
+  return subcategory;
+};
+
+export {
+  selectCategoriesIsFetching,
+  selectCategoriesError,
+  selectCategories,
+  selectSubcategories,
+};

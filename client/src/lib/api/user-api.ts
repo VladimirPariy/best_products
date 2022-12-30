@@ -38,7 +38,7 @@ class UserApi {
   }
 
   async updateUserInfo({ formData, id }: { formData: FormData; id: number }) {
-    const { data } = await authAxios.patch<string>(
+    const data = await authAxios.patch<string>(
       `${apiUrls.one_user_by_id}${id}`,
       formData,
       {

@@ -1,11 +1,11 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import {IProductDetails} from "lib/interfaces/products/product-details";
+import { IProductDetails } from "lib/interfaces/products/product-details";
 import {
   IProductImages,
   IUploadImage,
 } from "lib/interfaces/products/upload-image";
-import {ErrorPayload} from "lib/store/store-types";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
   error: null | ErrorPayload;
@@ -25,7 +25,7 @@ export const productDetailSlice = createSlice({
   reducers: {
     getProductDetailFulfilled: (
       state,
-      {payload}: PayloadAction<IProductDetails>
+      { payload }: PayloadAction<IProductDetails>
     ) => {
       state.error = null;
       state.isFetch = false;
@@ -38,14 +38,13 @@ export const productDetailSlice = createSlice({
     },
     getProductDetailRejected: (
       state,
-      {payload}: PayloadAction<ErrorPayload>
+      { payload }: PayloadAction<ErrorPayload>
     ) => {
       state.error = payload;
       state.isFetch = false;
       state.productDetail = {} as IProductDetails;
     },
-    getProductDetailTrigger: (_, action: PayloadAction<{ id: number }>) => {
-    },
+    getProductDetailTrigger: (_, action: PayloadAction<{ id: number }>) => {},
 
     clearProductDetail: () => {
       return initialState;
@@ -53,7 +52,7 @@ export const productDetailSlice = createSlice({
 
     uploadProductImageFulfilled: (
       state,
-      {payload}: PayloadAction<IProductImages>
+      { payload }: PayloadAction<IProductImages>
     ) => {
       state.error = null;
       state.isFetch = false;
@@ -65,16 +64,15 @@ export const productDetailSlice = createSlice({
     },
     uploadProductImageRejected: (
       state,
-      {payload}: PayloadAction<ErrorPayload>
+      { payload }: PayloadAction<ErrorPayload>
     ) => {
       state.error = payload;
       state.isFetch = false;
     },
-    uploadProductImageTrigger: (_, action: PayloadAction<IUploadImage>) => {
-    },
+    uploadProductImageTrigger: (_, action: PayloadAction<IUploadImage>) => {},
     removeProductImageFulfilled: (
       state,
-      {payload}: PayloadAction<number>
+      { payload }: PayloadAction<number>
     ) => {
       state.isFetch = false;
       state.error = null;
@@ -89,14 +87,11 @@ export const productDetailSlice = createSlice({
     },
     removeProductImageRejected: (
       state,
-      {payload}: PayloadAction<ErrorPayload>
+      { payload }: PayloadAction<ErrorPayload>
     ) => {
       state.isFetch = false;
       state.error = payload;
     },
-    removeProductImageTrigger: (_, action: PayloadAction<{ id: number }>) => {
-    },
-
-
+    removeProductImageTrigger: (_, action: PayloadAction<{ id: number }>) => {},
   },
 });
