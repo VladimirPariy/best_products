@@ -1,5 +1,6 @@
 export interface ISidebarList {
+  id: number | string;
   title: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   url: string;
 }

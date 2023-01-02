@@ -1,31 +1,43 @@
+import React, {FC, MouseEvent} from "react";
+import {NavLink} from "react-router-dom";
+
 import styles from "components/sidebar/components/sidebar-item.module.scss";
-import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
-import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-import React, { Dispatch, FC, SetStateAction } from "react";
-import { NavLink } from "react-router-dom";
+
+import {ISidebarList} from "lib/interfaces/sidebar/sidebar.interface";
+import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
 
 interface Props {
   onHover: boolean;
   item: ISidebarList;
-  setChecked?: Dispatch<SetStateAction<boolean>>;
+  clickHandler?: (e: MouseEvent<HTMLAnchorElement>, item: ISidebarList) => void
 }
 
-const SidebarItem: FC<Props> = ({ setChecked, item, onHover }) => {
+
+const SidebarItem: FC<Props> = ({item, onHover, clickHandler}) => {
   const onHoveredLink = getClassNameByCondition(
     styles,
     "link",
     "hoveredLink",
     onHover
   );
+
+  const onHoveredTitle = getClassNameByCondition(
+    styles,
+    "title",
+    "hoveredTitle",
+    onHover
+  );
+
+
   return (
     <li className={onHoveredLink}>
       <NavLink
         to={item.url}
-        className={({ isActive }) => (isActive ? styles.active : null)}
-        onClick={() => setChecked && setChecked(false)}
+        className={(data) => data.isActive ? styles.active : null}
+        onClick={e => clickHandler && clickHandler(e, item)}
       >
         <div className={styles.icon}>{item.icon}</div>
-        <div className={styles.title}>{item.title}</div>
+        <div className={onHoveredTitle}>{item.title}</div>
       </NavLink>
     </li>
   );

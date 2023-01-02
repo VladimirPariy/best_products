@@ -4,11 +4,55 @@ aside {
   .sidebarWrapper {
     margin-top: 20px;
     margin-bottom: 53px;
-    overflow: hidden;
     min-height: 100%;
 
-    > ul {
-      background: $white;
+    .extraCategory {
+
+      .subcategoryList {
+        list-style: none;
+        background: $white;
+        width: 250px;
+
+        > li {
+          margin-bottom: 8px;
+          padding: 3px 15px;
+
+          > a {
+            text-decoration: none;
+            color: #524F5E;
+            font-size: 20px;
+            line-height: 20px;
+            white-space: nowrap;
+
+            > div > span > svg {
+              transform: rotate(-90deg);
+              position: absolute;
+              top: 25%;
+              right: 5px;
+              width: 15px;
+            }
+
+          }
+        }
+
+        > li:hover {
+          background: $active_item_color;
+          border-radius: 10px;
+
+          > a {
+            color: $white;
+
+            > div > span > svg > path {
+              fill: $white;
+            }
+          }
+        }
+
+        > li:first-child {
+          font-weight: 600;
+          position: relative;
+        }
+      }
     }
   }
 }
@@ -28,6 +72,39 @@ aside {
       top: 0;
       z-index: 1;
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+      .extraCategory {
+        position: relative;
+
+        .subcategoryList {
+          width: 400px;
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          left: 235px;
+          list-style: none;
+          border: 3px solid #766ED3;
+          box-shadow: 0px 7px 25px rgba(0, 0, 0, 0.3);
+          border-radius: 15px;
+          padding: 20px 26px 20px 32px;
+
+          > li {
+            margin-bottom: 10px;
+            padding: 3px 10px;
+
+            > a {
+              font-size: 26px;
+              line-height: 27px;
+
+              > div > span > svg {
+                right: 0;
+                width: 20px;
+
+              }
+            }
+          }
+        }
+      }
     }
 
     .sidebarWrapper:hover {
@@ -44,12 +121,39 @@ aside {
     .sidebarWrapper {
       padding-top: 210px;
       max-width: 78.5px;
-      transition: max-width 0.5s ease-in-out;
+      min-width: 78.5px;
+      transition: all 0.5s ease-in-out;
+
+      .extraCategory > .subcategoryList {
+        width: 500px;
+        left: 270px;
+        border: 3px solid #766ED3;
+        border-radius: 20px;
+        padding: 30px 36px 30px 46px;
+
+        > li {
+          margin-bottom: 13px;
+          padding: 3px 15px;
+
+          > a {
+            font-size: 32px;
+            line-height: 38.73px;
+
+            > div > span > svg {
+              top: 40%;
+            }
+          }
+        }
+      }
+
+
     }
 
     .sidebarWrapper:hover {
-      transition: max-width 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
       max-width: 360px;
+      min-width: 360px;
     }
   }
+
 }

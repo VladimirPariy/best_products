@@ -1,6 +1,4 @@
-import React, { FC, useState } from "react";
-
-import styles from "app.module.scss";
+import React, {FC, useState} from "react";
 
 import Header from "layout/header/header";
 import Content from "layout/content/content";
@@ -35,7 +33,7 @@ const App: FC = () => {
   };
 
   return (
-    <main className={styles.wrapper} onClick={mainClickHandler}>
+    <main onClick={mainClickHandler}>
       <Header {...setIsShowModals} />
       <Content {...isShowModalUseState} />
     </main>
