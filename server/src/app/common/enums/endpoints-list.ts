@@ -18,10 +18,13 @@ export const enum EndpointsList {
   ROLE_BY_USER_ID = "/roles/:id",
 
   //categories
-  CATEGORIES = "/",
+  CategoriesWithSubcategories = "/",
+  SUBCATEGORIES = "/subcategories",
+  CATEGORIES = "/categories",
 
   //products
   PRODUCTS = "/",
+  FILTERED_PRODUCTS = "/filter",
   ONE_PRODUCT_BY_ID = "/:id",
   TEMP_IMAGES = "/temp",
   REMOVE_TEMP_IMAGES = "/temp/:id",

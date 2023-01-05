@@ -108,7 +108,6 @@ class UserService {
     if (!updateInfo) {
       return HttpException.internalServErr(`Unsuccessful updating user`);
     }
-
     return "Successful updated user";
   }
 

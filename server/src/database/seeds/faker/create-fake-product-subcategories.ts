@@ -6,7 +6,6 @@ const addFakeProductSubcategory = (id: number) => {
   ];
   const subcategory = faker.helpers.arrayElement(subcategoryId);
 
-
   return {
     product: id,
     subcategory: subcategory,

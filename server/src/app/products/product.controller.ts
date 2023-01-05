@@ -22,7 +22,7 @@ class ProductController {
   }
 
   async createNewProduct(req: Request, res: Response, next: NextFunction) {
-    const data = await ProductService.createNewProduct(req.body, req.files);
+    const data = await ProductService.createNewProduct(req.body);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 
@@ -55,6 +55,23 @@ class ProductController {
   async removeImage(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
     const data = await ProductService.removeImage(+id);
+    data instanceof HttpException ? next(data) : res.status(200).send(data);
+  }
+
+  async getFilteredProductsByCategory(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    const { page, limit, category, orderBy } = req.query;
+    if (!category)
+      return next(HttpException.badRequest(`Category not specified`));
+    const data = await ProductService.getFilteredProductsByCategory(
+      category as string,
+      orderBy as "desc" | "asc",
+      page ? +page : 0,
+      limit ? +limit : 10
+    );
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 }

@@ -5,27 +5,25 @@ import { HttpException } from "@/app/common/errors/exceptions";
 import { ProductsModel } from "@/app/products/models/products.model";
 import { Request } from "express";
 import {
-  ICharacteristic,
   IInfoForCreateProduct,
   IPriceHistory,
   IProductImage,
   IProductSubcategory,
   IUpdatingProductFields,
-  ProdCharacteristicReq,
 } from "@/app/products/product.interfaces";
 import { CategoriesModel } from "@/app/categories/models/categories.model";
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
 import { ProductsImagesModel } from "@/app/products/models/products-images.model";
 import { TempImagesModel } from "@/app/products/models/temp-images.model";
 import { ProductSubcategoryModal } from "@/app/categories/models/product-subcategories.model";
-import { ProductCharacteristicModel } from "@/app/products/models/product-characteristics";
+import { ProductCharacteristicModel } from "@/app/products/models/product-characteristics.model";
 import { knexInstance } from "@/database/connectingDb";
 
 class ProductService {
   async getAllProducts() {
     const products = await ProductsModel.query()
       .withGraphFetched("product_images")
-      .withGraphFetched("product_characteristics");
+      .withGraphJoined("characteristics.[parameters]");
     if (!products.length) {
       return HttpException.internalServErr(
         "Unsuccessful selecting data from table"
@@ -92,10 +90,7 @@ class ProductService {
     return "Product was successfully deleted";
   }
 
-  async createNewProduct(
-    body: IInfoForCreateProduct,
-    files: fileUpload.FileArray | null | undefined
-  ) {
+  async createNewProduct(body: IInfoForCreateProduct) {
     const {
       category,
       subcategory,
@@ -118,12 +113,8 @@ class ProductService {
     }
 
     const modifyCharacteristicsObject = (
-      JSON.parse(characteristics) as ICharacteristic[]
-    ).map((item) => {
-      const { characteristic_description, characteristic_title, ...rest } =
-        item;
-      return { characteristic_description, characteristic_title };
-    });
+      JSON.parse(characteristics) as number[]
+    ).map((item) => ({ characteristic: item }));
 
     const modifyImagesObject = (JSON.parse(images) as IProductImage[]).map(
       (img) => {
@@ -261,16 +252,13 @@ class ProductService {
     }
 
     if (productInfo.product_characteristics) {
-      const characteristics: ProdCharacteristicReq[] = JSON.parse(
+      const characteristics: number[] = JSON.parse(
         productInfo.product_characteristics
       );
-      const modifyChar = characteristics.map((char) => {
-        return {
-          product: +id,
-          characteristic_title: char.characteristic_title,
-          characteristic_description: char.characteristic_description,
-        };
-      });
+      const modifyChar = characteristics.map((char) => ({
+        product: +id,
+        characteristic: char,
+      }));
 
       await ProductCharacteristicModel.query().del().where("product", id);
 
@@ -326,6 +314,62 @@ class ProductService {
       .del()
       .where({ image_id: id });
     return { removed };
+  }
+
+  async getFilteredProductsByCategory(
+    category: string,
+    orderBy: "desc" | "asc",
+    page: number,
+    limit: number
+  ) {
+    if (isNaN(page) || isNaN(limit))
+      return HttpException.badRequest("Page or limit not a number");
+    const findCategory = await CategoriesModel.query().where({
+      category_title: category,
+    });
+    if (findCategory.length === 0)
+      return HttpException.badRequest("No specified category");
+    const products = await ProductsModel.query()
+      .select([
+        ProductsModel.relatedQuery("favorite_products")
+          .count()
+          .as("number_of_favorites"),
+        ProductsModel.relatedQuery("views").count().as("number_of_views"),
+        ProductsModel.relatedQuery("feedbacks")
+          .count()
+          .as("positive_feedbacks")
+          .where({ feedback_type: 1 }),
+        ProductsModel.relatedQuery("feedbacks")
+          .count()
+          .as("negative_feedbacks")
+          .where({ feedback_type: 2 }),
+      ])
+      .withGraphJoined("product_images")
+      .withGraphJoined("characteristics.[parameters]")
+      .withGraphJoined("subcategories")
+      .where("subcategories.category", findCategory[0].category_id)
+      .orderBy("price", orderBy);
+    console.log(page);
+
+    const total = products.length;
+    if (page === 1 && limit) {
+      products.length = limit;
+      return {
+        result: products,
+        totalElements: total,
+        currentPage: +page,
+        totalPage: Math.ceil(total / limit),
+        orderBy,
+      };
+    } else {
+      return {
+        result: products.slice((page - 1) * limit, +page * limit),
+        totalElements: total,
+        currentPage: +page,
+        totalPage: Math.ceil(total / limit),
+        orderBy,
+      };
+    }
   }
 }
 

@@ -3,7 +3,7 @@ import { ProductsModel } from "@/app/products/models/products.model";
 
 export class ProductCharacteristicModel extends Model {
   product_characteristic_id: number;
-  characteristic:number;
+  characteristic: number;
   product: number;
 
   static get tableName() {
@@ -16,7 +16,7 @@ export class ProductCharacteristicModel extends Model {
 
   static get relationMappings() {
     return {
-      products: {
+      product: {
         relation: Model.HasOneRelation,
         modelClass: ProductsModel,
         join: {
@@ -24,7 +24,6 @@ export class ProductCharacteristicModel extends Model {
           to: "products.product_id",
         },
       },
-			
     };
   }
 }

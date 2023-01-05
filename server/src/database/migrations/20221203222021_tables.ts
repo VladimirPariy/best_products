@@ -15,8 +15,8 @@ import { createSubcategoriesTable } from "./create-table/create-subcategories-ta
 import { createUsersTable } from "./create-table/create-users-table";
 import { createViewsTable } from "./create-table/create-views-table";
 import { createTempImagesTable } from "./create-table/create-temp-images-table";
-import {createParametersTable} from "./create-table/create-parameters-table";
-import {createCharacteristicsTable} from "./create-table/create-characteristics-table";
+import { createParametersTable } from "./create-table/create-parameters-table";
+import { createCharacteristicsTable } from "./create-table/create-characteristics-table";
 
 export async function up(knex: Knex): Promise<void> {
   return knex.schema
@@ -29,8 +29,8 @@ export async function up(knex: Knex): Promise<void> {
     .createTable("price_history", createPriceHistoryTable)
     .createTable("feedbacks_types", createFeedbacksTypesTable)
     .createTable("feedbacks", createFeedbacksTable)
-		.createTable("parameters", createParametersTable)
-		.createTable("characteristics", createCharacteristicsTable)
+    .createTable("parameters", createParametersTable)
+    .createTable("characteristics", createCharacteristicsTable)
     .createTable("product_characteristics", createProductCharacteristicsTable)
     .createTable("views", createViewsTable)
     .createTable("favorite_products", createFavoriteProductsTable)
@@ -49,8 +49,8 @@ export async function down(knex: Knex): Promise<void> {
     .dropTableIfExists("views")
     .dropTableIfExists("products_images")
     .dropTableIfExists("product_characteristics")
-		.dropTableIfExists("characteristics")
-		.dropTableIfExists("parameters")
+    .dropTableIfExists("characteristics")
+    .dropTableIfExists("parameters")
     .dropTableIfExists("price_history")
     .dropTableIfExists("product_subcategories")
     .dropTableIfExists("subcategories")
