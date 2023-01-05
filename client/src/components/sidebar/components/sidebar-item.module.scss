@@ -35,7 +35,6 @@ li:first-child > .active > .icon > svg > path {
       font-size: 1.33rem;
       line-height: 1.5rem;
       color: #524f5e;
-
     }
   }
 
@@ -58,7 +57,6 @@ li:first-child > .active > .icon > svg > path {
     fill: $white;
     stroke: $white;
   }
-
 }
 
 @media screen and (min-width: 769px) {
@@ -83,9 +81,8 @@ li:first-child > .active > .icon > svg > path {
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
       }
-      .hoveredTitle{
+      .hoveredTitle {
         opacity: 100%;
-
       }
     }
   }

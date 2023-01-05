@@ -1,0 +1,570 @@
+@use "scss/index" as *;
+
+.listContainer {
+  display: flex;
+  margin: 15px 0;
+  background: $white;
+  border-radius: 0 10px 10px 0;
+  min-width: 100%;
+
+  .favorite {
+    background: $active_item_color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+
+    > svg {
+      height: 18.5px;
+      width: 18.5px;
+
+      > path {
+        stroke: white;
+      }
+    }
+  }
+
+  .isFavorite > svg {
+    fill: #F8DC25;
+
+    > path {
+      stroke: #f8dc25;
+    }
+  }
+
+  .image {
+    padding: 18px 10px;
+    display: flex;
+    align-items: center;
+
+    > img {
+      height: 70px;
+      width: 60px;
+    }
+  }
+
+  .infoContainer {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    flex: 1 1 auto;
+
+    .productTitle {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 16px;
+      margin-top: 12px;
+    }
+
+    .characteristics {
+      font-size: 14px;
+      line-height: 16px;
+
+      > div {
+        margin-bottom: 8px;
+
+        .charTitle {
+          margin-right: 4px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .price {
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+
+      > svg {
+        height: 14px;
+        width: 15px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .containerForCounters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 20px 12px 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    > div {
+      max-width: 170px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .views > svg > g {
+      width: 14px;
+      height: 10px;
+
+    }
+
+    .favoriteCounter > svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.pileContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 130px;
+  background: $white;
+  margin: 0 5px 20px;
+  border-radius: 0 0 10px 10px;
+
+  .favorite {
+    background: $active_item_color;
+    display: flex;
+    justify-content: center;
+
+    > svg {
+      margin: 9px 0;
+      height: 18px;
+      width: 18px;
+
+      > path {
+        stroke: white;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .isFavorite > svg {
+    fill: #f8dc25;
+
+    > path {
+      stroke: #f8dc25;
+    }
+  }
+
+  .productTitle {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin: 8px 5px 0 5px;
+  }
+
+
+  .price {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 16px;
+
+    > svg {
+      width: 14px;
+      height: 14px;
+      margin-right: 10px;
+    }
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    margin-top: 11px;
+
+    > img {
+      width: 70px;
+      height: 80px;
+    }
+  }
+
+
+  .containerForCounters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 12px;
+    margin: 8px 0;
+
+
+    > div {
+      max-height: 20px;
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+
+
+      .icon {
+        width: 15px;
+        display: flex;
+        justify-content: center;
+        margin-right: 7px;
+      }
+    }
+
+    .views {
+      grid-row: 1;
+      margin-left: 13px;
+    }
+
+    .favoriteCounter {
+      margin-left: 13px;
+    }
+
+    .positiveFeedbacks {
+      grid-row: 1;
+      margin-right: 13px;
+    }
+
+    .negativeFeedbacks {
+      margin-right: 13px;
+    }
+  }
+}
+
+
+@media screen and (min-width: 769px) {
+  .listContainer {
+    margin: 25px 0;
+
+    .favorite {
+      padding: 7px;
+
+      > svg {
+        height: 26px;
+        width: 26px;
+      }
+    }
+
+    .image {
+      padding: 26px 35px;
+
+      > img {
+        height: 125px;
+        width: 100px;
+      }
+    }
+
+    .infoContainer {
+      gap: 12px;
+
+      .productTitle {
+        font-size: 20px;
+        line-height: 22px;
+        margin-top: 18px;
+      }
+
+      .characteristics {
+        font-size: 16px;
+        line-height: 18px;
+
+        > div {
+          margin-bottom: 12px;
+
+          .charTitle {
+            margin-right: 5px;
+          }
+        }
+      }
+
+      .price {
+        margin-top: 10px;
+        font-size: 22px;
+        line-height: 25px;
+
+        > svg {
+          height: 22px;
+          width: 23px;
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .containerForCounters {
+      gap: 20px;
+      padding: 25px 40px 25px 0;
+      font-size: 20px;
+      line-height: 22px;
+
+      > div {
+        max-width: 130px;
+
+        .icon {
+          width: 22px;
+        }
+      }
+
+      .views > svg > g {
+        width: 22px;
+        height: 14px;
+      }
+
+      .favoriteCounter > svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .pileContainer {
+    max-width: 210px;
+    margin: 0 10px 35px;
+
+    .favorite {
+      > svg {
+        margin: 7px 0;
+        height: 25px;
+        width: 25px;
+
+        > path {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+
+    .productTitle {
+      font-size: 22px;
+      line-height: 24px;
+      margin: 12px 8px 0 8px;
+    }
+
+
+    .price {
+      margin-top: 10px;
+      font-size: 22px;
+      line-height: 24px;
+
+      > svg {
+        width: 22px;
+        height: 21px;
+        margin-right: 15px;
+      }
+    }
+
+    .image {
+      margin-top: 16px;
+
+      > img {
+        width: 120px;
+        height: 140px;
+      }
+    }
+
+
+    .containerForCounters {
+      gap: 12px 16px;
+      margin: 13px 0;
+
+
+      > div {
+        font-size: 18px;
+        line-height: 20px;
+
+
+        .icon {
+          width: 25px;
+          margin-right: 10px;
+        }
+      }
+
+      .views {
+        margin-left: 18px;
+      }
+
+      .favoriteCounter {
+        margin-left: 18px;
+      }
+
+      .positiveFeedbacks {
+        margin-right: 18px;
+      }
+
+      .negativeFeedbacks {
+        margin-right: 18px;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 1025px) {
+  .listContainer {
+    margin: 35px 0;
+
+    .favorite {
+      padding: 9px;
+
+      > svg {
+        height: 32.5px;
+        width: 32.5px;
+      }
+    }
+
+    .image {
+      padding: 38px 55px;
+
+      > img {
+        height: 196px;
+        width: 166px;
+      }
+    }
+
+    .infoContainer {
+      gap: 16px;
+
+      .productTitle {
+        font-size: 24px;
+        line-height: 29px;
+        margin-top: 24px;
+      }
+
+      .characteristics {
+        font-size: 20px;
+        line-height: 24px;
+
+        > div {
+          margin-bottom: 16px;
+
+          .charTitle {
+            margin-right: 7px;
+          }
+        }
+      }
+
+      .price {
+        margin-top: 12px;
+        font-size: 28px;
+        line-height: 34px;
+
+        > svg {
+          height: 28px;
+          width: 29px;
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .containerForCounters {
+      gap: 25px;
+      padding: 33px 64px 33px 0;
+      font-size: 24px;
+      line-height: 29px;
+
+      > div {
+        max-width: 170px;
+
+        .icon {
+          width: 35px;
+        }
+      }
+
+      .views {
+        > svg > g {
+          width: 28px;
+          height: 18px;
+        }
+      }
+
+      .favoriteCounter {
+        > svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+    }
+  }
+
+  .pileContainer {
+    max-width: 275px;
+    margin: 0 10px 55px;
+    border-radius: 0 0 10px 10px;
+
+    .favorite {
+      > svg {
+        margin: 9px 0;
+        height: 32.5px;
+        width: 32.5px;
+
+        > path {
+          width: 32.5px;
+          height: 32.5px;
+        }
+      }
+    }
+
+    .productTitle {
+      font-size: 28px;
+      line-height: 34px;
+      margin: 16px 10px 0 10px;
+    }
+
+
+    .price {
+      margin-top: 13px;
+      font-size: 28px;
+      line-height: 34px;
+
+      > svg {
+        width: 29px;
+        height: 28px;
+        margin-right: 20px;
+      }
+    }
+
+    .image {
+      margin-top: 22px;
+
+      > img {
+        width: 163px;
+        height: 196px;
+      }
+    }
+
+    .containerForCounters {
+      gap: 16px 24px;
+      margin: 17px 0;
+
+      > div {
+        font-size: 24px;
+        line-height: 29px;
+
+
+        .icon {
+          width: 35px;
+          margin-right: 13px;
+        }
+      }
+
+      .views {
+        margin-left: 25px;
+      }
+
+      .favoriteCounter {
+        margin-left: 25px;
+      }
+
+      .positiveFeedbacks {
+        margin-right: 25px;
+      }
+
+      .negativeFeedbacks {
+        margin-right: 25px;
+      }
+    }
+  }
+}

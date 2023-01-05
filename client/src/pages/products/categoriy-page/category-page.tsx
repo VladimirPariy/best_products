@@ -1,9 +1,18 @@
-import Breadcrumbs from "components/ui/breadcrumbs/breadcrumbs";
-import React, { FC } from "react";
-import { Outlet } from "react-router";
+import React, {FC} from "react";
+
+import {Observer} from "components/observer/observer";
+import ProductsList from "components/products-list/products-list";
+
 
 const CategoryPage: FC = () => {
-  return <div>CATEGORY</div>;
+
+
+  return (
+    <>
+      <ProductsList/>
+      <Observer/>
+    </>
+  )
 };
 
 export default CategoryPage;

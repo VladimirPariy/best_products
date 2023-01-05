@@ -20,4 +20,5 @@ export const enum apiUrls {
   one_product_by_id = "products/", // :id
   temp_images = "products/temp/",
   prod_images = "products/img/", //:id
+  filtered_prod="products/filter",
 }

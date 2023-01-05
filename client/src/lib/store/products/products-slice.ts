@@ -1,42 +1,57 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProduct } from "lib/interfaces/products/product";
-import { IProductDetails } from "lib/interfaces/products/product-details";
-import { ErrorPayload } from "lib/store/store-types";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {IGetProductListTrigger, IProduct, IProductDataResponse} from "lib/interfaces/products/product";
+import {IProductDetails} from "lib/interfaces/products/product-details";
+import {ErrorPayload} from "lib/store/store-types";
 
 interface IInitialState {
   isFetch: boolean;
   error: ErrorPayload | null;
   productsList: IProduct[];
+  currentPage: number;
+  totalPage: number;
+  orderBy: string | null;
 }
 
 const initialState: IInitialState = {
   isFetch: false,
   error: null,
   productsList: [],
+  currentPage: 1,
+  totalPage: 0,
+  orderBy: null
 };
 
 export const productsSlice = createSlice({
   name: "@@products",
   initialState,
   reducers: {
-    productsListFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
+    setCurrentPage: (state) => {
+      state.currentPage += 1;
+    },
+    productsListFulfilled: (state, {payload}: PayloadAction<IProductDataResponse>) => {
       state.error = null;
       state.isFetch = false;
-      state.productsList = payload;
+      state.currentPage = payload.currentPage;
+      if (state.orderBy === payload.orderBy) {
+        state.productsList = state.productsList.concat(payload.result);
+      } else {
+        state.productsList = payload.result;
+      }
+      state.totalPage = payload.totalPage;
+      state.orderBy = payload.orderBy;
     },
     productsListPending: (state) => {
       state.error = null;
       state.isFetch = true;
-      state.productsList = [];
     },
-    productsListRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
+    productsListRejected: (state, {payload}: PayloadAction<ErrorPayload>) => {
       state.error = payload;
       state.isFetch = false;
-      state.productsList = [];
     },
-    productsListTrigger: () => {},
+    productsListTrigger: (state, action: PayloadAction<IGetProductListTrigger>) => {
+    },
 
-    removeProductFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
+    removeProductFulfilled: (state, {payload}: PayloadAction<IProduct[]>) => {
       state.error = null;
       state.isFetch = false;
       state.productsList = payload;
@@ -47,52 +62,53 @@ export const productsSlice = createSlice({
     },
     removeProductRejected: (
       state,
-      { payload }: PayloadAction<ErrorPayload>
+      {payload}: PayloadAction<ErrorPayload>
     ) => {
       state.error = payload;
       state.isFetch = false;
     },
-    removeProductTrigger: (_, action: PayloadAction<number>) => {},
+    removeProductTrigger: (_, action: PayloadAction<number>) => {
+    },
 
     clearProductsList: (state) => {
-      state = initialState;
+      return initialState;
     },
-    addNewProduct: (state, { payload }: PayloadAction<IProduct>) => {
+    addNewProduct: (state, {payload}: PayloadAction<IProduct>) => {
       state.productsList.push(payload);
     },
     updateProductAction: (
       state,
-      { payload }: PayloadAction<IProductDetails>
+      {payload}: PayloadAction<IProductDetails>
     ) => {
-      const {
-        product_id,
-        product_characteristics,
-        product_description,
-        product_images,
-        product_title,
-        price,
-      } = payload;
-      const modifyProduct: IProduct = {
-        product_id,
-        product_characteristics,
-        product_description,
-        product_images,
-        product_title,
-        price,
-      };
+      // const {
+      //   product_id,
+      //  characteristics,
+      //   product_description,
+      //   product_images,
+      //   product_title,
+      //   price,
+      // } = payload;
+      // const modifyProduct: IProduct = {
+      //   product_id,
+      //   characteristics,
+      //   product_description,
+      //   product_images,
+      //   product_title,
+      //   price,
+      // };
 
-      return {
-        ...state,
-        productsList: [
-          ...state.productsList.map((prod) => {
-            if (prod.product_id === product_id) {
-              return modifyProduct;
-            } else {
-              return prod;
-            }
-          }),
-        ],
-      };
+      // return {
+      //   ...state,
+      //   productsList: [
+      //     ...state.productsList.map((prod) => {
+      //       if (prod.product_id === product_id) {
+      //         return modifyProduct;
+      //       } else {
+      //         return prod;
+      //       }
+      //     }),
+      //   ],
+      // };
     },
   },
 });

@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, { FC, useState } from "react";
 
 import Header from "layout/header/header";
 import Content from "layout/content/content";

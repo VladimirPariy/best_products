@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use "scss/index" as *;
 
 aside {
   .sidebarWrapper {
@@ -7,7 +7,6 @@ aside {
     min-height: 100%;
 
     .extraCategory {
-
       .subcategoryList {
         list-style: none;
         background: $white;
@@ -19,7 +18,7 @@ aside {
 
           > a {
             text-decoration: none;
-            color: #524F5E;
+            color: #524f5e;
             font-size: 20px;
             line-height: 20px;
             white-space: nowrap;
@@ -31,7 +30,6 @@ aside {
               right: 5px;
               width: 15px;
             }
-
           }
         }
 
@@ -83,7 +81,7 @@ aside {
           top: 0;
           left: 235px;
           list-style: none;
-          border: 3px solid #766ED3;
+          border: 3px solid #766ed3;
           box-shadow: 0px 7px 25px rgba(0, 0, 0, 0.3);
           border-radius: 15px;
           padding: 20px 26px 20px 32px;
@@ -99,7 +97,6 @@ aside {
               > div > span > svg {
                 right: 0;
                 width: 20px;
-
               }
             }
           }
@@ -127,7 +124,7 @@ aside {
       .extraCategory > .subcategoryList {
         width: 500px;
         left: 270px;
-        border: 3px solid #766ED3;
+        border: 3px solid #766ed3;
         border-radius: 20px;
         padding: 30px 36px 30px 46px;
 
@@ -145,8 +142,6 @@ aside {
           }
         }
       }
-
-
     }
 
     .sidebarWrapper:hover {
@@ -155,5 +150,4 @@ aside {
       min-width: 360px;
     }
   }
-
 }

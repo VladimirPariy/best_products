@@ -21,9 +21,9 @@ const ProductControl: FC = () => {
   const dispatch = useAppDispatch();
   const productsList = useAppSelector(selectProductList);
 
-  useEffect(() => {
-    if (!productsList.length) dispatch(productsListTrigger());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (!productsList.length) dispatch(productsListTrigger());
+  // }, [dispatch]);
 
   const removeProduct = (id: number) => {
     dispatch(removeProductTrigger(id));

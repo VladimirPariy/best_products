@@ -5,22 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/car.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/clothing.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/electronics.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/goods-statistics/favorite-count.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/goods-statistics/negative-shape.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/goods-statistics/shape.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/goods-statistics/views.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/sort/arrows.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/sort/filter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/sort/view-1.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icon/sort/view.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/observer/observer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/product-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/products-list/products-list.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/breadcrumbs/breadcrumbs.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/hooks/use-observer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/app/products/models/characteristics.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/app/products/models/parameters.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icon/sidebar/electronics.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/electronics.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icon/sidebar/car.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/car.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icon/sidebar/clothing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/clothing.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icon/sidebar/electronics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icon/sidebar/electronics.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/components/sidebar-item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/components/sidebar-item.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/components/sidebar-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/components/sidebar-item.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.data.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/sidebar/sidebar.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/sidebar/sidebar.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/breadcrumbs/breadcrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/breadcrumbs/breadcrumbs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/main-container/main-container.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/main-container/main-container.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/main-container/main-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/main-container/main-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/content/content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/content/content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-list-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-list-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/product-control/product-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/product-control/product-control.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/update-product/update-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/update-product/update-product.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/categoriy-page/category-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/categoriy-page/category-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/categories/categories.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/categories/categories.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/categories/models/subcatigories.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/categories/models/subcatigories.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/product-characteristics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/product-characteristics.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/users/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/users/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +126,11 @@
       <workItem from="1672401663907" duration="24142000" />
       <workItem from="1672439481066" duration="1186000" />
       <workItem from="1672598180769" duration="7205000" />
-      <workItem from="1672643234885" duration="31992000" />
+      <workItem from="1672643234885" duration="34572000" />
+      <workItem from="1672728227156" duration="13509000" />
+      <workItem from="1672802482316" duration="605000" />
+      <workItem from="1672835764640" duration="17582000" />
+      <workItem from="1672900111921" duration="32435000" />
     </task>
     <servers />
   </component>

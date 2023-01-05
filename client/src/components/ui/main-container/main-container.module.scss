@@ -1,7 +1,7 @@
 .mainContainer {
   position: relative;
-  width: 100vw;
   padding: 20px;
+  width: 100vw;
 }
 
 .admin {
@@ -10,7 +10,7 @@
 
 @media screen and (min-width: 769px) {
   .mainContainer {
-    padding: 30px 80px;
+    padding: 30px 50px 30px 115px;
   }
 
   .admin {
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 1025px) {
   .mainContainer {
-    padding: 40px 100px;
+    padding: 40px 70px 40px 150px;
   }
 
   .admin {
