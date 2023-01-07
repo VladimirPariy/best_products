@@ -12,5 +12,5 @@ export const {
   removeProductPending,
   updateProductAction,
   addNewProduct,
-  setCurrentPage
+  setCurrentPage,
 } = productsSlice.actions;

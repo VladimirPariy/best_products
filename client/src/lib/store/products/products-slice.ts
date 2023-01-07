@@ -1,7 +1,11 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IGetProductListTrigger, IProduct, IProductDataResponse} from "lib/interfaces/products/product";
-import {IProductDetails} from "lib/interfaces/products/product-details";
-import {ErrorPayload} from "lib/store/store-types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  IGetProductListTrigger,
+  IProduct,
+  IProductDataResponse,
+} from "lib/interfaces/products/product";
+import { IProductDetails } from "lib/interfaces/products/product-details";
+import { ErrorPayload } from "lib/store/store-types";
 
 interface IInitialState {
   isFetch: boolean;
@@ -10,6 +14,8 @@ interface IInitialState {
   currentPage: number;
   totalPage: number;
   orderBy: string | null;
+  minPrice: number;
+  maxPrice: number;
 }
 
 const initialState: IInitialState = {
@@ -18,7 +24,9 @@ const initialState: IInitialState = {
   productsList: [],
   currentPage: 1,
   totalPage: 0,
-  orderBy: null
+  orderBy: null,
+  minPrice: 0,
+  maxPrice: 0,
 };
 
 export const productsSlice = createSlice({
@@ -28,7 +36,10 @@ export const productsSlice = createSlice({
     setCurrentPage: (state) => {
       state.currentPage += 1;
     },
-    productsListFulfilled: (state, {payload}: PayloadAction<IProductDataResponse>) => {
+    productsListFulfilled: (
+      state,
+      { payload }: PayloadAction<IProductDataResponse>
+    ) => {
       state.error = null;
       state.isFetch = false;
       state.currentPage = payload.currentPage;
@@ -39,19 +50,23 @@ export const productsSlice = createSlice({
       }
       state.totalPage = payload.totalPage;
       state.orderBy = payload.orderBy;
+      state.maxPrice = payload.maxPrice;
+      state.minPrice = payload.minPrice;
     },
     productsListPending: (state) => {
       state.error = null;
       state.isFetch = true;
     },
-    productsListRejected: (state, {payload}: PayloadAction<ErrorPayload>) => {
+    productsListRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.error = payload;
       state.isFetch = false;
     },
-    productsListTrigger: (state, action: PayloadAction<IGetProductListTrigger>) => {
-    },
+    productsListTrigger: (
+      state,
+      action: PayloadAction<IGetProductListTrigger>
+    ) => {},
 
-    removeProductFulfilled: (state, {payload}: PayloadAction<IProduct[]>) => {
+    removeProductFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
       state.error = null;
       state.isFetch = false;
       state.productsList = payload;
@@ -62,23 +77,22 @@ export const productsSlice = createSlice({
     },
     removeProductRejected: (
       state,
-      {payload}: PayloadAction<ErrorPayload>
+      { payload }: PayloadAction<ErrorPayload>
     ) => {
       state.error = payload;
       state.isFetch = false;
     },
-    removeProductTrigger: (_, action: PayloadAction<number>) => {
-    },
+    removeProductTrigger: (_, action: PayloadAction<number>) => {},
 
     clearProductsList: (state) => {
       return initialState;
     },
-    addNewProduct: (state, {payload}: PayloadAction<IProduct>) => {
+    addNewProduct: (state, { payload }: PayloadAction<IProduct>) => {
       state.productsList.push(payload);
     },
     updateProductAction: (
       state,
-      {payload}: PayloadAction<IProductDetails>
+      { payload }: PayloadAction<IProductDetails>
     ) => {
       // const {
       //   product_id,
@@ -96,7 +110,6 @@ export const productsSlice = createSlice({
       //   product_title,
       //   price,
       // };
-
       // return {
       //   ...state,
       //   productsList: [

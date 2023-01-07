@@ -25,7 +25,7 @@
   }
 
   .isFavorite > svg {
-    fill: #F8DC25;
+    fill: #f8dc25;
 
     > path {
       stroke: #f8dc25;
@@ -112,7 +112,6 @@
     .views > svg > g {
       width: 14px;
       height: 10px;
-
     }
 
     .favoriteCounter > svg {
@@ -164,7 +163,6 @@
     margin: 8px 5px 0 5px;
   }
 
-
   .price {
     margin-top: 7px;
     display: flex;
@@ -191,13 +189,11 @@
     }
   }
 
-
   .containerForCounters {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8px 12px;
     margin: 8px 0;
-
 
     > div {
       max-height: 20px;
@@ -206,7 +202,6 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 14px;
-
 
       .icon {
         width: 15px;
@@ -235,7 +230,6 @@
     }
   }
 }
-
 
 @media screen and (min-width: 769px) {
   .listContainer {
@@ -343,7 +337,6 @@
       margin: 12px 8px 0 8px;
     }
 
-
     .price {
       margin-top: 10px;
       font-size: 22px;
@@ -365,16 +358,13 @@
       }
     }
 
-
     .containerForCounters {
       gap: 12px 16px;
       margin: 13px 0;
 
-
       > div {
         font-size: 18px;
         line-height: 20px;
-
 
         .icon {
           width: 25px;
@@ -400,7 +390,6 @@
     }
   }
 }
-
 
 @media screen and (min-width: 1025px) {
   .listContainer {
@@ -513,7 +502,6 @@
       margin: 16px 10px 0 10px;
     }
 
-
     .price {
       margin-top: 13px;
       font-size: 28px;
@@ -542,7 +530,6 @@
       > div {
         font-size: 24px;
         line-height: 29px;
-
 
         .icon {
           width: 35px;

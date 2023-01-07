@@ -1,5 +1,5 @@
-import {ICharacteristic} from "lib/interfaces/characteristics/characteristic";
-import {IProductImages} from "lib/interfaces/products/upload-image";
+import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
+import { IProductImages } from "lib/interfaces/products/upload-image";
 
 export interface IPriceHistory {
   created_at: string;
@@ -14,9 +14,10 @@ export interface IProductDataResponse {
   totalElements: number;
   currentPage: number;
   totalPage: number;
-  orderBy: string
+  orderBy: string;
+  minPrice: number;
+  maxPrice: number;
 }
-
 
 export interface IProduct {
   product_id: number;
@@ -29,9 +30,9 @@ export interface IProduct {
     characteristic_title: string;
     parameter: number;
     parameters: {
-      parameter_id: number
-      parameter_title: string
-      subcategory: number
+      parameter_id: number;
+      parameter_title: string;
+      subcategory: number;
     };
   }[];
   subcategories: {
@@ -46,9 +47,8 @@ export interface IProduct {
   positive_feedbacks: number;
 }
 
-
 export interface IGetProductListTrigger {
-  category: string,
-  page: number,
-  orderBy: string
+  category: string;
+  page: number;
+  orderBy: string;
 }

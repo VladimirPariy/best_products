@@ -1,4 +1,4 @@
-import {RefObject, useEffect, useRef} from "react";
+import { RefObject, useEffect, useRef } from "react";
 
 interface IUseObserver {
   (
@@ -28,4 +28,4 @@ const useObserver: IUseObserver = (ref, canLoad, isLoading, callback) => {
   }, [isLoading]);
 };
 
-export {useObserver};
+export { useObserver };

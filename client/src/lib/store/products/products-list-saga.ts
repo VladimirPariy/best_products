@@ -1,8 +1,8 @@
-import {PayloadAction} from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import {IProductDataResponse} from "lib/interfaces/products/product";
-import {call, put, takeLatest} from "redux-saga/effects";
-import {AxiosError} from "axios";
+import { IProductDataResponse } from "lib/interfaces/products/product";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosError } from "axios";
 
 import {
   productsListFulfilled,
@@ -11,10 +11,15 @@ import {
   productsListTrigger,
 } from "lib/store/products/products-actions";
 
-function* productsListWorker(action: PayloadAction<{ category: string, page: number, orderBy: string }>) {
+function* productsListWorker(
+  action: PayloadAction<{ category: string; page: number; orderBy: string }>
+) {
   yield put(productsListPending());
   try {
-    const res: IProductDataResponse = yield call(ProductsApi.getFilteredProducts, action.payload);
+    const res: IProductDataResponse = yield call(
+      ProductsApi.getFilteredProducts,
+      action.payload
+    );
     yield put(productsListFulfilled(res));
   } catch (error) {
     if (error instanceof AxiosError)

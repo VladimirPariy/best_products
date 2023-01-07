@@ -1,10 +1,9 @@
-import React, {FC} from "react";
-import {useLocation} from "react-router";
+import React, { FC } from "react";
+import { useLocation } from "react-router";
 
 import styles from "components/ui/breadcrumbs/breadcrumbs.module.scss";
 
-interface Props {
-}
+interface Props {}
 
 const Breadcrumbs: FC<Props> = (props) => {
   const location = useLocation();

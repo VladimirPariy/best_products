@@ -14,8 +14,8 @@
   .view > svg {
     height: 100%;
     width: 35px;
+    cursor: pointer;
   }
-
 
   > div:not(:first-child) {
     display: flex;
@@ -34,6 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     > svg {
       width: 12px;
@@ -56,14 +57,17 @@
       transform: rotate(180deg);
     }
 
-
     .asc > svg {
       transform: rotate(0deg);
     }
   }
+  .filter {
+    cursor: pointer;
+  }
 
   .category {
     flex-wrap: wrap;
+    cursor: default;
   }
 }
 
@@ -76,7 +80,6 @@
 
     .view > svg {
       width: 40px;
-
     }
 
     > div:not(:first-child) {
@@ -97,7 +100,6 @@
 
     .arrow > svg {
       width: 20px;
-
     }
   }
 
@@ -136,7 +138,6 @@
       .arrow {
         > svg {
           width: 25px;
-
         }
       }
     }

@@ -1,4 +1,6 @@
-import SubcategoryLink from "components/ui/subcategory-link/subcategory-link";
+import React, { FC } from "react";
+import styles from "pages/home/home.module.scss";
+
 import {
   selectCategories,
   selectCategoriesError,
@@ -6,8 +8,8 @@ import {
   selectSubcategories,
 } from "lib/store/categories/categories-selectors";
 import { useAppSelector } from "lib/store/store-types";
-import React, { FC } from "react";
-import styles from "pages/home/home.module.scss";
+
+import SubcategoryLink from "components/ui/subcategory-link/subcategory-link";
 import banner from "assets/images/banner.png";
 
 const Home: FC = () => {

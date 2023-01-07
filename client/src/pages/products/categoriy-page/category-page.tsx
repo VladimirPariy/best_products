@@ -1,18 +1,15 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
-import {Observer} from "components/observer/observer";
+import { Observer } from "components/observer/observer";
 import ProductsList from "components/products-list/products-list";
 
-
 const CategoryPage: FC = () => {
-
-
   return (
     <>
-      <ProductsList/>
-      <Observer/>
+      <ProductsList />
+      <Observer />
     </>
-  )
+  );
 };
 
 export default CategoryPage;

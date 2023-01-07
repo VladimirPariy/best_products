@@ -161,7 +161,7 @@ const UpdateProduct: FC = () => {
       }
     }
   };
-  console.log(characteristics)
+  console.log(characteristics);
 
   return (
     <ContentContainer>
