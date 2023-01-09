@@ -8,7 +8,7 @@ import FilterPanel from "components/ui/filter-panel/filter-panel";
 import SortPanel from "components/ui/sort-panel/sort-panel";
 
 const LayoutPage: FC = () => {
-  const [isShowFilter, setIsShowFilter] = useState(true);
+  const [isShowFilter, setIsShowFilter] = useState(false);
 
   return (
     <div className={styles.wrapper}>

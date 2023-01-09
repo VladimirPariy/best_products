@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import { IProductDataResponse } from "lib/interfaces/products/product";
+import {IGetProductListTrigger, IProductDataResponse} from "lib/interfaces/products/product";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 
@@ -12,7 +12,7 @@ import {
 } from "lib/store/products/products-actions";
 
 function* productsListWorker(
-  action: PayloadAction<{ category: string; page: number; orderBy: string }>
+  action: PayloadAction<IGetProductListTrigger>
 ) {
   yield put(productsListPending());
   try {

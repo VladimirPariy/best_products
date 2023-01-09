@@ -1,9 +1,11 @@
 import React, {ChangeEvent, FC, useEffect, useState} from "react";
 import {useLocation} from "react-router";
+import {useSearchParams} from "react-router-dom";
 
 import styles from "components/ui/filter-panel/filter-panel.module.scss";
 import FilterContainer from "components/ui/filter-panel/components/filter-container";
 
+import {useSetParam} from "lib/hooks/use-set-param";
 import {
   selectMaxPrice,
   selectMinPrice,
@@ -34,24 +36,23 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
   .find((category) => category.category_title === categoryPath)
   ?.subcategories.map((subcategory) => subcategory);
 
+  const [searchParams] = useSearchParams();
+  const paramMinPrice = searchParams.get('minPrice')
+  const paramMaxPrice = searchParams.get('maxPrice')
+  const paramSubcategoryId = searchParams.get('subcategoryId')
+  const paramSelectedParameters = searchParams.get('selectedParameters')
 
-  const [subcategoryId, setSubcategoryId] = useState<number>(-1);
-  const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(0);
-  const [selectedParameters, setSelectedParameters] = useState<string[]>([])
+
+  const [subcategoryId, setSubcategoryId] = useState<number>(() => paramSubcategoryId ? +paramSubcategoryId : -1);
+  const [minPrice, setMinPrice] = useState<number>(() => paramMinPrice ? +paramMinPrice : 0);
+  const [maxPrice, setMaxPrice] = useState<number>(() => paramMaxPrice ? +paramMaxPrice : 0);
+  const [selectedParameters, setSelectedParameters] = useState<string[]>(() => paramSelectedParameters ? paramSelectedParameters.split(',') : [])
 
 
   useEffect(() => {
-    if (minPriceFromServer) setMinPrice(minPriceFromServer);
-    if (maxPriceFromServer) setMaxPrice(maxPriceFromServer);
+    if (minPriceFromServer && (minPriceFromServer > minPrice || minPrice===0)) setMinPrice(minPriceFromServer);
+    if (maxPriceFromServer && (maxPriceFromServer < maxPrice || maxPrice === 0)) setMaxPrice(maxPriceFromServer);
   }, [minPriceFromServer, maxPriceFromServer]);
-
-  useEffect(() => {
-    if (minPrice > maxPrice) setMinPrice(maxPrice);
-    if (minPrice < minPriceFromServer) setMinPrice(minPriceFromServer);
-    if (maxPrice < minPriceFromServer) setMaxPrice(minPriceFromServer);
-    if (maxPrice > maxPriceFromServer) setMaxPrice(maxPriceFromServer);
-  }, [minPrice, maxPrice]);
 
   useEffect(() => {
     const fetchParameters = async () => {
@@ -61,16 +62,20 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
     };
     if (subcategoryId > -1) {
       fetchParameters();
-      setSelectedParameters([])
+      if (selectedParameters?.length) {
+        setSelectedParameters([])
+      }
     }
   }, [subcategoryId]);
-
   useEffect(() => {
-    if (categoryPath !== prevCategory) {
+    if (categoryPath !== prevCategory && prevCategory) {
       setSubcategoryId(-1);
-      setPrevCategory(categoryPath);
       setProductsParameters([]);
+      setSelectedParameters([])
+      setMinPrice(0)
+      setMaxPrice(0)
     }
+    setPrevCategory(categoryPath);
   }, [categoryPath]);
 
 
@@ -86,13 +91,10 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
     }
     setSelectedParameters(prev => [...prev, e.target.value])
   }
-
-
-  console.log(`subcategoryId: ${subcategoryId}
-  minPrice: ${minPrice}
-  maxPrice: ${maxPrice}
-  selectedParameters: ${selectedParameters}
-  `);
+  useSetParam(subcategoryId > -1, {subcategoryId})
+  useSetParam(minPrice >= minPriceFromServer, {minPrice})
+  useSetParam(maxPrice <= maxPriceFromServer, {maxPrice})
+  useSetParam(selectedParameters?.length > 0, {selectedParameters})
 
   return (
     <>
@@ -131,7 +133,6 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
                 type="number"
                 name="minPrice"
                 value={minPrice}
-                min={minPrice}
                 onChange={(e) => setMinPrice(+e.target.value)}
               />
               <div className={styles.separator}></div>
@@ -139,7 +140,6 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
                 type="number"
                 name="maxPrice"
                 value={maxPrice}
-                max={maxPrice}
                 onChange={(e) => setMaxPrice(+e.target.value)}
               />
             </div>
@@ -163,6 +163,7 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
                           className={styles.charTitle}
                         >
                           <input
+                            checked={!!selectedParameters.find(param => param === `${char.characteristic_id}`)}
                             type="checkbox"
                             value={char.characteristic_id}
                             onChange={changeCharacteristicHandler}

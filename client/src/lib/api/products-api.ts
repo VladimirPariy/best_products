@@ -3,6 +3,7 @@ import { apiUrls } from "lib/enums/api-urls";
 import { IParametersDataFromServer } from "lib/interfaces/parameters/parameters.interface";
 import { IDataForCreating } from "lib/interfaces/products/creating-product";
 import {
+  IGetProductListTrigger,
   IProduct,
   IProductDataResponse,
 } from "lib/interfaces/products/product";
@@ -73,11 +74,8 @@ class ProductsApi {
     category,
     page,
     orderBy,
-  }: {
-    category: string;
-    page: number;
-    orderBy: string;
-  }) {
+    filter
+  }: IGetProductListTrigger) {
     const { data } = await defaultAxios.get<IProductDataResponse>(
       apiUrls.filtered_prod,
       {
@@ -85,6 +83,7 @@ class ProductsApi {
           category,
           page,
           orderBy,
+          filter
         },
       }
     );

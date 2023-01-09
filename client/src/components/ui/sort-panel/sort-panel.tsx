@@ -5,12 +5,12 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { useLocation } from "react-router";
-import { useSearchParams } from "react-router-dom";
+import {useLocation} from "react-router";
+import {useSearchParams} from "react-router-dom";
 
 import styles from "components/ui/sort-panel/sort-panel.module.scss";
 
-import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
 
 import Arrow from "assets/icon/general/arrow";
 import Arrows from "assets/icon/sort/arrows";
@@ -22,13 +22,13 @@ interface Props {
   setIsShowFilter: Dispatch<SetStateAction<boolean>>;
 }
 
-const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
+const SortPanel: FC<Props> = ({setIsShowFilter}) => {
   const location = useLocation();
   const pathArray = location.pathname.split("/");
   const category = pathArray[pathArray.length - 1];
   let [searchParams, setSearchParams] = useSearchParams();
   const [viewStyle, setViewStyle] = useState<boolean>(
-    searchParams.get("view") === "pile"
+    searchParams.get("view") === "list"
   );
   const [sortPrice, setSortPrice] = useState<boolean>(
     searchParams.get("orderBy") === "desc"
@@ -44,13 +44,13 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
 
   useEffect(() => {
     if (viewStyle) {
-      searchParams.set("view", "pile");
-      setSearchParams(searchParams);
-    } else {
       searchParams.set("view", "list");
       setSearchParams(searchParams);
+    } else {
+      searchParams.set("view", "pile");
+      setSearchParams(searchParams);
     }
-  }, [viewStyle, setSearchParams, searchParams]);
+  }, [viewStyle]);
 
   useEffect(() => {
     if (sortPrice) {
@@ -76,17 +76,17 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
   return (
     <div className={styles.wrapper}>
       <div onClick={changeView} className={styles.view}>
-        {viewStyle ? <View1 /> : <View />}
+        {viewStyle ? <View/> : <View1/>}
       </div>
       <div onClick={changeSort} className={styles.priceContainer}>
-        <Arrows />
+        <Arrows/>
         <span className={styles.price}>Price</span>
         <span className={sortStyle}>
-          <Arrow />
+          <Arrow/>
         </span>
       </div>
       <div onClick={showFilterPanelHandler} className={styles.filter}>
-        <Filter />
+        <Filter/>
       </div>
       <div className={styles.category}>
         Category:

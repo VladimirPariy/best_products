@@ -1,5 +1,4 @@
-import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
-import { IProductImages } from "lib/interfaces/products/upload-image";
+import {IProductImages} from "lib/interfaces/products/upload-image";
 
 export interface IPriceHistory {
   created_at: string;
@@ -51,4 +50,10 @@ export interface IGetProductListTrigger {
   category: string;
   page: number;
   orderBy: string;
+  filter: {
+    subcategoryId: string | null;
+    selectedParameters: string | null;
+    minPrice: string | null;
+    maxPrice: string | null;
+  }
 }
