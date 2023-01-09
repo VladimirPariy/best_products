@@ -1,6 +1,6 @@
 import { Model } from "objection";
-import { ParametersModel } from "@/app/products/models/parameters.model";
-import { ProductCharacteristicModel } from "@/app/products/models/product-characteristics.model";
+import { ParametersModel } from "@/app/parameters/models/parameters.model";
+import { ProductCharacteristicModel } from "@/app/parameters/models/product-characteristics.model";
 
 export class CharacteristicsModel extends Model {
   characteristic_id: number;

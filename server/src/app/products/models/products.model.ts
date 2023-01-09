@@ -4,12 +4,12 @@ import { ProductSubcategoryModal } from "@/app/categories/models/product-subcate
 import { CommentsModel } from "@/app/comments/comments.model";
 import { FavoriteProductsModel } from "@/app/favorite-products/favorite-products.model";
 import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
-import { ProductCharacteristicModel } from "@/app/products/models/product-characteristics.model";
+import { ProductCharacteristicModel } from "@/app/parameters/models/product-characteristics.model";
 import { PriceHistoryModel } from "@/app/products/models/price-history.model";
 import { ProductsImagesModel } from "@/app/products/models/products-images.model";
 import { ViewsModel } from "@/app/views/views.model";
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
-import { CharacteristicsModel } from "@/app/products/models/characteristics.model";
+import { CharacteristicsModel } from "@/app/parameters/models/characteristics.model";
 
 class ProductsModel extends Model {
   product_id: number;
@@ -25,6 +25,7 @@ class ProductsModel extends Model {
   favorite_products!: FavoriteProductsModel[];
   views!: ViewsModel[];
   subcategories: SubcategoryModel[];
+	characteristics: CharacteristicsModel[];
 
   static tableName = "products";
 

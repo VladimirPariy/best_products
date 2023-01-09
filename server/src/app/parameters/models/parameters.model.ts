@@ -1,5 +1,6 @@
 import { Model } from "objection";
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
+import {CharacteristicsModel} from "@/app/parameters/models/characteristics.model";
 
 export class ParametersModel extends Model {
   parameter_id: number;
@@ -24,6 +25,14 @@ export class ParametersModel extends Model {
           to: "subcategories.subcategory_id",
         },
       },
+			characteristics:{
+				relation: Model.HasManyRelation,
+				modelClass: CharacteristicsModel,
+				join: {
+					from: "characteristics.parameter",
+					to: "parameters.parameter_id",
+				}
+			}
     };
   }
 }

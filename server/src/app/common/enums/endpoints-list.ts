@@ -6,6 +6,7 @@ export const enum EndpointsList {
   ROOT_USER = "/user",
   ROOT_CATEGORIES = "/categories",
   ROOT_PRODUCTS = "/products",
+	ROOT_PARAMETERS = "/parameters",
   //auth-router
   SIGN_UP = "/registration",
   SIGN_IN = "/login",
@@ -29,4 +30,7 @@ export const enum EndpointsList {
   TEMP_IMAGES = "/temp",
   REMOVE_TEMP_IMAGES = "/temp/:id",
   REMOVE_IMAGE = "/img/:id",
+	
+	//parameters
+	parametersBySubcategoryId = "/:subcategoryId"
 }
