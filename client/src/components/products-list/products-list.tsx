@@ -1,6 +1,4 @@
 import React, {FC, useEffect} from "react";
-import {useSearchParams} from "react-router-dom";
-import {useLocation} from "react-router";
 
 import styles from "components/products-list/products-list.module.scss";
 
@@ -18,29 +16,29 @@ import {
 import {useAppDispatch, useAppSelector} from "lib/store/store-types";
 
 interface Props {
+  category: string;
+  subcategoryId: string | null;
+  order: string | null;
+  selectedParameters: string | null;
+  minPrice: string | null;
+  maxPrice: string | null;
 }
 
 const ProductsList: FC<Props> = (props) => {
+
+  const {selectedParameters, minPrice, maxPrice, category, subcategoryId, order} = props;
+
   const dispatch = useAppDispatch();
-  const location = useLocation();
-  const pathArray = location.pathname.split("/");
-  const category = pathArray[pathArray.length - 1];
   const isLoading = useAppSelector(selectProductsStatus);
   const products = useAppSelector(selectProductList);
   const currentPage = useAppSelector(selectCurrentProductPage);
   const orderFromServer = useAppSelector(selectProductsOrderBy);
-  let [searchParams] = useSearchParams();
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
+  const subcategoryFromServer = products[0]?.subcategories[0]?.subcategory_id
 
   const productsLimit = 10;
-  const order = searchParams.get("orderBy");
 
-
-  const subcategoryId = searchParams.get('subcategoryId')
-  const selectedParameters = searchParams.get('selectedParameters')
-  const minPrice = searchParams.get('minPrice')
-  const maxPrice = searchParams.get('maxPrice')
 
   useEffect(() => {
     if (isLoading) return;
@@ -67,7 +65,8 @@ const ProductsList: FC<Props> = (props) => {
   }, [currentPage]);
   useEffect(() => {
     if (isLoading) return;
-    if (order !== orderFromServer || !order || subcategoryId || (minPrice && +minPrice !== minPriceFromServer) || (maxPrice && +maxPrice !== maxPriceFromServer)) {
+    if (order !== orderFromServer || !order || (subcategoryId && subcategoryId!== `${subcategoryFromServer}`) || (minPrice && +minPrice !== minPriceFromServer) || (maxPrice && +maxPrice !== maxPriceFromServer)) {
+
       dispatch(clearProductsList());
       dispatch(
         productsListTrigger({

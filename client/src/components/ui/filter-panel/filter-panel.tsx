@@ -50,7 +50,7 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
 
 
   useEffect(() => {
-    if (minPriceFromServer && (minPriceFromServer > minPrice || minPrice===0)) setMinPrice(minPriceFromServer);
+    if (minPriceFromServer && (minPriceFromServer > minPrice || minPrice === 0)) setMinPrice(minPriceFromServer);
     if (maxPriceFromServer && (maxPriceFromServer < maxPrice || maxPrice === 0)) setMaxPrice(maxPriceFromServer);
   }, [minPriceFromServer, maxPriceFromServer]);
 
@@ -92,41 +92,43 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
     setSelectedParameters(prev => [...prev, e.target.value])
   }
   useSetParam(subcategoryId > -1, {subcategoryId})
-  useSetParam(minPrice >= minPriceFromServer, {minPrice})
-  useSetParam(maxPrice <= maxPriceFromServer, {maxPrice})
+  useSetParam(minPrice > minPriceFromServer, {minPrice})
+  useSetParam(maxPrice < maxPriceFromServer, {maxPrice})
   useSetParam(selectedParameters?.length > 0, {selectedParameters})
 
   return (
     <>
       {isShowFilter && (
         <div className={styles.filterPanelController}>
-          <FilterContainer
-            className={styles.categoryFilter}
-            title={"Categories"}
-          >
-            <div className={styles.radioContainer}>
-              {subcategoryList &&
-                subcategoryList.map((subcategory) => (
-                  <label
-                    key={
-                      subcategory.subcategory_id + subcategory.subcategory_title
-                    }
-                    className={styles.subcategoryTitle}
-                  >
-                    <input
-                      type="radio"
-                      value={subcategory.subcategory_id}
-                      name="subcategory"
-                      checked={subcategory.subcategory_id === subcategoryId}
-                      onChange={subcategoryHandler}
-                      className={styles.subcategoryRadio}
-                    />
-                    {subcategory.subcategory_title}
-                  </label>
-                ))}
-            </div>
-          </FilterContainer>
-          <div className={styles.separator}></div>
+          {subcategoryList &&
+						<>
+							<FilterContainer
+								className={styles.categoryFilter}
+								title={"Categories"}
+							>
+								<div className={styles.radioContainer}>
+                  {subcategoryList.map((subcategory) => (
+                    <label
+                      key={
+                        subcategory.subcategory_id + subcategory.subcategory_title
+                      }
+                      className={styles.subcategoryTitle}
+                    >
+                      <input
+                        type="radio"
+                        value={subcategory.subcategory_id}
+                        name="subcategory"
+                        checked={subcategory.subcategory_id === subcategoryId}
+                        onChange={subcategoryHandler}
+                        className={styles.subcategoryRadio}
+                      />
+                      {subcategory.subcategory_title}
+                    </label>
+                  ))}
+								</div>
+							</FilterContainer>
+							<div className={styles.separator}></div>
+						</>}
           <FilterContainer className={styles.priceFilter} title="Price">
             <div className={styles.inputContainer}>
               <input

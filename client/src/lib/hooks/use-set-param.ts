@@ -20,6 +20,7 @@ export const useSetParam = (condition: boolean, param: { [index: string]: unknow
       searchParams.delete(`${title}`)
       setSearchParams(searchParams)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
 }

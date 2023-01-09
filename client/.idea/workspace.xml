@@ -5,30 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lib/hooks/use-set-param.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/products-list/products-list.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products-list/products-list.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-list-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-list-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/common/root-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/root-router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/parameters/models/characteristics.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/parameters/models/characteristics.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/parameters/models/parameters.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/parameters/models/parameters.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/parameters/parameters.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/parameters/parameters.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/parameters/parameters.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/parameters/parameters.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/parameters/parameters.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/parameters/parameters.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/hooks/use-set-param.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/hooks/use-set-param.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/categoriy-page/category-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/categoriy-page/category-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/subcategory-page/subcategory-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/subcategory-page/subcategory-page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/knexfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/knexfile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/seeds/faker/create-fake-product-characteristic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/seeds/faker/create-fake-product-characteristic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/seeds/initial-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/seeds/initial-data.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +91,7 @@
       <workItem from="1673179886800" duration="20801000" />
       <workItem from="1673240033726" duration="741000" />
       <workItem from="1673256992740" duration="354000" />
-      <workItem from="1673272040741" duration="1931000" />
+      <workItem from="1673272040741" duration="9807000" />
     </task>
     <servers />
   </component>
