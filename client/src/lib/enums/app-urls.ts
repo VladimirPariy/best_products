@@ -7,6 +7,5 @@ export enum appUrl {
   update_product = "/admin/products/update/:id",
   users_table = "/admin/users",
   categories = "/product",
-  all = "/all",
   subcategories = "/:subcategory",
 }

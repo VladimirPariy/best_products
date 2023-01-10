@@ -13,5 +13,3 @@ interface IImages {
 export interface IProductImages extends IImages {
   original_title: string;
 }
-
-

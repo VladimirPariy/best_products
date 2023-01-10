@@ -1,0 +1,45 @@
+input {
+  padding: 7px;
+  max-width: 70px;
+  font-family: "Inter";
+  font-size: 16px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  color: #524f5e;
+  border-radius: 0;
+  border: 0.5px solid #524f5e;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+@media screen and (min-width: 769px) {
+  input {
+    padding: 7px 11px;
+    max-width: 110px;
+    font-size: 19px;
+    line-height: 24px;
+    border: 1px solid #524f5e;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  input {
+    padding: 7px 11px;
+    max-width: 140px;
+    font-size: 22px;
+    line-height: 27px;
+    border: 1px solid #524f5e;
+  }
+}

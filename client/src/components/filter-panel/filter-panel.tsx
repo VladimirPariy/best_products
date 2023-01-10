@@ -1,9 +1,14 @@
+import CharacteristicInput from "components/filter-panel/components/characteristic-input";
+import PriceInput from "components/filter-panel/components/price-input";
+import RadioInput from "components/filter-panel/components/radio-input";
+import Separator from "components/filter-panel/components/separator";
+import { ISubcategory } from "lib/interfaces/categories/categories.interface";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { useSearchParams } from "react-router-dom";
 
-import styles from "components/ui/filter-panel/filter-panel.module.scss";
-import FilterContainer from "components/ui/filter-panel/components/filter-container";
+import styles from "components/filter-panel/filter-panel.module.scss";
+import FilterContainer from "components/filter-panel/components/filter-container";
 
 import { useSetParam } from "lib/hooks/use-set-param";
 import {
@@ -23,7 +28,7 @@ interface Props {
 const FilterPanel: FC<Props> = ({ isShowFilter }) => {
   const location = useLocation();
   const pathArray = location.pathname.split("/");
-  const categoryPath = pathArray[pathArray.length - 1];
+  const categoryPath = pathArray[2];
   const categories = useAppSelector(selectCategories);
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
@@ -36,13 +41,21 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
     .find((category) => category.category_title === categoryPath)
     ?.subcategories.map((subcategory) => subcategory);
 
+  const currentSubcategory: ISubcategory | undefined =
+    pathArray?.length > 3
+      ? subcategoryList?.find(
+          (subcategory) => subcategory.subcategory_title === pathArray[3]
+        )
+      : undefined;
   const [searchParams] = useSearchParams();
   const paramMinPrice = searchParams.get("minPrice");
   const paramMaxPrice = searchParams.get("maxPrice");
-  const paramSubcategoryId = searchParams.get("subcategoryId");
+  const paramSubcategoryId =
+    searchParams.get("subcategoryId") ||
+    (currentSubcategory && +currentSubcategory?.subcategory_id);
   const paramSelectedParameters = searchParams.get("selectedParameters");
 
-  const [subcategoryId, setSubcategoryId] = useState<number>(() =>
+  const [subcategoryId, setSubcategoryId] = useState<number>(
     paramSubcategoryId ? +paramSubcategoryId : -1
   );
   const [minPrice, setMinPrice] = useState<number>(() =>
@@ -56,10 +69,25 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
   );
 
   useEffect(() => {
+    if (paramSubcategoryId) {
+      setSubcategoryId(+paramSubcategoryId);
+      setMinPrice(0);
+      setMaxPrice(0);
+    } else {
+      setSubcategoryId(-1);
+      setProductsParameters([]);
+      setSelectedParameters([]);
+      setMinPrice(0);
+      setMaxPrice(0);
+    }
+  }, [paramSubcategoryId]);
+
+  useEffect(() => {
     if (minPriceFromServer && (minPriceFromServer > minPrice || minPrice === 0))
       setMinPrice(minPriceFromServer);
     if (maxPriceFromServer && (maxPriceFromServer < maxPrice || maxPrice === 0))
       setMaxPrice(maxPriceFromServer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minPriceFromServer, maxPriceFromServer]);
 
   useEffect(() => {
@@ -74,9 +102,11 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
         setSelectedParameters([]);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subcategoryId]);
+
   useEffect(() => {
-    if (categoryPath !== prevCategory && prevCategory) {
+    if (categoryPath !== prevCategory && prevCategory && !paramSubcategoryId) {
       setSubcategoryId(-1);
       setProductsParameters([]);
       setSelectedParameters([]);
@@ -84,11 +114,8 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
       setMaxPrice(0);
     }
     setPrevCategory(categoryPath);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryPath]);
-
-  const subcategoryHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setSubcategoryId(+e.target.value);
-  };
 
   const changeCharacteristicHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const duplicate = selectedParameters.find(
@@ -102,7 +129,6 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
     }
     setSelectedParameters((prev) => [...prev, e.target.value]);
   };
-  useSetParam(subcategoryId > -1, { subcategoryId });
   useSetParam(minPrice > minPriceFromServer, { minPrice });
   useSetParam(maxPrice < maxPriceFromServer, { maxPrice });
   useSetParam(selectedParameters?.length > 0, { selectedParameters });
@@ -119,48 +145,38 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
               >
                 <div className={styles.radioContainer}>
                   {subcategoryList.map((subcategory) => (
-                    <label
+                    <RadioInput
+                      categories={categories}
+                      subcategory={subcategory}
+                      changeHandler={(e) => setSubcategoryId(+e.target.value)}
+                      subcategoryId={subcategoryId}
                       key={
                         subcategory.subcategory_id +
                         subcategory.subcategory_title
                       }
-                      className={styles.subcategoryTitle}
-                    >
-                      <input
-                        type="radio"
-                        value={subcategory.subcategory_id}
-                        name="subcategory"
-                        checked={subcategory.subcategory_id === subcategoryId}
-                        onChange={subcategoryHandler}
-                        className={styles.subcategoryRadio}
-                      />
-                      {subcategory.subcategory_title}
-                    </label>
+                    />
                   ))}
                 </div>
               </FilterContainer>
-              <div className={styles.separator}></div>
+              <Separator />
             </>
           )}
           <FilterContainer className={styles.priceFilter} title="Price">
             <div className={styles.inputContainer}>
-              <input
-                type="number"
-                name="minPrice"
+              <PriceInput
                 value={minPrice}
-                onChange={(e) => setMinPrice(+e.target.value)}
+                changeHandler={(e) => setMinPrice(+e.target.value)}
+                title="minPrice"
               />
-              <div className={styles.separator}></div>
-              <input
-                type="number"
-                name="maxPrice"
+              <Separator />
+              <PriceInput
                 value={maxPrice}
-                onChange={(e) => setMaxPrice(+e.target.value)}
+                changeHandler={(e) => setMaxPrice(+e.target.value)}
+                title="maxPrice"
               />
             </div>
           </FilterContainer>
-          <div className={styles.separator}></div>
-
+          <Separator />
           <div className={styles.characteristicsFilter}>
             {productsParameters?.length > 0 &&
               productsParameters.map((parameters, index) => (
@@ -173,28 +189,16 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
                   >
                     <div className={styles.charContainer}>
                       {parameters.characteristics.map((char) => (
-                        <label
+                        <CharacteristicInput
+                          char={char}
                           key={char.characteristic_id}
-                          className={styles.charTitle}
-                        >
-                          <input
-                            checked={
-                              !!selectedParameters.find(
-                                (param) => param === `${char.characteristic_id}`
-                              )
-                            }
-                            type="checkbox"
-                            value={char.characteristic_id}
-                            onChange={changeCharacteristicHandler}
-                          />
-                          {upFirstChar(char.characteristic_title)}
-                        </label>
+                          changeHandler={changeCharacteristicHandler}
+                          selectedParameters={selectedParameters}
+                        />
                       ))}
                     </div>
                   </FilterContainer>
-                  {index !== productsParameters.length - 1 && (
-                    <div className={styles.separator}></div>
-                  )}
+                  {index !== productsParameters.length - 1 && <Separator />}
                 </React.Fragment>
               ))}
           </div>

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useLocation } from "react-router";
 
-import styles from "components/ui/breadcrumbs/breadcrumbs.module.scss";
+import styles from "components/breadcrumbs/breadcrumbs.module.scss";
 
 interface Props {}
 

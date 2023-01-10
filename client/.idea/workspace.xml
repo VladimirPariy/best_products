@@ -5,40 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lib/hooks/use-debounce.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/search/search.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/search/search-action.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/search/search-reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/search/search-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/search/search-selector.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/store/search/search-slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/price-input.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/price-input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/filter-panel/components/separator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/components/characteristic-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/components/count-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/components/image.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/components/price.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-item/components/product-title.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/category-scoreboard.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/category-scoreboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/price-sort.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/price-sort.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/toggle-filter.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/toggle-filter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/view-sort.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sort-panel/components/view-sort.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-item/product-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-item/product-item.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/components/filter-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/filter-panel/components/filter-container.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/desktop-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/desktop-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/phone-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/phone-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/search.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/search.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/breadcrumbs/breadcrumbs.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/breadcrumbs/breadcrumbs.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/breadcrumbs/breadcrumbs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/breadcrumbs/breadcrumbs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/components/filter-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/filter-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/filter-panel/filter-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sort-panel/sort-panel.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/sort-panel/sort-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sort-panel/sort-panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/hooks/use-set-param.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/hooks/use-set-param.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/enums/app-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/app-urls.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/hooks/use-debounce.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/hooks/use-debounce.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/parameters/parameters.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/parameters/parameters.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/store/products/products-list-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/products/products-list-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/search/search.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/search/search.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/store/root-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/root-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/store/rootSaga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/rootSaga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/categoriy-page/category-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/categoriy-page/category-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/search/search-action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/search/search-action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/search/search-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/search/search-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/search/search-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/search/search-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/search/search-selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/search/search-selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/store/search/search-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/store/search/search-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/products/subcategory-page/subcategory-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/subcategory-page/subcategory-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/categories/categories.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/categories/categories.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/parameters/parameters.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/parameters/parameters.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/database/seeds/faker/create-fake-subcategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/seeds/faker/create-fake-subcategory.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +93,11 @@
       <recent name="$PROJECT_DIR$/src/lib/store/products" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/components/search" />
       <recent name="$PROJECT_DIR$/src/components/protected-route" />
       <recent name="$PROJECT_DIR$/src/pages/products" />
       <recent name="$PROJECT_DIR$/src/pages/admin" />
-      <recent name="$PROJECT_DIR$/src/lib/interfaces/products" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -117,7 +134,8 @@
       <workItem from="1673240033726" duration="741000" />
       <workItem from="1673256992740" duration="354000" />
       <workItem from="1673272040741" duration="15693000" />
-      <workItem from="1673333069948" duration="6712000" />
+      <workItem from="1673333069948" duration="23264000" />
+      <workItem from="1673366049820" duration="10294000" />
     </task>
     <servers />
   </component>

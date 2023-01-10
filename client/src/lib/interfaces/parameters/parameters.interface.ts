@@ -1,4 +1,4 @@
-interface ICharacteristicsDataFromServer {
+export interface ICharacteristicsDataFromServer {
   characteristic_id: number;
   characteristic_title: string;
   parameter: number;

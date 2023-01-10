@@ -1,13 +1,12 @@
-import React, {FC} from "react";
-import {useLocation} from "react-router";
-import {useSearchParams} from "react-router-dom";
+import React, { FC } from "react";
+import { useLocation } from "react-router";
+import { useSearchParams } from "react-router-dom";
 
-import {Observer} from "components/observer/observer";
+import { Observer } from "components/observer/observer";
 import ProductsList from "components/products-list/products-list";
 
-import {selectCategories} from "lib/store/categories/categories-selectors";
-import {useAppSelector} from "lib/store/store-types";
-
+import { selectCategories } from "lib/store/categories/categories-selectors";
+import { useAppSelector } from "lib/store/store-types";
 
 const SubcategoryPage: FC = () => {
   const location = useLocation();
@@ -38,7 +37,7 @@ const SubcategoryPage: FC = () => {
         minPrice={minPrice}
         maxPrice={maxPrice}
       />
-      <Observer/>
+      <Observer />
     </>
   );
 };

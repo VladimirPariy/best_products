@@ -8,15 +8,12 @@ import React, {
 import { useLocation } from "react-router";
 import { useSearchParams } from "react-router-dom";
 
-import styles from "components/ui/sort-panel/sort-panel.module.scss";
+import styles from "components/sort-panel/sort-panel.module.scss";
 
-import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-
-import Arrow from "assets/icon/general/arrow";
-import Arrows from "assets/icon/sort/arrows";
-import Filter from "assets/icon/sort/filter";
-import View from "assets/icon/sort/view";
-import View1 from "assets/icon/sort/view-1";
+import CategoryScoreboard from "components/sort-panel/components/category-scoreboard";
+import PriceSort from "components/sort-panel/components/price-sort";
+import ToggleFilter from "components/sort-panel/components/toggle-filter";
+import ViewSort from "components/sort-panel/components/view-sort";
 
 interface Props {
   setIsShowFilter: Dispatch<SetStateAction<boolean>>;
@@ -34,14 +31,6 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
     searchParams.get("orderBy") === "desc"
   );
 
-  const changeView = () => {
-    setViewStyle((prev) => !prev);
-  };
-
-  const changeSort = () => {
-    setSortPrice((prev) => !prev);
-  };
-
   useEffect(() => {
     if (viewStyle) {
       searchParams.set("view", "list");
@@ -50,6 +39,7 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
       searchParams.set("view", "pile");
       setSearchParams(searchParams);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewStyle]);
 
   useEffect(() => {
@@ -62,36 +52,18 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
     }
   }, [searchParams, setSearchParams, sortPrice]);
 
-  const sortStyle = getClassNameByCondition(
-    styles,
-    "arrow",
-    "desc",
-    sortPrice,
-    "asc"
-  );
-
-  const showFilterPanelHandler = () => {
-    setIsShowFilter((prev) => !prev);
-  };
   return (
     <div className={styles.wrapper}>
-      <div onClick={changeView} className={styles.view}>
-        {viewStyle ? <View /> : <View1 />}
-      </div>
-      <div onClick={changeSort} className={styles.priceContainer}>
-        <Arrows />
-        <span className={styles.price}>Price</span>
-        <span className={sortStyle}>
-          <Arrow />
-        </span>
-      </div>
-      <div onClick={showFilterPanelHandler} className={styles.filter}>
-        <Filter />
-      </div>
-      <div className={styles.category}>
-        Category:
-        <span className={styles.categoryTitle}>{category}</span>
-      </div>
+      <ViewSort
+        viewStyle={viewStyle}
+        changeView={() => setViewStyle((prev) => !prev)}
+      />
+      <PriceSort
+        changeSort={() => setSortPrice((prev) => !prev)}
+        sortPrice={sortPrice}
+      />
+      <ToggleFilter toggle={() => setIsShowFilter((prev) => !prev)} />
+      <CategoryScoreboard category={category} />
     </div>
   );
 };

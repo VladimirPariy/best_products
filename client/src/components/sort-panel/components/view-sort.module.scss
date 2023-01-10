@@ -1,0 +1,18 @@
+.view > svg {
+  height: 100%;
+  width: 35px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 769px) {
+  .view > svg {
+    width: 40px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .view > svg {
+    height: 100%;
+    width: 55px;
+  }
+}

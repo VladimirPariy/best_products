@@ -1,0 +1,67 @@
+@use "scss/index" as *;
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  > svg {
+    width: 12px;
+  }
+
+  .price {
+    padding: 0 5px 0 6px;
+  }
+
+  .arrow > svg {
+    height: 100%;
+    width: 15px;
+
+    > path {
+      fill: $white;
+    }
+  }
+
+  .desc > svg {
+    transform: rotate(180deg);
+  }
+
+  .asc > svg {
+    transform: rotate(0deg);
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .priceContainer {
+    > svg {
+      width: 15px;
+    }
+
+    .price {
+      padding: 0 5px 0 8px;
+    }
+
+    .arrow > svg {
+      width: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .priceContainer {
+    > svg {
+      width: 20px;
+    }
+
+    .price {
+      padding: 0 5px 0 12px;
+    }
+
+    .arrow {
+      > svg {
+        width: 25px;
+      }
+    }
+  }
+}

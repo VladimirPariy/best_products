@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import styles from "components/products-list/products-list.module.scss";
 
@@ -35,6 +35,7 @@ const ProductsList: FC<Props> = (props) => {
     subcategoryId,
     order,
   } = props;
+  console.log(subcategoryId);
 
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectProductsStatus);
@@ -44,6 +45,8 @@ const ProductsList: FC<Props> = (props) => {
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
   const subcategoryFromServer = products[0]?.subcategories[0]?.subcategory_id;
+
+  const [selectedParams, setSelectedParams] = useState(selectedParameters);
 
   const productsLimit = 10;
 
@@ -69,6 +72,7 @@ const ProductsList: FC<Props> = (props) => {
         })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
   useEffect(() => {
     if (isLoading) return;
@@ -77,7 +81,8 @@ const ProductsList: FC<Props> = (props) => {
       !order ||
       (subcategoryId && subcategoryId !== `${subcategoryFromServer}`) ||
       (minPrice && +minPrice !== minPriceFromServer) ||
-      (maxPrice && +maxPrice !== maxPriceFromServer)
+      (maxPrice && +maxPrice !== maxPriceFromServer) ||
+      selectedParameters !== selectedParams
     ) {
       dispatch(clearProductsList());
       dispatch(
@@ -93,7 +98,9 @@ const ProductsList: FC<Props> = (props) => {
           },
         })
       );
+      setSelectedParams(selectedParameters);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order, category, subcategoryId, minPrice, maxPrice, selectedParameters]);
 
   return (

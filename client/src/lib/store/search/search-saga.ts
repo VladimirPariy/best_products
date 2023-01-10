@@ -1,17 +1,21 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import {ISearchData} from "lib/interfaces/search/search.interface";
+import { ISearchData } from "lib/interfaces/search/search.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
-import {AxiosError, AxiosResponse} from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 
 import ProductsApi from "lib/api/products-api";
 
-import {searchFulfilled, searchPending, searchRejected, searchTrigger} from "lib/store/search/search-action";
+import {
+  searchFulfilled,
+  searchPending,
+  searchRejected,
+  searchTrigger,
+} from "lib/store/search/search-action";
 
-
-function* searchWorker({payload}: PayloadAction<string>) {
+function* searchWorker({ payload }: PayloadAction<string>) {
   yield put(searchPending());
   try {
-    const result:AxiosResponse<ISearchData> = yield call(
+    const result: AxiosResponse<ISearchData> = yield call(
       ProductsApi.search,
       payload
     );

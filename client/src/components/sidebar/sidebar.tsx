@@ -1,4 +1,3 @@
-import Arrow from "assets/icon/general/arrow";
 import React, {
   Dispatch,
   FC,
@@ -7,20 +6,22 @@ import React, {
   useState,
   MouseEvent,
 } from "react";
+import { NavLink } from "react-router-dom";
 
+import Arrow from "assets/icon/general/arrow";
 import styles from "components/sidebar/sidebar.module.scss";
-import SidebarItem from "components/sidebar/components/sidebar-item";
-import { sidebarList } from "components/sidebar/sidebar.data";
-
 import CarIcon from "assets/icon/sidebar/car";
 import ClothingIcon from "assets/icon/sidebar/clothing";
 import ElectronicsIcon from "assets/icon/sidebar/electronics";
+
+import SidebarItem from "components/sidebar/components/sidebar-item";
+import { sidebarList } from "components/sidebar/sidebar.data";
+
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 import { categoriesTrigger } from "lib/store/categories/categories-actions";
 import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
 import { selectCategories } from "lib/store/categories/categories-selectors";
-import { NavLink } from "react-router-dom";
 
 interface Props {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;

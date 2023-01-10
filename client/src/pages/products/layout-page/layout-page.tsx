@@ -3,9 +3,9 @@ import { Outlet } from "react-router";
 
 import styles from "pages/products/layout-page/layout-page.module.scss";
 
-import Breadcrumbs from "components/ui/breadcrumbs/breadcrumbs";
-import FilterPanel from "components/ui/filter-panel/filter-panel";
-import SortPanel from "components/ui/sort-panel/sort-panel";
+import Breadcrumbs from "components/breadcrumbs/breadcrumbs";
+import FilterPanel from "components/filter-panel/filter-panel";
+import SortPanel from "components/sort-panel/sort-panel";
 
 const LayoutPage: FC = () => {
   const [isShowFilter, setIsShowFilter] = useState(false);

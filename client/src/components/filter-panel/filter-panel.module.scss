@@ -1,0 +1,283 @@
+@use "scss/index" as *;
+
+.filterPanelController {
+  position: absolute;
+  background: $white;
+  top: 120px;
+  right: 0;
+  width: 210px;
+  padding: 20px 30px;
+  border-radius: 20px 0 0 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+
+  .categoryFilter {
+    > div {
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+
+      > svg {
+        width: 15px;
+        margin-right: 10px;
+        fill: #524f5e;
+
+        > path {
+          fill: #524f5e;
+        }
+      }
+
+      > span {
+        margin-bottom: 5px;
+        display: inline-block;
+        color: #524f5e;
+      }
+    }
+
+    .radioContainer {
+      display: flex;
+      flex-direction: column;
+      font-weight: 400;
+      height: 100px;
+      overflow-y: scroll;
+      margin: 0 10px 13px;
+      font-size: 16px;
+      color: #524f5e;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 20px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #e6e6e6;
+        border-radius: 20px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #d1d1d1;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .separator {
+    border-bottom: 1px solid rgba(82, 79, 94, 0.3);
+    margin-bottom: 9px;
+  }
+
+  .priceFilter {
+    > div {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      cursor: pointer;
+
+      > svg {
+        width: 15px;
+        margin-right: 10px;
+        fill: #524f5e;
+
+        > path {
+          fill: #524f5e;
+        }
+      }
+
+      > span {
+        margin-bottom: 5px;
+        display: inline-block;
+        color: #524f5e;
+      }
+    }
+
+    .inputContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 2px 13px;
+
+      .separator {
+        width: 100%;
+        display: flex;
+        margin: 0 1.5px;
+        border-color: #524f5e;
+      }
+    }
+  }
+
+  .characteristicsFilter .parameterContainer {
+    > div {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+
+      > svg {
+        width: 15px;
+        margin-right: 10px;
+        fill: #524f5e;
+
+        > path {
+          fill: #524f5e;
+        }
+      }
+
+      > span {
+        margin-bottom: 5px;
+        display: inline-block;
+        color: #524f5e;
+      }
+    }
+
+    .charContainer {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 13px;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .filterPanelController {
+    top: 30px;
+    width: 320px;
+
+    .categoryFilter {
+      > div {
+        font-size: 19px;
+        line-height: 24px;
+
+        > svg {
+          width: 18px;
+          margin-right: 14px;
+        }
+
+        > span {
+          margin-bottom: 15px;
+        }
+      }
+
+      .radioContainer {
+        height: 140px;
+        margin: 0 10px 20px;
+        font-size: 19px;
+        gap: 7px;
+      }
+    }
+
+    .priceFilter {
+      > div {
+        font-size: 19px;
+        line-height: 24px;
+
+        > svg {
+          width: 18px;
+          margin-right: 14px;
+        }
+
+        > span {
+          margin-bottom: 15px;
+        }
+      }
+
+      .inputContainer {
+        margin: 0 15px 23px;
+
+        .separator {
+          margin: 0 2.5px;
+        }
+      }
+    }
+
+    .characteristicsFilter .parameterContainer {
+      > div {
+        font-size: 19px;
+        line-height: 24px;
+
+        > svg {
+          width: 18px;
+          margin-right: 14px;
+        }
+
+        > span {
+          margin-bottom: 15px;
+        }
+      }
+
+      .charContainer {
+        gap: 9px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .filterPanelController {
+    top: 30px;
+    width: 430px;
+
+    .categoryFilter {
+      > div {
+        font-size: 22px;
+        line-height: 27px;
+
+        > svg {
+          width: 21px;
+          margin-right: 18px;
+        }
+
+        > span {
+          margin-bottom: 23px;
+        }
+      }
+
+      .radioContainer {
+        height: 170px;
+        margin: 0 10px 26px;
+        font-size: 22px;
+      }
+    }
+
+    .priceFilter > div {
+      font-size: 22px;
+      line-height: 27px;
+
+      > svg {
+        width: 21px;
+        margin-right: 18px;
+      }
+
+      > span {
+        margin-bottom: 23px;
+      }
+    }
+
+    .inputContainer {
+      margin: 0 25px 33px;
+
+      .separator {
+        margin: 0 3px;
+      }
+    }
+
+    .characteristicsFilter .parameterContainer {
+      > div {
+        font-size: 22px;
+        line-height: 27px;
+
+        > svg {
+          width: 21px;
+          margin-right: 18px;
+        }
+
+        > span {
+          margin-bottom: 23px;
+        }
+      }
+
+      .charContainer {
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+    }
+  }
+}
