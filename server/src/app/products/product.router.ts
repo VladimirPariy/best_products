@@ -15,6 +15,10 @@ export const createProductsRouter = (): Router => {
     productController.getFilteredProductsByCategory
   );
   productsRouter.get(
+    EndpointsList.SEARCH,
+    productController.searchProductsAndSubcategory
+  );
+  productsRouter.get(
     EndpointsList.ONE_PRODUCT_BY_ID,
     productController.getProductDetailsById
   );

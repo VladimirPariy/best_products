@@ -25,7 +25,7 @@ class ProductsModel extends Model {
   favorite_products!: FavoriteProductsModel[];
   views!: ViewsModel[];
   subcategories: SubcategoryModel[];
-	characteristics: CharacteristicsModel[];
+  characteristics: CharacteristicsModel[];
 
   static tableName = "products";
 
