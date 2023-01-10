@@ -5,12 +5,12 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import {useLocation} from "react-router";
-import {useSearchParams} from "react-router-dom";
+import { useLocation } from "react-router";
+import { useSearchParams } from "react-router-dom";
 
 import styles from "components/ui/sort-panel/sort-panel.module.scss";
 
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
+import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 
 import Arrow from "assets/icon/general/arrow";
 import Arrows from "assets/icon/sort/arrows";
@@ -22,7 +22,7 @@ interface Props {
   setIsShowFilter: Dispatch<SetStateAction<boolean>>;
 }
 
-const SortPanel: FC<Props> = ({setIsShowFilter}) => {
+const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
   const location = useLocation();
   const pathArray = location.pathname.split("/");
   const category = pathArray[pathArray.length - 1];
@@ -76,17 +76,17 @@ const SortPanel: FC<Props> = ({setIsShowFilter}) => {
   return (
     <div className={styles.wrapper}>
       <div onClick={changeView} className={styles.view}>
-        {viewStyle ? <View/> : <View1/>}
+        {viewStyle ? <View /> : <View1 />}
       </div>
       <div onClick={changeSort} className={styles.priceContainer}>
-        <Arrows/>
+        <Arrows />
         <span className={styles.price}>Price</span>
         <span className={sortStyle}>
-          <Arrow/>
+          <Arrow />
         </span>
       </div>
       <div onClick={showFilterPanelHandler} className={styles.filter}>
-        <Filter/>
+        <Filter />
       </div>
       <div className={styles.category}>
         Category:

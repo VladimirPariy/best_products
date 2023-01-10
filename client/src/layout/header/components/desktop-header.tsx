@@ -4,7 +4,7 @@ import styles from "layout/header/header.module.scss";
 
 import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 import Logo from "layout/header/components/logo";
-import Search from "layout/header/components/search";
+import Search from "components/search/search";
 import User from "layout/header/components/user";
 import UserModal from "layout/header/components/user-modal";
 

@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from "react";
+import React, { FC, useEffect } from "react";
 
 import styles from "components/products-list/products-list.module.scss";
 
@@ -8,12 +8,14 @@ import {
   productsListTrigger,
 } from "lib/store/products/products-actions";
 import {
-  selectCurrentProductPage, selectMaxPrice, selectMinPrice,
+  selectCurrentProductPage,
+  selectMaxPrice,
+  selectMinPrice,
   selectProductList,
   selectProductsOrderBy,
   selectProductsStatus,
 } from "lib/store/products/products-selectors";
-import {useAppDispatch, useAppSelector} from "lib/store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/store/store-types";
 
 interface Props {
   category: string;
@@ -25,8 +27,14 @@ interface Props {
 }
 
 const ProductsList: FC<Props> = (props) => {
-
-  const {selectedParameters, minPrice, maxPrice, category, subcategoryId, order} = props;
+  const {
+    selectedParameters,
+    minPrice,
+    maxPrice,
+    category,
+    subcategoryId,
+    order,
+  } = props;
 
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectProductsStatus);
@@ -35,10 +43,9 @@ const ProductsList: FC<Props> = (props) => {
   const orderFromServer = useAppSelector(selectProductsOrderBy);
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
-  const subcategoryFromServer = products[0]?.subcategories[0]?.subcategory_id
+  const subcategoryFromServer = products[0]?.subcategories[0]?.subcategory_id;
 
   const productsLimit = 10;
-
 
   useEffect(() => {
     if (isLoading) return;
@@ -46,7 +53,7 @@ const ProductsList: FC<Props> = (props) => {
       (products.length === 0 ||
         (products.length !== currentPage * productsLimit &&
           products.length >= productsLimit)) &&
-      (order ?? 'asc') === orderFromServer
+      (order ?? "asc") === orderFromServer
     ) {
       dispatch(
         productsListTrigger({
@@ -58,15 +65,20 @@ const ProductsList: FC<Props> = (props) => {
             selectedParameters,
             minPrice,
             maxPrice,
-          }
+          },
         })
       );
     }
   }, [currentPage]);
   useEffect(() => {
     if (isLoading) return;
-    if (order !== orderFromServer || !order || (subcategoryId && subcategoryId!== `${subcategoryFromServer}`) || (minPrice && +minPrice !== minPriceFromServer) || (maxPrice && +maxPrice !== maxPriceFromServer)) {
-
+    if (
+      order !== orderFromServer ||
+      !order ||
+      (subcategoryId && subcategoryId !== `${subcategoryFromServer}`) ||
+      (minPrice && +minPrice !== minPriceFromServer) ||
+      (maxPrice && +maxPrice !== maxPriceFromServer)
+    ) {
       dispatch(clearProductsList());
       dispatch(
         productsListTrigger({
@@ -78,19 +90,18 @@ const ProductsList: FC<Props> = (props) => {
             selectedParameters,
             minPrice,
             maxPrice,
-          }
+          },
         })
       );
     }
   }, [order, category, subcategoryId, minPrice, maxPrice, selectedParameters]);
-
 
   return (
     <>
       {products.length > 0 && (
         <div className={styles.listContainer}>
           {products.map((product) => (
-            <ProductItem {...product} key={product.product_id}/>
+            <ProductItem {...product} key={product.product_id} />
           ))}
         </div>
       )}

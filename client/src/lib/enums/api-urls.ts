@@ -22,4 +22,6 @@ export enum apiUrls {
   filtered_prod = "products/filter",
 
   parameters = "parameters/",
+
+  search = "products/search",
 }

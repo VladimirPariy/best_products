@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useState} from "react";
+import React, { FC, ReactNode, useState } from "react";
 
 import Arrow from "assets/icon/general/arrow";
 
@@ -8,7 +8,7 @@ interface Props {
   title?: string;
 }
 
-const FilterContainer: FC<Props> = ({children, className, title}) => {
+const FilterContainer: FC<Props> = ({ children, className, title }) => {
   const [open, setOpen] = useState(false);
   const openHandler = () => {
     setOpen((prev) => !prev);
@@ -16,7 +16,7 @@ const FilterContainer: FC<Props> = ({children, className, title}) => {
   return (
     <div className={className}>
       <div onClick={openHandler}>
-        <Arrow/>
+        <Arrow />
         <span>{title}</span>
       </div>
       {open && <>{children}</>}

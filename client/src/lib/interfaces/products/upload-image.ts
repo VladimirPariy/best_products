@@ -14,11 +14,4 @@ export interface IProductImages extends IImages {
   original_title: string;
 }
 
-export interface IModifyProductImages extends IImages {
-  name: string;
-}
 
-export interface IPreview {
-  preview: string;
-  file: File;
-}

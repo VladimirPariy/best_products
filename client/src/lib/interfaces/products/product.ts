@@ -55,5 +55,14 @@ export interface IGetProductListTrigger {
     selectedParameters: string | null;
     minPrice: string | null;
     maxPrice: string | null;
-  }
+  };
+}
+
+
+export interface IShortProductInfo {
+  price: string
+  product_description: string
+  product_id: number
+  product_images: IProductImages[]
+  product_title: string
 }

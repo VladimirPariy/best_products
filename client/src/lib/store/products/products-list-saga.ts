@@ -1,6 +1,9 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import {IGetProductListTrigger, IProductDataResponse} from "lib/interfaces/products/product";
+import {
+  IGetProductListTrigger,
+  IProductDataResponse,
+} from "lib/interfaces/products/product";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 
@@ -11,13 +14,11 @@ import {
   productsListTrigger,
 } from "lib/store/products/products-actions";
 
-function* productsListWorker(
-  action: PayloadAction<IGetProductListTrigger>
-) {
+function* productsListWorker(action: PayloadAction<IGetProductListTrigger>) {
   yield put(productsListPending());
   try {
     const res: IProductDataResponse = yield call(
-      ProductsApi.getFilteredProducts,
+      ProductsApi.getFilteredAndSortedProducts,
       action.payload
     );
     yield put(productsListFulfilled(res));

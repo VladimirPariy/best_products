@@ -6,7 +6,7 @@ import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 import Sidebar from "components/sidebar/sidebar";
 import BurgerMenu from "layout/header/components/burger-menu";
 import Logo from "layout/header/components/logo";
-import Search from "layout/header/components/search";
+import Search from "components/search/search";
 import User from "layout/header/components/user";
 
 interface Props extends IModalScreens {
