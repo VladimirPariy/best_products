@@ -6,9 +6,9 @@ import styles from "components/ui/main-container/main-container.module.scss";
 import AdminPanelLink from "components/ui/admin-panel-link/admin-panel-link";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { userInfoTrigger } from "lib/store/user/user-actions";
-import { selectAuth, selectUser } from "lib/store/user/user-selector";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { userInfoTrigger } from "store/user/user-actions";
+import { selectAuth, selectUser } from "store/user/user-selector";
 import { getTokenFromStorage } from "lib/utils/token-from-storage";
 
 const MainContainer: FC = () => {

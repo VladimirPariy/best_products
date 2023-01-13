@@ -1,3 +1,5 @@
+import FavoritePage from "pages/favorite/favorite-page";
+import ProductDetailPage from "pages/product-details/product-detail-page";
 import React, { FC, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -11,8 +13,8 @@ import {
 import {
   selectCategories,
   selectSubcategories,
-} from "lib/store/categories/categories-selectors";
-import { useAppSelector } from "lib/store/store-types";
+} from "store/categories/categories-selectors";
+import { useAppSelector } from "store/store-types";
 
 import ProtectedRoute from "components/protected-route/protected-route";
 import CategoryPage from "pages/products/categoriy-page/category-page";
@@ -35,6 +37,7 @@ const AppRouter: FC = () => {
 
   const token = getTokenFromStorage();
   const decode: JWT = token && jwtDecode(token);
+  const isAllowed = !!token && typeof decode !== "string" && decode?.role === 1;
 
   useEffect(() => {
     if (category) setCategoryRoutes(category);
@@ -45,17 +48,11 @@ const AppRouter: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route />
-      <Route
-        path="/admin/*"
-        element={
-          <ProtectedRoute
-            isAllowed={
-              !!token && typeof decode !== "string" && decode?.role === 1
-            }
-          />
-        }
-      >
+      <Route path="/favorite">
+        <Route index element={<FavoritePage />} />
+        <Route path=":id" element={<ProductDetailPage />} />
+      </Route>
+      <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
         <Route index element={<AdminPanel />} />
         <Route path="users" element={<UsersControl />} />
         <Route path="products/*">
@@ -66,7 +63,8 @@ const AppRouter: FC = () => {
         </Route>
         {emptyRoute}
       </Route>
-      <Route path="/product/*" element={<LayoutPage />}>
+      <Route path="/product/*">
+        <Route index element={<LayoutPage />} />
         {categoryRoutes.map((categoryRoute) => (
           <Route
             path={`${categoryRoute.category_title}/*`}
@@ -88,7 +86,7 @@ const AppRouter: FC = () => {
             {emptyRoute}
           </Route>
         ))}
-        {emptyRoute}
+        <Route path=":id" element={<ProductDetailPage />} />
       </Route>
       {emptyRoute}
     </Routes>

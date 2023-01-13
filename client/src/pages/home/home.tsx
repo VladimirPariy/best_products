@@ -1,16 +1,16 @@
 import React, { FC } from "react";
-import styles from "pages/home/home.module.scss";
 
 import {
   selectCategories,
   selectCategoriesError,
   selectCategoriesIsFetching,
   selectSubcategories,
-} from "lib/store/categories/categories-selectors";
-import { useAppSelector } from "lib/store/store-types";
+} from "store/categories/categories-selectors";
+import { useAppSelector } from "store/store-types";
 
-import SubcategoryLink from "components/ui/subcategory-link/subcategory-link";
-import banner from "assets/images/banner.png";
+import Banner from "pages/home/components/banner";
+import MainPageWrapper from "pages/home/components/main-page-wrapper";
+import SubcategoryLink from "pages/home/components/subcategory-link";
 
 const Home: FC = () => {
   const categories = useAppSelector(selectCategories);
@@ -19,10 +19,10 @@ const Home: FC = () => {
   const error = useAppSelector(selectCategoriesError);
 
   return (
-    <div className={styles.mainPage}>
+    <MainPageWrapper>
       {subcategories && categories && (
         <>
-          <img src={banner} alt="" />
+          <Banner />
           {subcategories.map((subcategory) => (
             <SubcategoryLink
               subcategory={subcategory}
@@ -34,7 +34,7 @@ const Home: FC = () => {
       )}
       {error && <div>Error</div>}
       {isLoading && <div>Loading...</div>}
-    </div>
+    </MainPageWrapper>
   );
 };
 

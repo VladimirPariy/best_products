@@ -2,9 +2,10 @@
 
 .headerContainer {
   background: $sidebar_bg;
-  position: relative;
   z-index: 3;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
 
   .visibleHeader {
     display: flex;
@@ -36,7 +37,7 @@
     position: fixed;
     padding: 1rem;
     background: $white;
-    height: $h-screen;
+    height: 100%;
     min-width: $w_screen;
     overflow-y: scroll;
   }
@@ -46,7 +47,7 @@
   .headerContainer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    //align-items: center;
     height: 85px;
   }
 }

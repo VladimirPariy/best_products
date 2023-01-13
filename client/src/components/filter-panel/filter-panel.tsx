@@ -14,11 +14,11 @@ import { useSetParam } from "lib/hooks/use-set-param";
 import {
   selectMaxPrice,
   selectMinPrice,
-} from "lib/store/products/products-selectors";
+} from "store/products/products-selectors";
 import { IParametersDataFromServer } from "lib/interfaces/parameters/parameters.interface";
 import productsApi from "lib/api/products-api";
-import { selectCategories } from "lib/store/categories/categories-selectors";
-import { useAppSelector } from "lib/store/store-types";
+import { selectCategories } from "store/categories/categories-selectors";
+import { useAppSelector } from "store/store-types";
 import { upFirstChar } from "lib/utils/up-first-char";
 
 interface Props {

@@ -1,27 +1,24 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC } from "react";
 
 import styles from "layout/header/header.module.scss";
 
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 import Logo from "layout/header/components/logo";
-import Search from "components/search/search";
+import SearchBar from "components/search/search-bar";
 import User from "layout/header/components/user";
 import UserModal from "layout/header/components/user-modal";
 
-interface Props extends IModalScreens {
-  isShowUserModal: boolean;
-  setIsShowUserModal: Dispatch<SetStateAction<boolean>>;
-}
+import { selectUserModal } from "store/modals/modals-selectors";
+import { useAppSelector } from "store/store-types";
 
-const DesktopHeader: FC<Props> = (props) => {
-  const { isShowUserModal, ...setIsShowModals } = props;
+const DesktopHeader: FC = () => {
+  const isShowUserModal = useAppSelector(selectUserModal);
   return (
     <>
       <section className={styles.headerContainer}>
         <Logo />
-        <Search />
-        <User {...setIsShowModals} />
-        {isShowUserModal && <UserModal {...setIsShowModals} />}
+        <SearchBar />
+        <User />
+        {isShowUserModal && <UserModal />}
       </section>
     </>
   );

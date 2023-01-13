@@ -1,14 +1,14 @@
-import {
-  selectCurrentProductPage,
-  selectProductsStatus,
-  selectTotalProductsPage,
-} from "lib/store/products/products-selectors";
 import React, { FC, useRef } from "react";
 
 import { useObserver } from "lib/hooks/use-observer";
 
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { setCurrentPage } from "lib/store/products/products-actions";
+import {
+  selectCurrentProductPage,
+  selectProductsStatus,
+  selectTotalProductsPage,
+} from "store/products/products-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { setCurrentPage } from "store/products/products-actions";
 
 const Observer: FC = () => {
   const dispatch = useAppDispatch();

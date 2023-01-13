@@ -1,0 +1,148 @@
+@use "scss/index" as *;
+
+.searchResultContainer {
+  display: flex;
+
+  .modal {
+    background: $white;
+    border-width: 0px 0.3px 0.3px 0.3px;
+    border-style: solid;
+    border-color: rgba(82, 79, 94, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    color: #435c6b;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 85px;
+
+    .emptySearch {
+      font-size: 14px;
+      padding: 7px 16px;
+    }
+
+    .separator {
+      border-bottom: 0.5px solid rgba(82, 79, 94, 0.5);
+      width: 100%;
+    }
+
+    .subcategoryContainer > a {
+      color: inherit;
+
+      > div {
+        padding: 7px 16px;
+      }
+    }
+
+    .productContainer {
+      display: flex;
+      flex-direction: column;
+      padding: 7px 13px;
+      gap: 5px;
+
+      .title {
+        font-weight: 600;
+        margin-left: 3px;
+      }
+
+      > a {
+        display: flex;
+        align-items: center;
+        color: #435c6b;
+        gap: 8px;
+
+        > img {
+          height: 35px;
+          width: 30px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .searchBackground {
+    top: 85px;
+  }
+
+  .searchResultContainer {
+    width: 100%;
+    font-size: 17px;
+
+    .modal {
+      .emptySearch {
+        font-size: 17px;
+        padding: 10px 25px;
+      }
+
+      .subcategoryContainer {
+        > a > div {
+          padding: 10px 25px;
+          font-size: 17px;
+        }
+      }
+
+      .productContainer {
+        padding: 7px 20px;
+        gap: 8px;
+
+        .title {
+          margin-left: 5px;
+          font-size: 17px;
+        }
+
+        > a {
+          font-size: 17px;
+
+          gap: 11px;
+
+          > img {
+            height: 42px;
+            width: 37px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .searchResultContainer {
+    width: 100%;
+
+    .modal {
+      .emptySearch {
+        padding: 13px 35px;
+        font-size: 20px;
+      }
+      .subcategoryContainer {
+        > a > div {
+          padding: 13px 35px;
+          font-size: 20px;
+        }
+      }
+
+      .productContainer {
+        padding: 7px 27px;
+        gap: 10px;
+
+        .title {
+          font-size: 20px;
+          margin-left: 8px;
+        }
+
+        > a {
+          font-size: 20px;
+          gap: 14px;
+
+          > img {
+            height: 50px;
+            width: 45px;
+          }
+        }
+      }
+    }
+  }
+}

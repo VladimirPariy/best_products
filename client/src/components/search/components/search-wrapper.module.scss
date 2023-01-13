@@ -1,0 +1,26 @@
+@use "scss/index" as *;
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  max-width: 560px;
+  width: 100%;
+  position: relative;
+
+  .searchBackground {
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+    -webkit-overflow-scrolling: touch;
+    left: 0;
+    width: 100%;
+    min-height: 115%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+}
+
+@media screen and (min-width: 1025px) {
+}

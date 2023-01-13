@@ -1,12 +1,12 @@
 import ContentContainer from "components/ui/content-container/content-container";
 import Title from "components/ui/title/title";
 import userApi from "lib/api/user-api";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { usersListTrigger } from "lib/store/users-list/users-list-actions";
-import { selectUsersList } from "lib/store/users-list/users-list-selectors";
-import { selectUser } from "lib/store/user/user-selector";
-import { usersRolesTrigger } from "lib/store/users-roles/users-roles-actions";
-import { selectUsersRoles } from "lib/store/users-roles/users-roles-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { usersListTrigger } from "store/users-list/users-list-actions";
+import { selectUsersList } from "store/users-list/users-list-selectors";
+import { selectUser } from "store/user/user-selector";
+import { usersRolesTrigger } from "store/users-roles/users-roles-actions";
+import { selectUsersRoles } from "store/users-roles/users-roles-selectors";
 import React, { ChangeEvent, FC, useEffect } from "react";
 import styles from "pages/admin/users-control/users-control.module.scss";
 

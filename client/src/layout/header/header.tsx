@@ -1,19 +1,11 @@
-import React, { FC, useState, Dispatch, SetStateAction } from "react";
+import React, { FC, useState } from "react";
 
 import { useScreenWidth } from "lib/hooks/use-screen-width";
 
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 import DesktopHeader from "layout/header/components/desktop-header";
 import PhoneHeader from "layout/header/components/phone-header";
 
-interface Props extends IModalScreens {
-  isShowUserModal: boolean;
-  setIsShowUserModal: Dispatch<SetStateAction<boolean>>;
-}
-
-const Header: FC<Props> = (props) => {
-  const { isShowUserModal, setIsShowUserModal, ...setIsShowModals } = props;
-
+const Header: FC = () => {
   const [checkedBurgerMenu, setCheckedBurgerMenu] = useState<boolean>(false);
   const userScreenWidth = useScreenWidth();
 
@@ -28,12 +20,11 @@ const Header: FC<Props> = (props) => {
   }
 
   return userScreenWidth > 768 ? (
-    <DesktopHeader {...props} />
+    <DesktopHeader />
   ) : (
     <PhoneHeader
       checkedBurgerMenu={checkedBurgerMenu}
       setCheckedBurgerMenu={setCheckedBurgerMenu}
-      {...setIsShowModals}
     />
   );
 };

@@ -19,10 +19,10 @@ import {
   ITempChar,
 } from "lib/interfaces/products/creating-product";
 import { IProductImages } from "lib/interfaces/products/upload-image";
-import { selectCategories } from "lib/store/categories/categories-selectors";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+import { selectCategories } from "store/categories/categories-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 import { useNavigate } from "react-router";
-import { addNewProduct } from "lib/store/products/products-actions";
+import { addNewProduct } from "store/products/products-actions";
 
 const AddNewProduct: FC = () => {
   const dispatch = useAppDispatch();

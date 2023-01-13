@@ -2,20 +2,19 @@ import React, { FC, Dispatch, SetStateAction } from "react";
 
 import styles from "layout/header/header.module.scss";
 
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
 import Sidebar from "components/sidebar/sidebar";
 import BurgerMenu from "layout/header/components/burger-menu";
 import Logo from "layout/header/components/logo";
-import Search from "components/search/search";
+import SearchBar from "components/search/search-bar";
 import User from "layout/header/components/user";
 
-interface Props extends IModalScreens {
+interface Props {
   checkedBurgerMenu: boolean;
   setCheckedBurgerMenu: Dispatch<SetStateAction<boolean>>;
 }
 
 const PhoneHeader: FC<Props> = (props) => {
-  const { checkedBurgerMenu, setCheckedBurgerMenu, ...setIsShowModals } = props;
+  const { checkedBurgerMenu, setCheckedBurgerMenu } = props;
 
   const classNameByMenu = `${
     checkedBurgerMenu
@@ -34,11 +33,8 @@ const PhoneHeader: FC<Props> = (props) => {
           />
         </div>
         <div className={classNameByMenu}>
-          <Search />
-          <User
-            setCheckedBurgerMenu={setCheckedBurgerMenu}
-            {...setIsShowModals}
-          />
+          <SearchBar />
+          <User setCheckedBurgerMenu={setCheckedBurgerMenu} />
           <Sidebar setCheckedBurgerMenu={setCheckedBurgerMenu} />
         </div>
       </section>

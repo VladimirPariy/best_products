@@ -18,19 +18,19 @@ import ProductsApi from "lib/api/products-api";
 import { IProductDetails } from "lib/interfaces/products/product-details";
 import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
 import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
-import { selectCategories } from "lib/store/categories/categories-selectors";
+import { selectCategories } from "store/categories/categories-selectors";
 import {
   clearProductDetail,
   getProductDetailTrigger,
   removeProductImageTrigger,
   uploadProductImageTrigger,
-} from "lib/store/product-detail/product-detail-actions";
-import { updateProductAction } from "lib/store/products/products-actions";
+} from "store/product-detail/product-detail-actions";
+import { updateProductAction } from "store/products/products-actions";
 import {
   selectProductDetail,
   selectProductImages,
-} from "lib/store/product-detail/product-detail-selector";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+} from "store/product-detail/product-detail-selector";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
 const UpdateProduct: FC = () => {
   const { id } = useParams();
@@ -43,7 +43,7 @@ const UpdateProduct: FC = () => {
   const [error, setError] = useState<AxiosError | null>(null);
 
   useEffect(() => {
-    if (id) dispatch(getProductDetailTrigger({ id: +id }));
+    if (id) dispatch(getProductDetailTrigger(+id));
 
     return function () {
       dispatch(clearProductDetail());

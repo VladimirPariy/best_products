@@ -1,47 +1,25 @@
 import React, { FC } from "react";
 
-import RegistrationModal from "components/registration-modal/registration-modal";
+import { useAppSelector } from "store/store-types";
+import {
+  selectEditUserModal,
+  selectSignInModal,
+  selectSignUpModal,
+} from "store/modals/modals-selectors";
+import RegistrationModal from "components/sign-up-modal/registration-modal";
 import SignInModal from "components/sign-in-modal/sign-in-modal";
 import UserAccModal from "components/user-acc-modal/user-acc-modal";
 
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
+const ModalContainer: FC = () => {
+  const isShowSignUpModal = useAppSelector(selectSignUpModal);
+  const isShwSignInModal = useAppSelector(selectSignInModal);
+  const isShowEditUserModal = useAppSelector(selectEditUserModal);
 
-interface Props extends IModalScreens {
-  isShowRegistrationModal: boolean;
-  isShowLoginModal: boolean;
-  isShowAccountModal: boolean;
-}
-
-const ModalContainer: FC<Props> = (props) => {
-  const {
-    isShowRegistrationModal,
-    isShowLoginModal,
-    isShowAccountModal,
-    setIsShowAccountModal,
-    setIsShowLoginModal,
-    setIsShowRegistrationModal,
-  } = props;
   return (
     <>
-      {isShowRegistrationModal && (
-        <RegistrationModal
-          setIsShowRegistrationModal={setIsShowRegistrationModal}
-          isShowRegistrationModal={isShowRegistrationModal}
-        />
-      )}
-      {isShowLoginModal && (
-        <SignInModal
-          isShowLoginModal={isShowLoginModal}
-          setIsShowLoginModal={setIsShowLoginModal}
-          setIsShowRegistrationModal={setIsShowRegistrationModal}
-        />
-      )}
-      {isShowAccountModal && (
-        <UserAccModal
-          setIsShowAccountModal={setIsShowAccountModal}
-          isShowAccountModal={isShowAccountModal}
-        />
-      )}
+      {isShowSignUpModal && <RegistrationModal />}
+      {isShwSignInModal && <SignInModal />}
+      {isShowEditUserModal && <UserAccModal />}
     </>
   );
 };

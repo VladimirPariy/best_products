@@ -5,16 +5,15 @@
       <sourceFolder url="file://$MODULE_DIR$/src/components/app-router" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/components/observer" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/components/protected-route" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/components/registration-modal" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/components/sidebar" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/components/sign-in-modal" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/components/sort-panel" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/components/user-acc-modal" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/lib/hooks" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/scss" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/pages/products" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/src/pages/home" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,3 +1,8 @@
+import {
+  setVisibilitySignInModal,
+  setVisibilitySignUpModal,
+} from "store/modals/modals-actions";
+import { selectSignInModal } from "store/modals/modals-selectors";
 import React, {
   Dispatch,
   FC,
@@ -9,9 +14,9 @@ import React, {
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
 import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { userInfoTrigger, userTokenTrigger } from "lib/store/user/user-actions";
-import { selectAuth, selectToken } from "lib/store/user/user-selector";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { userInfoTrigger, userTokenTrigger } from "store/user/user-actions";
+import { selectAuth, selectToken } from "store/user/user-selector";
 
 import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
@@ -19,20 +24,11 @@ import Input from "components/ui/input/input";
 import Title from "components/ui/title/title";
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
-interface Props {
-  setIsShowRegistrationModal: Dispatch<SetStateAction<boolean>>;
-  setIsShowLoginModal: Dispatch<SetStateAction<boolean>>;
-  isShowLoginModal: boolean;
-}
-
-const SignInModal: FC<Props> = ({
-  setIsShowLoginModal,
-  isShowLoginModal,
-  setIsShowRegistrationModal,
-}) => {
+const SignInModal: FC = () => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
   const token = useAppSelector(selectToken);
+  const isShowSignInModal = useAppSelector(selectSignInModal);
 
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -59,17 +55,21 @@ const SignInModal: FC<Props> = ({
   }, [token]);
 
   const showRegistrationModalHandler = () => {
-    setIsShowLoginModal(false);
-    setIsShowRegistrationModal(true);
+    dispatch(setVisibilitySignInModal(false));
+    dispatch(setVisibilitySignUpModal(true));
   };
 
   useEffect(() => {
-    auth && setIsShowLoginModal(false);
+    auth && dispatch(setVisibilitySignInModal(false));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
   return (
-    <ModalWrapper setVisible={setIsShowLoginModal} isVisible={isShowLoginModal}>
+    <ModalWrapper
+      setVisible={setVisibilitySignInModal}
+      isVisible={isShowSignInModal}
+    >
       <div onClick={(e) => e.stopPropagation()}>
         <Title>SIGN IN</Title>
         <Input

@@ -4,33 +4,36 @@ import styles from "layout/header/components/user.module.scss";
 import defaultUserImg from "assets/icon/header/user.svg";
 
 import { useScreenWidth } from "lib/hooks/use-screen-width";
-
-import { selectUser } from "lib/store/user/user-selector";
-import { useAppSelector } from "lib/store/store-types";
+import {
+  setVisibilityEditUserModal,
+  setVisibilityUserModal,
+} from "store/modals/modals-actions";
+import { selectUserModal } from "store/modals/modals-selectors";
+import { selectUser } from "store/user/user-selector";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
 import { apiUrls } from "lib/enums/api-urls";
 
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
-
 import UserModal from "layout/header/components/user-modal";
 
-interface Props extends IModalScreens {
+interface Props {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
-  setIsShowUserModal?: Dispatch<SetStateAction<boolean>>;
 }
 
 const User: FC<Props> = (props) => {
-  const { setIsShowUserModal, setCheckedBurgerMenu, ...setIsShowModals } =
-    props;
+  const { setCheckedBurgerMenu } = props;
+
+  const dispatch = useAppDispatch();
+  const isShowUserModal = useAppSelector(selectUserModal);
 
   const userScreenWidth = useScreenWidth();
   const user = useAppSelector(selectUser);
 
   const showingUserModal = (e: MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
-    userScreenWidth > 768 && setIsShowUserModal
-      ? setIsShowUserModal((prev) => !prev)
-      : setIsShowModals.setIsShowAccountModal(true);
+    userScreenWidth > 768
+      ? dispatch(setVisibilityUserModal(!isShowUserModal))
+      : dispatch(setVisibilityEditUserModal(true));
   };
 
   const userImg = user.user_photo
@@ -46,11 +49,7 @@ const User: FC<Props> = (props) => {
         onClick={showingUserModal}
       />
       {userScreenWidth > 768 ? null : (
-        <UserModal
-          setIsShowUserModal={setIsShowUserModal}
-          setCheckedBurgerMenu={setCheckedBurgerMenu}
-          {...setIsShowModals}
-        />
+        <UserModal setCheckedBurgerMenu={setCheckedBurgerMenu} />
       )}
     </div>
   );

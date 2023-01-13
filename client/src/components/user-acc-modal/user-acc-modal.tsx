@@ -1,18 +1,13 @@
-import React, {
-  ChangeEvent,
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 
 import styles from "components/user-acc-modal/user-acc-modal.module.scss";
 
+import { setVisibilityEditUserModal } from "store/modals/modals-actions";
+import { selectEditUserModal } from "store/modals/modals-selectors";
 import { getTokenFromStorage } from "lib/utils/token-from-storage";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { selectUser } from "lib/store/user/user-selector";
-import { userUpdateTrigger } from "lib/store/user/user-actions";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { selectUser } from "store/user/user-selector";
+import { userUpdateTrigger } from "store/user/user-actions";
 import { apiUrls } from "lib/enums/api-urls";
 
 import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
@@ -24,14 +19,7 @@ import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
 import defaultPhoto from "assets/icon/header/user.svg";
 
-interface Props {
-  isShowAccountModal: boolean;
-  setIsShowAccountModal: Dispatch<SetStateAction<boolean>>;
-}
-
-const UserAccModal: FC<Props> = (props) => {
-  const { isShowAccountModal, setIsShowAccountModal } = props;
-
+const UserAccModal: FC = () => {
   const {
     first_name,
     last_name,
@@ -43,6 +31,7 @@ const UserAccModal: FC<Props> = (props) => {
   } = useAppSelector(selectUser);
   const token = getTokenFromStorage();
   const dispatch = useAppDispatch();
+  const isShowEditUserModal = useAppSelector(selectEditUserModal);
 
   const [firstName, setFirstName] = useState<string>(first_name);
   const [lastName, setLastName] = useState<string>(last_name);
@@ -118,11 +107,10 @@ const UserAccModal: FC<Props> = (props) => {
       localStorage.setItem("token", token);
     }
   }, [token]);
-
   return (
     <ModalWrapper
-      setVisible={setIsShowAccountModal}
-      isVisible={isShowAccountModal}
+      setVisible={setVisibilityEditUserModal}
+      isVisible={isShowEditUserModal}
       isAccModal={true}
     >
       <Title>Account Setting</Title>

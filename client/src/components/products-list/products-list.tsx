@@ -6,7 +6,7 @@ import ProductItem from "components/product-item/product-item";
 import {
   clearProductsList,
   productsListTrigger,
-} from "lib/store/products/products-actions";
+} from "store/products/products-actions";
 import {
   selectCurrentProductPage,
   selectMaxPrice,
@@ -14,8 +14,8 @@ import {
   selectProductList,
   selectProductsOrderBy,
   selectProductsStatus,
-} from "lib/store/products/products-selectors";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+} from "store/products/products-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
 interface Props {
   category: string;
@@ -35,7 +35,6 @@ const ProductsList: FC<Props> = (props) => {
     subcategoryId,
     order,
   } = props;
-  console.log(subcategoryId);
 
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectProductsStatus);

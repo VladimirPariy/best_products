@@ -3,26 +3,21 @@ import React, { FC, MouseEvent, Dispatch, SetStateAction } from "react";
 import styles from "layout/header/components/user-modal.module.scss";
 
 import { deleteTokenFromStorage } from "lib/utils/token-from-storage";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { selectAuth, selectUser } from "lib/store/user/user-selector";
-import { clearUser } from "lib/store/user/user-actions";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { selectAuth, selectUser } from "store/user/user-selector";
+import { clearUser } from "store/user/user-actions";
+import {
+  setVisibilityEditUserModal,
+  setVisibilitySignInModal,
+  setVisibilitySignUpModal,
+  setVisibilityUserModal,
+} from "store/modals/modals-actions";
 
-import { IModalScreens } from "lib/interfaces/modal-screens.interface";
-
-interface Props extends IModalScreens {
+interface Props {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
-  setIsShowUserModal?: Dispatch<SetStateAction<boolean>>;
 }
 
-const UserModal: FC<Props> = (props) => {
-  const {
-    setCheckedBurgerMenu,
-    setIsShowUserModal,
-    setIsShowRegistrationModal,
-    setIsShowAccountModal,
-    setIsShowLoginModal,
-  } = props;
-
+const UserModal: FC<Props> = ({ setCheckedBurgerMenu }) => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(selectAuth);
   const user = useAppSelector(selectUser);
@@ -33,30 +28,30 @@ const UserModal: FC<Props> = (props) => {
   };
 
   const showAcc = () => {
-    setIsShowAccountModal(true);
-    setIsShowRegistrationModal(false);
-    setIsShowLoginModal(false);
-    setIsShowUserModal && setIsShowUserModal(false);
+    dispatch(setVisibilityEditUserModal(true));
+    dispatch(setVisibilitySignInModal(false));
+    dispatch(setVisibilitySignUpModal(false));
+    dispatch(setVisibilityUserModal(false));
   };
 
   const showRegistration = () => {
-    setIsShowRegistrationModal(true);
-    setIsShowLoginModal(false);
-    setIsShowAccountModal(false);
-    setIsShowUserModal && setIsShowUserModal(false);
+    dispatch(setVisibilityEditUserModal(false));
+    dispatch(setVisibilitySignInModal(false));
+    dispatch(setVisibilitySignUpModal(true));
+    dispatch(setVisibilityUserModal(false));
   };
 
   const showLogin = () => {
-    setIsShowLoginModal(true);
-    setIsShowRegistrationModal(false);
-    setIsShowAccountModal(false);
-    setIsShowUserModal && setIsShowUserModal(false);
+    dispatch(setVisibilityEditUserModal(false));
+    dispatch(setVisibilitySignInModal(true));
+    dispatch(setVisibilitySignUpModal(false));
+    dispatch(setVisibilityUserModal(false));
   };
 
   const logOutHandler = () => {
     dispatch(clearUser());
     deleteTokenFromStorage();
-    setIsShowAccountModal(false);
+    dispatch(setVisibilityEditUserModal(false));
   };
 
   return (

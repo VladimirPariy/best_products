@@ -10,9 +10,9 @@ import { appUrl } from "lib/enums/app-urls";
 import {
   productsListTrigger,
   removeProductTrigger,
-} from "lib/store/products/products-actions";
-import { selectProductList } from "lib/store/products/products-selectors";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
+} from "store/products/products-actions";
+import { selectProductList } from "store/products/products-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
 import Price from "assets/icon/goods-statistics/price";
 import defaultImageForProduct from "assets/images/goods/grey_square.jpg";

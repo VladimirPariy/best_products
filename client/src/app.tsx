@@ -1,41 +1,44 @@
-import React, { FC, useState } from "react";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import React, { FC } from "react";
 
 import Header from "layout/header/header";
 import Content from "layout/content/content";
 
+import {
+  setVisibilityEditUserModal,
+  setVisibilitySearchModal,
+  setVisibilitySignInModal,
+  setVisibilitySignUpModal,
+  setVisibilityUserModal,
+} from "store/modals/modals-actions";
+import {
+  selectEditUserModal,
+  selectSearchModal,
+  selectSignInModal,
+  selectSignUpModal,
+  selectUserModal,
+} from "store/modals/modals-selectors";
+
 const App: FC = () => {
-  const [isShowUserModal, setIsShowUserModal] = useState<boolean>(false);
-  const [isShowRegistrationModal, setIsShowRegistrationModal] =
-    useState<boolean>(false);
-  const [isShowLoginModal, setIsShowLoginModal] = useState<boolean>(false);
-  const [isShowAccountModal, setIsShowAccountModal] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const isShowSearchModal = useAppSelector(selectSearchModal);
+  const isShowUserModal = useAppSelector(selectUserModal);
+  const isShowSignUpModal = useAppSelector(selectSignUpModal);
+  const isShowSignInModal = useAppSelector(selectSignInModal);
+  const isShowEditUserModal = useAppSelector(selectEditUserModal);
 
   const mainClickHandler = () => {
-    setIsShowUserModal(false);
-    setIsShowRegistrationModal(false);
-    setIsShowLoginModal(false);
-    setIsShowAccountModal(false);
-  };
-
-  const setIsShowModals = {
-    isShowUserModal,
-    setIsShowUserModal,
-    setIsShowRegistrationModal,
-    setIsShowLoginModal,
-    setIsShowAccountModal,
-  };
-
-  const isShowModalUseState = {
-    isShowRegistrationModal,
-    isShowLoginModal,
-    isShowAccountModal,
-    ...setIsShowModals,
+    isShowUserModal && dispatch(setVisibilityUserModal(false));
+    isShowSignUpModal && dispatch(setVisibilitySignUpModal(false));
+    isShowSignInModal && dispatch(setVisibilitySignInModal(false));
+    isShowEditUserModal && dispatch(setVisibilityEditUserModal(false));
+    isShowSearchModal && dispatch(setVisibilitySearchModal(false));
   };
 
   return (
     <main onClick={mainClickHandler}>
-      <Header {...setIsShowModals} />
-      <Content {...isShowModalUseState} />
+      <Header />
+      <Content />
     </main>
   );
 };

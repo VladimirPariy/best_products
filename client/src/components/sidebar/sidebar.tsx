@@ -18,10 +18,10 @@ import SidebarItem from "components/sidebar/components/sidebar-item";
 import { sidebarList } from "components/sidebar/sidebar.data";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
-import { useAppDispatch, useAppSelector } from "lib/store/store-types";
-import { categoriesTrigger } from "lib/store/categories/categories-actions";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { categoriesTrigger } from "store/categories/categories-actions";
 import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
-import { selectCategories } from "lib/store/categories/categories-selectors";
+import { selectCategories } from "store/categories/categories-selectors";
 
 interface Props {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
