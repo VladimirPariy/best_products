@@ -1,12 +1,12 @@
+import { ICharacteristics } from "lib/interfaces/characteristics/characteristic";
 import React, { ChangeEvent, FC } from "react";
 
 import styles from "components/filter-panel/components/characteristic-input.module.scss";
 
-import { ICharacteristicsDataFromServer } from "lib/interfaces/parameters/parameters.interface";
 import { upFirstChar } from "lib/utils/up-first-char";
 
 interface Props {
-  char: ICharacteristicsDataFromServer;
+  char: ICharacteristics;
   changeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
   selectedParameters: string[];
 }

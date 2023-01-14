@@ -4,8 +4,8 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 
 import UserApi from "lib/api/user-api";
-import { IToken, TokenType } from "lib/interfaces/user-interfaces/token";
-import { IUser } from "lib/interfaces/user-interfaces/user";
+import { IToken, TokenType } from "lib/interfaces/user/token";
+import { IUser } from "lib/interfaces/user/user";
 
 import {
   userInfoFulfilled,

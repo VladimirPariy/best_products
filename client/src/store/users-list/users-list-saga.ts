@@ -2,7 +2,7 @@ import userApi from "lib/api/user-api";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 
-import { IUser } from "lib/interfaces/user-interfaces/user";
+import { IUser } from "lib/interfaces/user/user";
 
 import {
   usersListRejected,

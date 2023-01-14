@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
+import { ILoginData } from "lib/interfaces/user/login-data";
 
-import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
-import { TokenType } from "lib/interfaces/user-interfaces/token";
+import { IRegistrationData } from "lib/interfaces/user/registration-data";
+import { TokenType } from "lib/interfaces/user/token";
 
-import { IUser } from "lib/interfaces/user-interfaces/user";
+import { IUser } from "lib/interfaces/user/user";
 import { ErrorPayload } from "store/store-types";
 import { deleteTokenFromStorage } from "lib/utils/token-from-storage";
 
@@ -68,6 +68,9 @@ export const userSlice = createSlice({
       deleteTokenFromStorage();
     },
     userInfoTrigger: (_, action: PayloadAction<TokenType>) => {},
+    clearUser: () => {
+      return initialState;
+    },
 
     updateUserFulfilled: (
       state,
@@ -91,9 +94,5 @@ export const userSlice = createSlice({
       _,
       action: PayloadAction<{ formData: FormData; id: number }>
     ) => {},
-
-    clearUser: () => {
-      return initialState;
-    },
   },
 });

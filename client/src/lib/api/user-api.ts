@@ -1,6 +1,6 @@
 import { authAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { IRole, IUser } from "lib/interfaces/user-interfaces/user";
+import { IRole, IUser } from "lib/interfaces/user/user";
 
 class UserApi {
   async getAllUsers() {

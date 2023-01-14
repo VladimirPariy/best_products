@@ -13,3 +13,8 @@ export interface ICategory {
 export interface ICategoryWithSubcategory extends ICategory {
   subcategories: ISubcategory[];
 }
+
+export interface ShotSubcategoryWithCategory
+  extends Pick<ISubcategory, "subcategory_title" | "subcategory_id"> {
+  categories: Omit<ICategory, "icon">;
+}

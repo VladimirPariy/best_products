@@ -1,8 +1,8 @@
 import { defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
-import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
-import { IToken } from "lib/interfaces/user-interfaces/token";
+import { ILoginData } from "lib/interfaces/user/login-data";
+import { IRegistrationData } from "lib/interfaces/user/registration-data";
+import { IToken } from "lib/interfaces/user/token";
 
 class AuthApi {
   async registration(regData: IRegistrationData) {

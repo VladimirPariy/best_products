@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IRole } from "lib/interfaces/user-interfaces/user";
+import { IRole } from "lib/interfaces/user/user";
 import { ErrorPayload } from "store/store-types";
 
 interface IInitialState {

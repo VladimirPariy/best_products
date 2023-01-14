@@ -1,14 +1,15 @@
 import { userSlice } from "store/user/user-slice";
 
 export const {
+  userTokenTrigger,
+  userTokenRejected,
+  userTokenFulfilled,
+  userTokenPending,
+
   userInfoRejected,
   userInfoFulfilled,
   userInfoPending,
   userInfoTrigger,
-  userTokenRejected,
-  userTokenFulfilled,
-  userTokenPending,
-  userTokenTrigger,
   updateUserPending,
   updateUserReject,
   updateUserFulfilled,

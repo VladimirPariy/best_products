@@ -3,6 +3,7 @@ import PriceInput from "components/filter-panel/components/price-input";
 import RadioInput from "components/filter-panel/components/radio-input";
 import Separator from "components/filter-panel/components/separator";
 import { ISubcategory } from "lib/interfaces/categories/categories.interface";
+import { IParameters } from "lib/interfaces/parameters/parameters.interface";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { useSearchParams } from "react-router-dom";
@@ -15,7 +16,6 @@ import {
   selectMaxPrice,
   selectMinPrice,
 } from "store/products/products-selectors";
-import { IParametersDataFromServer } from "lib/interfaces/parameters/parameters.interface";
 import productsApi from "lib/api/products-api";
 import { selectCategories } from "store/categories/categories-selectors";
 import { useAppSelector } from "store/store-types";
@@ -33,9 +33,9 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
   const [prevCategory, setPrevCategory] = useState("");
-  const [productsParameters, setProductsParameters] = useState<
-    IParametersDataFromServer[]
-  >([]);
+  const [productsParameters, setProductsParameters] = useState<IParameters[]>(
+    []
+  );
 
   const subcategoryList = categories
     .find((category) => category.category_title === categoryPath)

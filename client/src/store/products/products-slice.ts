@@ -4,7 +4,7 @@ import {
   IProduct,
   IProductDataResponse,
 } from "lib/interfaces/products/product";
-import { IProductDetails } from "lib/interfaces/products/product-details";
+import { IProductDetails } from "lib/interfaces/product-detail/product-details";
 import { ErrorPayload } from "store/store-types";
 
 interface IInitialState {

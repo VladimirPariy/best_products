@@ -10,9 +10,9 @@ import {
 } from "store/user/user-actions";
 
 import AuthApi from "lib/api/auth-api";
-import { TokenType } from "lib/interfaces/user-interfaces/token";
-import { IRegistrationData } from "lib/interfaces/user-interfaces/registration-data";
-import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
+import { TokenType } from "lib/interfaces/user/token";
+import { IRegistrationData } from "lib/interfaces/user/registration-data";
+import { ILoginData } from "lib/interfaces/user/login-data";
 
 function* userAuthWorker(
   action: PayloadAction<IRegistrationData | ILoginData>

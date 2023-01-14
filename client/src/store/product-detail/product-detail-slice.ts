@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IProductDetails } from "lib/interfaces/products/product-details";
+import { IProductDetails } from "lib/interfaces/product-detail/product-details";
 import {
   IProductImages,
   IUploadImage,

@@ -1,6 +1,12 @@
-export interface ICharacteristic {
+import { IParameters } from "lib/interfaces/parameters/parameters.interface";
+
+export interface ICharacteristics {
+  characteristic_id: number;
   characteristic_title: string;
-  characteristic_description: string;
-  product?: number;
-  product_characteristic_id: number;
+  parameter: number;
+}
+
+export interface ICharacteristicsWithParameters
+  extends Omit<ICharacteristics, "parameter"> {
+  parameters: Pick<IParameters, "subcategory" | "characteristics">;
 }

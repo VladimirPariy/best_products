@@ -15,8 +15,8 @@ import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
 import ProductsApi from "lib/api/products-api";
-import { IProductDetails } from "lib/interfaces/products/product-details";
-import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
+import { IProductDetails } from "lib/interfaces/product-detail/product-details";
+// import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
 import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
 import { selectCategories } from "store/categories/categories-selectors";
 import {
@@ -55,113 +55,113 @@ const UpdateProduct: FC = () => {
   const [productTitle, setProductTitle] = useState<string>("");
   const [productDescription, setProductDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("0");
-  const [characteristics, setCharacteristics] = useState<ICharacteristic[]>([]);
+  // const [characteristics, setCharacteristics] = useState<ICharacteristic[]>([]);
 
-  useEffect(() => {
-    if (Object.keys(productDetails).length > 0) {
-      setCategoryId(productDetails.category[0].category_id);
-      setSubcategoryId(productDetails.product_subcategory[0].subcategory_id);
-      setProductTitle(productDetails.product_title);
-      setProductDescription(productDetails.product_description);
-      setPrice(productDetails.price);
-      setCharacteristics(productDetails.product_characteristics);
-    }
-  }, [productDetails, categories.length]);
+  // useEffect(() => {
+  //   if (Object.keys(productDetails).length > 0) {
+  //     setCategoryId(productDetails.category[0].category_id);
+  //     setSubcategoryId(productDetails.product_subcategory[0].subcategory_id);
+  //     setProductTitle(productDetails.product_title);
+  //     setProductDescription(productDetails.product_description);
+  //     setPrice(productDetails.price);
+  //     setCharacteristics(productDetails.product_characteristics);
+  //   }
+  // }, [productDetails, categories.length]);
 
-  const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setCharacteristics([
-      ...characteristics,
-      {
-        characteristic_title: "",
-        characteristic_description: "",
-        product_characteristic_id: Date.now(),
-      },
-    ]);
-  };
+  // const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   setCharacteristics([
+  //     ...characteristics,
+  //     {
+  //       characteristic_title: "",
+  //       characteristic_description: "",
+  //       product_characteristic_id: Date.now(),
+  //     },
+  //   ]);
+  // };
+  //
+  // const dropCharacteristic = (id: number) => {
+  //   setCharacteristics(
+  //     characteristics.filter((char) => char.product_characteristic_id !== id)
+  //   );
+  // };
+  //
+  // const changeCharacteristic = (key: string, value: string, id: number) => {
+  //   setCharacteristics(
+  //     characteristics.map((char) =>
+  //       char.product_characteristic_id === id ? { ...char, [key]: value } : char
+  //     )
+  //   );
+  // };
 
-  const dropCharacteristic = (id: number) => {
-    setCharacteristics(
-      characteristics.filter((char) => char.product_characteristic_id !== id)
-    );
-  };
-
-  const changeCharacteristic = (key: string, value: string, id: number) => {
-    setCharacteristics(
-      characteristics.map((char) =>
-        char.product_characteristic_id === id ? { ...char, [key]: value } : char
-      )
-    );
-  };
-
-  const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files;
-    if (file && file.length > 0) {
-      const duplicate = productImages.find((img) => {
-        return img.size === file[0].size && img.original_title === file[0].name;
-      });
-      if (!duplicate && id) {
-        const formData = new FormData();
-        if (file instanceof FileList) formData.append(`img`, file[0]);
-        dispatch(uploadProductImageTrigger({ file: formData, id: +id }));
-      }
-    }
-  };
+  // const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files;
+  //   if (file && file.length > 0) {
+  //     const duplicate = productImages.find((img) => {
+  //       return img.size === file[0].size && img.original_title === file[0].name;
+  //     });
+  //     if (!duplicate && id) {
+  //       const formData = new FormData();
+  //       if (file instanceof FileList) formData.append(`img`, file[0]);
+  //       dispatch(uploadProductImageTrigger({ file: formData, id: +id }));
+  //     }
+  //   }
+  // };
 
   const dropFile = async (image_id: number) => {
     dispatch(removeProductImageTrigger({ id: image_id }));
   };
 
-  const updateProduct = async () => {
-    if (id) {
-      let updatingData: UpdatingProductDetails = { id: +id };
-      if (categoryId !== productDetails.category[0].category_id) {
-        updatingData = { ...updatingData, category: categoryId };
-      }
-      if (
-        subcategoryId !== productDetails.product_subcategory[0].subcategory_id
-      ) {
-        updatingData = { ...updatingData, product_subcategory: subcategoryId };
-      }
-      if (productTitle !== productDetails.product_title) {
-        updatingData = { ...updatingData, product_title: productTitle };
-      }
-      if (productDescription !== productDetails.product_description) {
-        updatingData = {
-          ...updatingData,
-          product_description: productDescription,
-        };
-      }
-      if (price !== productDetails.price) {
-        updatingData = { ...updatingData, price };
-      }
-      if (
-        JSON.stringify(characteristics) !==
-        JSON.stringify(productDetails.product_characteristics)
-      ) {
-        updatingData = {
-          ...updatingData,
-          product_characteristics: JSON.stringify(characteristics),
-        };
-      }
-
-      try {
-        setIsLoading(true);
-        await ProductsApi.updateProductDetails(updatingData);
-        const { id } = updatingData;
-        const updatingProduct: IProductDetails =
-          await ProductsApi.getProductDetail(id);
-
-        console.log(updatingProduct);
-        dispatch(updateProductAction(updatingProduct));
-      } catch (e) {
-        if (e instanceof AxiosError) setError(e);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
-  console.log(characteristics);
+  // const updateProduct = async () => {
+  //   if (id) {
+  //     let updatingData: UpdatingProductDetails = { id: +id };
+  //     if (categoryId !== productDetails.category[0].category_id) {
+  //       updatingData = { ...updatingData, category: categoryId };
+  //     }
+  //     if (
+  //       subcategoryId !== productDetails.product_subcategory[0].subcategory_id
+  //     ) {
+  //       updatingData = { ...updatingData, product_subcategory: subcategoryId };
+  //     }
+  //     if (productTitle !== productDetails.product_title) {
+  //       updatingData = { ...updatingData, product_title: productTitle };
+  //     }
+  //     if (productDescription !== productDetails.product_description) {
+  //       updatingData = {
+  //         ...updatingData,
+  //         product_description: productDescription,
+  //       };
+  //     }
+  //     if (price !== productDetails.price) {
+  //       updatingData = { ...updatingData, price };
+  //     }
+  //     if (
+  //       JSON.stringify(characteristics) !==
+  //       JSON.stringify(productDetails.product_characteristics)
+  //     ) {
+  //       updatingData = {
+  //         ...updatingData,
+  //         product_characteristics: JSON.stringify(characteristics),
+  //       };
+  //     }
+  //
+  //     try {
+  //       setIsLoading(true);
+  //       await ProductsApi.updateProductDetails(updatingData);
+  //       const { id } = updatingData;
+  //       const updatingProduct: IProductDetails =
+  //         await ProductsApi.getProductDetail(id);
+  //
+  //       console.log(updatingProduct);
+  //       dispatch(updateProductAction(updatingProduct));
+  //     } catch (e) {
+  //       if (e instanceof AxiosError) setError(e);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  // };
+  // console.log(characteristics);
 
   return (
     <ContentContainer>
@@ -218,63 +218,63 @@ const UpdateProduct: FC = () => {
             min={0}
           />
 
-          <Button submitHandler={addCharacteristic} isPurpleButton={false}>
-            Add more characteristic
-          </Button>
+          {/*<Button submitHandler={addCharacteristic} isPurpleButton={false}>*/}
+          {/*  Add more characteristic*/}
+          {/*</Button>*/}
 
-          {characteristics.length > 0 &&
-            characteristics.map((char, index) => (
-              <div key={char.product_characteristic_id}>
-                <AddProductCharacteristicTitle index={index} />
-                <AddProductCharacteristicContainer>
-                  <Input
-                    labelText={"Add characteristic title"}
-                    changeHandler={(e) =>
-                      changeCharacteristic(
-                        "characteristic_title",
-                        e.target.value,
-                        char.product_characteristic_id
-                      )
-                    }
-                    value={char.characteristic_title}
-                  />
-                  <Input
-                    labelText="Enter characteristic description"
-                    changeHandler={(e) =>
-                      changeCharacteristic(
-                        "characteristic_description",
-                        e.target.value,
-                        char.product_characteristic_id
-                      )
-                    }
-                    value={char.characteristic_description}
-                  />
+          {/*{characteristics.length > 0 &&*/}
+          {/*  characteristics.map((char, index) => (*/}
+          {/*    <div key={char.product_characteristic_id}>*/}
+          {/*      <AddProductCharacteristicTitle index={index} />*/}
+          {/*      <AddProductCharacteristicContainer>*/}
+          {/*        <Input*/}
+          {/*          labelText={"Add characteristic title"}*/}
+          {/*          changeHandler={(e) =>*/}
+          {/*            changeCharacteristic(*/}
+          {/*              "characteristic_title",*/}
+          {/*              e.target.value,*/}
+          {/*              char.product_characteristic_id*/}
+          {/*            )*/}
+          {/*          }*/}
+          {/*          value={char.characteristic_title}*/}
+          {/*        />*/}
+          {/*        <Input*/}
+          {/*          labelText="Enter characteristic description"*/}
+          {/*          changeHandler={(e) =>*/}
+          {/*            changeCharacteristic(*/}
+          {/*              "characteristic_description",*/}
+          {/*              e.target.value,*/}
+          {/*              char.product_characteristic_id*/}
+          {/*            )*/}
+          {/*          }*/}
+          {/*          value={char.characteristic_description}*/}
+          {/*        />*/}
 
-                  <Button
-                    submitHandler={() =>
-                      dropCharacteristic(char.product_characteristic_id)
-                    }
-                    style={{ background: "red" }}
-                  >
-                    Delete
-                  </Button>
-                </AddProductCharacteristicContainer>
-              </div>
-            ))}
-          <AddProductImageContainer>
-            {productImages && (
-              <Slider
-                images={productImages}
-                deleteHandler={dropFile}
-                onDelete={true}
-              />
-            )}
-          </AddProductImageContainer>
-          <BtnForAddImage fileHandler={uploadFileHandler}>
-            Add images
-          </BtnForAddImage>
+          {/*        <Button*/}
+          {/*          submitHandler={() =>*/}
+          {/*            dropCharacteristic(char.product_characteristic_id)*/}
+          {/*          }*/}
+          {/*          style={{ background: "red" }}*/}
+          {/*        >*/}
+          {/*          Delete*/}
+          {/*        </Button>*/}
+          {/*      </AddProductCharacteristicContainer>*/}
+          {/*    </div>*/}
+          {/*  ))}*/}
+          {/*<AddProductImageContainer>*/}
+          {/*  {productImages && (*/}
+          {/*    <Slider*/}
+          {/*      images={productImages}*/}
+          {/*      deleteHandler={dropFile}*/}
+          {/*      onDelete={true}*/}
+          {/*    />*/}
+          {/*  )}*/}
+          {/*</AddProductImageContainer>*/}
+          {/*<BtnForAddImage fileHandler={uploadFileHandler}>*/}
+          {/*  Add images*/}
+          {/*</BtnForAddImage>*/}
 
-          <Button submitHandler={updateProduct}>Update product</Button>
+          {/*<Button submitHandler={updateProduct}>Update product</Button>*/}
         </>
       ) : (
         <div>...Loading</div>

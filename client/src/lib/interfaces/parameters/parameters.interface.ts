@@ -1,11 +1,7 @@
-export interface ICharacteristicsDataFromServer {
-  characteristic_id: number;
-  characteristic_title: string;
-  parameter: number;
-}
+import { ICharacteristics } from "lib/interfaces/characteristics/characteristic";
 
-export interface IParametersDataFromServer {
-  characteristics: ICharacteristicsDataFromServer[];
+export interface IParameters {
+  characteristics: ICharacteristics[];
   parameter_id: number;
   parameter_title: string;
   subcategory: number;

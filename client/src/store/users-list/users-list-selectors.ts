@@ -1,4 +1,4 @@
-import { IUser } from "lib/interfaces/user-interfaces/user";
+import { IUser } from "lib/interfaces/user/user";
 import { ErrorPayload, RootState } from "store/store-types";
 
 const selectUsersList = (state: RootState): IUser[] =>

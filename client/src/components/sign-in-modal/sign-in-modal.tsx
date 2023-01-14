@@ -13,7 +13,7 @@ import React, {
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import { ILoginData } from "lib/interfaces/user-interfaces/login-data";
+import { ILoginData } from "lib/interfaces/user/login-data";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { userInfoTrigger, userTokenTrigger } from "store/user/user-actions";
 import { selectAuth, selectToken } from "store/user/user-selector";

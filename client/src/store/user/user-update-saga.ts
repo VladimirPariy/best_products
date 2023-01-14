@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { IUser } from "lib/interfaces/user-interfaces/user";
+import { IUser } from "lib/interfaces/user/user";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { PayloadAction } from "@reduxjs/toolkit";
 

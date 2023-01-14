@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FC } from "react";
+import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import React, { ChangeEvent, FC, ReactNode } from "react";
 
 import styles from "components/ui/input/input.module.scss";
 
@@ -8,8 +9,9 @@ interface Props {
   changeHandler: (() => void) | ((e: ChangeEvent<HTMLInputElement>) => void);
   value: string;
   placeholder?: string;
-  children?: string;
+  children?: ReactNode;
   min?: number;
+  isError?: null | boolean;
 }
 
 const Input: FC<Props> = (props) => {
@@ -21,9 +23,17 @@ const Input: FC<Props> = (props) => {
     placeholder,
     children,
     min,
+    isError,
   } = props;
+  const errorClassNames = getClassNameByCondition(
+    styles,
+    "label",
+    "error",
+    !!isError,
+    ""
+  );
   return (
-    <label className={styles.label}>
+    <label className={errorClassNames}>
       <div className={styles.labelText}>{labelText}</div>
       <input
         type={type}

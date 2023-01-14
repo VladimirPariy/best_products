@@ -63,8 +63,7 @@ const AppRouter: FC = () => {
         </Route>
         {emptyRoute}
       </Route>
-      <Route path="/product/*">
-        <Route index element={<LayoutPage />} />
+      <Route path="/product/*" element={<LayoutPage />}>
         {categoryRoutes.map((categoryRoute) => (
           <Route
             path={`${categoryRoute.category_title}/*`}
@@ -86,8 +85,8 @@ const AppRouter: FC = () => {
             {emptyRoute}
           </Route>
         ))}
-        <Route path=":id" element={<ProductDetailPage />} />
       </Route>
+      <Route path="/product/:id" element={<ProductDetailPage />} />
       {emptyRoute}
     </Routes>
   );
