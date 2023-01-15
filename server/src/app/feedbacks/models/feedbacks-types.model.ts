@@ -15,16 +15,18 @@ class FeedbacksTypesModel extends Model {
     return "feedback_type_id";
   }
 
-  static relationMappings = {
-    feedbacks: {
-      relation: Model.HasManyRelation,
-      modelClass: FeedbacksModel,
-      join: {
-        from: "feedbacks_types.feedback_type_id",
-        to: "feedbacks.feedback_type",
+  static get relationMappings() {
+    return {
+      feedbacks: {
+        relation: Model.HasManyRelation,
+        modelClass: FeedbacksModel,
+        join: {
+          from: "feedbacks_types.feedback_type_id",
+          to: "feedbacks.feedback_type",
+        },
       },
-    },
-  };
+    };
+  }
 }
 
 export { FeedbacksTypesModel };

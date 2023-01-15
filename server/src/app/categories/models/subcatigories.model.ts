@@ -12,26 +12,28 @@ export class SubcategoryModel extends Model {
 
   static idColumn = "subcategory_id";
 
-  static relationMappings = {
-    // category: {
-    // 	relation: Model.HasOneRelation,
-    // 	modelClass: CategoriesModel,
-    // 	join: {
-    // 		from: 'subcategories.category',
-    // 		to: 'categories.category_id',
-    // 	}
-    // }
-    // products: {
-    //   relation: Model.ManyToManyRelation,
-    //   modelClass: ProductsModel,
-    //   join: {
-    //     from: "subcategories.subcategory_id",
-    //     through: {
-    //       from: "product_subcategories.subcategory",
-    //       to: "product_subcategories.product",
-    //     },
-    //     to: "products.product_id",
-    //   },
-    // },
-  };
+  static get relationMappings() {
+    return {
+      categories: {
+        relation: Model.HasOneRelation,
+        modelClass: CategoriesModel,
+        join: {
+          from: "subcategories.category",
+          to: "categories.category_id",
+        },
+      },
+      // products: {
+      //   relation: Model.ManyToManyRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "subcategories.subcategory_id",
+      //     through: {
+      //       from: "product_subcategories.subcategory",
+      //       to: "product_subcategories.product",
+      //     },
+      //     to: "products.product_id",
+      //   },
+      // },
+    };
+  }
 }

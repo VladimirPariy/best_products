@@ -15,22 +15,24 @@ export class ProductSubcategoryModal extends Model {
     return ["product", "subcategory"];
   }
 
-  static relationMappings = {
-    products: {
-      relation: Model.HasOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "product_subcategories.product",
-        to: "products.product_id",
+  static get relationMappings() {
+    return {
+      products: {
+        relation: Model.HasOneRelation,
+        modelClass: ProductsModel,
+        join: {
+          from: "product_subcategories.product",
+          to: "products.product_id",
+        },
       },
-    },
-    subcategories: {
-      relation: Model.HasOneRelation,
-      modelClass: SubcategoryModel,
-      join: {
-        from: "product_subcategories.subcategory",
-        to: "subcategories.subcategory_id",
+      subcategories: {
+        relation: Model.HasOneRelation,
+        modelClass: SubcategoryModel,
+        join: {
+          from: "product_subcategories.subcategory",
+          to: "subcategories.subcategory_id",
+        },
       },
-    },
-  };
+    };
+  }
 }

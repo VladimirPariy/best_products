@@ -11,7 +11,7 @@ class ProductController {
 
   async getProductDetailsById(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const data = await ProductService.getProductDetailsById(+id);
+    const data = await ProductService.getProductDetailsById(id);
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
 

@@ -17,16 +17,18 @@ class PriceHistoryModel extends Model {
     return "price_history_id";
   }
 
-  static relationMappings = {
-    products: {
-      relation: Model.HasOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "price_history.product",
-        to: "products.product_id",
+  static get relationMappings() {
+    return {
+      products: {
+        relation: Model.HasOneRelation,
+        modelClass: ProductsModel,
+        join: {
+          from: "price_history.product",
+          to: "products.product_id",
+        },
       },
-    },
-  };
+    };
+  }
 
   $beforeInsert() {
     this.created_at = PriceHistoryModel.fn.now();

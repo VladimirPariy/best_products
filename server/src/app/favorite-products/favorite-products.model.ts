@@ -17,24 +17,27 @@ export class FavoriteProductsModel extends Model {
     return ["user", "product"];
   }
 
-  static relationMappings = {
-    // products: {
-    //   relation: Model.HasOneRelation,
-    //   modelClass: ProductsModel,
-    //   join: {
-    //     from: "favorite_products.product",
-    //     to: "products.product_id"
-    //   }
-    // },
-    users: {
-      relation: Model.HasOneRelation,
-      modelClass: UsersModel,
-      join: {
-        from: "favorite_products.user",
-        to: "users.user_id",
+  static get relationMappings() {
+    return {
+      // products: {
+      //   relation: Model.HasOneRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "favorite_products.product",
+      //     to: "products.product_id"
+      //   }
+      // },
+      users: {
+        relation: Model.HasOneRelation,
+        modelClass: UsersModel,
+        join: {
+          from: "favorite_products.user",
+          to: "users.user_id",
+        },
       },
-    },
-  };
+    };
+  }
+
   $beforeInsert() {
     this.created_at = FavoriteProductsModel.fn.now();
     this.updated_at = FavoriteProductsModel.fn.now();

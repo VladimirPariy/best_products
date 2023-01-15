@@ -17,16 +17,18 @@ class ProductsImagesModel extends Model {
     return "image_id";
   }
 
-  static relationMappings = {
-    products: {
-      relation: Model.HasOneRelation,
-      modelClass: ProductsModel,
-      join: {
-        from: "products_images.product",
-        to: "products.product_id",
+  static get relationMappings() {
+    return {
+      products: {
+        relation: Model.HasOneRelation,
+        modelClass: ProductsModel,
+        join: {
+          from: "products_images.product",
+          to: "products.product_id",
+        },
       },
-    },
-  };
+    };
+  }
 }
 
 export { ProductsImagesModel };

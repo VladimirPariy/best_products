@@ -8,7 +8,7 @@ const addFakeSubcategory = (id: number, index: number) => {
     "banner-sports.png",
     "banner-travels.png",
   ];
-  const subcategory_title = faker.commerce.product();
+  const subcategory_title = faker.helpers.unique(faker.commerce.product);
   const background_image = faker.helpers.arrayElement(subcategoryBanner);
   return {
     subcategory_id: id,

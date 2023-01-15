@@ -72,61 +72,61 @@ class UsersModel extends Model {
         },
       },
 
-      users_products_comments: {
-        relation: Model.ManyToManyRelation,
-        modelClass: ProductsModel,
-        join: {
-          from: "users.user_id",
-          through: {
-            from: "comments.user",
-            extra: ["comment_id", "comment_msg", "created_at", "updated_at"],
-            to: "comments.product",
-          },
-          to: "products.product_id",
-        },
-      },
+      // users_products_comments: {
+      //   relation: Model.ManyToManyRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "users.user_id",
+      //     through: {
+      //       from: "comments.user",
+      //       extra: ["comment_id", "comment_msg", "created_at", "updated_at"],
+      //       to: "comments.product",
+      //     },
+      //     to: "products.product_id",
+      //   },
+      // },
 
-      users_products_feedbacks: {
-        relation: Model.ManyToManyRelation,
-        modelClass: ProductsModel,
-        join: {
-          from: "users.user_id",
-          through: {
-            from: "feedbacks.user",
-            extra: ["feedback_type", "created_at", "updated_at"],
-            to: "feedbacks.product",
-          },
-          to: "products.product_id",
-        },
-      },
-
-      users_favorite_products: {
-        relation: Model.ManyToManyRelation,
-        modelClass: ProductsModel,
-        join: {
-          from: "users.user_id",
-          through: {
-            from: "favorite_products.user",
-            extra: ["created_at", "updated_at"],
-            to: "favorite_products.product",
-          },
-          to: "products.product_id",
-        },
-      },
-
-      users_views_products: {
-        relation: Model.ManyToManyRelation,
-        modelClass: ProductsModel,
-        join: {
-          from: "users.user_id",
-          through: {
-            from: "views.user",
-            extra: ["created_at", "updated_at"],
-            to: "views.product",
-          },
-          to: "products.product_id",
-        },
-      },
+      // users_products_feedbacks: {
+      //   relation: Model.ManyToManyRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "users.user_id",
+      //     through: {
+      //       from: "feedbacks.user",
+      //       extra: ["feedback_type", "created_at", "updated_at"],
+      //       to: "feedbacks.product",
+      //     },
+      //     to: "products.product_id",
+      //   },
+      // },
+      //
+      // users_favorite_products: {
+      //   relation: Model.ManyToManyRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "users.user_id",
+      //     through: {
+      //       from: "favorite_products.user",
+      //       extra: ["created_at", "updated_at"],
+      //       to: "favorite_products.product",
+      //     },
+      //     to: "products.product_id",
+      //   },
+      // },
+      //
+      // users_views_products: {
+      //   relation: Model.ManyToManyRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "users.user_id",
+      //     through: {
+      //       from: "views.user",
+      //       extra: ["created_at", "updated_at"],
+      //       to: "views.product",
+      //     },
+      //     to: "products.product_id",
+      //   },
+      // },
     };
   }
 

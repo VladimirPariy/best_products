@@ -1,6 +1,7 @@
 import Objection, { Model } from "objection";
 
 import { UsersModel } from "@/app/users/models/users.model";
+import { ProductsModel } from "@/app/products/models/products.model";
 
 export class CommentsModel extends Model {
   comment_id: number;
@@ -18,24 +19,26 @@ export class CommentsModel extends Model {
     return "comment_id";
   }
 
-  static relationMappings = {
-    users: {
-      relation: Model.HasOneRelation,
-      modelClass: UsersModel,
-      join: {
-        from: "comments.user",
-        to: "users.user_id",
+  static get relationMappings() {
+    return {
+      users: {
+        relation: Model.HasOneRelation,
+        modelClass: UsersModel,
+        join: {
+          from: "comments.user",
+          to: "users.user_id",
+        },
       },
-    },
-    // products: {
-    //   relation: Model.HasOneRelation,
-    //   modelClass: ProductsModel,
-    //   join: {
-    //     from: "comments.product",
-    //     to: "products.product_id"
-    //   }
-    // }
-  };
+      // products: {
+      // 	relation: Model.HasOneRelation,
+      // 	modelClass: ProductsModel,
+      // 	join: {
+      // 		from: "comments.product",
+      // 		to: "products.product_id"
+      // 	}
+      // }
+    };
+  }
 
   $beforeInsert() {
     this.created_at = CommentsModel.fn.now();

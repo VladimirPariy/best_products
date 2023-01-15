@@ -19,32 +19,34 @@ export class FeedbacksModel extends Model {
     return ["user", "product"];
   }
 
-  static relationMappings = {
-    feedback_types: {
-      relation: Model.HasOneRelation,
-      modelClass: FeedbacksTypesModel,
-      join: {
-        from: "feedbacks.feedback_type",
-        to: "feedbacks_types.feedback_type_id",
+  static get relationMappings() {
+    return {
+      feedback_types: {
+        relation: Model.HasOneRelation,
+        modelClass: FeedbacksTypesModel,
+        join: {
+          from: "feedbacks.feedback_type",
+          to: "feedbacks_types.feedback_type_id",
+        },
       },
-    },
-    users: {
-      relation: Model.HasOneRelation,
-      modelClass: UsersModel,
-      join: {
-        from: "feedbacks.user",
-        to: "users.user_id",
+      users: {
+        relation: Model.HasOneRelation,
+        modelClass: UsersModel,
+        join: {
+          from: "feedbacks.user",
+          to: "users.user_id",
+        },
       },
-    },
-    // products: {
-    //   relation: Model.HasOneRelation,
-    //   modelClass: ProductsModel,
-    //   join: {
-    //     from: "feedbacks.product",
-    //     to: "products.product_id"
-    //   }
-    // }
-  };
+      // products: {
+      //   relation: Model.HasOneRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "feedbacks.product",
+      //     to: "products.product_id"
+      //   }
+      // }
+    };
+  }
 
   $beforeInsert() {
     this.created_at = FeedbacksModel.fn.now();

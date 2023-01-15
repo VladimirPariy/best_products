@@ -14,14 +14,16 @@ export class CategoriesModel extends Model {
     return "category_id";
   }
 
-  static relationMappings = {
-    subcategories: {
-      relation: Model.HasManyRelation,
-      modelClass: SubcategoryModel,
-      join: {
-        from: "subcategories.category",
-        to: "categories.category_id",
+  static get relationMappings() {
+    return {
+      subcategories: {
+        relation: Model.HasManyRelation,
+        modelClass: SubcategoryModel,
+        join: {
+          from: "subcategories.category",
+          to: "categories.category_id",
+        },
       },
-    },
-  };
+    };
+  }
 }

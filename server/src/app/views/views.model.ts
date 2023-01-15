@@ -18,24 +18,26 @@ class ViewsModel extends Model {
     return "view_id";
   }
 
-  static relationMappings = {
-    users: {
-      relation: Model.HasOneRelation,
-      modelClass: UsersModel,
-      join: {
-        from: "views.user",
-        to: "users.user_id",
+  static get relationMappings() {
+    return {
+      users: {
+        relation: Model.HasOneRelation,
+        modelClass: UsersModel,
+        join: {
+          from: "views.user",
+          to: "users.user_id",
+        },
       },
-    },
-    // products: {
-    //   relation: Model.HasOneRelation,
-    //   modelClass: ProductsModel,
-    //   join: {
-    //     from: "views.product",
-    //     to: "products.product_id"
-    //   }
-    // }
-  };
+      // products: {
+      //   relation: Model.HasOneRelation,
+      //   modelClass: ProductsModel,
+      //   join: {
+      //     from: "views.product",
+      //     to: "products.product_id"
+      //   }
+      // }
+    };
+  }
 
   $beforeInsert() {
     this.created_at = ViewsModel.fn.now();

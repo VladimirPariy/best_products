@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import fileUpload, { UploadedFile } from "express-fileupload";
 import { HttpException } from "@/app/common/errors/exceptions";
-import { ProductsModel } from "@/app/products/models/products.model";
 import { Request } from "express";
 import {
   IInfoForCreateProduct,
@@ -11,6 +10,7 @@ import {
   IProductSubcategory,
   IUpdatingProductFields,
 } from "@/app/products/product.interfaces";
+import { ProductsModel } from "@/app/products/models/products.model";
 import { CategoriesModel } from "@/app/categories/models/categories.model";
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
 import { ProductsImagesModel } from "@/app/products/models/products-images.model";
@@ -32,41 +32,89 @@ class ProductService {
     return products;
   }
 
-  async getProductDetailsById(id: number) {
+  async getProductDetailsById(id: number | string) {
     if (!id) {
       return HttpException.badRequest("Missing product id");
     }
-    const product = await ProductsModel.query().findById(id);
+
+    const product = await ProductsModel.query()
+      .findById(id)
+      .select([
+				"products.*",
+        ProductsModel.relatedQuery("favorite_products")
+          .count()
+          .as("number_of_favorites"),
+        ProductsModel.relatedQuery("views").count().as("number_of_views"),
+        ProductsModel.relatedQuery("feedbacks")
+          .count()
+          .as("positive_feedbacks")
+          .where({ feedback_type: 1 }),
+        ProductsModel.relatedQuery("feedbacks")
+          .count()
+          .as("negative_feedbacks")
+          .where({ feedback_type: 2 }),
+      ])
+      .withGraphFetched("price_history(selectPriceHistory)")
+      .withGraphFetched("product_images(selectImage)")
+      .withGraphFetched(
+        "characteristics(selectCharacteristic).[parameters(selectParameter)]"
+      )
+      .withGraphFetched(
+        "subcategories(selectSubcategory).[categories(selectCategory)]"
+      )
+      .withGraphFetched("comments(selectComments).[users(selectUser)]")
+      .modifiers({
+        selectUser: (builder) => {
+          builder.select(
+            "created_at",
+            "email",
+            "first_name",
+            "last_name",
+            "updated_at",
+            "user_id",
+            "user_photo"
+          );
+        },
+        selectComments: (builder) => {
+          builder.select(
+            "comment_id",
+            "comment_msg",
+            "created_at",
+            "updated_at"
+          );
+        },
+        selectSubcategory: (builder) => {
+          builder.select("subcategory_id", "subcategory_title");
+        },
+        selectCategory: (builder) => {
+          builder.select("category_id", "category_title");
+        },
+        selectCharacteristic: (builder) => {
+          builder.select("characteristic_id", "characteristic_title");
+        },
+        selectParameter: (builder) => {
+          builder.select("parameter_id", "parameter_title");
+        },
+        selectImage: (builder) => {
+          builder.select("image_id", "image_title");
+        },
+        selectPriceHistory: (builder) => {
+          builder.select(
+            "created_at",
+            "price_at_timestamp",
+            "price_history_id",
+            "updated_at"
+          );
+        },
+      });
+
     if (!product) {
       return HttpException.internalServErr(
         `Unsuccessful selecting data into table`
       );
     }
-    const priceHistory = await product.$relatedQuery("price_history");
-    const productImages = await product.$relatedQuery("product_images");
-    const productCharacteristics = await product.$relatedQuery(
-      "product_characteristics"
-    );
-    const productSubcategory = (await product.$relatedQuery(
-      "subcategories"
-    )) as SubcategoryModel[];
-    const subCatId = productSubcategory[0].category;
-    const productCategory = await CategoriesModel.query().where(
-      "categories.category_id",
-      "=",
-      subCatId
-    );
 
-    const prod = {
-      ...product,
-      price_history: priceHistory,
-      product_images: productImages,
-      product_characteristics: productCharacteristics,
-      product_subcategory: productSubcategory,
-      category: productCategory,
-    };
-
-    return prod;
+    return product;
   }
 
   async removeOneProduct(id: string) {
