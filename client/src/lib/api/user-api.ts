@@ -1,5 +1,6 @@
 import { authAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
+import {IUpdateUserData} from "lib/interfaces/user/update-user-data";
 import { IRole, IUser } from "lib/interfaces/user/user";
 
 class UserApi {
@@ -37,7 +38,7 @@ class UserApi {
     return data;
   }
 
-  async updateUserInfo({ formData, id }: { formData: FormData; id: number }) {
+  async updateUserInfo({ formData, id }: IUpdateUserData) {
     const data = await authAxios.patch<string>(
       `${apiUrls.one_user_by_id}${id}`,
       formData,

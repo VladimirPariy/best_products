@@ -7,7 +7,6 @@ import {
   IProduct,
   IProductDataResponse,
 } from "lib/interfaces/products/product";
-import { IProductDetails } from "lib/interfaces/product-detail/product-details";
 import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
 import {
   IProductImages,

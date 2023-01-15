@@ -1,5 +1,5 @@
-import { IUser } from "lib/interfaces/user/user";
-import { ErrorPayload, RootState } from "store/store-types";
+import {IUser} from "lib/interfaces/user/user";
+import {ErrorPayload, RootState} from "store/store-types";
 
 const selectUser = (state: RootState): IUser => state.user.userInfo;
 const selectUserError = (state: RootState): ErrorPayload | null =>

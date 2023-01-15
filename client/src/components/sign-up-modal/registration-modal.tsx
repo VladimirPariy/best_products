@@ -1,10 +1,10 @@
-import { Loader } from "components/ui/loader/loader";
-import React, { FC, useEffect, useState } from "react";
+import {Loader} from "components/ui/loader/loader";
+import React, {FC, useEffect, useState} from "react";
 
-import { validateLatinLetter } from "lib/utils/validate-latin-letter";
-import { ValidationMessage } from "lib/enums/validation-message";
-import { validateEmail } from "lib/utils/validate-email";
-import { IRegistrationData } from "lib/interfaces/user/registration-data";
+import {validateLatinLetter} from "lib/utils/validate-latin-letter";
+import {ValidationMessage} from "lib/enums/validation-message";
+import {validateEmail} from "lib/utils/validate-email";
+import {IRegistrationData} from "lib/interfaces/user/registration-data";
 import {
   clearUser,
   userInfoTrigger,
@@ -16,9 +16,9 @@ import {
   selectUserError,
   selectUserStatus,
 } from "store/user/user-selector";
-import { useAppDispatch, useAppSelector } from "store/store-types";
-import { setVisibilitySignUpModal } from "store/modals/modals-actions";
-import { selectSignUpModal } from "store/modals/modals-selectors";
+import {useAppDispatch, useAppSelector} from "store/store-types";
+import {setVisibilitySignUpModal} from "store/modals/modals-actions";
+import {selectSignUpModal} from "store/modals/modals-selectors";
 
 import ErrorContainer from "components/ui/error-container/error-container";
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
@@ -26,6 +26,7 @@ import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import Input from "components/ui/input/input";
 import Title from "components/ui/title/title";
+import {ErrorValidation} from "lib/interfaces/error-validation";
 
 const RegistrationModal: FC = () => {
   const dispatch = useAppDispatch();
@@ -44,12 +45,12 @@ const RegistrationModal: FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
 
-  const [errorFirstName, setErrorFirstName] = useState<null | string>(null);
-  const [errorLastName, setErrorLastName] = useState<null | string>(null);
-  const [errorEmail, setErrorEmail] = useState<null | string>(null);
-  const [errorPassword, setErrorPassword] = useState<null | string>(null);
+  const [errorFirstName, setErrorFirstName] = useState<ErrorValidation>(null);
+  const [errorLastName, setErrorLastName] = useState<ErrorValidation>(null);
+  const [errorEmail, setErrorEmail] = useState<ErrorValidation>(null);
+  const [errorPassword, setErrorPassword] = useState<ErrorValidation>(null);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<
-    null | string
+    ErrorValidation
   >(null);
 
   useEffect(() => {
@@ -62,6 +63,7 @@ const RegistrationModal: FC = () => {
     if (errorConfirmPassword && confirmPassword.length > 4)
       setErrorConfirmPassword(null);
     if (password && validateLatinLetter(password)) setErrorPassword(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstName, lastName, email, password, confirmPassword]);
 
   const registrationHandler = async () => {
@@ -90,8 +92,11 @@ const RegistrationModal: FC = () => {
       email.length === 0 ||
       !validateEmail(email) ||
       password.length < 5 ||
+      !validateLatinLetter(password) ||
       confirmPassword.length < 5 ||
-      confirmPassword !== password
+      !validateLatinLetter(confirmPassword) ||
+      confirmPassword !== password ||
+      serverError
     )
       return;
 
@@ -135,14 +140,14 @@ const RegistrationModal: FC = () => {
         changeHandler={(e) => setFirstName(e.target.value)}
         labelText="First name"
         isError={!!errorFirstName}
-        children={<ErrorContainer errorText={errorFirstName} />}
+        children={<ErrorContainer errorText={errorFirstName}/>}
       />
       <Input
         value={lastName}
         changeHandler={(e) => setLastName(e.target.value)}
         labelText="Last name"
         isError={!!errorLastName}
-        children={<ErrorContainer errorText={errorLastName} />}
+        children={<ErrorContainer errorText={errorLastName}/>}
       />
       <Input
         value={email}
@@ -206,7 +211,7 @@ const RegistrationModal: FC = () => {
         submitHandler={registrationHandler}
         isPurpleButton={true}
         type="button"
-        children={isLoading ? <Loader size={27} /> : "Create account"}
+        children={isLoading ? <Loader size={27}/> : "Create account"}
       />
     </ModalWrapper>
   );

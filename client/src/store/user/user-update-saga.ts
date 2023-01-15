@@ -1,4 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
+import {IUpdateUserData} from "lib/interfaces/user/update-user-data";
 import { IUser } from "lib/interfaces/user/user";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -14,7 +15,7 @@ import UserApi from "lib/api/user-api";
 
 function* userUpdateWorker({
   payload,
-}: PayloadAction<{ formData: FormData; id: number }>) {
+}: PayloadAction<IUpdateUserData>) {
   const { id } = payload;
   yield put(updateUserPending());
   try {

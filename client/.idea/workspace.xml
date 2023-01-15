@@ -5,52 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/error-container/error-container.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/loader/loader.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/loader/loader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/api/product-detail-api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/comments/comments.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/utils/validate-email.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/utils/validate-latin-letter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/error-validation.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/user/update-user-data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/utils/validate-phone.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app-router/app-router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-router/app-router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sign-in-modal/sign-in-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in-modal/sign-in-modal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sign-up-modal/registration-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-up-modal/registration-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/input/input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input/input.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/input/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/api/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/auth-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/api/user-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/user-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/categories/categories.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/categories/categories.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/characteristics/characteristic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/characteristics/characteristic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/parameters/parameters.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/parameters/parameters.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product-details.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/user-interfaces/login-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/user/login-data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/user-interfaces/registration-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/user/registration-data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/user-interfaces/token.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/user/token.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/user-interfaces/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/user/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/update-product/update-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/update-product/update-product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/products/products-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/products/products-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-auth-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-auth-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/user/user-info-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-info-saga.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-selector.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-update-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-update-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-selectors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-roles/users-roles-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-roles/users-roles-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-roles/users-roles-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-roles/users-roles-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/auth/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/categories/models/categories.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/categories/models/categories.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/categories/models/product-subcategories.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/categories/models/product-subcategories.model.ts" afterDir="false" />
@@ -86,7 +55,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="NamedScopeManager">
-    <scope name="bookmark" pattern="file[client]:src||file:src/store/rootSaga.ts||file:src/store/store.ts||file:src/store/store-types.ts||file:src/store/user/user-reducer.ts||file:src/store/user/user-info-saga.ts||file:src/store/user/user-auth-saga.ts||file:src/components/app-router/*||file:src/components/observer/*||file:src/components/protected-route/*||file:src/components/sidebar/*||file:src/components/sign-up-modal/*||file:src/scss/*||file:src/pages/home/*||file:src/components/ui/loader/*||file:src/components/ui/input/*||file:src/components/ui/error-container/*" />
+    <scope name="bookmark" pattern="file[client]:src||file:src/store/categories/*||file:src/components/ui/btn-for-add-image/*||file:src/store/root-reducer.ts||file:src/store/user/*||file:src/lib/interfaces/error-validation.ts||file:src/components/user-acc-modal/*||file:src/lib/api/axios-instances.ts||file:src/lib/api/auth-api.ts||file:src/store/modals/*||file:src/lib/utils/*||file:src/lib/enums/validation-message.ts||file:src/components/sign-in-modal/*||file:src/lib/interfaces/jwt-decode.interface.ts||file:src/lib/interfaces/sidebar/*||file:src/lib/interfaces/user/*||file:src/store/rootSaga.ts||file:src/store/store.ts||file:src/store/store-types.ts||file:src/store/user/user-reducer.ts||file:src/store/user/user-info-saga.ts||file:src/store/user/user-auth-saga.ts||file:src/components/app-router/*||file:src/components/observer/*||file:src/components/protected-route/*||file:src/components/sidebar/*||file:src/components/sign-up-modal/*||file:src/scss/*||file:src/pages/home/*||file:src/components/ui/loader/*||file:src/components/ui/input/*||file:src/lib/hooks/*||file:src/components/ui/title/*||file:src/components/ui/modal-checkbox/*||file:src/components/ui/modal-wrapper/*||file:src/components/ui/button/*||file:src/components/ui/error-container/*" />
   </component>
   <component name="ProjectId" id="2JDdqW6fKLP7isl684QMXSpQesQ" />
   <component name="ProjectViewState">
@@ -164,7 +133,7 @@
       <workItem from="1673502346899" duration="30212000" />
       <workItem from="1673586275037" duration="9535000" />
       <workItem from="1673652447862" duration="2817000" />
-      <workItem from="1673671390846" duration="28425000" />
+      <workItem from="1673671390846" duration="46266000" />
     </task>
     <servers />
   </component>

@@ -23,10 +23,8 @@ function* userAuthWorker(
   try {
     if (action.payload instanceof IRegistrationData) {
       token = yield call(AuthApi.registration, action.payload);
-    } else if (action.payload instanceof ILoginData) {
-      token = yield call(AuthApi.login, action.payload);
     } else {
-      throw new Error();
+      token = yield call(AuthApi.login, action.payload);
     }
     yield put(userTokenFulfilled(token));
   } catch (error) {

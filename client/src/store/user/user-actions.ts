@@ -5,14 +5,14 @@ export const {
   userTokenRejected,
   userTokenFulfilled,
   userTokenPending,
-
   userInfoRejected,
   userInfoFulfilled,
   userInfoPending,
   userInfoTrigger,
+  clearUser,
+  clearUserError,
   updateUserPending,
   updateUserReject,
   updateUserFulfilled,
   userUpdateTrigger,
-  clearUser,
 } = userSlice.actions;
