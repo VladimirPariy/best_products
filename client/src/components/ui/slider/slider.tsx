@@ -1,21 +1,21 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {FC, useEffect, useState} from "react";
 
 import styles from "components/ui/slider/slider.module.scss";
 
-import { apiUrls } from "lib/enums/api-urls";
+import {apiUrls} from "lib/enums/api-urls";
 
 import Arrow from "assets/icon/general/arrow";
 import defaultImg from "assets/images/goods/grey_square.jpg";
-import { IProductImages } from "lib/interfaces/products/upload-image";
+import {IShotImagesInfo} from "lib/interfaces/products/upload-image";
 
 interface Props {
-  images: IProductImages[];
-  deleteHandler: (image_id: number) => void;
+  images: IShotImagesInfo[];
+  deleteHandler?: (image_id: number) => void;
   onDelete?: boolean;
 }
 
 const Slider: FC<Props> = (props) => {
-  const { images, deleteHandler, onDelete } = props;
+  const {images, deleteHandler, onDelete} = props;
 
   const START_SHIFT = 0;
   const SHIFT = 25;
@@ -28,6 +28,7 @@ const Slider: FC<Props> = (props) => {
       setIdeaSerialNr(1);
       setElementShift(START_SHIFT);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [images]);
 
   const onNextIdeaHandler = () => {
@@ -73,7 +74,7 @@ const Slider: FC<Props> = (props) => {
         <div className={styles.previewImgContainer}>
           {onDelete && images.length > 0 && (
             <button
-              onClick={() => deleteHandler(images[imgSerialNr - 1].image_id)}
+              onClick={() => deleteHandler && deleteHandler(images[imgSerialNr - 1].image_id)}
               className={styles.deleteImg}
             >
               X
@@ -97,11 +98,11 @@ const Slider: FC<Props> = (props) => {
         </div>
         <div className={styles.sliderContainer}>
           <button className={styles.btnPver} onClick={onPrevIdeaHandler}>
-            <Arrow />
+            <Arrow/>
           </button>
           <div className={styles.slider}>
             <div
-              style={{ marginLeft: `calc(${shiftingSlider}% )` }}
+              style={{marginLeft: `calc(${shiftingSlider}% )`}}
               className={styles.slideWrap}
             >
               {images.length > 0 && imgSerialNr > 0 ? (
@@ -120,13 +121,13 @@ const Slider: FC<Props> = (props) => {
                 ))
               ) : (
                 <div>
-                  <img src={defaultImg} alt="product" />
+                  <img src={defaultImg} alt="product"/>
                 </div>
               )}
             </div>
           </div>
           <button className={styles.btnNext} onClick={onNextIdeaHandler}>
-            <Arrow />
+            <Arrow/>
           </button>
         </div>
       </div>

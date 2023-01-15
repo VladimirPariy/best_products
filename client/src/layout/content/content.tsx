@@ -4,8 +4,8 @@ import styles from "layout/content/content.module.scss";
 
 import { useScreenWidth } from "lib/hooks/use-screen-width";
 
-import MainContainer from "components/ui/main-container/main-container";
-import ModalContainer from "components/ui/modal-container/modal-container";
+import MainContainer from "components/main-container/main-container";
+import ModalContainer from "components/modal-container/modal-container";
 import Sidebar from "components/sidebar/sidebar";
 
 const Content: FC = () => {

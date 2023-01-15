@@ -1,4 +1,3 @@
-import {ErrorValidation} from "lib/interfaces/error-validation";
 import React, {
   FC,
   useEffect,
@@ -10,6 +9,7 @@ import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 import {ValidationMessage} from "lib/enums/validation-message";
 import {validateLatinLetter} from "lib/utils/validate-latin-letter";
 import {ILoginData} from "lib/interfaces/user/login-data";
+import {ErrorValidation} from "lib/interfaces/error-validation";
 
 import {useAppDispatch, useAppSelector} from "store/store-types";
 import {clearUser, userInfoTrigger, userTokenTrigger} from "store/user/user-actions";

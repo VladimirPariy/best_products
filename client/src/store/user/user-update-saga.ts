@@ -1,6 +1,4 @@
 import { AxiosError, AxiosResponse } from "axios";
-import {IUpdateUserData} from "lib/interfaces/user/update-user-data";
-import { IUser } from "lib/interfaces/user/user";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { PayloadAction } from "@reduxjs/toolkit";
 
@@ -11,6 +9,8 @@ import {
   updateUserReject,
 } from "store/user/user-actions";
 
+import {IUpdateUserData} from "lib/interfaces/user/update-user-data";
+import { IUser } from "lib/interfaces/user/user";
 import UserApi from "lib/api/user-api";
 
 function* userUpdateWorker({

@@ -1,5 +1,3 @@
-import FavoritePage from "pages/favorite/favorite-page";
-import ProductDetailPage from "pages/product-details/product-detail-page";
 import React, { FC, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -26,7 +24,8 @@ import LayoutPage from "pages/products/layout-page/layout-page";
 import SubcategoryPage from "pages/products/subcategory-page/subcategory-page";
 import AdminPanel from "pages/admin/admin-panel/admin-panel";
 import AddNewProduct from "pages/admin/add-new-product/add-new-product";
-
+import FavoritePage from "pages/favorite/favorite-page";
+import ProductDetailPage from "pages/product-details/product-detail-page";
 const AppRouter: FC = () => {
   const subcategories = useAppSelector(selectSubcategories);
   const [subcategoryRoutes, setSubcategoryRoutes] = useState<ISubcategory[]>(

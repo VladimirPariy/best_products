@@ -2,7 +2,7 @@
 
 .admin_panel {
   position: absolute;
-  top: 0;
+  top: 50px;
   right: 0;
   background: inherit;
   border: none;
@@ -27,6 +27,8 @@
 
 @media screen and (min-width: 769px) {
   .admin_panel {
+    top: 85px;
+    z-index: 2;
     padding: 10px 0;
     font-size: 20px;
     line-height: 23px;

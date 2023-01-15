@@ -5,19 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/error-validation.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/user/update-user-data.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/utils/validate-phone.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-counter.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-counter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-counters.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-counters.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-info-wrapper.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-info-wrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-price.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-price.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-shot-characteristics.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-title.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/components/product-title.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/product-info.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product-info/product-info.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-router/app-router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-router/app-router.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sign-in-modal/sign-in-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in-modal/sign-in-modal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sign-up-modal/registration-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-up-modal/registration-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/api/user-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/user-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/user/user-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/user/user-auth-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-auth-saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/user/user-selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/admin-panel-link/admin-panel-link.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/admin-panel-link/admin-panel-link.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/main-container/main-container.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main-container/main-container.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/main-container/main-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main-container/main-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/modal-container/modal-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal-container/modal-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/slider/slider.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/slider/slider.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/content/content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/content/content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/characteristics/characteristic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/characteristics/characteristic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user-update-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-update-saga.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/auth/auth.service.ts" afterDir="false" />
@@ -55,30 +72,30 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="NamedScopeManager">
-    <scope name="bookmark" pattern="file[client]:src||file:src/store/categories/*||file:src/components/ui/btn-for-add-image/*||file:src/store/root-reducer.ts||file:src/store/user/*||file:src/lib/interfaces/error-validation.ts||file:src/components/user-acc-modal/*||file:src/lib/api/axios-instances.ts||file:src/lib/api/auth-api.ts||file:src/store/modals/*||file:src/lib/utils/*||file:src/lib/enums/validation-message.ts||file:src/components/sign-in-modal/*||file:src/lib/interfaces/jwt-decode.interface.ts||file:src/lib/interfaces/sidebar/*||file:src/lib/interfaces/user/*||file:src/store/rootSaga.ts||file:src/store/store.ts||file:src/store/store-types.ts||file:src/store/user/user-reducer.ts||file:src/store/user/user-info-saga.ts||file:src/store/user/user-auth-saga.ts||file:src/components/app-router/*||file:src/components/observer/*||file:src/components/protected-route/*||file:src/components/sidebar/*||file:src/components/sign-up-modal/*||file:src/scss/*||file:src/pages/home/*||file:src/components/ui/loader/*||file:src/components/ui/input/*||file:src/lib/hooks/*||file:src/components/ui/title/*||file:src/components/ui/modal-checkbox/*||file:src/components/ui/modal-wrapper/*||file:src/components/ui/button/*||file:src/components/ui/error-container/*" />
+    <scope name="bookmark" pattern="file[client]:src||file:.idea/*||file:public/*||file:src/assets/icon/sort/*||file:src/assets/icon/header/*||file:src/assets/icon/goods-statistics/*||file:src/assets/icon/general/*||file:src/assets/images/*||file:src/assets/images/goods/*||file:src/components/sort-panel/*||file:src/components/sort-panel/components/*||file:src/pages/home/components/*||file:src/components/main-container/*||file:src/components/modal-container/*||file:src/components/ui/admin-panel-link/*||file:src/layout/content/*||file:src/layout/header/*||file:src/layout/header/components/*||file:src/store/categories/*||file:src/components/ui/btn-for-add-image/*||file:src/store/root-reducer.ts||file:src/store/user/*||file:src/lib/interfaces/error-validation.ts||file:src/components/user-acc-modal/*||file:src/lib/api/axios-instances.ts||file:src/lib/api/auth-api.ts||file:src/store/modals/*||file:src/lib/utils/*||file:src/lib/enums/validation-message.ts||file:src/components/sign-in-modal/*||file:src/lib/interfaces/jwt-decode.interface.ts||file:src/lib/interfaces/sidebar/*||file:src/lib/interfaces/user/*||file:src/store/rootSaga.ts||file:src/store/store.ts||file:src/store/store-types.ts||file:src/store/user/user-reducer.ts||file:src/store/user/user-info-saga.ts||file:src/store/user/user-auth-saga.ts||file:src/components/app-router/*||file:src/components/observer/*||file:src/components/protected-route/*||file:src/components/sign-up-modal/*||file:src/scss/*||file:src/pages/home/*||file:src/components/ui/loader/*||file:src/components/ui/input/*||file:src/lib/hooks/*||file:src/components/ui/title/*||file:src/components/ui/modal-checkbox/*||file:src/components/ui/modal-wrapper/*||file:src/components/ui/button/*||file:src/components/ui/error-container/*||file:.env||file:.prettierignore||file:.prettierrc||file:package-lock.json||file:package.json||file:README.md||file:todo.txt||file:tsconfig.json||file:src/app.tsx||file:src/index.scss||file:src/index.tsx||file:src/typings.d.ts" />
   </component>
   <component name="ProjectId" id="2JDdqW6fKLP7isl684QMXSpQesQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TODO_SCOPE": "All Places",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/media/vladimir/Local Disk/IT/Internship/best-products/client/src/assets/icon/sidebar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/prettier",
-    "settings.editor.selected.configurable": "project.scopes",
-    "ts.external.directory.path": "/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/typescript/lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/src/assets/icon/sidebar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/typescript/lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets/icon/sidebar" />
@@ -86,11 +103,11 @@
       <recent name="$PROJECT_DIR$/src/lib/store/products" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/product-info/components" />
+      <recent name="$PROJECT_DIR$/src/components/product-info" />
+      <recent name="$PROJECT_DIR$/src/pages/product-details/components" />
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/lib/interfaces/product-detail" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/components/app-router/components" />
-      <recent name="$PROJECT_DIR$/src/pages/home/components" />
-      <recent name="$PROJECT_DIR$/src/pages/products/layout-page/components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -133,7 +150,8 @@
       <workItem from="1673502346899" duration="30212000" />
       <workItem from="1673586275037" duration="9535000" />
       <workItem from="1673652447862" duration="2817000" />
-      <workItem from="1673671390846" duration="46266000" />
+      <workItem from="1673671390846" duration="46628000" />
+      <workItem from="1673763735102" duration="18476000" />
     </task>
     <servers />
   </component>

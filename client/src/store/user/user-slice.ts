@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ILoginData} from "lib/interfaces/user/login-data";
 
+import {ILoginData} from "lib/interfaces/user/login-data";
 import {IRegistrationData} from "lib/interfaces/user/registration-data";
 import {TokenType} from "lib/interfaces/user/token";
 import {IUpdateUserData} from "lib/interfaces/user/update-user-data";

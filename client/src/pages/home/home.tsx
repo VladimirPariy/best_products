@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import {Loader} from "components/ui/loader/loader";
+import React, {FC} from "react";
 
 import {
   selectCategories,
@@ -6,7 +7,7 @@ import {
   selectCategoriesIsFetching,
   selectSubcategories,
 } from "store/categories/categories-selectors";
-import { useAppSelector } from "store/store-types";
+import {useAppSelector} from "store/store-types";
 
 import Banner from "pages/home/components/banner";
 import MainPageWrapper from "pages/home/components/main-page-wrapper";
@@ -22,7 +23,7 @@ const Home: FC = () => {
     <MainPageWrapper>
       {subcategories && categories && (
         <>
-          <Banner />
+          <Banner/>
           {subcategories.map((subcategory) => (
             <SubcategoryLink
               subcategory={subcategory}
@@ -33,7 +34,7 @@ const Home: FC = () => {
         </>
       )}
       {error && <div>Error</div>}
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loader color='#766ed3'/>}
     </MainPageWrapper>
   );
 };

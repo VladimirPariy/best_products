@@ -65,3 +65,10 @@ export interface IShortProductInfo {
   product_images: IProductImages[];
   product_title: string;
 }
+
+export interface ICounters{
+  negative_feedbacks: number;
+  number_of_favorites: number;
+  number_of_views: number;
+  positive_feedbacks: number;
+}

@@ -8,5 +8,5 @@ export interface ICharacteristics {
 
 export interface ICharacteristicsWithParameters
   extends Omit<ICharacteristics, "parameter"> {
-  parameters: Pick<IParameters, "subcategory" | "characteristics">;
+  parameters: Omit<IParameters, "subcategory" | "characteristics">;
 }

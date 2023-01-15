@@ -1,10 +1,11 @@
-import {Loader} from "components/ui/loader/loader";
 import React, {FC, useEffect, useState} from "react";
 
 import {validateLatinLetter} from "lib/utils/validate-latin-letter";
 import {ValidationMessage} from "lib/enums/validation-message";
 import {validateEmail} from "lib/utils/validate-email";
 import {IRegistrationData} from "lib/interfaces/user/registration-data";
+import {ErrorValidation} from "lib/interfaces/error-validation";
+
 import {
   clearUser,
   userInfoTrigger,
@@ -26,7 +27,8 @@ import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import Input from "components/ui/input/input";
 import Title from "components/ui/title/title";
-import {ErrorValidation} from "lib/interfaces/error-validation";
+import {Loader} from "components/ui/loader/loader";
+
 
 const RegistrationModal: FC = () => {
   const dispatch = useAppDispatch();

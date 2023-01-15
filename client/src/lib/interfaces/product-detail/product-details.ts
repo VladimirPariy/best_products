@@ -2,7 +2,7 @@ import { ShotSubcategoryWithCategory } from "lib/interfaces/categories/categorie
 import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic";
 import { ShotCommentsWithUser } from "lib/interfaces/comments/comments.interface";
 import { IPriceHistory } from "lib/interfaces/products/product";
-import { IProductImages } from "lib/interfaces/products/upload-image";
+import {IShotImagesInfo} from "lib/interfaces/products/upload-image";
 
 export interface IProductDetails {
   product_id: number;
@@ -13,11 +13,9 @@ export interface IProductDetails {
   number_of_favorites: number;
   number_of_views: number;
   positive_feedbacks: number;
-
   characteristics: ICharacteristicsWithParameters[];
   price_history: Omit<IPriceHistory, "product">[];
-  product_images: Pick<IProductImages, "image_id" | "image_title">[];
+  product_images: IShotImagesInfo[];
   comments: ShotCommentsWithUser[];
-
   subcategories: ShotSubcategoryWithCategory[];
 }
