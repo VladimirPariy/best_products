@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductsApi from "lib/api/products-api";
-import { IProduct } from "lib/interfaces/products/product";
+import { IProduct } from "lib/interfaces/products/product.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError, AxiosResponse } from "axios";
 

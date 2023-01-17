@@ -1,0 +1,55 @@
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+
+  .icon {
+    > svg {
+      height: 28px;
+      width: 28px;
+    }
+  }
+
+  .price {
+    font-weight: 400;
+    font-size: 26px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .priceContainer {
+    gap: 24px;
+    justify-content: start;
+    margin-bottom: 15px;
+    .icon {
+      > svg {
+        height: 37px;
+        width: 37px;
+      }
+    }
+
+    .price {
+      font-size: 33px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .priceContainer {
+    gap: 33px;
+    margin-bottom: 20px;
+
+    .icon {
+      > svg {
+        height: 46px;
+        width: 46px;
+      }
+    }
+
+    .price {
+      font-size: 40px;
+    }
+  }
+}
+

@@ -8,7 +8,7 @@ import Shape from "assets/icon/goods-statistics/shape";
 import Favorites from "assets/icon/general/favorites";
 import Views from "assets/icon/goods-statistics/views";
 
-import { IProduct } from "lib/interfaces/products/product";
+import { IProduct } from "lib/interfaces/products/product.interface";
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 
 import CharacteristicItem from "components/product-item/components/characteristic-item";

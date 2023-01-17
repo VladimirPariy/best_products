@@ -1,0 +1,31 @@
+@use "scss/index" as *;
+
+.tab {
+  color: #000;
+  padding: 5px 7px;
+  border-radius: 10px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+}
+
+.activeTab {
+  color: $white;
+  background: $active_item_color;
+}
+
+@media screen and (min-width: 769px) {
+  .tab {
+    padding: 12px 12px;
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .tab {
+    padding: 18px 17px;
+    font-size: 24px;
+  }
+}

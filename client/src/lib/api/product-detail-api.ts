@@ -1,6 +1,6 @@
 import { defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { IProductDetails } from "lib/interfaces/product-detail/product-details";
+import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
 
 class ProductDetailApi {
   async getProductDetail(id: number) {

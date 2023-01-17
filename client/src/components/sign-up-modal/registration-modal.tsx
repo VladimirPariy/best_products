@@ -3,8 +3,8 @@ import React, {FC, useEffect, useState} from "react";
 import {validateLatinLetter} from "lib/utils/validate-latin-letter";
 import {ValidationMessage} from "lib/enums/validation-message";
 import {validateEmail} from "lib/utils/validate-email";
-import {IRegistrationData} from "lib/interfaces/user/registration-data";
-import {ErrorValidation} from "lib/interfaces/error-validation";
+import {IRegistrationData} from "lib/interfaces/user/registration-data.interface";
+import {ErrorValidationInterface} from "lib/interfaces/error-validation.interface";
 
 import {
   clearUser,
@@ -47,12 +47,12 @@ const RegistrationModal: FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
 
-  const [errorFirstName, setErrorFirstName] = useState<ErrorValidation>(null);
-  const [errorLastName, setErrorLastName] = useState<ErrorValidation>(null);
-  const [errorEmail, setErrorEmail] = useState<ErrorValidation>(null);
-  const [errorPassword, setErrorPassword] = useState<ErrorValidation>(null);
+  const [errorFirstName, setErrorFirstName] = useState<ErrorValidationInterface>(null);
+  const [errorLastName, setErrorLastName] = useState<ErrorValidationInterface>(null);
+  const [errorEmail, setErrorEmail] = useState<ErrorValidationInterface>(null);
+  const [errorPassword, setErrorPassword] = useState<ErrorValidationInterface>(null);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<
-    ErrorValidation
+    ErrorValidationInterface
   >(null);
 
   useEffect(() => {

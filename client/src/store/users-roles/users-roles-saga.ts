@@ -1,5 +1,5 @@
 import userApi from "lib/api/user-api";
-import { IRole } from "lib/interfaces/user/user";
+import { IRole } from "lib/interfaces/user/user.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 

@@ -1,0 +1,37 @@
+.characteristicsContainer {
+  font-size: 12px;
+  line-height: 16px;
+  display: grid;
+  grid-template: 1fr/1fr 1fr;
+  width: 100%;
+  gap: 0 5px;
+  .charWrapper {
+    margin-bottom: 10px;
+    min-width: 50%;
+    display: grid;
+    grid-template: 1fr/ 1fr 2fr;
+    gap: 5px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .characteristicsContainer {
+    font-size: 16px;
+    line-height: 15px;
+    .charWrapper {
+      margin-bottom: 20px;
+      gap: 10px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .characteristicsContainer {
+    font-size: 20px;
+    line-height: 24px;
+    .charWrapper {
+      margin-bottom: 20px;
+      gap: 15px;
+    }
+  }
+}

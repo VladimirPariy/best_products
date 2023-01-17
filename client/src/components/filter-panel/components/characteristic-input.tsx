@@ -1,4 +1,4 @@
-import { ICharacteristics } from "lib/interfaces/characteristics/characteristic";
+import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
 import React, { ChangeEvent, FC } from "react";
 
 import styles from "components/filter-panel/components/characteristic-input.module.scss";

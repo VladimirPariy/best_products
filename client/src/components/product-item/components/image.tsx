@@ -1,6 +1,6 @@
 import styles from "components/product-item/product-item.module.scss";
 import { apiUrls } from "lib/enums/api-urls";
-import { IProductImages } from "lib/interfaces/products/upload-image";
+import { IProductImages } from "lib/interfaces/products/upload-image.interface";
 import React, { FC } from "react";
 
 interface Props {

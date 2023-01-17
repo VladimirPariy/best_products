@@ -3,8 +3,8 @@ import {
   IGetProductListTrigger,
   IProduct,
   IProductDataResponse,
-} from "lib/interfaces/products/product";
-import { IProductDetails } from "lib/interfaces/product-detail/product-details";
+} from "lib/interfaces/products/product.interface";
+import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
 import { ErrorPayload } from "store/store-types";
 
 interface IInitialState {

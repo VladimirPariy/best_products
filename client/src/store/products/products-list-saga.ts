@@ -3,7 +3,7 @@ import ProductsApi from "lib/api/products-api";
 import {
   IGetProductListTrigger,
   IProductDataResponse,
-} from "lib/interfaces/products/product";
+} from "lib/interfaces/products/product.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 

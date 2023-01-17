@@ -11,7 +11,7 @@ import {clearUserError, userUpdateTrigger} from "store/user/user-actions";
 import {getTokenFromStorage} from "lib/utils/token-from-storage";
 import {apiUrls} from "lib/enums/api-urls";
 import {ValidationMessage} from "lib/enums/validation-message";
-import {ErrorValidation} from "lib/interfaces/error-validation";
+import {ErrorValidationInterface} from "lib/interfaces/error-validation.interface";
 import {validateEmail} from "lib/utils/validate-email";
 import {validateLatinLetter} from "lib/utils/validate-latin-letter";
 import {validatePhone} from "lib/utils/validate-phone";
@@ -56,12 +56,12 @@ const UserAccModal: FC = () => {
   );
   const [uploadFile, setUploadFile] = useState<File | null>(null);
 
-  const [errorFirstName, setErrorFirstName] = useState<ErrorValidation>(null)
-  const [errorLastName, setErrorLastName] = useState<ErrorValidation>(null)
-  const [errorEmail, setErrorEmail] = useState<ErrorValidation>(null)
-  const [errorPhone, setErrorPhone] = useState<ErrorValidation>(null)
-  const [errorPassword, setErrorPassword] = useState<ErrorValidation>(null)
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState<ErrorValidation>(null)
+  const [errorFirstName, setErrorFirstName] = useState<ErrorValidationInterface>(null)
+  const [errorLastName, setErrorLastName] = useState<ErrorValidationInterface>(null)
+  const [errorEmail, setErrorEmail] = useState<ErrorValidationInterface>(null)
+  const [errorPhone, setErrorPhone] = useState<ErrorValidationInterface>(null)
+  const [errorPassword, setErrorPassword] = useState<ErrorValidationInterface>(null)
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState<ErrorValidationInterface>(null)
 
   useEffect(() => {
     if (errorFirstName && firstName?.length > 0) {

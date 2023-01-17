@@ -17,8 +17,8 @@ import Title from "components/ui/title/title";
 import {
   IDataForCreating,
   ITempChar,
-} from "lib/interfaces/products/creating-product";
-import { IProductImages } from "lib/interfaces/products/upload-image";
+} from "lib/interfaces/products/creating-product.interface";
+import { IProductImages } from "lib/interfaces/products/upload-image.interface";
 import { selectCategories } from "store/categories/categories-selectors";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { useNavigate } from "react-router";

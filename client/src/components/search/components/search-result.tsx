@@ -49,7 +49,7 @@ const SearchResult: FC = () => {
                         (category) => category.category_id === item.category
                       )?.category_title
                     }/${item.subcategory_title}`}
-                  >
+                  key={item.subcategory_id}>
                     <div>{item.subcategory_title}</div>
                   </NavLink>
                 );
@@ -65,7 +65,7 @@ const SearchResult: FC = () => {
               {productResult.map((item, index) => {
                 if (index >= 3) return null;
                 return (
-                  <NavLink to={"/"}>
+                  <NavLink to={`/product/${item.product_id}`} key={item.product_id}>
                     <img
                       src={`${apiUrls.BASE_Image_URL}${item.product_images[0].image_title}`}
                       alt="product"

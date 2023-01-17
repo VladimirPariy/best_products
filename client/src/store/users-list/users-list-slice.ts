@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "lib/interfaces/user/user";
+import { IUser } from "lib/interfaces/user/user.interface";
 import { ErrorPayload } from "store/store-types";
 
 interface IInitialState {

@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {ILoginData} from "lib/interfaces/user/login-data";
-import {IRegistrationData} from "lib/interfaces/user/registration-data";
-import {TokenType} from "lib/interfaces/user/token";
-import {IUpdateUserData} from "lib/interfaces/user/update-user-data";
+import {ILoginData} from "lib/interfaces/user/login-data.interface";
+import {IRegistrationData} from "lib/interfaces/user/registration-data.interface";
+import {TokenType} from "lib/interfaces/user/token.interface";
+import {IUpdateUserData} from "lib/interfaces/user/update-user-data.interface";
 
-import {IUser} from "lib/interfaces/user/user";
+import {IUser} from "lib/interfaces/user/user.interface";
 import {ErrorPayload} from "store/store-types";
 import {deleteTokenFromStorage} from "lib/utils/token-from-storage";
 

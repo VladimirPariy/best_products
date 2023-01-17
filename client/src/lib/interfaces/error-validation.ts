@@ -1,1 +1,0 @@
-export type ErrorValidation = string | null;

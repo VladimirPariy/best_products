@@ -1,3 +1,18 @@
+.label.error {
+  color: red;
+
+  .textArea {
+    border: 1px solid red;
+    outline: 1px solid red;
+  }
+
+  .inputExplanation {
+    > div {
+      color: red;
+    }
+  }
+}
+
 .label {
   font-size: 12px;
   line-height: 15px;
@@ -29,6 +44,12 @@
 }
 
 @media screen and (min-width: 769px) {
+  .label.error {
+    .textArea {
+      border: 1.5px solid red;
+      outline: 1.5px solid red;
+    }
+  }
   .label {
     font-size: 14px;
     line-height: 17px;
@@ -51,6 +72,12 @@
 }
 
 @media screen and (min-width: 1025px) {
+  .label.error {
+    .textArea {
+      border: 2px solid red;
+      outline: 2px solid red;
+    }
+  }
   .label {
     margin-top: 16px;
 

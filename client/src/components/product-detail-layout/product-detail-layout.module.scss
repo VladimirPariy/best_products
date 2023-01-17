@@ -1,0 +1,24 @@
+.productDetailLayout {
+  > div {
+    margin-bottom: 9px;
+
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .productDetailLayout {
+    > div {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .productDetailLayout {
+    > div {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+

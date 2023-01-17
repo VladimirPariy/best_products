@@ -1,4 +1,4 @@
-import { IUser } from "lib/interfaces/user/user";
+import { IUser } from "lib/interfaces/user/user.interface";
 
 type ShortUser =
   | "user_id"

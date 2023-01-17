@@ -6,7 +6,7 @@ import {apiUrls} from "lib/enums/api-urls";
 
 import Arrow from "assets/icon/general/arrow";
 import defaultImg from "assets/images/goods/grey_square.jpg";
-import {IShotImagesInfo} from "lib/interfaces/products/upload-image";
+import {IShotImagesInfo} from "lib/interfaces/products/upload-image.interface";
 
 interface Props {
   images: IShotImagesInfo[];

@@ -24,4 +24,7 @@ export enum apiUrls {
   parameters = "parameters/",
 
   search = "products/search",
+
+  comment = "comments",
+  commentById = "comments/" //:id
 }

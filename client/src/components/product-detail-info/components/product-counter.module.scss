@@ -1,0 +1,41 @@
+.counterContainer {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  .icon {
+    height: 100%;
+    width: 100%;
+
+    > svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .count {
+    word-wrap: normal;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .counterContainer > .count {
+    font-size: 20px;
+  }
+  .counterContainer:first-child > .icon > svg {
+    height: 100%;
+    min-width: 32px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .counterContainer > .count {
+    font-size: 24px;
+  }
+  .counterContainer:first-child > .icon > svg {
+    height: 100%;
+    min-width: 36px;
+  }
+}

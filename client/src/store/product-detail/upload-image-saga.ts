@@ -3,7 +3,7 @@ import ProductsApi from "lib/api/products-api";
 import {
   IProductImages,
   IUploadImage,
-} from "lib/interfaces/products/upload-image";
+} from "lib/interfaces/products/upload-image.interface";
 import {
   uploadProductImageTrigger,
   uploadProductImageFulfilled,

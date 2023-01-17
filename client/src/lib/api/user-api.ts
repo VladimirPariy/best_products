@@ -1,7 +1,7 @@
 import { authAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import {IUpdateUserData} from "lib/interfaces/user/update-user-data";
-import { IRole, IUser } from "lib/interfaces/user/user";
+import {IUpdateUserData} from "lib/interfaces/user/update-user-data.interface";
+import { IRole, IUser } from "lib/interfaces/user/user.interface";
 
 class UserApi {
   async getAllUsers() {

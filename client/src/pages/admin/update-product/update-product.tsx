@@ -15,9 +15,9 @@ import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
 import ProductsApi from "lib/api/products-api";
-import { IProductDetails } from "lib/interfaces/product-detail/product-details";
+import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
 // import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
-import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
+import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
 import { selectCategories } from "store/categories/categories-selectors";
 import {
   clearProductDetail,

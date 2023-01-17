@@ -1,17 +1,17 @@
 import { authAxios, defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
 import { IParameters } from "lib/interfaces/parameters/parameters.interface";
-import { IDataForCreating } from "lib/interfaces/products/creating-product";
+import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
 import {
   IGetProductListTrigger,
   IProduct,
   IProductDataResponse,
-} from "lib/interfaces/products/product";
-import { UpdatingProductDetails } from "lib/interfaces/products/updating-product-details";
+} from "lib/interfaces/products/product.interface";
+import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
 import {
   IProductImages,
   IUploadImage,
-} from "lib/interfaces/products/upload-image";
+} from "lib/interfaces/products/upload-image.interface";
 import { ISearchData } from "lib/interfaces/search/search.interface";
 
 class ProductsApi {
@@ -52,7 +52,7 @@ class ProductsApi {
     return data;
   }
 
-  async updateProductDetails({ id, ...infoForUpdate }: UpdatingProductDetails) {
+  async updateProductDetails({ id, ...infoForUpdate }: UpdatingProductDetailsInterface) {
     return await authAxios.patch<string>(
       `${apiUrls.one_product_by_id}${id}`,
       infoForUpdate

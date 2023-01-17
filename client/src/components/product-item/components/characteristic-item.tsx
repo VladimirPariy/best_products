@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "components/product-item/product-item.module.scss";
-import { ICharacteristic } from "lib/interfaces/products/product";
+import { ICharacteristic } from "lib/interfaces/products/product.interface";
 
 interface Props {
   char: ICharacteristic;

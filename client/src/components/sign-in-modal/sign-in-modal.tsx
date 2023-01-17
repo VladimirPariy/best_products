@@ -8,8 +8,8 @@ import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
 import {ValidationMessage} from "lib/enums/validation-message";
 import {validateLatinLetter} from "lib/utils/validate-latin-letter";
-import {ILoginData} from "lib/interfaces/user/login-data";
-import {ErrorValidation} from "lib/interfaces/error-validation";
+import {ILoginData} from "lib/interfaces/user/login-data.interface";
+import {ErrorValidationInterface} from "lib/interfaces/error-validation.interface";
 
 import {useAppDispatch, useAppSelector} from "store/store-types";
 import {clearUser, userInfoTrigger, userTokenTrigger} from "store/user/user-actions";
@@ -41,8 +41,8 @@ const SignInModal: FC = () => {
   const [password, setPassword] = useState<string>("");
   const [isRemember, setIsRemember] = useState<boolean>(false);
 
-  const [errorLogin, setErrorLogin] = useState<ErrorValidation>(null)
-  const [errorPassword, setErrorPassword] = useState<ErrorValidation>(null)
+  const [errorLogin, setErrorLogin] = useState<ErrorValidationInterface>(null)
+  const [errorPassword, setErrorPassword] = useState<ErrorValidationInterface>(null)
 
   const serverErrorMessage = signInServerError && JSON.parse(signInServerError?.status_message).message
 
