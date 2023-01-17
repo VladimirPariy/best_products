@@ -7,6 +7,7 @@ import { createCategoriesRouter } from "@/app/categories/categories.router";
 import { createProductsRouter } from "@/app/products/product.router";
 import { createUserRouter } from "@/app/users/user.router";
 import { createParametersRouter } from "@/app/parameters/parameters.router";
+import {createCommentsRouter} from "@/app/comments/comments.router";
 
 export const createRootRouter = (): Router => {
   const rootRouter = Router();
@@ -16,6 +17,7 @@ export const createRootRouter = (): Router => {
   rootRouter.use(EndpointsList.ROOT_CATEGORIES, createCategoriesRouter());
   rootRouter.use(EndpointsList.ROOT_PRODUCTS, createProductsRouter());
   rootRouter.use(EndpointsList.ROOT_PARAMETERS, createParametersRouter());
+	rootRouter.use(EndpointsList.ROOT_COMMENTS, createCommentsRouter());
 
   return rootRouter;
 };
