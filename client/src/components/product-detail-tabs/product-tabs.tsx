@@ -1,8 +1,6 @@
 import React, {FC, useEffect, useState} from "react";
 
 import {TabsAdminEnum} from "components/product-detail-tabs/components/tabs-enum";
-import {IShotPriceHistory} from "lib/interfaces/price-history/price-history.interface";
-import {ShotCommentsWithUser} from "lib/interfaces/comments/comments.interface";
 import {ICharacteristicsWithParameters} from "lib/interfaces/characteristics/characteristic.interface";
 
 import CharacteristicsTab from "components/product-detail-tabs/components/characteristic-tab/characteristics-tab";
@@ -18,18 +16,18 @@ import {selectUser} from "store/user/user-selector";
 interface Props {
   description: string;
   characteristics: ICharacteristicsWithParameters[];
-  comments: ShotCommentsWithUser[];
-  priceHistory: IShotPriceHistory[]
+  comments_amount: number;
+  product_id:number;
 }
 
 const ProductTabs: FC<Props> = (props) => {
-  const {description, priceHistory, comments, characteristics} = props;
+  const {description, comments_amount, characteristics, product_id} = props;
   const [activeTab, setActiveTab] = useState<string>(TabsAdminEnum[0].value);
 
   const user = useAppSelector(selectUser)
 
   useEffect(() => {
-    if(user?.role !== 1){
+    if (user?.role !== 1) {
       setActiveTab(TabsAdminEnum[0].value)
     }
   }, [user])
@@ -44,16 +42,14 @@ const ProductTabs: FC<Props> = (props) => {
       <TabsList
         activeHandler={tabHandler}
         activeTab={activeTab}
-        commentLength={comments?.length}
+        commentsAmount={comments_amount}
       />
       {activeTab === TabsAdminEnum[0].value &&
-        <DescriptionTab description={description}/>}
+				<DescriptionTab description={description}/>}
       {activeTab === TabsAdminEnum[1].value &&
-        <CharacteristicsTab characteristics={characteristics}/>}
-      {activeTab === TabsAdminEnum[2].value &&
-        <CommentsTab comments={comments}/>}
-      {activeTab === TabsAdminEnum[3].value &&
-        <PriceHistoryTab priceHistory={priceHistory}/>}
+				<CharacteristicsTab characteristics={characteristics}/>}
+      {activeTab === TabsAdminEnum[2].value && <CommentsTab product_id={product_id}/>}
+      {activeTab === TabsAdminEnum[3].value && <PriceHistoryTab product_id={product_id}/>}
     </ContentContainer>
   );
 };

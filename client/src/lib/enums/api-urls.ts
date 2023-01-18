@@ -1,4 +1,4 @@
-export enum apiUrls {
+export const enum apiUrls {
   BASE_URL = "http://localhost:8000/api/",
   BASE_Image_URL = "http://localhost:8000/",
 
@@ -25,6 +25,7 @@ export enum apiUrls {
 
   search = "products/search",
 
-  comment = "comments",
-  commentById = "comments/" //:id
+  addComment = "comments",
+  commentById = "comments/", //:id
+  commentsByProductId = "comments/product/", //:id
 }

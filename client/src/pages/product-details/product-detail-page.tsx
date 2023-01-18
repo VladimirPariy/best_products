@@ -18,17 +18,17 @@ const ProductDetailPage: FC = () => {
   const productDetail = useAppSelector(selectProductDetail);
 
   const {
-    positive_feedbacks,
-    negative_feedbacks,
-    number_of_favorites,
-    number_of_views,
+    positive_feedbacks_amount,
+    negative_feedbacks_amount,
+    favorites_amount,
+    views_amount,
     product_title,
     product_images,
     price,
     characteristics,
     product_description,
-    comments,
-    price_history
+    comments_amount,
+    product_id
   } = productDetail;
 
   useEffect(() => {
@@ -38,18 +38,18 @@ const ProductDetailPage: FC = () => {
 
   return (
     <ProductDetailLayout>
-      {/*<ProductInfo*/}
-      {/*  images={product_images}*/}
-      {/*  title={product_title}*/}
-      {/*  counters={{positive_feedbacks, negative_feedbacks, number_of_favorites, number_of_views}}*/}
-      {/*  price={price}*/}
-      {/*  characteristics={characteristics}*/}
-      {/*/>*/}
+      <ProductInfo
+        images={product_images}
+        title={product_title}
+        counters={{positive_feedbacks_amount, negative_feedbacks_amount, favorites_amount, views_amount}}
+        price={price}
+        characteristics={characteristics}
+      />
       <ProductTabs
         characteristics={characteristics}
         description={product_description}
-        comments={comments}
-        priceHistory={price_history}
+        comments_amount={comments_amount}
+        product_id={product_id}
       />
     </ProductDetailLayout>
   );

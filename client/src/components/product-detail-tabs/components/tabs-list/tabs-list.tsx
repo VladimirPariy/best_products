@@ -11,10 +11,10 @@ import TabsItem from "components/product-detail-tabs/components/tab-item/tabs-it
 interface Props {
   activeHandler: (tab: string) => void;
   activeTab: string;
-  commentLength: number
+  commentsAmount: number
 }
 
-const TabsList: FC<Props> = ({activeHandler, activeTab, commentLength}) => {
+const TabsList: FC<Props> = ({activeHandler, activeTab, commentsAmount}) => {
 
   const user = useAppSelector(selectUser)
 
@@ -27,7 +27,7 @@ const TabsList: FC<Props> = ({activeHandler, activeTab, commentLength}) => {
             value={item.value}
             activeHandler={activeHandler}
             active={activeTab}
-            commentLength={item.value === 'Comments' ? commentLength : undefined}
+            commentLength={item.value === 'Comments' ? commentsAmount : undefined}
           />
         ))
         : TabsUserEnum.map(item => (
@@ -36,7 +36,7 @@ const TabsList: FC<Props> = ({activeHandler, activeTab, commentLength}) => {
             value={item.value}
             activeHandler={activeHandler}
             active={activeTab}
-            commentLength={item.value === 'Comments' ? commentLength : undefined}
+            commentLength={item.value === 'Comments' ? commentsAmount : undefined}
           />
         ))
       }

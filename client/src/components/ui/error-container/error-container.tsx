@@ -1,11 +1,12 @@
-import React, { FC } from "react";
+import React, {CSSProperties, FC} from "react";
 
 interface Props {
   errorText: string | null;
+  style?:CSSProperties;
 }
 
-const ErrorContainer: FC<Props> = ({ errorText }) => {
-  return !!errorText ? <div>{errorText}</div> : null;
+const ErrorContainer: FC<Props> = ({ errorText, style }) => {
+  return !!errorText ? <div style={{...style}}>{errorText}</div> : null;
 };
 
 export default ErrorContainer;

@@ -10,19 +10,19 @@ import Shape from "assets/icon/goods-statistics/shape";
 import Views from "assets/icon/goods-statistics/views";
 
 interface Props {
-  negative_feedbacks: number;
-  number_of_favorites: number;
-  number_of_views: number;
-  positive_feedbacks: number;
+  negative_feedbacks_amount: number;
+  positive_feedbacks_amount: number;
+  favorites_amount: number;
+  views_amount: number;
 }
 
-const ProductCounters: FC<Props> = ({positive_feedbacks, negative_feedbacks, number_of_views, number_of_favorites}) => {
+const ProductCounters: FC<Props> = ({positive_feedbacks_amount, negative_feedbacks_amount, views_amount, favorites_amount}) => {
   return (
     <div className={styles.counterContainer}>
-      <ProductCounter counter={number_of_views} icon={<Views/>}/>
-      <ProductCounter counter={number_of_favorites} icon={<FavoriteCount/>}/>
-      <ProductCounter counter={positive_feedbacks} icon={<Shape/>}/>
-      <ProductCounter counter={negative_feedbacks} icon={<NegativeShape/>}/>
+      <ProductCounter counter={views_amount} icon={<Views/>}/>
+      <ProductCounter counter={favorites_amount} icon={<FavoriteCount/>}/>
+      <ProductCounter counter={positive_feedbacks_amount} icon={<Shape/>}/>
+      <ProductCounter counter={negative_feedbacks_amount} icon={<NegativeShape/>}/>
     </div>
   );
 };

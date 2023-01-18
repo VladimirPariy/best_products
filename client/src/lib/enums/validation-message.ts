@@ -5,5 +5,5 @@ export enum ValidationMessage {
   invalidConfirmPassword = "Confirm password doesn't match",
   onlyLatinLetter = "Password can contain only Latin letters",
   invalidPhone = 'Phone is invalid',
-  invalidComment = "Review cannot be shorter than 5 characters",
+  invalidComment = "Review cannot be shorter than 5 characters and longer than 255 characters",
 }

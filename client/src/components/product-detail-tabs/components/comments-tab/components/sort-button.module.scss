@@ -1,0 +1,78 @@
+@use "scss/index" as *;
+
+.commentsSort {
+  margin-bottom: 20px;
+  background: $active_item_color;
+  color: $white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 10px;
+
+  .arrowsSort > svg {
+    width: 12px;
+    height: 100%;
+    display: flex;
+  }
+
+  .sortTitle {
+    font-size: 10px;
+  }
+
+  .toggleSort > svg {
+    display: flex;
+    width: 8px;
+    height: 100%;
+  }
+
+  .descSort {
+    transform: rotate(180deg);
+  }
+
+  > span > svg > path {
+    fill: white;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .commentsSort {
+    margin-bottom: 40px;
+    padding: 10px 16px;
+
+    .arrowsSort > svg {
+      width: 15.5px;
+    }
+
+    .sortTitle {
+      margin-left: 4px;
+      font-size: 16px;
+    }
+
+    .toggleSort > svg {
+      width: 10px;
+    }
+  }
+
+}
+
+@media screen and (min-width: 1025px) {
+  .commentsSort {
+    margin-bottom: 60px;
+    padding: 13px 19px;
+
+    .arrowsSort > svg {
+      width: 19px;
+    }
+
+    .sortTitle {
+      margin-left: 9px;
+      font-size: 22px;
+    }
+
+    .toggleSort > svg {
+      width: 13px;
+    }
+  }
+}

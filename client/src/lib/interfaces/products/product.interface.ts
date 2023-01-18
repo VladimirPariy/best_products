@@ -1,6 +1,5 @@
-import { ISubcategory } from "lib/interfaces/categories/categories.interface";
-import { IProductImages } from "lib/interfaces/products/upload-image.interface";
-
+import {ISubcategory} from "lib/interfaces/categories/categories.interface";
+import {IProductImages} from "lib/interfaces/products/upload-image.interface";
 
 
 export interface IProductDataResponse {
@@ -60,9 +59,9 @@ export interface IShortProductInfo {
   product_title: string;
 }
 
-export interface ICounters{
-  negative_feedbacks: number;
-  number_of_favorites: number;
-  number_of_views: number;
-  positive_feedbacks: number;
+export interface ICounters {
+  negative_feedbacks_amount: number;
+  positive_feedbacks_amount: number;
+  favorites_amount: number;
+  views_amount: number;
 }

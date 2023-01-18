@@ -14,4 +14,6 @@ export const {
   removeProductImageFulfilled,
   removeProductImageRejected,
   removeProductImagePending,
+  incrementCommentsAmount,
+  decrementCommentsAmount
 } = productDetailSlice.actions;

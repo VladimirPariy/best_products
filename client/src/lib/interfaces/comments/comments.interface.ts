@@ -9,10 +9,17 @@ type ShortUser =
   | "updated_at"
   | "created_at";
 
-export interface ShotCommentsWithUser {
+export interface IShotCommentsWithUser {
   comment_id: number;
   comment_msg: string;
   created_at: string;
   updated_at: string;
   users: Pick<IUser, ShortUser>;
+}
+
+
+export interface IDataForAddComment{
+  userId:number;
+  productId:number;
+  message:string;
 }

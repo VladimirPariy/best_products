@@ -2,14 +2,12 @@ import React, {FC} from "react";
 
 import styles from "components/product-detail-tabs/components/price-history-tab/price-history-tab.module.scss"
 
-
-import {IShotPriceHistory} from "lib/interfaces/price-history/price-history.interface";
-
-interface Props {
-  priceHistory: IShotPriceHistory[]
+interface Props{
+  product_id:number
 }
 
-const PriceHistoryTab: FC<Props> = ({priceHistory}) => {
+
+const PriceHistoryTab: FC<Props> = ({product_id}) => {
   return (
     <div>
       price history tab
