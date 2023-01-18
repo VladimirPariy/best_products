@@ -43,18 +43,18 @@ class ProductService {
 				"products.*",
 				ProductsModel.relatedQuery("favorite_products")
 					.count()
-					.as("number_of_favorites"),
-				ProductsModel.relatedQuery("views").count().as("number_of_views"),
+					.as("favorites_amount"),
+				ProductsModel.relatedQuery("views").count().as("views_amount"),
 				ProductsModel.relatedQuery("feedbacks")
 					.count()
-					.as("positive_feedbacks")
+					.as("positive_feedbacks_amount")
 					.where({feedback_type: 1}),
 				ProductsModel.relatedQuery("feedbacks")
 					.count()
-					.as("negative_feedbacks")
+					.as("negative_feedbacks_amount")
 					.where({feedback_type: 2}),
+				ProductsModel.relatedQuery('comments').count().as('comments_amount')
 			])
-			.withGraphFetched("price_history(selectPriceHistory)")
 			.withGraphFetched("product_images(selectImage)")
 			.withGraphFetched(
 				"characteristics(selectCharacteristic).[parameters(selectParameter)]"
@@ -62,7 +62,6 @@ class ProductService {
 			.withGraphFetched(
 				"subcategories(selectSubcategory).[categories(selectCategory)]"
 			)
-			.withGraphFetched("comments(selectShotComment).[users(selectShotUserInfo)]")
 			.modifiers({
 				selectSubcategory: (builder) => {
 					builder.select("subcategory_id", "subcategory_title");

@@ -37,14 +37,14 @@ export class CommentsModel extends Model {
 					to: "users.user_id",
 				},
 			},
-			// products: {
-			// 	relation: Model.HasOneRelation,
-			// 	modelClass: ProductsModel,
-			// 	join: {
-			// 		from: "comments.product",
-			// 		to: "products.product_id"
-			// 	}
-			// }
+			products: {
+				relation: Model.HasOneRelation,
+				modelClass: ProductsModel,
+				join: {
+					from: "comments.product",
+					to: "products.product_id"
+				}
+			}
 		};
 	}
 	

@@ -1,6 +1,7 @@
 export const enum EndpointsList {
 	//index
 	API = "/api",
+	
 	//root-router
 	ROOT_AUTH = "/auth",
 	ROOT_USER = "/user",
@@ -8,10 +9,12 @@ export const enum EndpointsList {
 	ROOT_PRODUCTS = "/products",
 	ROOT_PARAMETERS = "/parameters",
 	ROOT_COMMENTS = '/comments',
+	
 	//auth-router
 	SIGN_UP = "/registration",
 	SIGN_IN = "/login",
 	ME = "/me", //????????????????
+	
 	//user-router
 	ALL_USERS = "/",
 	ONE_USER_BY_ID = "/:id",
@@ -40,5 +43,6 @@ export const enum EndpointsList {
 	
 	//comments
 	COMMENTS = '/',
-	COMMENTS_BY_ID = '/:id',
+	COMMENT_BY_ID = '/:id',
+	COMMENTS_BY_PRODUCT_ID = '/product/:id',
 }

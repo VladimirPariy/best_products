@@ -4,13 +4,13 @@ import {HttpException} from "@/app/common/errors/exceptions";
 import CommentsService from "@/app/comments/comments.service";
 
 class CommentsController {
-	async getCommentById(req: Request, res: Response, next: NextFunction) {
+	async getCommentsByProductId(req: Request, res: Response, next: NextFunction){
 		const {id} = req.params;
 		if (isNaN(+id) || !id) {
-			return next(HttpException.badRequest('Missing comment id'))
+			return next(HttpException.badRequest('Missing product id'))
 		}
-		const data = await CommentsService.getCommentById(+id);
-		data instanceof HttpException ? next(data) : res.status(200).send(data);
+		const data = await CommentsService.getCommentsByProductId(+id);
+		res.status(200).send(data);
 	}
 	
 	async createComment(req: Request, res: Response, next: NextFunction) {
@@ -18,8 +18,8 @@ class CommentsController {
 		if (isNaN(+productId) || isNaN(+userId) || !userId || !productId) {
 			return next(HttpException.badRequest('Missing product or user id, or id is invalid'))
 		}
-		if (!message || message.length < 5) {
-			return next(HttpException.badRequest('Comment message cannot be shorter than 5 characters'))
+		if (!message || message.length < 5 || message.length > 254) {
+			return next(HttpException.badRequest('Comment message cannot be shorter than 5 characters and longer than 254 characters'))
 		}
 		const data = await CommentsService.createComment(productId, userId, message);
 		data instanceof HttpException ? next(data) : res.status(200).send(data);

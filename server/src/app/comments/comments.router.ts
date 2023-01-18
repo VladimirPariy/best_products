@@ -7,9 +7,9 @@ import CommentsController from "@/app/comments/comments.controller";
 export const createCommentsRouter = (): Router => {
 	const commentsRouter = Router();
 	
+	commentsRouter.get(EndpointsList.COMMENTS_BY_PRODUCT_ID, CommentsController.getCommentsByProductId)
 	commentsRouter.post(EndpointsList.COMMENTS, authenticateJWT, CommentsController.createComment)
-	commentsRouter.get(EndpointsList.COMMENTS_BY_ID, authenticateJWT, CommentsController.getCommentById)
-	commentsRouter.delete(EndpointsList.COMMENTS_BY_ID, [checkRole("1"), authenticateJWT], CommentsController.removeCommentById)
+	commentsRouter.delete(EndpointsList.COMMENT_BY_ID, [checkRole("1"), authenticateJWT], CommentsController.removeCommentById)
 	
 	return commentsRouter;
 };

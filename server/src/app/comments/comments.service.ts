@@ -3,12 +3,8 @@ import {CommentsModel} from "@/app/comments/comments.model";
 
 
 class CommentsService {
-	async getCommentById(id: number) {
-		const comment = await CommentsModel.query().findById(id)
-		if (!comment) {
-			return HttpException.notFound('Comment not found')
-		}
-		return comment
+	async getCommentsByProductId(id: number) {
+		return CommentsModel.query().where({product: id}).modify('selectShotComment').withGraphFetched('users(selectShotUserInfo)')
 	}
 	
 	async createComment(productId: number, userId: number, message: string) {
@@ -30,7 +26,7 @@ class CommentsService {
 		if (!removedComment) {
 			return HttpException.notFound('Comment not found')
 		}
-		return 'Successful removing'
+		return {id}
 	}
 }
 
