@@ -5,49 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/all-comments-wrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/comments-list.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/comments-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/sort-button.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/sort-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/api/comments-api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/add-comment-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/comments-actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/comments-reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/comments-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/comments-selectors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/comments-slice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/comments/remove-comment-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/price-history/price-history-actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/price-history/price-history-reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/price-history/price-history-saga.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/price-history/price-history-selectors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/price-history/price-history-slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/api/price-history-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/characteristic-tab/characteristics-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/characteristic-tab/characteristics-tab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/comments-tab.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/comments-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/comments-tab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-list/tabs-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-list/tabs-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/product-tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/product-tabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/error-container/error-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/error-container/error-container.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/comments/comments.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/comments/comments.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/root-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/root-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/rootSaga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/rootSaga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/comments/comments.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/comments/comments.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/comments/comments.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/comments/comments.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/comments/comments.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/comments/comments.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/comments/comments.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/comments/comments.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/common/root-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/root-router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/price-history.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +121,8 @@
       <workItem from="1673899419163" duration="1237000" />
       <workItem from="1673900668571" duration="7454000" />
       <workItem from="1673937800308" duration="23831000" />
-      <workItem from="1674019136066" duration="17910000" />
+      <workItem from="1674019136066" duration="28024000" />
+      <workItem from="1674109668117" duration="1108000" />
     </task>
     <servers />
   </component>

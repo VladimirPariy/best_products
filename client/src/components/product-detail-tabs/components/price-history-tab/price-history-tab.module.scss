@@ -1,0 +1,18 @@
+.chartContainer {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 769px) {
+  .chartContainer {
+    height: 380px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .chartContainer {
+    height: 520px;
+  }
+}

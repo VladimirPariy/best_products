@@ -2,6 +2,7 @@ import {all} from "redux-saga/effects";
 import {addCommentWatcher} from "store/comments/add-comment-saga";
 import {commentsWatcher} from "store/comments/comments-saga";
 import {removeCommentWatcher} from "store/comments/remove-comment-saga";
+import {priceHistoryWatcher} from "store/price-history/price-history-saga";
 import {productDetailWatcher} from "store/product-detail/product-detail-saga";
 import {removeImageWatcher} from "store/product-detail/remove-image-saga";
 import {uploadImageWatcher} from "store/product-detail/upload-image-saga";
@@ -29,6 +30,7 @@ export default function* rootSaga() {
     uploadImageWatcher(),
     removeImageWatcher(),
     searchWatcher(),
+    priceHistoryWatcher(),
     commentsWatcher(),
     addCommentWatcher(),
     removeCommentWatcher(),

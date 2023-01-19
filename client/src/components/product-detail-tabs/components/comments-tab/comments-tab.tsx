@@ -70,7 +70,9 @@ const CommentsTab: FC<Props> = ({product_id}) => {
       <CommentsList sort={sort} user={user}/>
       {isLoading && <Loader color={'#766ed3'}/>}
       {error &&
-          <ErrorContainer errorText={'Some error has occurred. Please try again later'} style={{color: "rgba(252, 48, 3, 1)", textAlign: 'center'}}/>
+          <ErrorContainer errorText={'Some error has occurred. Please try again later'}
+                          style={{color: "rgba(252, 48, 3, 1)", textAlign: 'center'}}
+          />
       }
       {canLeaveComment && <TextArea changeHandler={messageChange}
 																		value={message}
