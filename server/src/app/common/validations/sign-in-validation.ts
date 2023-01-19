@@ -11,10 +11,7 @@ export const signInSchema = yup.object({
       .min(5)
       .nullable(false)
       .required()
-      .matches(
-        /^([A-Za-z0-9]*)$/gi,
-        "Password can contain only Latin letters"
-      ),
+      .matches(/^([A-Za-z0-9]*)$/gi, "Password can contain only Latin letters"),
   }),
 });
 

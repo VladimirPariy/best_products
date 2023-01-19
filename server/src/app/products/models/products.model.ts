@@ -5,7 +5,7 @@ import { CommentsModel } from "@/app/comments/comments.model";
 import { FavoriteProductsModel } from "@/app/favorite-products/favorite-products.model";
 import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
 import { ProductCharacteristicModel } from "@/app/parameters/models/product-characteristics.model";
-import { PriceHistoryModel } from "@/app/products/models/price-history.model";
+import { PriceHistoryModel } from "@/app/price-history/price-history.model";
 import { ProductsImagesModel } from "@/app/products/models/products-images.model";
 import { ViewsModel } from "@/app/views/views.model";
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
