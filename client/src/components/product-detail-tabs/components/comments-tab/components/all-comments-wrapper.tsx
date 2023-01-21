@@ -1,15 +1,11 @@
-import React, {FC, ReactNode} from "react";
+import React, { FC, ReactNode } from "react";
 
 interface Props {
-  children:ReactNode
+  children: ReactNode;
 }
 
-const AllCommentsWrapper: FC<Props> = ({children}) => {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+const AllCommentsWrapper: FC<Props> = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default AllCommentsWrapper;

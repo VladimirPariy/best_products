@@ -1,0 +1,105 @@
+@use "scss/index" as *;
+
+.tableBody {
+  > tr {
+    > td {
+      text-align: center;
+      padding: 2.5px;
+      border: 1px solid #111;
+    }
+
+    .selectWrapper {
+      padding: 2.5px;
+
+      .tableSelect {
+        text-align: center;
+
+        font-size: 10px;
+        padding: 2.5px;
+        border: 1px solid $active_item_color;
+        outline: 1px solid $active_item_color;
+        background: $white;
+        border-radius: 5px;
+      }
+    }
+
+    .btnWrapper {
+      padding: 2.5px;
+
+      .tableBtn {
+        word-wrap: break-word;
+        line-height: 16px;
+        font-size: 10px;
+        padding: 2.5px;
+        background: rgb(207, 21, 21);
+        border: none;
+
+        border-radius: 5px;
+        color: $white;
+        font-weight: 600;
+      }
+
+      button[disabled] {
+        background: rgba(207, 21, 21, 0.6);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .tableBody {
+    > tr {
+      > td {
+        padding: 5px 10px;
+      }
+
+      .selectWrapper {
+        padding: 5px;
+
+        .tableSelect {
+          font-size: 14px;
+          padding: 5px;
+          border-radius: 10px;
+        }
+      }
+
+      .btnWrapper {
+        padding: 5px;
+
+        .tableBtn {
+          font-size: 14px;
+          padding: 5px;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .tableBody {
+    > tr {
+      > td {
+        padding: 10px 15px;
+      }
+
+      .selectWrapper {
+        padding: 10px;
+
+        .tableSelect {
+          font-size: 16px;
+          padding: 10px;
+        }
+      }
+
+      .btnWrapper {
+        padding: 10px;
+
+        .tableBtn {
+          font-size: 16px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

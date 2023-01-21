@@ -1,3 +1,3 @@
-import {commentsSlice} from "store/comments/comments-slice";
+import { commentsSlice } from "store/comments/comments-slice";
 
-export const commentsReducer = commentsSlice.reducer
+export const commentsReducer = commentsSlice.reducer;

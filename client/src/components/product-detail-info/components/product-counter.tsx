@@ -1,13 +1,13 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "components/product-detail-info/components/product-counter.module.scss";
 
 interface Props {
-  counter:number;
-  icon:JSX.Element
+  counter: number;
+  icon: JSX.Element;
 }
 
-const ProductCounter: FC<Props> = ({icon, counter}) => {
+const ProductCounter: FC<Props> = ({ icon, counter }) => {
   return (
     <div className={styles.counterContainer}>
       <span className={styles.icon}>{icon}</span>

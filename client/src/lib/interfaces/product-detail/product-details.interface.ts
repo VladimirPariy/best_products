@@ -1,6 +1,6 @@
-import {ShotSubcategoryWithCategory} from "lib/interfaces/categories/categories.interface";
-import {ICharacteristicsWithParameters} from "lib/interfaces/characteristics/characteristic.interface";
-import {IShotImagesInfo} from "lib/interfaces/products/upload-image.interface";
+import { ShotSubcategoryWithCategory } from "lib/interfaces/categories/categories.interface";
+import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
+import { IShotImagesInfo } from "lib/interfaces/products/upload-image.interface";
 
 export interface IProductDetails {
   product_id: number;

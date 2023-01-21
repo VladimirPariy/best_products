@@ -1,10 +1,10 @@
-import React, {FC, useEffect, useState} from "react";
+import React, { FC, useEffect, useState } from "react";
 
-import {validateLatinLetter} from "lib/utils/validate-latin-letter";
-import {ValidationMessage} from "lib/enums/validation-message";
-import {validateEmail} from "lib/utils/validate-email";
-import {IRegistrationData} from "lib/interfaces/user/registration-data.interface";
-import {ErrorValidationInterface} from "lib/interfaces/error-validation.interface";
+import { validateLatinLetter } from "lib/utils/validate-latin-letter";
+import { ValidationMessage } from "lib/enums/validation-message";
+import { validateEmail } from "lib/utils/validate-email";
+import { IRegistrationData } from "lib/interfaces/user/registration-data.interface";
+import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 
 import {
   clearUser,
@@ -17,9 +17,9 @@ import {
   selectUserError,
   selectUserStatus,
 } from "store/user/user-selector";
-import {useAppDispatch, useAppSelector} from "store/store-types";
-import {setVisibilitySignUpModal} from "store/modals/modals-actions";
-import {selectSignUpModal} from "store/modals/modals-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { setVisibilitySignUpModal } from "store/modals/modals-actions";
+import { selectSignUpModal } from "store/modals/modals-selectors";
 
 import ErrorContainer from "components/ui/error-container/error-container";
 import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
@@ -27,8 +27,7 @@ import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import Input from "components/ui/input/input";
 import Title from "components/ui/title/title";
-import {Loader} from "components/ui/loader/loader";
-
+import { Loader } from "components/ui/loader/loader";
 
 const RegistrationModal: FC = () => {
   const dispatch = useAppDispatch();
@@ -47,13 +46,15 @@ const RegistrationModal: FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isGetUpdate, setIsGetUpdates] = useState<boolean>(false);
 
-  const [errorFirstName, setErrorFirstName] = useState<ErrorValidationInterface>(null);
-  const [errorLastName, setErrorLastName] = useState<ErrorValidationInterface>(null);
+  const [errorFirstName, setErrorFirstName] =
+    useState<ErrorValidationInterface>(null);
+  const [errorLastName, setErrorLastName] =
+    useState<ErrorValidationInterface>(null);
   const [errorEmail, setErrorEmail] = useState<ErrorValidationInterface>(null);
-  const [errorPassword, setErrorPassword] = useState<ErrorValidationInterface>(null);
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState<
-    ErrorValidationInterface
-  >(null);
+  const [errorPassword, setErrorPassword] =
+    useState<ErrorValidationInterface>(null);
+  const [errorConfirmPassword, setErrorConfirmPassword] =
+    useState<ErrorValidationInterface>(null);
 
   useEffect(() => {
     if (errorFirstName && firstName?.length > 0) setErrorFirstName(null);
@@ -142,14 +143,14 @@ const RegistrationModal: FC = () => {
         changeHandler={(e) => setFirstName(e.target.value)}
         labelText="First name"
         isError={!!errorFirstName}
-        children={<ErrorContainer errorText={errorFirstName}/>}
+        children={<ErrorContainer errorText={errorFirstName} />}
       />
       <Input
         value={lastName}
         changeHandler={(e) => setLastName(e.target.value)}
         labelText="Last name"
         isError={!!errorLastName}
-        children={<ErrorContainer errorText={errorLastName}/>}
+        children={<ErrorContainer errorText={errorLastName} />}
       />
       <Input
         value={email}
@@ -213,7 +214,7 @@ const RegistrationModal: FC = () => {
         submitHandler={registrationHandler}
         isPurpleButton={true}
         type="button"
-        children={isLoading ? <Loader size={27}/> : "Create account"}
+        children={isLoading ? <Loader size={27} /> : "Create account"}
       />
     </ModalWrapper>
   );

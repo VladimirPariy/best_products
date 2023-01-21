@@ -19,7 +19,7 @@ import CategoryPage from "pages/products/categoriy-page/category-page";
 import Home from "pages/home/home";
 import ProductControl from "pages/admin/product-control/product-control";
 import UpdateProduct from "pages/admin/update-product/update-product";
-import UsersControl from "pages/admin/users-control/users-control";
+import UsersControlPage from "pages/admin/users-control/users-control-page";
 import LayoutPage from "pages/products/layout-page/layout-page";
 import SubcategoryPage from "pages/products/subcategory-page/subcategory-page";
 import AdminPanel from "pages/admin/admin-panel/admin-panel";
@@ -47,13 +47,16 @@ const AppRouter: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/favorite">
+      <Route
+        path="/favorite"
+        element={<LayoutPage isShowBreadcrumbs={false} />}
+      >
         <Route index element={<FavoritePage />} />
         <Route path=":id" element={<ProductDetailPage />} />
       </Route>
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
         <Route index element={<AdminPanel />} />
-        <Route path="users" element={<UsersControl />} />
+        <Route path="users" element={<UsersControlPage />} />
         <Route path="products/*">
           <Route index element={<ProductControl />} />
           <Route path="create" element={<AddNewProduct />} />
@@ -62,7 +65,10 @@ const AppRouter: FC = () => {
         </Route>
         {emptyRoute}
       </Route>
-      <Route path="/product/*" element={<LayoutPage />}>
+      <Route
+        path="/product/*"
+        element={<LayoutPage isShowBreadcrumbs={true} />}
+      >
         {categoryRoutes.map((categoryRoute) => (
           <Route
             path={`${categoryRoute.category_title}/*`}

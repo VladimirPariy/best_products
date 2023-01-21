@@ -1,6 +1,5 @@
-import {ISubcategory} from "lib/interfaces/categories/categories.interface";
-import {IProductImages} from "lib/interfaces/products/upload-image.interface";
-
+import { ISubcategory } from "lib/interfaces/categories/categories.interface";
+import { IProductImages } from "lib/interfaces/products/upload-image.interface";
 
 export interface IProductDataResponse {
   result: IProduct[];
@@ -33,10 +32,10 @@ export interface IProduct {
   product_images: IProductImages[];
   characteristics: ICharacteristic[];
   subcategories: ISubcategory[];
-  negative_feedbacks: number;
-  number_of_favorites: number;
-  number_of_views: number;
-  positive_feedbacks: number;
+  negative_feedbacks_amount: number;
+  favorites_amount: number;
+  views_amount: number;
+  positive_feedbacks_amount: number;
 }
 
 export interface IGetProductListTrigger {

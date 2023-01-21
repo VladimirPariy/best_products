@@ -1,4 +1,4 @@
-import {commentsSlice} from "store/comments/comments-slice";
+import { commentsSlice } from "store/comments/comments-slice";
 
 export const {
   getCommentsRejected,
@@ -12,5 +12,5 @@ export const {
   removeCommentTrigger,
   removeCommentFulfilled,
   removeCommentRejected,
-  removeCommentPending
-} = commentsSlice.actions
+  removeCommentPending,
+} = commentsSlice.actions;

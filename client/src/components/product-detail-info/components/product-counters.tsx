@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "components/product-detail-info/components/product-counters.module.scss";
 
@@ -16,13 +16,21 @@ interface Props {
   views_amount: number;
 }
 
-const ProductCounters: FC<Props> = ({positive_feedbacks_amount, negative_feedbacks_amount, views_amount, favorites_amount}) => {
+const ProductCounters: FC<Props> = ({
+  positive_feedbacks_amount,
+  negative_feedbacks_amount,
+  views_amount,
+  favorites_amount,
+}) => {
   return (
     <div className={styles.counterContainer}>
-      <ProductCounter counter={views_amount} icon={<Views/>}/>
-      <ProductCounter counter={favorites_amount} icon={<FavoriteCount/>}/>
-      <ProductCounter counter={positive_feedbacks_amount} icon={<Shape/>}/>
-      <ProductCounter counter={negative_feedbacks_amount} icon={<NegativeShape/>}/>
+      <ProductCounter counter={views_amount} icon={<Views />} />
+      <ProductCounter counter={favorites_amount} icon={<FavoriteCount />} />
+      <ProductCounter counter={positive_feedbacks_amount} icon={<Shape />} />
+      <ProductCounter
+        counter={negative_feedbacks_amount}
+        icon={<NegativeShape />}
+      />
     </div>
   );
 };

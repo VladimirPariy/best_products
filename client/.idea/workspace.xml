@@ -5,25 +5,124 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lib/api/price-history-api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.router.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/interfaces/user-role/user-role.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/users-list/change-user-role-saga.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/users-list/remove-user-saga.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-router/app-router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-router/app-router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/favorite-product-list/favorite-product-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/favorite-product-list/favorite-product-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/characteristic-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main-container/main-container.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main-container/main-container.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counter.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counter.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counters.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counters.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-counters.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-info-wrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-info-wrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-price.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-price.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-price.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-price.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-shot-characteristics.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-shot-characteristics.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-shot-characteristics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-shot-characteristics.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-title.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-title.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/components/product-title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/components/product-title.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-info/product-info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-info/product-info.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-layout/product-detail-layout.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-layout/product-detail-layout.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-layout/product-detail-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-layout/product-detail-layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/characteristic-tab/characteristics-tab.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/characteristic-tab/characteristics-tab.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/characteristic-tab/characteristics-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/characteristic-tab/characteristics-tab.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/comments-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/comments-tab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/all-comments-wrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/all-comments-wrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/comments-list.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/comments-list.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/comments-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/comments-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/sort-button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/sort-button.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/sort-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/comments-tab/components/sort-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/description-tab/description-tab.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/description-tab/description-tab.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/description-tab/description-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/description-tab/description-tab.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab/price-history-tab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tab-item/tabs-item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tab-item/tabs-item.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tab-item/tabs-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tab-item/tabs-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-list/tabs-list.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-list/tabs-list.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-list/tabs-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/components/tabs-list/tabs-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-detail-tabs/product-tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-detail-tabs/product-tabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-item/product-item.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product-item/product-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product-item/product-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products-list/products-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/components/search-result.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/components/search-result.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/components/sidebar-item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/components/sidebar-item.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-in-modal/sign-in-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in-modal/sign-in-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-up-modal/registration-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-up-modal/registration-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/error-container/error-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/error-container/error-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/product-list-wrapper/product-list-wrapper.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/product-list-wrapper/product-list-wrapper.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/product-list-wrapper/product-list-wrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/product-list-wrapper/product-list-wrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/slider/slider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/text-area/text-area.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/text-area/text-area.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-acc-modal/user-acc-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-body.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-body.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-head.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-head.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-head.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-head.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-wrapper.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-wrapper.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-wrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-wrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user-control/user-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/user-control.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api/comments-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/comments-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api/favorite-products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/favorite-products-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api/price-history-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/price-history-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api/products-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/products-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api/user-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api/user-api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/api-urls.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/comments/comments.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/comments/comments.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/error-validation.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/error-validation.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/favorite/favorite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/favorite/favorite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/price-history/price-history.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/price-history/price-history.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/product-detail/product-details.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/product.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/product.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/products/upload-image.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/user/update-user-data.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/user/update-user-data.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/utils/get-date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/utils/get-date.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/utils/get-time.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/utils/get-time.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/utils/validate-phone.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/utils/validate-phone.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/users-control/users-control-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/users-control/users-control-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/favorite/favorite-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/favorite/favorite-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/layout-page/layout-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/add-comment-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/add-comment-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/comments-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/comments-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/comments-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/comments-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/comments-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/comments-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/comments-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/comments-selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/comments-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/comments-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/comments/remove-comment-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/comments/remove-comment-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/add-into-favorite-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/add-into-favorite-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/remove-from-favorite-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/remove-from-favorite-saga.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-selectors.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/price-history/price-history-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/price-history/price-history-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/root-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/root-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/rootSaga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/rootSaga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/enums/endpoints-list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/common/root-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/common/root-router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/price-history.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/price-history/price-history.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/models/products.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user-selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user-update-saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user-update-saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-slice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +136,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="NamedScopeManager">
-    <scope name="bookmark" pattern="file[client]:src||file:src/lib/interfaces/comments/*||file:src/lib/api/comments-api.ts||file:src/store/comments/*||file:src/components/ui/text-area/*||file:.idea/*||file:public/*||file:src/assets/icon/sort/*||file:src/assets/icon/header/*||file:src/assets/icon/goods-statistics/*||file:src/assets/icon/general/*||file:src/assets/images/*||file:src/assets/images/goods/*||file:src/components/sort-panel/*||file:src/components/sort-panel/components/*||file:src/pages/home/components/*||file:src/components/main-container/*||file:src/components/modal-container/*||file:src/components/ui/admin-panel-link/*||file:src/layout/content/*||file:src/layout/header/*||file:src/layout/header/components/*||file:src/store/categories/*||file:src/components/ui/btn-for-add-image/*||file:src/store/root-reducer.ts||file:src/store/user/*||file:src/lib/interfaces/error-validation.ts||file:src/components/user-acc-modal/*||file:src/lib/api/axios-instances.ts||file:src/lib/api/auth-api.ts||file:src/store/modals/*||file:src/lib/utils/*||file:src/lib/enums/validation-message.ts||file:src/components/sign-in-modal/*||file:src/lib/interfaces/jwt-decode.interface.ts||file:src/lib/interfaces/sidebar/*||file:src/lib/interfaces/user/*||file:src/store/rootSaga.ts||file:src/store/store.ts||file:src/store/store-types.ts||file:src/store/user/user-reducer.ts||file:src/store/user/user-info-saga.ts||file:src/store/user/user-auth-saga.ts||file:src/components/app-router/*||file:src/components/observer/*||file:src/components/app-router/protected-route/*||file:src/components/sign-up-modal/*||file:src/scss/*||file:src/pages/home/*||file:src/components/ui/loader/*||file:src/components/ui/input/*||file:src/lib/hooks/*||file:src/components/ui/title/*||file:src/components/ui/modal-checkbox/*||file:src/components/ui/modal-wrapper/*||file:src/components/ui/button/*||file:src/components/ui/error-container/*||file:.env||file:.prettierignore||file:.prettierrc||file:package-lock.json||file:package.json||file:README.md||file:todo.txt||file:tsconfig.json||file:src/app.tsx||file:src/index.scss||file:src/index.tsx||file:src/typings.d.ts" />
+    <scope name="bookmark" pattern="file[client]:src||file:src/store/price-history/*||file:src/lib/interfaces/product-detail/*||file:src/lib/interfaces/price-history/*||file:src/lib/api/price-history-api.ts||file:src/components/product-detail-info/*||file:src/components/product-detail-layout/*||file:src/components/product-detail-tabs/*||file:src/components/product-detail-tabs/components/*||file:src/components/product-detail-tabs/components/tabs-list/*||file:src/components/product-detail-tabs/components/tab-item/*||file:src/components/product-detail-tabs/components/price-history-tab/*||file:src/components/product-detail-tabs/components/description-tab/*||file:src/components/product-detail-tabs/components/comments-tab/*||file:src/components/product-detail-tabs/components/characteristic-tab/*||file:src/lib/interfaces/comments/*||file:src/lib/api/comments-api.ts||file:src/store/comments/*||file:src/components/ui/text-area/*||file:.idea/*||file:public/*||file:src/assets/icon/sort/*||file:src/assets/icon/header/*||file:src/assets/icon/goods-statistics/*||file:src/assets/icon/general/*||file:src/assets/images/*||file:src/assets/images/goods/*||file:src/components/sort-panel/*||file:src/components/sort-panel/components/*||file:src/pages/home/components/*||file:src/components/main-container/*||file:src/components/modal-container/*||file:src/components/ui/admin-panel-link/*||file:src/layout/content/*||file:src/layout/header/*||file:src/layout/header/components/*||file:src/store/categories/*||file:src/components/ui/btn-for-add-image/*||file:src/store/root-reducer.ts||file:src/store/user/*||file:src/lib/interfaces/error-validation.ts||file:src/components/user-acc-modal/*||file:src/lib/api/axios-instances.ts||file:src/lib/api/auth-api.ts||file:src/store/modals/*||file:src/lib/utils/*||file:src/lib/enums/validation-message.ts||file:src/components/sign-in-modal/*||file:src/lib/interfaces/jwt-decode.interface.ts||file:src/lib/interfaces/sidebar/*||file:src/lib/interfaces/user/*||file:src/store/rootSaga.ts||file:src/store/store.ts||file:src/store/store-types.ts||file:src/store/user/user-reducer.ts||file:src/store/user/user-info-saga.ts||file:src/store/user/user-auth-saga.ts||file:src/components/app-router/*||file:src/components/observer/*||file:src/components/app-router/protected-route/*||file:src/components/sign-up-modal/*||file:src/scss/*||file:src/pages/home/*||file:src/components/ui/loader/*||file:src/components/ui/input/*||file:src/lib/hooks/*||file:src/components/ui/title/*||file:src/components/ui/modal-checkbox/*||file:src/components/ui/modal-wrapper/*||file:src/components/ui/button/*||file:src/components/ui/error-container/*||file:.env||file:.prettierignore||file:.prettierrc||file:package-lock.json||file:package.json||file:README.md||file:todo.txt||file:tsconfig.json||file:src/app.tsx||file:src/index.scss||file:src/index.tsx||file:src/typings.d.ts" />
   </component>
   <component name="ProjectId" id="2JDdqW6fKLP7isl684QMXSpQesQ" />
   <component name="ProjectViewState">
@@ -57,7 +156,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/typescript/lib&quot;
   }
 }</component>
@@ -68,11 +167,11 @@
       <recent name="$PROJECT_DIR$/src/lib/store/products" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/lib/interfaces/user-role" />
+      <recent name="$PROJECT_DIR$/src/components/user-control" />
       <recent name="$PROJECT_DIR$/src/components/app-router" />
       <recent name="$PROJECT_DIR$/src/components/products" />
       <recent name="$PROJECT_DIR$/src/components/product-detail" />
-      <recent name="$PROJECT_DIR$/src/components/product-detail-tabs/components/price-history-tab" />
-      <recent name="$PROJECT_DIR$/src/components/product-detail-tabs/components/description-tab" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -122,7 +221,12 @@
       <workItem from="1673900668571" duration="7454000" />
       <workItem from="1673937800308" duration="23831000" />
       <workItem from="1674019136066" duration="28024000" />
-      <workItem from="1674109668117" duration="1108000" />
+      <workItem from="1674109668117" duration="15491000" />
+      <workItem from="1674155705597" duration="5793000" />
+      <workItem from="1674168490735" duration="11000" />
+      <workItem from="1674191429610" duration="11927000" />
+      <workItem from="1674283599149" duration="3195000" />
+      <workItem from="1674292437206" duration="5884000" />
     </task>
     <servers />
   </component>

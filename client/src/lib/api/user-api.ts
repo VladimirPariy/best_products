@@ -1,6 +1,7 @@
 import { authAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import {IUpdateUserData} from "lib/interfaces/user/update-user-data.interface";
+import { IDataForUpdateUserRole } from "lib/interfaces/user-role/user-role";
+import { IUpdateUserData } from "lib/interfaces/user/update-user-data.interface";
 import { IRole, IUser } from "lib/interfaces/user/user.interface";
 
 class UserApi {
@@ -14,18 +15,18 @@ class UserApi {
     return data;
   }
 
-  async changeUserRole(user_id: number, role: number) {
-    const { data } = await authAxios.patch<{ updatedUser: number }>(
-      `${apiUrls.role_by_user_id}${user_id}`,
+  async changeUserRole({ userId, newRole }: IDataForUpdateUserRole) {
+    const { data } = await authAxios.patch<IUser>(
+      `${apiUrls.role_by_user_id}${userId}`,
       {
-        role,
+        role: newRole,
       }
     );
     return data;
   }
 
-  async removeOneUser(id: string) {
-    const { data } = await authAxios.delete<string>(
+  async removeOneUser(id: number) {
+    const { data } = await authAxios.delete<{ userId: number }>(
       `${apiUrls.one_user_by_id}${id}`
     );
     return data;

@@ -4,6 +4,8 @@
   font-weight: 400;
   font-size: 16px;
   color: #524f5e;
+  display: flex;
+  align-items: center;
 
   > input {
     margin: 0 10px;
@@ -12,11 +14,12 @@
   input[type="checkbox"] {
     position: relative;
     cursor: pointer;
+
   }
 
   input[type="checkbox"]:before {
     content: "";
-    display: block;
+    display: inline-block;
     position: absolute;
     width: 15px;
     height: 15px;

@@ -12,6 +12,7 @@ li:first-child > .active > .icon > svg > path {
   list-style: none;
   margin: 1rem 0.33rem 1rem;
   border-radius: 10px;
+  overflow: hidden;
 
   > a {
     display: flex;

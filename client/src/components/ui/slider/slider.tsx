@@ -1,12 +1,12 @@
-import React, {FC, useEffect, useState} from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import styles from "components/ui/slider/slider.module.scss";
 
-import {apiUrls} from "lib/enums/api-urls";
+import { apiUrls } from "lib/enums/api-urls";
 
 import Arrow from "assets/icon/general/arrow";
 import defaultImg from "assets/images/goods/grey_square.jpg";
-import {IShotImagesInfo} from "lib/interfaces/products/upload-image.interface";
+import { IShotImagesInfo } from "lib/interfaces/products/upload-image.interface";
 
 interface Props {
   images: IShotImagesInfo[];
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Slider: FC<Props> = (props) => {
-  const {images, deleteHandler, onDelete} = props;
+  const { images, deleteHandler, onDelete } = props;
 
   const START_SHIFT = 0;
   const SHIFT = 25;
@@ -74,7 +74,9 @@ const Slider: FC<Props> = (props) => {
         <div className={styles.previewImgContainer}>
           {onDelete && images.length > 0 && (
             <button
-              onClick={() => deleteHandler && deleteHandler(images[imgSerialNr - 1].image_id)}
+              onClick={() =>
+                deleteHandler && deleteHandler(images[imgSerialNr - 1].image_id)
+              }
               className={styles.deleteImg}
             >
               X
@@ -98,11 +100,11 @@ const Slider: FC<Props> = (props) => {
         </div>
         <div className={styles.sliderContainer}>
           <button className={styles.btnPver} onClick={onPrevIdeaHandler}>
-            <Arrow/>
+            <Arrow />
           </button>
           <div className={styles.slider}>
             <div
-              style={{marginLeft: `calc(${shiftingSlider}% )`}}
+              style={{ marginLeft: `calc(${shiftingSlider}% )` }}
               className={styles.slideWrap}
             >
               {images.length > 0 && imgSerialNr > 0 ? (
@@ -121,13 +123,13 @@ const Slider: FC<Props> = (props) => {
                 ))
               ) : (
                 <div>
-                  <img src={defaultImg} alt="product"/>
+                  <img src={defaultImg} alt="product" />
                 </div>
               )}
             </div>
           </div>
           <button className={styles.btnNext} onClick={onNextIdeaHandler}>
-            <Arrow/>
+            <Arrow />
           </button>
         </div>
       </div>

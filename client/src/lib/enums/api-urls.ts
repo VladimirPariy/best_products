@@ -30,4 +30,6 @@ export const enum apiUrls {
   commentsByProductId = "comments/product/", //:id
 
   priceHistoryByProductId = "history/",
+
+  favorite = "favorite/", //:userId
 }

@@ -6,12 +6,16 @@ import PageLayoutWrapper from "pages/products/layout-page/components/page-layout
 import FilterPanel from "components/filter-panel/filter-panel";
 import SortPanel from "components/sort-panel/sort-panel";
 
-const LayoutPage: FC = () => {
+interface Props{
+  isShowBreadcrumbs:boolean
+}
+
+const LayoutPage: FC<Props> = ({isShowBreadcrumbs}) => {
   const [isShowFilter, setIsShowFilter] = useState(false);
 
   return (
     <PageLayoutWrapper>
-      <Breadcrumbs />
+      {isShowBreadcrumbs && <Breadcrumbs/>}
       <SortPanel setIsShowFilter={setIsShowFilter} />
       <FilterPanel isShowFilter={isShowFilter} />
       <Outlet />

@@ -1,0 +1,27 @@
+.tableHead {
+  border: 1px solid #111;
+  font-weight: 600;
+
+  > tr {
+    border: 1px solid #111;
+
+    > td {
+      text-align: center;
+      padding: 2.5px;
+      border: 1px solid #111;
+    }
+  }
+}
+
+
+@media screen and (min-width: 769px) {
+  .tableHead > tr > td {
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .tableHead > tr > td {
+    padding: 10px 15px;
+  }
+}

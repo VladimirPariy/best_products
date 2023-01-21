@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styles from "components/product-detail-info/components/product-price.module.scss";
 
@@ -8,10 +8,12 @@ interface Props {
   price: string;
 }
 
-const ProductPrice: FC<Props> = ({price}) => {
+const ProductPrice: FC<Props> = ({ price }) => {
   return (
     <div className={styles.priceContainer}>
-      <span className={styles.icon}><Price/></span>
+      <span className={styles.icon}>
+        <Price />
+      </span>
       <span className={styles.price}>${price}</span>
     </div>
   );

@@ -1,14 +1,13 @@
-import React, {FC, useEffect} from "react";
-import {useLocation} from "react-router";
+import React, { FC, useEffect } from "react";
+import { useLocation } from "react-router";
 
-import {getProductDetailTrigger} from "store/product-detail/product-detail-actions";
-import {selectProductDetail} from "store/product-detail/product-detail-selector";
-import {useAppDispatch, useAppSelector} from "store/store-types";
+import { getProductDetailTrigger } from "store/product-detail/product-detail-actions";
+import { selectProductDetail } from "store/product-detail/product-detail-selector";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
 import ProductDetailLayout from "components/product-detail-layout/product-detail-layout";
 import ProductTabs from "components/product-detail-tabs/product-tabs";
 import ProductInfo from "components/product-detail-info/product-info";
-
 
 const ProductDetailPage: FC = () => {
   const location = useLocation().pathname.split("/");
@@ -28,7 +27,7 @@ const ProductDetailPage: FC = () => {
     characteristics,
     product_description,
     comments_amount,
-    product_id
+    product_id,
   } = productDetail;
 
   useEffect(() => {
@@ -41,7 +40,12 @@ const ProductDetailPage: FC = () => {
       <ProductInfo
         images={product_images}
         title={product_title}
-        counters={{positive_feedbacks_amount, negative_feedbacks_amount, favorites_amount, views_amount}}
+        counters={{
+          positive_feedbacks_amount,
+          negative_feedbacks_amount,
+          favorites_amount,
+          views_amount,
+        }}
         price={price}
         characteristics={characteristics}
       />

@@ -1,8 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
 
-import styles from "components/products-list/products-list.module.scss";
-
-import ProductItem from "components/product-item/product-item";
 import {
   clearProductsList,
   productsListTrigger,
@@ -16,6 +13,9 @@ import {
   selectProductsStatus,
 } from "store/products/products-selectors";
 import { useAppDispatch, useAppSelector } from "store/store-types";
+
+import ProductItem from "components/product-item/product-item";
+import ProductListWrapper from "components/ui/product-list-wrapper/product-list-wrapper";
 
 interface Props {
   category: string;
@@ -105,11 +105,11 @@ const ProductsList: FC<Props> = (props) => {
   return (
     <>
       {products.length > 0 && (
-        <div className={styles.listContainer}>
+        <ProductListWrapper>
           {products.map((product) => (
             <ProductItem {...product} key={product.product_id} />
           ))}
-        </div>
+        </ProductListWrapper>
       )}
     </>
   );

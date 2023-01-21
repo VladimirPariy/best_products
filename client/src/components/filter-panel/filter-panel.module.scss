@@ -3,7 +3,7 @@
 .filterPanelController {
   position: absolute;
   background: $white;
-  top: 120px;
+  top: 170px;
   right: 0;
   width: 210px;
   padding: 20px 30px;
@@ -136,9 +136,13 @@
   }
 }
 
+.filterPanelControllerAdmin {
+  top: 190px;
+}
+
 @media screen and (min-width: 769px) {
   .filterPanelController {
-    top: 30px;
+    top: 100px;
     width: 320px;
 
     .categoryFilter {
@@ -208,11 +212,13 @@
       }
     }
   }
+  .filterPanelControllerAdmin {
+    top: 140px;
+  }
 }
 
 @media screen and (min-width: 1025px) {
   .filterPanelController {
-    top: 30px;
     width: 430px;
 
     .categoryFilter {

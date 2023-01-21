@@ -1,4 +1,4 @@
-export interface IUpdateUserData{
+export interface IUpdateUserData {
   formData: FormData;
-  id: number
+  id: number;
 }

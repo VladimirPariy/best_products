@@ -17,9 +17,8 @@ export interface IShotCommentsWithUser {
   users: Pick<IUser, ShortUser>;
 }
 
-
-export interface IDataForAddComment{
-  userId:number;
-  productId:number;
-  message:string;
+export interface IDataForAddComment {
+  userId: number;
+  productId: number;
+  message: string;
 }

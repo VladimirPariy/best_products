@@ -5,4 +5,12 @@ export const {
   usersListRejected,
   usersListTrigger,
   usersListPending,
+  changeUserRoleTrigger,
+  changeUserRoleFulfilled,
+  changeUserRolePending,
+  changeUserRoleRejected,
+  removeUserTrigger,
+  removeUserFulfilled,
+  removeUserPending,
+  removeUserRejected,
 } = usersListSlice.actions;

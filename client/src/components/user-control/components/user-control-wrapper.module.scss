@@ -1,0 +1,21 @@
+.table {
+  font-size: 10px;
+  width: 100%;
+  margin: 5px auto 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+@media screen and (min-width: 769px) {
+  .table {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .table {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+}

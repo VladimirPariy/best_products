@@ -52,7 +52,10 @@ class ProductsApi {
     return data;
   }
 
-  async updateProductDetails({ id, ...infoForUpdate }: UpdatingProductDetailsInterface) {
+  async updateProductDetails({
+    id,
+    ...infoForUpdate
+  }: UpdatingProductDetailsInterface) {
     return await authAxios.patch<string>(
       `${apiUrls.one_product_by_id}${id}`,
       infoForUpdate

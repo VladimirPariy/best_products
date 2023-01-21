@@ -9,13 +9,11 @@ import {
   updateUserReject,
 } from "store/user/user-actions";
 
-import {IUpdateUserData} from "lib/interfaces/user/update-user-data.interface";
+import { IUpdateUserData } from "lib/interfaces/user/update-user-data.interface";
 import { IUser } from "lib/interfaces/user/user.interface";
 import UserApi from "lib/api/user-api";
 
-function* userUpdateWorker({
-  payload,
-}: PayloadAction<IUpdateUserData>) {
+function* userUpdateWorker({ payload }: PayloadAction<IUpdateUserData>) {
   const { id } = payload;
   yield put(updateUserPending());
   try {

@@ -1,27 +1,32 @@
-import React, {
-  FC,
-  useEffect,
-  useState,
-} from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
-import {ValidationMessage} from "lib/enums/validation-message";
-import {validateLatinLetter} from "lib/utils/validate-latin-letter";
-import {ILoginData} from "lib/interfaces/user/login-data.interface";
-import {ErrorValidationInterface} from "lib/interfaces/error-validation.interface";
+import { ValidationMessage } from "lib/enums/validation-message";
+import { validateLatinLetter } from "lib/utils/validate-latin-letter";
+import { ILoginData } from "lib/interfaces/user/login-data.interface";
+import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 
-import {useAppDispatch, useAppSelector} from "store/store-types";
-import {clearUser, userInfoTrigger, userTokenTrigger} from "store/user/user-actions";
-import {selectAuth, selectToken, selectUserError, selectUserStatus} from "store/user/user-selector";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import {
+  clearUser,
+  userInfoTrigger,
+  userTokenTrigger,
+} from "store/user/user-actions";
+import {
+  selectAuth,
+  selectToken,
+  selectUserError,
+  selectUserStatus,
+} from "store/user/user-selector";
 import {
   setVisibilitySignInModal,
   setVisibilitySignUpModal,
 } from "store/modals/modals-actions";
-import {selectSignInModal} from "store/modals/modals-selectors";
+import { selectSignInModal } from "store/modals/modals-selectors";
 
 import ErrorContainer from "components/ui/error-container/error-container";
-import {Loader} from "components/ui/loader/loader";
+import { Loader } from "components/ui/loader/loader";
 import Button from "components/ui/button/button";
 import ModalCheckbox from "components/ui/modal-checkbox/modal-checkbox";
 import Input from "components/ui/input/input";
@@ -35,51 +40,64 @@ const SignInModal: FC = () => {
   const isShowSignInModal = useAppSelector(selectSignInModal);
   const isLoading = useAppSelector(selectUserStatus);
 
-  const signInServerError = useAppSelector(selectUserError)
+  const signInServerError = useAppSelector(selectUserError);
 
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isRemember, setIsRemember] = useState<boolean>(false);
 
-  const [errorLogin, setErrorLogin] = useState<ErrorValidationInterface>(null)
-  const [errorPassword, setErrorPassword] = useState<ErrorValidationInterface>(null)
+  const [errorLogin, setErrorLogin] = useState<ErrorValidationInterface>(null);
+  const [errorPassword, setErrorPassword] =
+    useState<ErrorValidationInterface>(null);
 
-  const serverErrorMessage = signInServerError && JSON.parse(signInServerError?.status_message).message
+  const serverErrorMessage =
+    signInServerError && JSON.parse(signInServerError?.status_message).message;
 
   useEffect(() => {
     if (errorLogin && login?.length > 0) setErrorLogin(null);
-    if (errorPassword && (password.length > 4 || validateLatinLetter(password))) setErrorPassword(null);
-    if (signInServerError && (signInServerError.status === 404 || signInServerError.status === 400)) dispatch(clearUser());
+    if (errorPassword && (password.length > 4 || validateLatinLetter(password)))
+      setErrorPassword(null);
+    if (
+      signInServerError &&
+      (signInServerError.status === 404 || signInServerError.status === 400)
+    )
+      dispatch(clearUser());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login, password]);
 
   useEffect(() => {
     if (signInServerError?.status === 404) {
-      setErrorLogin(serverErrorMessage)
+      setErrorLogin(serverErrorMessage);
     }
     if (signInServerError?.status === 400) {
-      setErrorPassword(serverErrorMessage)
+      setErrorPassword(serverErrorMessage);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [signInServerError])
+  }, [signInServerError]);
 
   const loginHandler = () => {
     if (login.length === 0) {
-      setErrorLogin(ValidationMessage.required)
+      setErrorLogin(ValidationMessage.required);
     }
     if (password.length < 5) {
-      setErrorPassword(ValidationMessage.invalidPassword)
+      setErrorPassword(ValidationMessage.invalidPassword);
     }
     if (!validateLatinLetter(password)) {
-      setErrorPassword(ValidationMessage.onlyLatinLetter)
+      setErrorPassword(ValidationMessage.onlyLatinLetter);
     }
     if (signInServerError?.status === 404) {
-      setErrorLogin(serverErrorMessage)
+      setErrorLogin(serverErrorMessage);
     }
     if (signInServerError?.status === 400) {
-      setErrorPassword(serverErrorMessage)
+      setErrorPassword(serverErrorMessage);
     }
-    if (login.length === 0 || password.length < 5 || !validateLatinLetter(password) || signInServerError) return;
+    if (
+      login.length === 0 ||
+      password.length < 5 ||
+      !validateLatinLetter(password) ||
+      signInServerError
+    )
+      return;
     dispatch(
       userTokenTrigger(
         new ILoginData({
@@ -122,17 +140,24 @@ const SignInModal: FC = () => {
           changeHandler={(e) => setLogin(e.target.value)}
           value={login}
           isError={!!errorLogin}
-          children={<ErrorContainer errorText={errorLogin}/>}
+          children={<ErrorContainer errorText={errorLogin} />}
         />
         <Input
           labelText="Password"
-          type='password'
+          type="password"
           changeHandler={(e) => setPassword(e.target.value)}
           value={password}
-          isError={!!errorPassword || !!(!validateLatinLetter(password) && password)}
-          children={!!(errorPassword || (!validateLatinLetter(password) && password))
-            ? <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>
-            : undefined}
+          isError={
+            !!errorPassword || !!(!validateLatinLetter(password) && password)
+          }
+          children={
+            !!(
+              errorPassword ||
+              (!validateLatinLetter(password) && password)
+            ) ? (
+              <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>
+            ) : undefined
+          }
         />
         <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>
           Remember me
@@ -140,7 +165,7 @@ const SignInModal: FC = () => {
         <Button
           submitHandler={loginHandler}
           type="button"
-          children={isLoading ? <Loader size={27}/> : "Continue"}
+          children={isLoading ? <Loader size={27} /> : "Continue"}
         />
 
         <div className={styles.separator}>

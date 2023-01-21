@@ -125,7 +125,7 @@
 .pileContainer {
   display: flex;
   flex-direction: column;
-  max-width: 130px;
+  width: 140px;
   background: $white;
   margin: 0 5px 20px;
   border-radius: 0 0 10px 10px;
@@ -194,7 +194,7 @@
   .containerForCounters {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px 12px;
+    gap: 8px 0;
     margin: 8px 0;
 
     > div {
@@ -215,20 +215,30 @@
 
     .views {
       grid-row: 1;
-      margin-left: 13px;
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 14px;
     }
 
     .favoriteCounter {
-      margin-left: 13px;
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 14px;
     }
 
     .positiveFeedbacks {
+      display: flex;
+      justify-content: flex-start;
       grid-row: 1;
-      margin-left: 18px;
+      margin-left: 7px;
+
     }
 
     .negativeFeedbacks {
-      margin-left: 18px;
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 7px;
+
     }
   }
 }
@@ -318,7 +328,7 @@
   }
 
   .pileContainer {
-    max-width: 210px;
+    width: 210px;
     margin: 0 10px 35px;
 
     .favorite {
@@ -362,7 +372,7 @@
     }
 
     .containerForCounters {
-      gap: 12px 16px;
+      gap: 12px 0;
       margin: 13px 0;
 
       > div {
@@ -384,11 +394,11 @@
       }
 
       .positiveFeedbacks {
-        margin-left: 18px;
+        margin-left: 9px;
       }
 
       .negativeFeedbacks {
-        margin-left: 18px;
+        margin-left: 9px;
       }
     }
   }
@@ -483,7 +493,7 @@
   }
 
   .pileContainer {
-    max-width: 275px;
+    width: 275px;
     margin: 0 10px 55px;
     border-radius: 0 0 10px 10px;
 
@@ -528,7 +538,7 @@
     }
 
     .containerForCounters {
-      gap: 16px 24px;
+      gap: 16px 0;
       margin: 17px 0;
 
       > div {
@@ -542,19 +552,19 @@
       }
 
       .views {
-        margin-left: 25px;
+        margin-left: 27px;
       }
 
       .favoriteCounter {
-        margin-left: 25px;
+        margin-left: 27px;
       }
 
       .positiveFeedbacks {
-        margin-left: 25px;
+        margin-left: 13.5px;
       }
 
       .negativeFeedbacks {
-        margin-left: 25px;
+        margin-left: 13.5px;
       }
     }
   }

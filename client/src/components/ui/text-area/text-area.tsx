@@ -1,5 +1,5 @@
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
-import React, {ChangeEvent, FC, ReactNode} from "react";
+import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import React, { ChangeEvent, FC, ReactNode } from "react";
 
 import styles from "components/ui/text-area/text-area.module.scss";
 

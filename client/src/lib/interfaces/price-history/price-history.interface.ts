@@ -6,5 +6,4 @@ export interface IPriceHistory {
   updated_at: string;
 }
 
-export interface IShotPriceHistory extends Omit<IPriceHistory, "product"> {
-}
+export interface IShotPriceHistory extends Omit<IPriceHistory, "product"> {}
