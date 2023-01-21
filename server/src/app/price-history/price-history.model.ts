@@ -1,4 +1,4 @@
-import Objection, { Model } from "objection";
+import Objection, {Model, QueryBuilder} from "objection";
 
 import { ProductsModel } from "@/app/products/models/products.model";
 
@@ -16,6 +16,19 @@ class PriceHistoryModel extends Model {
   static get idColumn() {
     return "price_history_id";
   }
+	
+	static get modifiers() {
+		return {
+			selectShotPriceHistory: (builder: QueryBuilder<any, any>) => {
+				builder.select(
+					"created_at",
+					"price_at_timestamp",
+					"price_history_id",
+					"updated_at"
+				);
+			},
+		};
+	}
 
   static get relationMappings() {
     return {

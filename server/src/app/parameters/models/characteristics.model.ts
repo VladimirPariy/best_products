@@ -1,4 +1,4 @@
-import { Model } from "objection";
+import {Model, QueryBuilder} from "objection";
 import { ParametersModel } from "@/app/parameters/models/parameters.model";
 import { ProductCharacteristicModel } from "@/app/parameters/models/product-characteristics.model";
 
@@ -14,6 +14,15 @@ export class CharacteristicsModel extends Model {
   static get idColumn() {
     return "characteristic_id";
   }
+	
+	
+	static get modifiers() {
+		return {
+			selectShotCharacteristic: (builder: QueryBuilder<any, any>) => {
+				builder.select("characteristic_id", "characteristic_title");
+			},
+		};
+	}
 
   static get relationMappings() {
     return {

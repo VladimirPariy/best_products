@@ -9,6 +9,7 @@ import { createUserRouter } from "@/app/users/user.router";
 import { createParametersRouter } from "@/app/parameters/parameters.router";
 import { createCommentsRouter } from "@/app/comments/comments.router";
 import { createPriceHistoryRouter } from "@/app/price-history/price-history.router";
+import { createFavoriteProductsRouter } from "@/app/favorite-products/favorite-products.route";
 
 export const createRootRouter = (): Router => {
   const rootRouter = Router();
@@ -20,6 +21,10 @@ export const createRootRouter = (): Router => {
   rootRouter.use(EndpointsList.ROOT_PARAMETERS, createParametersRouter());
   rootRouter.use(EndpointsList.ROOT_COMMENTS, createCommentsRouter());
   rootRouter.use(EndpointsList.ROOT_PRICE_HISTORY, createPriceHistoryRouter());
+  rootRouter.use(
+    EndpointsList.ROOT_FAVORITE_PRODUCTS,
+    createFavoriteProductsRouter()
+  );
 
   return rootRouter;
 };

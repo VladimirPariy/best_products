@@ -1,4 +1,4 @@
-import { Model } from "objection";
+import { Model, QueryBuilder } from "objection";
 
 import { ProductsModel } from "@/app/products/models/products.model";
 
@@ -15,6 +15,14 @@ class ProductsImagesModel extends Model {
 
   static get idColumn() {
     return "image_id";
+  }
+
+  static get modifiers() {
+    return {
+      selectShotImage: (builder: QueryBuilder<any, any>) => {
+        builder.select("image_id", "image_title");
+      },
+    };
   }
 
   static get relationMappings() {

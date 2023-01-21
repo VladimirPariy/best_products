@@ -1,4 +1,4 @@
-import { Model } from "objection";
+import {Model, QueryBuilder} from "objection";
 
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
 
@@ -13,7 +13,15 @@ export class CategoriesModel extends Model {
   static get idColumn() {
     return "category_id";
   }
-
+	
+	static get modifiers() {
+		return {
+			selectShotCategory: (builder: QueryBuilder<any, any>) => {
+				builder.select("category_id", "category_title");
+			},
+		};
+	}
+	
   static get relationMappings() {
     return {
       subcategories: {

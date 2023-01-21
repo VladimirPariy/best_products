@@ -1,4 +1,4 @@
-import { Model } from "objection";
+import {Model, QueryBuilder} from "objection";
 import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
 import { CharacteristicsModel } from "@/app/parameters/models/characteristics.model";
 
@@ -14,7 +14,15 @@ export class ParametersModel extends Model {
   static get idColumn() {
     return "parameter_id";
   }
-
+	
+	static get modifiers() {
+		return {
+			selectShotParameter: (builder: QueryBuilder<any, any>) => {
+				builder.select("parameter_id", "parameter_title");
+			},
+		};
+	}
+	
   static get relationMappings() {
     return {
       subcategory: {

@@ -19,14 +19,14 @@ export class FavoriteProductsModel extends Model {
 
   static get relationMappings() {
     return {
-      // products: {
-      //   relation: Model.HasOneRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "favorite_products.product",
-      //     to: "products.product_id"
-      //   }
-      // },
+      products: {
+        relation: Model.HasOneRelation,
+        modelClass: ProductsModel,
+        join: {
+          from: "favorite_products.product",
+          to: "products.product_id",
+        },
+      },
       users: {
         relation: Model.HasOneRelation,
         modelClass: UsersModel,
