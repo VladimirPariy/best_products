@@ -1,6 +1,6 @@
 export interface ITempChar {
-  characteristic_title: string;
-  characteristic_description: string;
+  characteristic: number;
+  parameter: number;
   id: number;
 }
 

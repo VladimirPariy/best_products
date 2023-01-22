@@ -1,53 +1,56 @@
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { useSearchParams } from "react-router-dom";
+
+import styles from "components/filter-panel/filter-panel.module.scss";
+
+import FilterContainer from "components/filter-panel/components/filter-container";
 import CharacteristicInput from "components/filter-panel/components/characteristic-input";
 import PriceInput from "components/filter-panel/components/price-input";
 import RadioInput from "components/filter-panel/components/radio-input";
 import Separator from "components/filter-panel/components/separator";
-import {ISubcategory} from "lib/interfaces/categories/categories.interface";
-import {IParameters} from "lib/interfaces/parameters/parameters.interface";
-import {getClassNameByCondition} from "lib/utils/get-class-by-condition";
-import React, {ChangeEvent, FC, useEffect, useState} from "react";
-import {useLocation} from "react-router";
-import {useSearchParams} from "react-router-dom";
 
-import styles from "components/filter-panel/filter-panel.module.scss";
-import FilterContainer from "components/filter-panel/components/filter-container";
+import { getProductsParametersById } from "lib/api/parameters-api";
+import { ISubcategory } from "lib/interfaces/categories/categories.interface";
+import { IParameters } from "lib/interfaces/parameters/parameters.interface";
+import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import { useSetParam } from "lib/hooks/use-set-param";
+import { upFirstChar } from "lib/utils/up-first-char";
 
-import {useSetParam} from "lib/hooks/use-set-param";
+import { selectUser } from "store/user/user-selector";
 import {
   selectMaxPrice,
   selectMinPrice,
 } from "store/products/products-selectors";
-import productsApi from "lib/api/products-api";
-import {selectCategories} from "store/categories/categories-selectors";
-import {useAppSelector} from "store/store-types";
-import {upFirstChar} from "lib/utils/up-first-char";
-import {selectUser} from "store/user/user-selector";
+import { selectCategories } from "store/categories/categories-selectors";
+import { useAppSelector } from "store/store-types";
 
 interface Props {
   isShowFilter: boolean;
 }
 
-const FilterPanel: FC<Props> = ({isShowFilter}) => {
+const FilterPanel: FC<Props> = ({ isShowFilter }) => {
   const location = useLocation();
   const pathArray = location.pathname.split("/");
   const categoryPath = pathArray[2];
   const categories = useAppSelector(selectCategories);
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
-  const user = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser);
   const [prevCategory, setPrevCategory] = useState("");
-  const [productsParameters, setProductsParameters] = useState<IParameters[]>([]);
-
+  const [productsParameters, setProductsParameters] = useState<IParameters[]>(
+    []
+  );
 
   const subcategoryList = categories
-  .find((category) => category.category_title === categoryPath)
-  ?.subcategories.map((subcategory) => subcategory);
+    .find((category) => category.category_title === categoryPath)
+    ?.subcategories.map((subcategory) => subcategory);
 
   const currentSubcategory: ISubcategory | undefined =
     pathArray?.length > 3
       ? subcategoryList?.find(
-        (subcategory) => subcategory.subcategory_title === pathArray[3]
-      )
+          (subcategory) => subcategory.subcategory_title === pathArray[3]
+        )
       : undefined;
   const [searchParams] = useSearchParams();
   const paramMinPrice = searchParams.get("minPrice");
@@ -94,9 +97,7 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
 
   useEffect(() => {
     const fetchParameters = async () => {
-      setProductsParameters(
-        await productsApi.getProductsParameters(subcategoryId)
-      );
+      setProductsParameters(await getProductsParametersById(subcategoryId));
     };
     if (subcategoryId > -1) {
       fetchParameters();
@@ -131,11 +132,17 @@ const FilterPanel: FC<Props> = ({isShowFilter}) => {
     }
     setSelectedParameters((prev) => [...prev, e.target.value]);
   };
-  useSetParam(minPrice > minPriceFromServer, {minPrice});
-  useSetParam(maxPrice < maxPriceFromServer, {maxPrice});
-  useSetParam(selectedParameters?.length > 0, {selectedParameters});
+  useSetParam(minPrice > minPriceFromServer, { minPrice });
+  useSetParam(maxPrice < maxPriceFromServer, { maxPrice });
+  useSetParam(selectedParameters?.length > 0, { selectedParameters });
 
-const filterPanelContainer = getClassNameByCondition(styles, 'filterPanelController', 'filterPanelControllerAdmin', user?.role === 1, '')
+  const filterPanelContainer = getClassNameByCondition(
+    styles,
+    "filterPanelController",
+    "filterPanelControllerAdmin",
+    user?.role === 1,
+    ""
+  );
   return (
     <>
       {isShowFilter && (
@@ -161,7 +168,7 @@ const filterPanelContainer = getClassNameByCondition(styles, 'filterPanelControl
                   ))}
                 </div>
               </FilterContainer>
-              <Separator/>
+              <Separator />
             </>
           )}
           <FilterContainer className={styles.priceFilter} title="Price">
@@ -171,7 +178,7 @@ const filterPanelContainer = getClassNameByCondition(styles, 'filterPanelControl
                 changeHandler={(e) => setMinPrice(+e.target.value)}
                 title="minPrice"
               />
-              <Separator/>
+              <Separator />
               <PriceInput
                 value={maxPrice}
                 changeHandler={(e) => setMaxPrice(+e.target.value)}
@@ -179,7 +186,7 @@ const filterPanelContainer = getClassNameByCondition(styles, 'filterPanelControl
               />
             </div>
           </FilterContainer>
-          <Separator/>
+          <Separator />
           <div className={styles.characteristicsFilter}>
             {productsParameters?.length > 0 &&
               productsParameters.map((parameters, index) => (
@@ -201,7 +208,7 @@ const filterPanelContainer = getClassNameByCondition(styles, 'filterPanelControl
                       ))}
                     </div>
                   </FilterContainer>
-                  {index !== productsParameters.length - 1 && <Separator/>}
+                  {index !== productsParameters.length - 1 && <Separator />}
                 </React.Fragment>
               ))}
           </div>

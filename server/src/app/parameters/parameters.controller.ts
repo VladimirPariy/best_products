@@ -18,6 +18,11 @@ class ParametersController {
     );
     data instanceof HttpException ? next(data) : res.status(200).send(data);
   }
+
+  async getAllParameters(req: Request, res: Response) {
+    const data = await ParametersService.getAllParameters();
+    res.status(200).send(data);
+  }
 }
 
 export default new ParametersController();

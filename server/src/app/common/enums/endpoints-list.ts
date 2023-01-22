@@ -10,7 +10,8 @@ export const enum EndpointsList {
   ROOT_PARAMETERS = "/parameters",
   ROOT_COMMENTS = "/comments",
   ROOT_PRICE_HISTORY = "/history",
-	ROOT_FAVORITE_PRODUCTS = "/favorite",
+  ROOT_FAVORITE_PRODUCTS = "/favorite",
+  ROOT_CHARACTERISTICS = "/characteristics",
 
   //auth-router
   SIGN_UP = "/registration",
@@ -38,6 +39,7 @@ export const enum EndpointsList {
   REMOVE_IMAGE = "/img/:id",
 
   //parameters
+  PARAMETERS = "/",
   PARAMETERS_BY_SUBCATEGORY_ID = "/:subcategoryId",
 
   //search
@@ -50,8 +52,11 @@ export const enum EndpointsList {
 
   //price-history
   PRICE_HISTORY_BY_PRODUCT_ID = "/:id",
-	
-	//favorite products
-	FAVORITE_PRODUCTS = "/",
-	FAVORITE_PRODUCTS_BY_USER_ID = "/:id",
+
+  //favorite products
+  FAVORITE_PRODUCTS = "/",
+  FAVORITE_PRODUCTS_BY_USER_ID = "/:id",
+
+  //characteristics
+  CHARACTERISTICS = "/",
 }

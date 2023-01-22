@@ -28,7 +28,7 @@ class AuthService {
       is_get_update: isGetUpdate,
     });
 
-    const user = await UserService.getUserById(insertingData.user_id);
+    const user = await UserService.getUserById(+insertingData.user_id);
     if (user instanceof HttpException) {
       return user;
     }

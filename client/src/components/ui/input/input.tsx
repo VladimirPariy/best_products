@@ -43,7 +43,7 @@ const Input: FC<Props> = (props) => {
         onChange={changeHandler}
         min={min}
       />
-      <div className={styles.inputExplanation}>{children}</div>
+      {children && <div className={styles.inputExplanation}>{children}</div>}
     </label>
   );
 };

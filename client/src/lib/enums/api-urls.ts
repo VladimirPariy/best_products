@@ -22,6 +22,7 @@ export const enum apiUrls {
   filtered_prod = "products/filter",
 
   parameters = "parameters/",
+  characteristics = "characteristics/",
 
   search = "products/search",
 

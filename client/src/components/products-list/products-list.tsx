@@ -14,7 +14,7 @@ import {
 } from "store/products/products-selectors";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 
-import ProductItem from "components/product-item/product-item";
+import ProductItem from "components/ui/product-item/product-item";
 import ProductListWrapper from "components/ui/product-list-wrapper/product-list-wrapper";
 
 interface Props {

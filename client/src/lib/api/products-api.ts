@@ -1,7 +1,5 @@
 import { authAxios, defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { IParameters } from "lib/interfaces/parameters/parameters.interface";
-import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
 import {
   IGetProductListTrigger,
   IProduct,
@@ -17,14 +15,6 @@ import { ISearchData } from "lib/interfaces/search/search.interface";
 class ProductsApi {
   async getAllProducts() {
     const { data } = await defaultAxios.get<IProduct[]>(apiUrls.products);
-    return data;
-  }
-
-  async createNewProduct(infoForCreat: IDataForCreating) {
-    const { data } = await authAxios.post<IProduct[]>(
-      apiUrls.products,
-      infoForCreat
-    );
     return data;
   }
 
@@ -44,14 +34,6 @@ class ProductsApi {
     return await authAxios.delete(`${apiUrls.prod_images}${id}`);
   }
 
-  async uploadTempImage(file: FormData) {
-    const { data } = await authAxios.post<IProductImages>(
-      apiUrls.temp_images,
-      file
-    );
-    return data;
-  }
-
   async updateProductDetails({
     id,
     ...infoForUpdate
@@ -60,10 +42,6 @@ class ProductsApi {
       `${apiUrls.one_product_by_id}${id}`,
       infoForUpdate
     );
-  }
-
-  async dropTempImage(id: number) {
-    return await authAxios.delete(`${apiUrls.temp_images}${id}`);
   }
 
   async getFilteredAndSortedProducts({
@@ -82,13 +60,6 @@ class ProductsApi {
           filter,
         },
       }
-    );
-    return data;
-  }
-
-  async getProductsParameters(subcategoryId: number) {
-    const { data } = await defaultAxios.get<IParameters[]>(
-      `${apiUrls.parameters}${subcategoryId}`
     );
     return data;
   }

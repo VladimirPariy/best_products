@@ -6,6 +6,7 @@ import { addIntoFavoriteWatcher } from "store/favorite-products/add-into-favorit
 import { favoriteProductsWatcher } from "store/favorite-products/favorite-products-saga";
 import { removeFromFavoriteWatcher } from "store/favorite-products/remove-from-favorite-saga";
 import { priceHistoryWatcher } from "store/price-history/price-history-saga";
+import { createProductWatcher } from "store/product-control/create-product-saga";
 import { productDetailWatcher } from "store/product-detail/product-detail-saga";
 import { removeImageWatcher } from "store/product-detail/remove-image-saga";
 import { uploadImageWatcher } from "store/product-detail/upload-image-saga";
@@ -44,5 +45,6 @@ export default function* rootSaga() {
     removeFromFavoriteWatcher(),
     changeUserRoleWatcher(),
     removeUserWatcher(),
+    createProductWatcher(),
   ]);
 }

@@ -7,7 +7,7 @@ import { appUrl } from "lib/enums/app-urls";
 
 const adminPanelList: { url: string; title: string }[] = [
   { url: appUrl.users_table, title: "Users control" },
-  { url: appUrl.products, title: "Products control" },
+  { url: appUrl.new_product, title: "Create product" },
 ];
 
 const AdminPanel: FC = () => {

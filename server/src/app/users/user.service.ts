@@ -28,12 +28,12 @@ class UserService {
 
   async updateUserRoleById(user_id: number, role: number) {
     const updatedUser = await UsersModel.query()
-      .update({ role })
-      .where({ user_id });
+      .findById(user_id)
+      .update({ role });
     if (!updatedUser) {
       return HttpException.internalServErr("Role change request failed");
     }
-    return { updatedUser };
+    return await this.getUserById(user_id);
   }
 
   async getUserByEmailOrPhoneNumber(login: string) {
@@ -44,14 +44,14 @@ class UserService {
     return user[0];
   }
 
-  async getUserById(id: string) {
+  async getUserById(id: number) {
     const user = await UsersModel.query()
-      .withGraphFetched("users_roles")
-      .where("user_id", "=", id);
+      .findById(id)
+      .withGraphFetched("users_roles");
     if (!user) {
       return HttpException.notFound(`User not found`);
     }
-    return user[0];
+    return user;
   }
 
   async updateUserById(id: string, { body, files }: Request) {
@@ -111,7 +111,7 @@ class UserService {
     return "Successful updated user";
   }
 
-  async createNewToken(id: string) {
+  async createNewToken(id: number) {
     const user = await this.getUserById(id);
     if (user instanceof HttpException) {
       return user;
@@ -125,7 +125,7 @@ class UserService {
     return token;
   }
 
-  async removeOneById(id: string) {
+  async removeOneById(id: number) {
     const user = await UsersModel.query().findById(id);
     if (user) {
       await user.$relatedQuery("users_views").delete();
@@ -136,7 +136,7 @@ class UserService {
     } else {
       return HttpException.notFound(`User not found`);
     }
-    return "User was successfully deleted";
+    return { userId: id };
   }
 }
 

@@ -4,6 +4,7 @@ import { commentsReducer } from "store/comments/comments-reducer";
 import { favoriteProductsReducer } from "store/favorite-products/favorite-products-reducer";
 import { modalsReducer } from "store/modals/modals-reducer";
 import { priceHistoryReducer } from "store/price-history/price-history-reducer";
+import { productControlReducer } from "store/product-control/product-control-reducer";
 import { productDetailReducer } from "store/product-detail/product-detail-reducer";
 import { productsReducer } from "store/products/products-reducer";
 import { searchReducer } from "store/search/search-reducer";
@@ -22,5 +23,6 @@ export const rootReducer = combineReducers({
   modals: modalsReducer,
   comments: commentsReducer,
   priceHistory: priceHistoryReducer,
-  favorite:favoriteProductsReducer,
+  favorite: favoriteProductsReducer,
+  productControl: productControlReducer,
 });

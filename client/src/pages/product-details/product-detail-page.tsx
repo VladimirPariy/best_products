@@ -5,9 +5,9 @@ import { getProductDetailTrigger } from "store/product-detail/product-detail-act
 import { selectProductDetail } from "store/product-detail/product-detail-selector";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 
-import ProductDetailLayout from "components/product-detail-layout/product-detail-layout";
-import ProductTabs from "components/product-detail-tabs/product-tabs";
-import ProductInfo from "components/product-detail-info/product-info";
+import ProductDetailLayout from "components/product-detail/product-detail-layout/product-detail-layout";
+import ProductTabs from "components/product-detail/product-detail-tabs/product-tabs";
+import ProductInfo from "components/product-detail/product-detail-info/product-info";
 
 const ProductDetailPage: FC = () => {
   const location = useLocation().pathname.split("/");
