@@ -4,7 +4,9 @@
 
 /client/node_modules
 /client/.env
-client/todo.txt
+/client/todo.txt
+/client/.idea/*
+/client/.idea
 
 /server/.env
 /server/node_modules
