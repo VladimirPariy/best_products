@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router";
+import { NavLink, useSearchParams } from "react-router-dom";
 
 import styles from "components/ui/product-item/product-item.module.scss";
 import FavoriteCount from "assets/icon/goods-statistics/favorite-count";
@@ -43,6 +44,8 @@ const ProductItem: FC<Props> = (props) => {
   const favoriteProductsList = useAppSelector(selectFavoriteProducts);
   const dispatch = useAppDispatch();
   const { user_id } = useAppSelector(selectUser);
+  const { pathname } = useLocation();
+  const currentLocation = pathname.split("/");
 
   const isFavorite = favoriteProductsList.find(
     (item) => item.product_id === product_id
@@ -80,49 +83,62 @@ const ProductItem: FC<Props> = (props) => {
       <div className={favoriteClassNames} onClick={clickHandler}>
         <Favorites />
       </div>
-      {!(searchParams.get("view") === "list") && (
-        <>
-          <ProductTitle product_title={product_title} />
-          <Price price={price} />
-        </>
-      )}
-      <Image product_images={product_images} />
-      {searchParams.get("view") === "list" && (
-        <div className={styles.infoContainer}>
-          <ProductTitle product_title={product_title} />
-          <div className={styles.characteristics}>
-            {characteristics.map((char, index) => {
-              if (index > 1) return false;
-              return (
-                <CharacteristicItem char={char} key={char.characteristic_id} />
-              );
-            })}
+      <NavLink
+        to={
+          currentLocation[1] === "favorite"
+            ? `${product_id}`
+            : currentLocation[1] === "product" && currentLocation.length > 3
+            ? `../../${product_id}`
+            : `../${product_id}`
+        }
+      >
+        {!(searchParams.get("view") === "list") && (
+          <>
+            <ProductTitle product_title={product_title} />
+            <Price price={price} />
+          </>
+        )}
+        <Image product_images={product_images} />
+        {searchParams.get("view") === "list" && (
+          <div className={styles.infoContainer}>
+            <ProductTitle product_title={product_title} />
+            <div className={styles.characteristics}>
+              {characteristics.map((char, index) => {
+                if (index > 1) return false;
+                return (
+                  <CharacteristicItem
+                    char={char}
+                    key={char.characteristic_id}
+                  />
+                );
+              })}
+            </div>
+            <Price price={price} />
           </div>
-          <Price price={price} />
+        )}
+        <div className={styles.containerForCounters}>
+          <CountItem
+            value={views_amount}
+            children={<Views />}
+            className={styles.views}
+          />
+          <CountItem
+            value={favorites_amount}
+            children={<FavoriteCount />}
+            className={styles.favoriteCounter}
+          />
+          <CountItem
+            value={positive_feedbacks_amount}
+            children={<Shape />}
+            className={styles.positiveFeedbacks}
+          />
+          <CountItem
+            value={negative_feedbacks_amount}
+            children={<NegativeShape />}
+            className={styles.negativeFeedbacks}
+          />
         </div>
-      )}
-      <div className={styles.containerForCounters}>
-        <CountItem
-          value={views_amount}
-          children={<Views />}
-          className={styles.views}
-        />
-        <CountItem
-          value={favorites_amount}
-          children={<FavoriteCount />}
-          className={styles.favoriteCounter}
-        />
-        <CountItem
-          value={positive_feedbacks_amount}
-          children={<Shape />}
-          className={styles.positiveFeedbacks}
-        />
-        <CountItem
-          value={negative_feedbacks_amount}
-          children={<NegativeShape />}
-          className={styles.negativeFeedbacks}
-        />
-      </div>
+      </NavLink>
     </div>
   );
 };

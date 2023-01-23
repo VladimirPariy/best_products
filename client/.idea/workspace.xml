@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/empty-favorite/empty-favorite.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/not-logged/not-logged.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/empty-favorite/empty-favorite.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/not-logged/not-logged.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/favorite-product-list/favorite-product-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/favorite-product-list/favorite-product-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/components/radio-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter-panel/filter-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/router/app-router/app-router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/router/app-router/app-router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/main-container/main-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/main-container/main-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/empty-favorite/empty-favorite.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/empty-favorite/empty-favorite.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/not-logged/not-logged.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/not-logged/not-logged.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/product-item/product-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/product-item/product-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/interfaces/favorite/favorite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/interfaces/favorite/favorite.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/favorite/favorite-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/favorite/favorite-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product-details/product-detail-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/favorite-products/favorite-products-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/product-detail/product-detail-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/product-detail/product-detail-actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/characteristics/models/product-characteristics.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/characteristics/models/product-characteristics.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
@@ -131,7 +121,7 @@
       <workItem from="1674410866597" duration="13764000" />
       <workItem from="1674431507823" duration="929000" />
       <workItem from="1674432478359" duration="5000" />
-      <workItem from="1674454888930" duration="22218000" />
+      <workItem from="1674454888930" duration="25259000" />
     </task>
     <servers />
   </component>
