@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/btn-for-add-image/btn-for-add-images.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/create-product/create-product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-product/create-product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/btn-for-add-image/btn-for-add-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/btn-for-add-image/btn-for-add-image.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/button/buttom.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button/buttom.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/button/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/select/select.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/select/select.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/select/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/select/select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/text-area/text-area.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/text-area/text-area.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/enums/validation-message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/characteristics/models/product-characteristics.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/characteristics/models/product-characteristics.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
@@ -23,6 +16,17 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="com.haulmont.rcb.palette" />
+        <option value="com.haulmont.rcb.previews" />
+        <option value="com.haulmont.rcb.index" />
+        <option value="com.haulmont.rcb.useInitial" />
+        <option value="com.haulmont.rcb.README" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -134,7 +138,7 @@
       <workItem from="1674431507823" duration="929000" />
       <workItem from="1674432478359" duration="5000" />
       <workItem from="1674454888930" duration="29413000" />
-      <workItem from="1674504783885" duration="4138000" />
+      <workItem from="1674504783885" duration="4573000" />
     </task>
     <servers />
   </component>

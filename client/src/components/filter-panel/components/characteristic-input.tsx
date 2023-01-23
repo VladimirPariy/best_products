@@ -1,9 +1,9 @@
-import React, {ChangeEvent, FC} from "react";
+import React, { ChangeEvent, FC } from "react";
 
 import styles from "components/filter-panel/components/characteristic-input.module.scss";
 
-import {ICharacteristics} from "lib/interfaces/characteristics/characteristic.interface";
-import {upFirstChar} from "lib/utils/up-first-char";
+import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
+import { upFirstChar } from "lib/utils/up-first-char";
 
 interface Props {
   char: ICharacteristics;
@@ -12,10 +12,10 @@ interface Props {
 }
 
 const CharacteristicInput: FC<Props> = ({
-                                          char,
-                                          selectedParameters,
-                                          changeHandler,
-                                        }) => {
+  char,
+  selectedParameters,
+  changeHandler,
+}) => {
   return (
     <label key={char.characteristic_id} className={styles.charTitle}>
       <input
@@ -28,9 +28,7 @@ const CharacteristicInput: FC<Props> = ({
         value={char.characteristic_id}
         onChange={changeHandler}
       />
-      <span>
-      {upFirstChar(char.characteristic_title)}
-      </span>
+      <span>{upFirstChar(char.characteristic_title)}</span>
     </label>
   );
 };

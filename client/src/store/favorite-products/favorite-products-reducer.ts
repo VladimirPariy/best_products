@@ -1,3 +1,3 @@
-import {favoriteProductsSlice} from "store/favorite-products/favorite-products-slice";
+import { favoriteProductsSlice } from "store/favorite-products/favorite-products-slice";
 
-export const favoriteProductsReducer = favoriteProductsSlice.reducer
+export const favoriteProductsReducer = favoriteProductsSlice.reducer;

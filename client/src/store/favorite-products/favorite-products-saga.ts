@@ -1,20 +1,23 @@
-import {PayloadAction} from "@reduxjs/toolkit";
-import {AxiosError} from "axios";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import FavoriteProductsApi from "lib/api/favorite-products-api";
-import {IProduct} from "lib/interfaces/products/product.interface";
-import {call, put, takeLatest} from "redux-saga/effects";
+import { IProduct } from "lib/interfaces/products/product.interface";
+import { call, put, takeLatest } from "redux-saga/effects";
 
 import {
   getFavoriteProductsFulfilled,
   getFavoriteProductsPending,
   getFavoriteProductsRejected,
-  getFavoriteProductsTrigger
+  getFavoriteProductsTrigger,
 } from "store/favorite-products/favorite-products-actions";
 
-function* favoriteProductsWorker({payload}: PayloadAction<number>) {
+function* favoriteProductsWorker({ payload }: PayloadAction<number>) {
   yield put(getFavoriteProductsPending());
   try {
-    const res: IProduct[] = yield call(FavoriteProductsApi.getFavoriteProducts, payload);
+    const res: IProduct[] = yield call(
+      FavoriteProductsApi.getFavoriteProducts,
+      payload
+    );
 
     yield put(getFavoriteProductsFulfilled(res));
   } catch (error) {

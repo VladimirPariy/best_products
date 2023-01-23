@@ -1,4 +1,4 @@
-a{
+a {
   text-decoration: none;
   color: #524f5e;
 }
@@ -45,9 +45,7 @@ a{
   }
 }
 
-
 @media screen and (min-width: 769px) {
-
   .subcategoryTitle {
     gap: 20px;
 
@@ -62,11 +60,9 @@ a{
       box-shadow: inset 16px 16px #766ed3;
     }
   }
-
 }
 
 @media screen and (min-width: 1025px) {
-
   .subcategoryTitle {
     gap: 20px;
 
@@ -81,5 +77,4 @@ a{
       box-shadow: inset 20px 20px #766ed3;
     }
   }
-
 }

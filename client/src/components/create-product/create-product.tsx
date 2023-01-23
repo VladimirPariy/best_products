@@ -47,9 +47,7 @@ import {
 } from "store/product-control/product-control-selectors";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 
-interface Props {}
-
-const CreateProduct: FC<Props> = (props) => {
+const CreateProduct: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const categories = useAppSelector(selectCategories);
