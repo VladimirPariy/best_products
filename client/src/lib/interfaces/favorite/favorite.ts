@@ -4,5 +4,5 @@ export interface IDataForChangeFavorite {
 }
 
 export interface IFulfilledDataForRemoveFavorite {
-  id: number;
+  productId: number;
 }

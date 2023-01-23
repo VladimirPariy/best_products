@@ -89,8 +89,12 @@ export const favoriteProductsSlice = createSlice({
       state.error = null;
       state.status = false;
       state.entities = state.entities.filter(
-        (item) => item.product_id !== payload.id
+        (item) => item.product_id !== payload.productId
       );
+    },
+
+    clearFavorite: () => {
+      return initialState;
     },
   },
 });

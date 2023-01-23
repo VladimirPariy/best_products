@@ -48,12 +48,12 @@ const AppRouter: FC = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route
-        path="/favorite"
+        path="/favorite/*"
         element={<ProductLayout isShowBreadcrumbs={false} />}
       >
         <Route index element={<FavoritePage />} />
-        <Route path=":id" element={<ProductDetailPage />} />
       </Route>
+      <Route path="/favorite/:id" element={<ProductDetailPage />} />
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
         <Route index element={<AdminPanel />} />
         <Route path="users" element={<UsersControlPage />} />

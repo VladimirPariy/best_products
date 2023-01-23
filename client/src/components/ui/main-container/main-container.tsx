@@ -6,6 +6,10 @@ import AppRouter from "components/router/app-router/app-router";
 import AdminPanelLink from "components/ui/admin-panel-link/admin-panel-link";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import {
+  clearFavorite,
+  getFavoriteProductsTrigger,
+} from "store/favorite-products/favorite-products-actions";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { userInfoTrigger } from "store/user/user-actions";
 import { selectAuth, selectUser } from "store/user/user-selector";
@@ -15,10 +19,10 @@ const MainContainer: FC = () => {
   const dispatch = useAppDispatch();
   const token = getTokenFromStorage();
   const auth = useAppSelector(selectAuth);
-  const { users_roles } = useAppSelector(selectUser);
+  const user = useAppSelector(selectUser);
   let role_title;
-  if (users_roles) {
-    role_title = users_roles.role_title;
+  if (user.users_roles) {
+    role_title = user.users_roles.role_title;
   }
 
   useEffect(() => {
@@ -32,6 +36,14 @@ const MainContainer: FC = () => {
     "admin",
     !!role_title && role_title === "admin"
   );
+  useEffect(() => {
+    if (user?.user_id) {
+      dispatch(getFavoriteProductsTrigger(user.user_id));
+    }
+    if (Object.keys(user).length === 0) {
+      dispatch(clearFavorite());
+    }
+  }, [user]);
   return (
     <div className={mainContainerClasses}>
       {role_title && role_title === "admin" && <AdminPanelLink />}

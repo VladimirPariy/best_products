@@ -16,6 +16,7 @@ import { IParameters } from "lib/interfaces/parameters/parameters.interface";
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 import { useSetParam } from "lib/hooks/use-set-param";
 import { upFirstChar } from "lib/utils/up-first-char";
+import { selectFavoriteProducts } from "store/favorite-products/favorite-products-selectors";
 
 import { selectUser } from "store/user/user-selector";
 import {
@@ -33,6 +34,7 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
   const location = useLocation();
   const pathArray = location.pathname.split("/");
   const categoryPath = pathArray[2];
+  const favoriteProduct = useAppSelector(selectFavoriteProducts);
   const categories = useAppSelector(selectCategories);
   const minPriceFromServer = useAppSelector(selectMinPrice);
   const maxPriceFromServer = useAppSelector(selectMaxPrice);
@@ -41,11 +43,23 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
   const [productsParameters, setProductsParameters] = useState<IParameters[]>(
     []
   );
+  let subcategoryList =
+    categories
+      .find((category) => category.category_title === categoryPath)
+      ?.subcategories.map((subcategory) => subcategory) || [];
 
-  const subcategoryList = categories
-    .find((category) => category.category_title === categoryPath)
-    ?.subcategories.map((subcategory) => subcategory);
+  if (pathArray[1] === "favorite") {
+    const allSubcategory = favoriteProduct.map((item) => item.subcategories[0]);
 
+    allSubcategory.forEach((item) => {
+      const duplicate = subcategoryList?.find(
+        (sub) => sub.subcategory_title === item.subcategory_title
+      );
+      if (!duplicate) {
+        subcategoryList.push(item);
+      }
+    });
+  }
   const currentSubcategory: ISubcategory | undefined =
     pathArray?.length > 3
       ? subcategoryList?.find(
@@ -132,9 +146,10 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
     }
     setSelectedParameters((prev) => [...prev, e.target.value]);
   };
-  useSetParam(minPrice > minPriceFromServer, { minPrice });
-  useSetParam(maxPrice < maxPriceFromServer, { maxPrice });
+  useSetParam(!!minPrice, { minPrice });
+  useSetParam(!!maxPrice, { maxPrice });
   useSetParam(selectedParameters?.length > 0, { selectedParameters });
+  useSetParam(subcategoryId > 0, { subcategoryId });
 
   const filterPanelContainer = getClassNameByCondition(
     styles,
@@ -143,6 +158,7 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
     user?.role === 1,
     ""
   );
+
   return (
     <>
       {isShowFilter && (
@@ -160,6 +176,7 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
                       subcategory={subcategory}
                       changeHandler={(e) => setSubcategoryId(+e.target.value)}
                       subcategoryId={subcategoryId}
+                      isLink={pathArray[1] !== "favorite"}
                       key={
                         subcategory.subcategory_id +
                         subcategory.subcategory_title

@@ -13,6 +13,7 @@ interface Props {
   changeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
   subcategoryId: number;
   categories: ICategoryWithSubcategory[];
+  isLink?: boolean;
 }
 
 const RadioInput: FC<Props> = ({
@@ -20,11 +21,12 @@ const RadioInput: FC<Props> = ({
   subcategoryId,
   changeHandler,
   categories,
+  isLink,
 }) => {
   const category = categories.find(
     (category) => category.category_id === subcategory.category
   );
-  return (
+  return isLink ? (
     <NavLink
       to={`/product/${category?.category_title}/${subcategory.subcategory_title}`}
     >
@@ -40,6 +42,18 @@ const RadioInput: FC<Props> = ({
         {subcategory.subcategory_title}
       </label>
     </NavLink>
+  ) : (
+    <label className={styles.subcategoryTitle}>
+      <input
+        type="radio"
+        value={subcategory.subcategory_id}
+        name="subcategory"
+        checked={subcategory.subcategory_id === subcategoryId}
+        onChange={changeHandler}
+        className={styles.subcategoryRadio}
+      />
+      {subcategory.subcategory_title}
+    </label>
   );
 };
 

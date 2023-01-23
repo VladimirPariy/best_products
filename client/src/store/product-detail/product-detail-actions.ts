@@ -1,10 +1,10 @@
 import { productDetailSlice } from "store/product-detail/product-detail-slice";
 
 export const {
+  getProductDetailTrigger,
   getProductDetailFulfilled,
   getProductDetailPending,
   getProductDetailRejected,
-  getProductDetailTrigger,
   clearProductDetail,
   uploadProductImageTrigger,
   uploadProductImageFulfilled,

@@ -1,4 +1,4 @@
-import {favoriteProductsSlice} from "store/favorite-products/favorite-products-slice";
+import { favoriteProductsSlice } from "store/favorite-products/favorite-products-slice";
 
 export const {
   getFavoriteProductsTrigger,
@@ -12,5 +12,6 @@ export const {
   removeFromFavoritePending,
   removeFromFavoriteRejected,
   addIntoFavoriteTrigger,
-  addIntoFavoritePending
-} = favoriteProductsSlice.actions
+  addIntoFavoritePending,
+  clearFavorite,
+} = favoriteProductsSlice.actions;

@@ -16,8 +16,13 @@ import CountItem from "components/ui/product-item/components/count-item";
 import Image from "components/ui/product-item/components/image";
 import Price from "components/ui/product-item/components/price";
 import ProductTitle from "components/ui/product-item/components/product-title";
+import {
+  addIntoFavoriteTrigger,
+  removeFromFavoriteTrigger,
+} from "store/favorite-products/favorite-products-actions";
 import { selectFavoriteProducts } from "store/favorite-products/favorite-products-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { selectUser } from "store/user/user-selector";
 
 interface Props extends IProduct {}
 
@@ -36,6 +41,8 @@ const ProductItem: FC<Props> = (props) => {
 
   let [searchParams] = useSearchParams();
   const favoriteProductsList = useAppSelector(selectFavoriteProducts);
+  const dispatch = useAppDispatch();
+  const { user_id } = useAppSelector(selectUser);
 
   const isFavorite = favoriteProductsList.find(
     (item) => item.product_id === product_id
@@ -48,6 +55,19 @@ const ProductItem: FC<Props> = (props) => {
     !!isFavorite,
     ""
   );
+
+  const clickHandler = () => {
+    const isFavorite = favoriteProductsList.find(
+      (item) => item.product_id === product_id
+    );
+    const infoForChangeFavorite = { productId: product_id, userId: user_id };
+    if (isFavorite) {
+      dispatch(removeFromFavoriteTrigger(infoForChangeFavorite));
+    } else {
+      dispatch(addIntoFavoriteTrigger(infoForChangeFavorite));
+    }
+  };
+
   return (
     <div
       className={
@@ -57,7 +77,7 @@ const ProductItem: FC<Props> = (props) => {
       }
       key={product_id}
     >
-      <div className={favoriteClassNames}>
+      <div className={favoriteClassNames} onClick={clickHandler}>
         <Favorites />
       </div>
       {!(searchParams.get("view") === "list") && (

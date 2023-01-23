@@ -29,9 +29,9 @@ const ProductDetailPage: FC = () => {
     comments_amount,
     product_id,
   } = productDetail;
-
   useEffect(() => {
-    dispatch(getProductDetailTrigger(currentProductId));
+    if (!isNaN(+currentProductId))
+      dispatch(getProductDetailTrigger(currentProductId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentProductId]);
 
