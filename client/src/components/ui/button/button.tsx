@@ -9,6 +9,7 @@ interface Props {
   type?: "submit" | "button" | "reset" | undefined;
   submitHandler: (() => void) | ((e: MouseEvent<HTMLButtonElement>) => void);
   style?: React.CSSProperties | undefined;
+  errorNode?: ReactNode;
 }
 
 const Button: FC<Props> = (props) => {
@@ -18,6 +19,7 @@ const Button: FC<Props> = (props) => {
     isPurpleButton = true,
     type = "submit",
     style,
+    errorNode,
   } = props;
 
   const buttonStyles = getClassNameByCondition(
@@ -29,14 +31,17 @@ const Button: FC<Props> = (props) => {
   );
 
   return (
-    <button
-      className={buttonStyles}
-      type={type}
-      onClick={submitHandler}
-      style={style}
-    >
-      {children}
-    </button>
+    <>
+      <button
+        className={buttonStyles}
+        type={type}
+        onClick={submitHandler}
+        style={style}
+      >
+        {children}
+      </button>
+      {errorNode && <div className={styles.error}>{errorNode}</div>}
+    </>
   );
 };
 

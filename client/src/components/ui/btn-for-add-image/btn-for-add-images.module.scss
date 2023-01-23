@@ -1,0 +1,24 @@
+.error {
+  color: red;
+  margin-top: 4px;
+  display: inline-block;
+  font-size: 8px;
+  line-height: 11px;
+}
+
+@media screen and (min-width: 769px) {
+  .error {
+    margin-top: 5.5px;
+    font-size: 10px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .error {
+
+    margin-top: 7px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

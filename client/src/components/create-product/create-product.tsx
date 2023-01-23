@@ -6,9 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import {useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
+import ErrorContainer from "components/ui/error-container/error-container";
+import { Loader } from "components/ui/loader/loader";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
 import AddProductImageContainer from "components/ui/add-product-image-container/add-product-image-container";
 import BtnForAddImage from "components/ui/btn-for-add-image/btn-for-add-image";
@@ -20,55 +22,67 @@ import Slider from "components/ui/slider/slider";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
+import { ValidationMessage } from "lib/enums/validation-message";
+import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 import ProductControlApi from "lib/api/product-control-api";
-import {getCharacteristics} from "lib/api/characteristics-api";
-import {getParameters} from "lib/api/parameters-api";
-import {IParameters} from "lib/interfaces/parameters/parameters.interface";
-import {upFirstChar} from "lib/utils/up-first-char";
+import { getCharacteristics } from "lib/api/characteristics-api";
+import { getParameters } from "lib/api/parameters-api";
+import { IParameters } from "lib/interfaces/parameters/parameters.interface";
+import { upFirstChar } from "lib/utils/up-first-char";
 import {
   IDataForCreating,
   ITempChar,
 } from "lib/interfaces/products/creating-product.interface";
-import {IProductImages} from "lib/interfaces/products/upload-image.interface";
-import {ICharacteristics} from "lib/interfaces/characteristics/characteristic.interface";
+import { IProductImages } from "lib/interfaces/products/upload-image.interface";
+import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
 
-import {selectCategories} from "store/categories/categories-selectors";
+import { selectCategories } from "store/categories/categories-selectors";
 import {
   clearProductControl,
   createProductTrigger,
 } from "store/product-control/product-control-actions";
 import {
   selectProductControlStatus,
-  selectProductControlError,
   selectProductControlSuccess,
 } from "store/product-control/product-control-selectors";
-import {useAppDispatch, useAppSelector} from "store/store-types";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
-interface Props {
-}
+interface Props {}
 
 const CreateProduct: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [categoryId, setCategoryId] = useState(0);
   const categories = useAppSelector(selectCategories);
   const success = useAppSelector(selectProductControlSuccess);
   const isLoading = useAppSelector(selectProductControlStatus);
-  const error = useAppSelector(selectProductControlError);
 
+  const [categoryId, setCategoryId] = useState(0);
+  const [subcategoryId, setSubcategoryId] = useState(0);
   const [productTitle, setProductTitle] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [price, setPrice] = useState("");
   const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
-  const [subcategoryId, setSubcategoryId] = useState(0);
   const [uploadImages, setUploadImages] = useState<IProductImages[]>([]);
-
 
   const [allParameters, setAllParameters] = useState<IParameters[]>([]);
   const [allCharacteristics, SetAllCharacteristics] = useState<
     ICharacteristics[]
   >([]);
   const prevSubcategory = useRef<null | number>(null);
+
+  const [errorProductTitle, setErrorProductTitle] =
+    useState<ErrorValidationInterface>(null);
+  const [errorDescription, setErrorDescription] =
+    useState<ErrorValidationInterface>(null);
+  const [errorPrice, setErrorPrice] = useState<ErrorValidationInterface>(null);
+  const [errorSubcategory, setErrorSubcategory] =
+    useState<ErrorValidationInterface>(null);
+  const [errorCategory, setErrorCategory] =
+    useState<ErrorValidationInterface>(null);
+  const [errorCharacteristic, setErrorCharacteristic] =
+    useState<ErrorValidationInterface>(null);
+  const [errorUploadImages, setErrorUploadImages] =
+    useState<ErrorValidationInterface>(null);
 
   useEffect(() => {
     const fetchParametersAndCharacteristics = async () => {
@@ -108,7 +122,7 @@ const CreateProduct: FC<Props> = (props) => {
   const changeCharacteristic = (key: string, value: string, id: number) => {
     setCharacteristics(
       characteristics.map((char) =>
-        char.id === id ? {...char, [key]: value} : char
+        char.id === id ? { ...char, [key]: value } : char
       )
     );
   };
@@ -148,6 +162,29 @@ const CreateProduct: FC<Props> = (props) => {
       price &&
       characteristics.length &&
       uploadImages.length;
+
+    if (productTitle.length === 0) {
+      setErrorProductTitle(ValidationMessage.required);
+    }
+    if (price.length === 0) {
+      setErrorPrice(ValidationMessage.required);
+    }
+    if (productDescription.length === 0) {
+      setErrorDescription(ValidationMessage.required);
+    }
+    if (subcategoryId === 0) {
+      setErrorSubcategory(ValidationMessage.required);
+    }
+    if (categoryId === 0) {
+      setErrorCategory(ValidationMessage.required);
+    }
+    if (characteristics.length === 0) {
+      setErrorCharacteristic(ValidationMessage.invalidCharacteristics);
+    }
+    if (uploadImages.length === 0) {
+      setErrorUploadImages(ValidationMessage.invalidImages);
+    }
+
     if (isPossibleCreate) {
       const dataForInserting: IDataForCreating = {
         category: categoryId,
@@ -170,7 +207,40 @@ const CreateProduct: FC<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
+  useEffect(() => {
+    if (productTitle.length > 0 && errorProductTitle) {
+      setErrorProductTitle(null);
+    }
+    if (errorPrice && price.length > 0) {
+      setErrorPrice(null);
+    }
+    if (errorDescription && productDescription.length > 0) {
+      setErrorDescription(null);
+    }
+    if (errorSubcategory && subcategoryId !== 0) {
+      setErrorSubcategory(null);
+    }
+    if (errorCategory && categoryId !== 0) {
+      setErrorCategory(null);
+    }
+    if (errorCharacteristic && characteristics.length !== 0) {
+      setErrorCharacteristic(null);
+    }
+    if (errorUploadImages && uploadImages.length !== 0) {
+      setErrorUploadImages(null);
+    }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    productTitle,
+    price,
+    productDescription,
+    subcategoryId,
+    categoryId,
+    characteristics,
+    uploadImages,
+  ]);
+  console.log(price);
   return (
     <ContentContainer>
       <Title>Add new product</Title>
@@ -179,6 +249,8 @@ const CreateProduct: FC<Props> = (props) => {
         changeHandler={(e) => setCategoryId(+e.target.value)}
         selectDefaultValue="0"
         selectTitle="Choose category"
+        errorNode={<ErrorContainer errorText={errorCategory} />}
+        isError={!!errorCategory}
       >
         {categories.map((category) => (
           <option value={category.category_id} key={category.category_id}>
@@ -191,6 +263,8 @@ const CreateProduct: FC<Props> = (props) => {
         changeHandler={(e) => setSubcategoryId(+e.target.value)}
         selectDefaultValue="0"
         selectTitle="Choose subcategory"
+        errorNode={<ErrorContainer errorText={errorSubcategory} />}
+        isError={!!errorSubcategory}
       >
         {categories[categoryId - 1]?.subcategories.map((subcategory) => (
           <option
@@ -203,16 +277,20 @@ const CreateProduct: FC<Props> = (props) => {
       </Select>
 
       <Input
-        labelText="Enter product name"
+        labelText="Enter product title"
         changeHandler={(e) => setProductTitle(e.target.value)}
         value={productTitle}
         type="text"
+        isError={!!errorProductTitle}
+        children={<ErrorContainer errorText={errorProductTitle} />}
       />
 
       <TextArea
         labelText="Enter product description"
         changeHandler={(e) => setProductDescription(e.target.value)}
         value={productDescription}
+        isError={!!errorDescription}
+        children={<ErrorContainer errorText={errorDescription} />}
       />
 
       <Input
@@ -221,9 +299,15 @@ const CreateProduct: FC<Props> = (props) => {
         value={price}
         type="number"
         min={0}
+        isError={!!errorPrice}
+        children={<ErrorContainer errorText={errorPrice} />}
       />
 
-      <Button submitHandler={addCharacteristic} isPurpleButton={false}>
+      <Button
+        submitHandler={addCharacteristic}
+        isPurpleButton={false}
+        errorNode={<ErrorContainer errorText={errorCharacteristic} />}
+      >
         Add characteristic
       </Button>
 
@@ -231,7 +315,7 @@ const CreateProduct: FC<Props> = (props) => {
         allParameters.length &&
         characteristics.map((char, index) => (
           <div key={char.id}>
-            <AddProductCharacteristicTitle index={index}/>
+            <AddProductCharacteristicTitle index={index} />
             <AddProductCharacteristicContainer>
               <Select
                 labelTitle="Enter parameter"
@@ -242,12 +326,12 @@ const CreateProduct: FC<Props> = (props) => {
                 selectTitle="Enter parameter"
               >
                 {allParameters
-                .filter((item) => item.subcategory === subcategoryId)
-                .map((item) => (
-                  <option value={item.parameter_id} key={item.parameter_id}>
-                    {upFirstChar(item.parameter_title)}
-                  </option>
-                ))}
+                  .filter((item) => item.subcategory === subcategoryId)
+                  .map((item) => (
+                    <option value={item.parameter_id} key={item.parameter_id}>
+                      {upFirstChar(item.parameter_title)}
+                    </option>
+                  ))}
               </Select>
               <Select
                 labelTitle="Enter characteristic"
@@ -262,19 +346,19 @@ const CreateProduct: FC<Props> = (props) => {
                 selectTitle="Enter characteristic"
               >
                 {allCharacteristics
-                .filter((item) => +char.parameter === item.parameter)
-                .map((item) => (
-                  <option
-                    value={item.characteristic_id}
-                    key={item.characteristic_id}
-                  >
-                    {upFirstChar(item.characteristic_title)}
-                  </option>
-                ))}
+                  .filter((item) => +char.parameter === item.parameter)
+                  .map((item) => (
+                    <option
+                      value={item.characteristic_id}
+                      key={item.characteristic_id}
+                    >
+                      {upFirstChar(item.characteristic_title)}
+                    </option>
+                  ))}
               </Select>
               <Button
                 submitHandler={() => dropCharacteristic(char.id)}
-                style={{background: "red"}}
+                style={{ background: "red" }}
               >
                 Delete
               </Button>
@@ -289,9 +373,15 @@ const CreateProduct: FC<Props> = (props) => {
           onDelete={true}
         />
       </AddProductImageContainer>
-      <BtnForAddImage fileHandler={fileHandler}>Add images</BtnForAddImage>
+      <BtnForAddImage
+        fileHandler={fileHandler}
+        errorNode={<ErrorContainer errorText={errorUploadImages} />}
+      >
+        Add images
+      </BtnForAddImage>
 
       <Button submitHandler={createProduct}>Create new product</Button>
+      {isLoading && <Loader color={"#766ed3"} />}
     </ContentContainer>
   );
 };

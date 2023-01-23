@@ -9,6 +9,10 @@
   .inputExplanation {
     > div {
       color: red;
+      margin-top: 4px;
+      display: inline-block;
+      font-size: 8px;
+      line-height: 11px;
     }
   }
 }
@@ -49,6 +53,13 @@
       border: 1.5px solid red;
       outline: 1.5px solid red;
     }
+    .inputExplanation {
+      > div {
+        margin-top: 5.5px;
+        font-size: 10px;
+        line-height: 13px;
+      }
+    }
   }
   .label {
     font-size: 14px;
@@ -76,6 +87,13 @@
     .textArea {
       border: 2px solid red;
       outline: 2px solid red;
+    }
+    .inputExplanation {
+      > div {
+        margin-top: 7px;
+        font-size: 12px;
+        line-height: 15px;
+      }
     }
   }
   .label {

@@ -1,5 +1,24 @@
 @use "scss/index" as *;
 
+.label.error {
+  color: red;
+
+  > select {
+    border: 1px solid red;
+    outline: 1px solid red;
+  }
+
+  .selectExplanation {
+    margin-top: 4px;
+    display: inline-block;
+    font-size: 8px;
+    line-height: 11px;
+    > div {
+      color: red;
+    }
+  }
+}
+
 .label {
   font-size: 10px;
   line-height: 13px;
@@ -29,6 +48,17 @@
 }
 
 @media screen and (min-width: 769px) {
+  .label.error {
+    > select {
+      border: 1.5px solid red;
+      outline: 1.5px solid red;
+    }
+    .selectExplanation {
+      margin-top: 5.5px;
+      font-size: 10px;
+      line-height: 13px;
+    }
+  }
   .label {
     font-size: 12px;
     line-height: 15px;
@@ -53,6 +83,17 @@
 }
 
 @media screen and (min-width: 1025px) {
+  .label.error {
+    > select {
+      border: 2px solid red;
+      outline: 2px solid red;
+    }
+    .selectExplanation {
+      margin-top: 7px;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
   .label {
     font-size: 14px;
     line-height: 17px;
