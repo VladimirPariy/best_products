@@ -5,4 +5,5 @@ export const {
   usersRolesRejected,
   usersRolesTrigger,
   usersRolesPending,
+  clearUsersRoles,
 } = usersRolesSlice.actions;

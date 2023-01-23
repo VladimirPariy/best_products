@@ -13,4 +13,5 @@ export const {
   removeUserFulfilled,
   removeUserPending,
   removeUserRejected,
+  clearUserList,
 } = usersListSlice.actions;

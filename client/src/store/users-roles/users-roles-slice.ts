@@ -34,5 +34,8 @@ export const usersRolesSlice = createSlice({
       state.rolesList = [];
     },
     usersRolesTrigger: () => {},
+    clearUsersRoles: () => {
+      return initialState;
+    },
   },
 });

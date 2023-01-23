@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, Dispatch, SetStateAction } from "react";
+import React, { FC, MouseEvent } from "react";
 
 import styles from "layout/header/components/user.module.scss";
 import defaultUserImg from "assets/icon/header/user.svg";
@@ -16,13 +16,7 @@ import { apiUrls } from "lib/enums/api-urls";
 
 import UserModal from "layout/header/components/user-modal";
 
-interface Props {
-  setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
-}
-
-const User: FC<Props> = (props) => {
-  const { setCheckedBurgerMenu } = props;
-
+const User: FC = () => {
   const dispatch = useAppDispatch();
   const isShowUserModal = useAppSelector(selectUserModal);
 
@@ -48,9 +42,7 @@ const User: FC<Props> = (props) => {
         className={styles.userImage}
         onClick={showingUserModal}
       />
-      {userScreenWidth > 768 ? null : (
-        <UserModal setCheckedBurgerMenu={setCheckedBurgerMenu} />
-      )}
+      {userScreenWidth > 768 ? null : <UserModal />}
     </div>
   );
 };

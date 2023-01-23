@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "store/store-types";
 import { selectAuth, selectUser } from "store/user/user-selector";
 import { clearUser } from "store/user/user-actions";
 import {
+  setVisibilityBurgerMenu,
   setVisibilityEditUserModal,
   setVisibilitySignInModal,
   setVisibilitySignUpModal,
@@ -17,14 +18,14 @@ interface Props {
   setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
 }
 
-const UserModal: FC<Props> = ({ setCheckedBurgerMenu }) => {
+const UserModal: FC<Props> = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(selectAuth);
   const user = useAppSelector(selectUser);
 
   const clickHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setCheckedBurgerMenu && setCheckedBurgerMenu(false);
+    dispatch(setVisibilityBurgerMenu(false));
   };
 
   const showAcc = () => {

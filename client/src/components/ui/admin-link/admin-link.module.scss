@@ -1,0 +1,46 @@
+@use "scss/index" as *;
+
+
+.link {
+  width: 250px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  margin: 20px;
+  font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: $white;
+  color: $active_item_color;
+  >svg{
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .link {
+    padding: 10px;
+    font-size: 20px;
+    line-height: 23px;
+    >svg{
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
+@media screen and (min-width: 1025px) {
+  .link {
+    padding: 12px;
+    font-size: 24px;
+    line-height: 27px;
+    >svg{
+      height: 60px;
+      width: 60px;
+    }
+  }
+}

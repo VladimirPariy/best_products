@@ -7,11 +7,15 @@ import { useAppDispatch, useAppSelector } from "store/store-types";
 import { selectUser } from "store/user/user-selector";
 import {
   changeUserRoleTrigger,
+  clearUserList,
   removeUserTrigger,
   usersListTrigger,
 } from "store/users-list/users-list-actions";
 import { selectUsersList } from "store/users-list/users-list-selectors";
-import { usersRolesTrigger } from "store/users-roles/users-roles-actions";
+import {
+  clearUsersRoles,
+  usersRolesTrigger,
+} from "store/users-roles/users-roles-actions";
 import { selectUsersRoles } from "store/users-roles/users-roles-selectors";
 
 const UserControlBody: FC = () => {
@@ -23,6 +27,10 @@ const UserControlBody: FC = () => {
   useEffect(() => {
     dispatch(usersRolesTrigger());
     dispatch(usersListTrigger());
+    return () => {
+      dispatch(clearUserList());
+      dispatch(clearUsersRoles());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

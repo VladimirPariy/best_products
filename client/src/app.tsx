@@ -1,38 +1,17 @@
-import { useAppDispatch, useAppSelector } from "store/store-types";
 import React, { FC } from "react";
 
 import Header from "layout/header/header";
 import Content from "layout/content/content";
 
-import {
-  setVisibilityEditUserModal,
-  setVisibilitySearchModal,
-  setVisibilitySignInModal,
-  setVisibilitySignUpModal,
-  setVisibilityUserModal,
-} from "store/modals/modals-actions";
-import {
-  selectEditUserModal,
-  selectSearchModal,
-  selectSignInModal,
-  selectSignUpModal,
-  selectUserModal,
-} from "store/modals/modals-selectors";
+import { clearModal } from "store/modals/modals-actions";
+import { selectModal } from "store/modals/modals-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
-  const isShowSearchModal = useAppSelector(selectSearchModal);
-  const isShowUserModal = useAppSelector(selectUserModal);
-  const isShowSignUpModal = useAppSelector(selectSignUpModal);
-  const isShowSignInModal = useAppSelector(selectSignInModal);
-  const isShowEditUserModal = useAppSelector(selectEditUserModal);
-
+  const allModal = Object.values(useAppSelector(selectModal));
   const mainClickHandler = () => {
-    isShowUserModal && dispatch(setVisibilityUserModal(false));
-    isShowSignUpModal && dispatch(setVisibilitySignUpModal(false));
-    isShowSignInModal && dispatch(setVisibilitySignInModal(false));
-    isShowEditUserModal && dispatch(setVisibilityEditUserModal(false));
-    isShowSearchModal && dispatch(setVisibilitySearchModal(false));
+    if (allModal.includes(true)) dispatch(clearModal());
   };
 
   return (

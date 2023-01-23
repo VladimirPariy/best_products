@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC } from "react";
 
 import styles from "layout/header/header.module.scss";
 
@@ -7,15 +7,11 @@ import BurgerMenu from "layout/header/components/burger-menu";
 import Logo from "layout/header/components/logo";
 import SearchBar from "components/search/search-bar";
 import User from "layout/header/components/user";
+import { selectBurgerMenu } from "store/modals/modals-selectors";
+import { useAppSelector } from "store/store-types";
 
-interface Props {
-  checkedBurgerMenu: boolean;
-  setCheckedBurgerMenu: Dispatch<SetStateAction<boolean>>;
-}
-
-const PhoneHeader: FC<Props> = (props) => {
-  const { checkedBurgerMenu, setCheckedBurgerMenu } = props;
-
+const PhoneHeader: FC = () => {
+  const checkedBurgerMenu = useAppSelector(selectBurgerMenu);
   const classNameByMenu = `${
     checkedBurgerMenu
       ? styles["visible_burger_menu_content"]
@@ -27,15 +23,12 @@ const PhoneHeader: FC<Props> = (props) => {
       <section className={styles.headerContainer}>
         <div className={styles.visibleHeader}>
           <Logo />
-          <BurgerMenu
-            checkedBurgerMenu={checkedBurgerMenu}
-            setCheckedBurgerMenu={setCheckedBurgerMenu}
-          />
+          <BurgerMenu />
         </div>
-        <div className={classNameByMenu}>
+        <div className={classNameByMenu} onClick={(e) => e.stopPropagation()}>
           <SearchBar />
-          <User setCheckedBurgerMenu={setCheckedBurgerMenu} />
-          <Sidebar setCheckedBurgerMenu={setCheckedBurgerMenu} />
+          <User />
+          <Sidebar />
         </div>
       </section>
     </>

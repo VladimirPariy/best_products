@@ -19,6 +19,9 @@ export const usersListSlice = createSlice({
   name: "@@users-list",
   initialState,
   reducers: {
+    clearUserList: () => {
+      return initialState;
+    },
     usersListTrigger: () => {},
     usersListPending: (state) => {
       state.isFetching = true;

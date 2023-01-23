@@ -1,11 +1,4 @@
-import React, {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useState,
-  MouseEvent,
-} from "react";
+import React, { FC, useEffect, useState, MouseEvent } from "react";
 import { NavLink } from "react-router-dom";
 
 import Arrow from "assets/icon/general/arrow";
@@ -18,16 +11,13 @@ import SidebarItem from "components/sidebar/components/sidebar-item";
 import { sidebarList } from "components/sidebar/sidebar.data";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import { setVisibilityBurgerMenu } from "store/modals/modals-actions";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { categoriesTrigger } from "store/categories/categories-actions";
 import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
 import { selectCategories } from "store/categories/categories-selectors";
 
-interface Props {
-  setCheckedBurgerMenu?: Dispatch<SetStateAction<boolean>>;
-}
-
-const Sidebar: FC<Props> = ({ setCheckedBurgerMenu }) => {
+const Sidebar: FC = () => {
   const categories = useAppSelector(selectCategories);
   const dispatch = useAppDispatch();
   const [onHover, setOnHover] = useState(false);
@@ -57,7 +47,7 @@ const Sidebar: FC<Props> = ({ setCheckedBurgerMenu }) => {
       setIsOpenSubcategory(false);
       return;
     }
-    setCheckedBurgerMenu && setCheckedBurgerMenu(false);
+    dispatch(setVisibilityBurgerMenu(false));
   };
 
   const subcategoryClickHandler = (
@@ -167,9 +157,7 @@ const Sidebar: FC<Props> = ({ setCheckedBurgerMenu }) => {
                 <li
                   key={subcategory.id}
                   className={styles.subcategoryItem}
-                  onClick={() =>
-                    setCheckedBurgerMenu && setCheckedBurgerMenu(false)
-                  }
+                  onClick={() => dispatch(setVisibilityBurgerMenu(false))}
                 >
                   <NavLink
                     to={subcategory.url}

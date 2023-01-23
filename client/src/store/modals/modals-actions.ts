@@ -6,4 +6,6 @@ export const {
   setVisibilitySignInModal,
   setVisibilitySignUpModal,
   setVisibilityEditUserModal,
+  clearModal,
+  setVisibilityBurgerMenu,
 } = modalsSlice.actions;

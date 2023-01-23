@@ -1,22 +1,22 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC } from "react";
 
 import styles from "layout/header/components/burger-menu.module.scss";
 
 import { addTwoClassNames } from "lib/utils/add-two-class-names";
+import { selectBurgerMenu } from "store/modals/modals-selectors";
+import { useAppDispatch, useAppSelector } from "store/store-types";
+import { setVisibilityBurgerMenu } from "store/modals/modals-actions";
 
-interface Props {
-  checkedBurgerMenu: boolean;
-  setCheckedBurgerMenu: Dispatch<SetStateAction<boolean>>;
-}
-
-const BurgerMenu: FC<Props> = ({ checkedBurgerMenu, setCheckedBurgerMenu }) => {
+const BurgerMenu: FC = () => {
+  const dispatch = useAppDispatch();
+  const checkedBurgerMenu = useAppSelector(selectBurgerMenu);
   return (
     <div className={styles.burger_menu}>
       <input
         type="checkbox"
         className={styles.burgerCheckbox}
         checked={checkedBurgerMenu}
-        onChange={(e) => setCheckedBurgerMenu(e.target.checked)}
+        onChange={(e) => dispatch(setVisibilityBurgerMenu(e.target.checked))}
       />
       <div className={styles.hamburger_lines}>
         <span className={addTwoClassNames(styles, "line", "line1")}></span>
