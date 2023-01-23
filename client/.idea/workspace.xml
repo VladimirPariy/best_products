@@ -5,26 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c317d9-f99e-49df-a65e-29fe98bb122a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/admin-link/admin-link.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/admin-link/admin-link.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/router/app-router/app-router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/router/app-router/app-router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-control/components/user-control-body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-control/components/user-control-body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/burger-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/burger-menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/phone-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/phone-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/user-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/user-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/components/user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/components/user.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/header/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/header/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/admin-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/admin-panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modals/modals-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modals/modals-actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modals/modals-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modals/modals-selectors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modals/modals-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modals/modals-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-list/users-list-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-list/users-list-slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-roles/users-roles-actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-roles/users-roles-actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users-roles/users-roles-slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users-roles/users-roles-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/characteristics/models/product-characteristics.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/characteristics/models/product-characteristics.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.interfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/app/products/product.service.ts" afterDir="false" />
@@ -59,23 +39,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/typescript/lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TODO_SCOPE": "All Places",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/media/vladimir/Local Disk/IT/Internship/best-products",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/media/vladimir/Local Disk/IT/Internship/best-products/client/node_modules/typescript/lib"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -155,7 +135,7 @@
       <workItem from="1674431507823" duration="929000" />
       <workItem from="1674432478359" duration="5000" />
       <workItem from="1674454888930" duration="29413000" />
-      <workItem from="1674504783885" duration="8982000" />
+      <workItem from="1674504783885" duration="9256000" />
     </task>
     <servers />
   </component>

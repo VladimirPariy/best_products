@@ -12,17 +12,4 @@ export class ProductCharacteristicModel extends Model {
   static get idColumn() {
     return "product_characteristic_id";
   }
-
-  // static get relationMappings() {
-  //   return {
-  //     product: {
-  //       relation: Model.HasOneRelation,
-  //       modelClass: ProductsModel,
-  //       join: {
-  //         from: "product_characteristics.product",
-  //         to: "products.product_id",
-  //       },
-  //     },
-  //   };
-  // }
 }

@@ -158,8 +158,6 @@ class ProductService {
       return HttpException.badRequest("Missing required fields");
     }
 
-    console.log(body);
-
     const modifyCharacteristicsObject = (
       JSON.parse(characteristics) as number[]
     ).map((item) => ({ characteristic: item }));
@@ -184,12 +182,6 @@ class ProductService {
       product_subcategory: [product_subcategory],
       product_characteristics: modifyCharacteristicsObject,
     });
-
-    if (!prod) {
-      return HttpException.internalServErr(
-        `Unsuccessful inserting data into table`
-      );
-    }
 
     await TempImagesModel.query().del();
 
