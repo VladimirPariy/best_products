@@ -55,14 +55,6 @@ class UsersModel extends Model {
         },
       },
 
-      users_views: {
-        relation: Model.HasManyRelation,
-        modelClass: ViewsModel,
-        join: {
-          from: "users.user_id",
-          to: "views.user",
-        },
-      },
       users_comments: {
         relation: Model.HasManyRelation,
         modelClass: CommentsModel,
@@ -130,19 +122,6 @@ class UsersModel extends Model {
       //   },
       // },
       //
-      // users_views_products: {
-      //   relation: Model.ManyToManyRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "users.user_id",
-      //     through: {
-      //       from: "views.user",
-      //       extra: ["created_at", "updated_at"],
-      //       to: "views.product",
-      //     },
-      //     to: "products.product_id",
-      //   },
-      // },
     };
   }
 

@@ -164,19 +164,6 @@ class ProductsModel extends Model {
       // 		to: "users.user_id"
       // 	}
       // },
-      // users_views: {
-      // 	relation: Model.ManyToManyRelation,
-      // 	modelClass: UsersModel,
-      // 	join: {
-      // 		from: "products.product_id",
-      // 		through: {
-      // 			from: "views.product",
-      // 			extra: ["created_at", "updated_at"],
-      // 			to: "views.user"
-      // 		},
-      // 		to: "users.user_id"
-      // 	}
-      // },
     };
   }
 }

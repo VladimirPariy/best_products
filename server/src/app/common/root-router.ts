@@ -11,6 +11,7 @@ import { createCommentsRouter } from "@/app/comments/comments.router";
 import { createPriceHistoryRouter } from "@/app/price-history/price-history.router";
 import { createFavoriteProductsRouter } from "@/app/favorite-products/favorite-products.route";
 import { createCharacteristicsRouter } from "@/app/characteristics/characteristic.router";
+import { createViewRouter } from "@/app/views/view.router";
 
 export const createRootRouter = (): Router => {
   const rootRouter = Router();
@@ -30,6 +31,7 @@ export const createRootRouter = (): Router => {
     EndpointsList.ROOT_CHARACTERISTICS,
     createCharacteristicsRouter()
   );
+  rootRouter.use(EndpointsList.ROOT_VIEW, createViewRouter());
 
   return rootRouter;
 };

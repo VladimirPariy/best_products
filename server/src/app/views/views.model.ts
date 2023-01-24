@@ -1,11 +1,9 @@
 import Objection, { Model } from "objection";
 
 import { ProductsModel } from "@/app/products/models/products.model";
-import { UsersModel } from "@/app/users/models/users.model";
 
 class ViewsModel extends Model {
   view_id: number;
-  user: number;
   product: number;
   created_at: Objection.FunctionBuilder;
   updated_at: Objection.FunctionBuilder;
@@ -20,14 +18,6 @@ class ViewsModel extends Model {
 
   static get relationMappings() {
     return {
-      users: {
-        relation: Model.HasOneRelation,
-        modelClass: UsersModel,
-        join: {
-          from: "views.user",
-          to: "users.user_id",
-        },
-      },
       // products: {
       //   relation: Model.HasOneRelation,
       //   modelClass: ProductsModel,
