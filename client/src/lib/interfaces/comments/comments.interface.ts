@@ -1,3 +1,4 @@
+import { IDataForChangeProduct } from "lib/interfaces/products/data-for-change-product";
 import { IUser } from "lib/interfaces/user/user.interface";
 
 type ShortUser =
@@ -17,8 +18,6 @@ export interface IShotCommentsWithUser {
   users: Pick<IUser, ShortUser>;
 }
 
-export interface IDataForAddComment {
-  userId: number;
-  productId: number;
+export interface IDataForAddComment extends IDataForChangeProduct {
   message: string;
 }

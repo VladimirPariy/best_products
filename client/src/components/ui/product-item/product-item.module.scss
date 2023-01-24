@@ -32,92 +32,99 @@
     }
   }
 
-  .image {
-    padding: 18px 10px;
-    display: flex;
-    align-items: center;
-
-    > img {
-      height: 70px;
-      width: 60px;
-    }
-  }
-
-  .infoContainer {
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
+  a {
     flex: 1 1 auto;
+    display: flex;
 
-    .productTitle {
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 16px;
-      margin-top: 12px;
+    .image {
+      padding: 18px 10px;
+      display: flex;
+      align-items: center;
+
+      > img {
+        height: 70px;
+        width: 60px;
+      }
     }
 
-    .characteristics {
-      font-size: 14px;
-      line-height: 16px;
+    .infoContainer {
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+      flex: 1 1 auto;
 
-      > div {
-        margin-bottom: 8px;
+      .productTitle {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 16px;
+        margin-top: 12px;
+      }
 
-        .charTitle {
-          margin-right: 4px;
-          font-weight: 600;
+      .characteristics {
+        flex: 1 1 auto;
+        font-size: 14px;
+        line-height: 16px;
+
+        > div {
+          margin-bottom: 8px;
+
+          .charTitle {
+            margin-right: 4px;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .price {
+        margin-top: 6px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+
+        > svg {
+          height: 14px;
+          width: 15px;
+          margin-right: 10px;
         }
       }
     }
 
-    .price {
-      margin-top: 6px;
-      font-size: 14px;
-      line-height: 18px;
+    .containerForCounters {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 20px 12px 0;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
 
-      > svg {
-        height: 14px;
-        width: 15px;
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .containerForCounters {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 20px 12px 0;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-
-    > div {
-      max-width: 170px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .icon {
-        width: 20px;
-        height: 20px;
+      > div {
+        max-width: 170px;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        margin-right: 5px;
+
+        .icon {
+          width: 20px;
+          height: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 5px;
+        }
       }
-    }
 
-    .views > svg > g {
-      width: 14px;
-      height: 10px;
-    }
+      .views > svg > g {
+        width: 14px;
+        height: 10px;
+      }
 
-    .favoriteCounter > svg {
-      width: 14px;
-      height: 14px;
+      .favoriteCounter > svg {
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 }
@@ -156,87 +163,93 @@
     }
   }
 
-  .productTitle {
+  a {
+    display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
-    font-size: 16px;
-    line-height: 16px;
-    font-weight: 600;
-    text-align: center;
-    margin: 8px 5px 0 5px;
-  }
 
-  .price {
-    margin-top: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    line-height: 16px;
-
-    > svg {
-      width: 14px;
-      height: 14px;
-      margin-right: 10px;
+    .productTitle {
+      flex: 1 1 auto;
+      font-size: 16px;
+      line-height: 16px;
+      font-weight: 600;
+      text-align: center;
+      margin: 8px 5px 0 5px;
     }
-  }
 
-  .image {
-    display: flex;
-    justify-content: center;
-    margin-top: 11px;
-
-    > img {
-      width: 70px;
-      height: 80px;
-    }
-  }
-
-  .containerForCounters {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px 0;
-    margin: 8px 0;
-
-    > div {
-      max-height: 20px;
+    .price {
+      margin-top: 7px;
       display: flex;
       align-items: center;
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 14px;
+      justify-content: center;
+      font-size: 14px;
+      line-height: 16px;
 
-      .icon {
-        width: 15px;
-        display: flex;
-        justify-content: center;
-        margin-right: 7px;
+      > svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 10px;
       }
     }
 
-    .views {
-      grid-row: 1;
+    .image {
       display: flex;
-      justify-content: flex-start;
-      margin-left: 14px;
+      justify-content: center;
+      margin-top: 11px;
+
+      > img {
+        width: 70px;
+        height: 80px;
+      }
     }
 
-    .favoriteCounter {
-      display: flex;
-      justify-content: flex-start;
-      margin-left: 14px;
-    }
+    .containerForCounters {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 0;
+      margin: 8px 0;
 
-    .positiveFeedbacks {
-      display: flex;
-      justify-content: flex-start;
-      grid-row: 1;
-      margin-left: 7px;
-    }
+      > div {
+        max-height: 20px;
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
 
-    .negativeFeedbacks {
-      display: flex;
-      justify-content: flex-start;
-      margin-left: 7px;
+        .icon {
+          width: 15px;
+          display: flex;
+          justify-content: center;
+          margin-right: 7px;
+        }
+      }
+
+      .views {
+        grid-row: 1;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 14px;
+      }
+
+      .favoriteCounter {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 14px;
+      }
+
+      .positiveFeedbacks {
+        display: flex;
+        justify-content: flex-start;
+        grid-row: 1;
+        margin-left: 7px;
+      }
+
+      .negativeFeedbacks {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 7px;
+      }
     }
   }
 }
@@ -254,73 +267,76 @@
       }
     }
 
-    .image {
-      padding: 26px 35px;
+    a {
+      .image {
+        padding: 26px 35px;
 
-      > img {
-        height: 125px;
-        width: 100px;
-      }
-    }
-
-    .infoContainer {
-      gap: 12px;
-
-      .productTitle {
-        font-size: 20px;
-        line-height: 22px;
-        margin-top: 18px;
+        > img {
+          height: 125px;
+          width: 100px;
+        }
       }
 
-      .characteristics {
-        font-size: 16px;
-        line-height: 18px;
+      .infoContainer {
+        gap: 12px;
 
-        > div {
-          margin-bottom: 12px;
+        .productTitle {
+          font-size: 20px;
+          line-height: 22px;
+          margin-top: 18px;
+        }
 
-          .charTitle {
-            margin-right: 5px;
+        .characteristics {
+          font-size: 16px;
+          line-height: 18px;
+
+          > div {
+            margin-bottom: 12px;
+
+            .charTitle {
+              margin-right: 5px;
+            }
+          }
+        }
+
+        .price {
+          margin-top: 10px;
+          margin-bottom: 25px;
+          font-size: 22px;
+          line-height: 25px;
+
+          > svg {
+            height: 22px;
+            width: 23px;
+            margin-right: 15px;
           }
         }
       }
 
-      .price {
-        margin-top: 10px;
-        font-size: 22px;
-        line-height: 25px;
+      .containerForCounters {
+        gap: 20px;
+        padding: 25px 40px 25px 0;
+        font-size: 20px;
+        line-height: 22px;
 
-        > svg {
-          height: 22px;
-          width: 23px;
-          margin-right: 15px;
+        > div {
+          max-width: 130px;
+
+          .icon {
+            width: 22px;
+            margin-right: 15px;
+          }
         }
-      }
-    }
 
-    .containerForCounters {
-      gap: 20px;
-      padding: 25px 40px 25px 0;
-      font-size: 20px;
-      line-height: 22px;
-
-      > div {
-        max-width: 130px;
-
-        .icon {
+        .views > svg > g {
           width: 22px;
-          margin-right: 15px;
+          height: 14px;
         }
-      }
 
-      .views > svg > g {
-        width: 22px;
-        height: 14px;
-      }
-
-      .favoriteCounter > svg {
-        width: 20px;
-        height: 20px;
+        .favoriteCounter > svg {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }
@@ -342,61 +358,63 @@
       }
     }
 
-    .productTitle {
-      font-size: 22px;
-      line-height: 24px;
-      margin: 12px 8px 0 8px;
-    }
-
-    .price {
-      margin-top: 10px;
-      font-size: 22px;
-      line-height: 24px;
-
-      > svg {
-        width: 22px;
-        height: 21px;
-        margin-right: 15px;
+    a {
+      .productTitle {
+        font-size: 22px;
+        line-height: 24px;
+        margin: 12px 8px 0 8px;
       }
-    }
 
-    .image {
-      margin-top: 16px;
+      .price {
+        margin-top: 10px;
+        font-size: 22px;
+        line-height: 24px;
 
-      > img {
-        width: 120px;
-        height: 140px;
-      }
-    }
-
-    .containerForCounters {
-      gap: 12px 0;
-      margin: 13px 0;
-
-      > div {
-        font-size: 18px;
-        line-height: 20px;
-
-        .icon {
-          width: 25px;
-          margin-right: 10px;
+        > svg {
+          width: 22px;
+          height: 21px;
+          margin-right: 15px;
         }
       }
 
-      .views {
-        margin-left: 18px;
+      .image {
+        margin-top: 16px;
+
+        > img {
+          width: 120px;
+          height: 140px;
+        }
       }
 
-      .favoriteCounter {
-        margin-left: 18px;
-      }
+      .containerForCounters {
+        gap: 12px 0;
+        margin: 13px 0;
 
-      .positiveFeedbacks {
-        margin-left: 9px;
-      }
+        > div {
+          font-size: 18px;
+          line-height: 20px;
 
-      .negativeFeedbacks {
-        margin-left: 9px;
+          .icon {
+            width: 25px;
+            margin-right: 10px;
+          }
+        }
+
+        .views {
+          margin-left: 18px;
+        }
+
+        .favoriteCounter {
+          margin-left: 18px;
+        }
+
+        .positiveFeedbacks {
+          margin-left: 9px;
+        }
+
+        .negativeFeedbacks {
+          margin-left: 9px;
+        }
       }
     }
   }
@@ -415,76 +433,79 @@
       }
     }
 
-    .image {
-      padding: 38px 55px;
+    a {
+      .image {
+        padding: 38px 55px;
 
-      > img {
-        height: 196px;
-        width: 166px;
-      }
-    }
-
-    .infoContainer {
-      gap: 16px;
-
-      .productTitle {
-        font-size: 24px;
-        line-height: 29px;
-        margin-top: 24px;
+        > img {
+          height: 196px;
+          width: 166px;
+        }
       }
 
-      .characteristics {
-        font-size: 20px;
-        line-height: 24px;
+      .infoContainer {
+        gap: 16px;
 
-        > div {
-          margin-bottom: 16px;
+        .productTitle {
+          font-size: 24px;
+          line-height: 29px;
+          margin-top: 24px;
+        }
 
-          .charTitle {
-            margin-right: 7px;
+        .characteristics {
+          font-size: 20px;
+          line-height: 24px;
+
+          > div {
+            margin-bottom: 16px;
+
+            .charTitle {
+              margin-right: 7px;
+            }
+          }
+        }
+
+        .price {
+          margin-top: 12px;
+          font-size: 28px;
+          line-height: 34px;
+          margin-bottom: 50px;
+
+          > svg {
+            height: 28px;
+            width: 29px;
+            margin-right: 20px;
           }
         }
       }
 
-      .price {
-        margin-top: 12px;
-        font-size: 28px;
-        line-height: 34px;
+      .containerForCounters {
+        gap: 25px;
+        padding: 33px 64px 33px 0;
+        font-size: 24px;
+        line-height: 29px;
 
-        > svg {
-          height: 28px;
-          width: 29px;
-          margin-right: 20px;
+        > div {
+          max-width: 170px;
+
+          .icon {
+            width: 35px;
+            margin-right: 23px;
+          }
         }
-      }
-    }
 
-    .containerForCounters {
-      gap: 25px;
-      padding: 33px 64px 33px 0;
-      font-size: 24px;
-      line-height: 29px;
-
-      > div {
-        max-width: 170px;
-
-        .icon {
-          width: 35px;
-          margin-right: 23px;
+        .views {
+          > svg > g {
+            width: 28px;
+            height: 18px;
+          }
         }
-      }
 
-      .views {
-        > svg > g {
-          width: 28px;
-          height: 18px;
-        }
-      }
-
-      .favoriteCounter {
-        > svg {
-          width: 26px;
-          height: 26px;
+        .favoriteCounter {
+          > svg {
+            width: 26px;
+            height: 26px;
+          }
         }
       }
     }
@@ -508,61 +529,63 @@
       }
     }
 
-    .productTitle {
-      font-size: 28px;
-      line-height: 34px;
-      margin: 16px 10px 0 10px;
-    }
-
-    .price {
-      margin-top: 13px;
-      font-size: 28px;
-      line-height: 34px;
-
-      > svg {
-        width: 29px;
-        height: 28px;
-        margin-right: 20px;
+    a {
+      .productTitle {
+        font-size: 28px;
+        line-height: 34px;
+        margin: 16px 10px 0 10px;
       }
-    }
 
-    .image {
-      margin-top: 22px;
+      .price {
+        margin-top: 13px;
+        font-size: 28px;
+        line-height: 34px;
 
-      > img {
-        width: 163px;
-        height: 196px;
-      }
-    }
-
-    .containerForCounters {
-      gap: 16px 0;
-      margin: 17px 0;
-
-      > div {
-        font-size: 24px;
-        line-height: 29px;
-
-        .icon {
-          width: 35px;
-          margin-right: 13px;
+        > svg {
+          width: 29px;
+          height: 28px;
+          margin-right: 20px;
         }
       }
 
-      .views {
-        margin-left: 27px;
+      .image {
+        margin-top: 22px;
+
+        > img {
+          width: 163px;
+          height: 196px;
+        }
       }
 
-      .favoriteCounter {
-        margin-left: 27px;
-      }
+      .containerForCounters {
+        gap: 16px 0;
+        margin: 17px 0;
 
-      .positiveFeedbacks {
-        margin-left: 13.5px;
-      }
+        > div {
+          font-size: 24px;
+          line-height: 29px;
 
-      .negativeFeedbacks {
-        margin-left: 13.5px;
+          .icon {
+            width: 35px;
+            margin-right: 13px;
+          }
+        }
+
+        .views {
+          margin-left: 27px;
+        }
+
+        .favoriteCounter {
+          margin-left: 27px;
+        }
+
+        .positiveFeedbacks {
+          margin-left: 13.5px;
+        }
+
+        .negativeFeedbacks {
+          margin-left: 13.5px;
+        }
       }
     }
   }

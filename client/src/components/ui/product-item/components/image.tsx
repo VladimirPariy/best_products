@@ -11,7 +11,9 @@ const Image: FC<Props> = ({ product_images }) => {
   return (
     <div className={styles.image}>
       <img
-        src={`${apiUrls.BASE_Image_URL}${product_images[0].image_title}`}
+        src={`${apiUrls.BASE_Image_URL}${
+          product_images[product_images.length - 1].image_title
+        }`}
         alt="product img"
       />
     </div>

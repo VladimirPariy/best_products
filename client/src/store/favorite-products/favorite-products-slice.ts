@@ -96,5 +96,11 @@ export const favoriteProductsSlice = createSlice({
     clearFavorite: () => {
       return initialState;
     },
+    incrementViewFavorite: (state, { payload }: PayloadAction<number>) => {
+      const product = state.entities.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.views_amount += 1;
+    },
   },
 });

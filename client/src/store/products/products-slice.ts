@@ -33,9 +33,6 @@ export const productsSlice = createSlice({
   name: "@@products",
   initialState,
   reducers: {
-    setCurrentPage: (state) => {
-      state.currentPage += 1;
-    },
     productsListFulfilled: (
       state,
       { payload }: PayloadAction<IProductDataResponse>
@@ -65,6 +62,48 @@ export const productsSlice = createSlice({
       state,
       action: PayloadAction<IGetProductListTrigger>
     ) => {},
+    clearProductsList: () => {
+      return initialState;
+    },
+    setCurrentPage: (state) => {
+      state.currentPage += 1;
+    },
+    incrementViewCounter: (state, { payload }: PayloadAction<number>) => {
+      const product = state.productsList.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.views_amount += 1;
+    },
+    incrementPositiveFeedbackCounter: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      const product = state.productsList.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.positive_feedbacks_amount += 1;
+    },
+    incrementNegativeFeedbackCounter: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      const product = state.productsList.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.negative_feedbacks_amount += 1;
+    },
+    incrementFavoriteCounter: (state, { payload }: PayloadAction<number>) => {
+      const product = state.productsList.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.favorites_amount += 1;
+    },
+    decrementFavoriteCounter: (state, { payload }: PayloadAction<number>) => {
+      const product = state.productsList.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.favorites_amount -= 1;
+    },
 
     removeProductFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
       state.error = null;
@@ -84,12 +123,6 @@ export const productsSlice = createSlice({
     },
     removeProductTrigger: (_, action: PayloadAction<number>) => {},
 
-    clearProductsList: (state) => {
-      return initialState;
-    },
-    addNewProduct: (state, { payload }: PayloadAction<IProduct>) => {
-      state.productsList.push(payload);
-    },
     updateProductAction: (
       state,
       { payload }: PayloadAction<IProductDetails>

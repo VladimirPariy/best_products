@@ -1,8 +1,6 @@
-export interface IDataForChangeFavorite {
-  userId: number;
-  productId: number;
-}
+import { IDataForChangeProduct } from "lib/interfaces/products/data-for-change-product";
 
-export interface IFulfilledDataForRemoveFavorite {
-  productId: number;
-}
+export interface IDataForChangeFavorite extends IDataForChangeProduct {}
+
+export interface IFulfilledDataForRemoveFavorite
+  extends Pick<IDataForChangeProduct, "productId"> {}

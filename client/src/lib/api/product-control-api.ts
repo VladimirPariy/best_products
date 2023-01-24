@@ -1,4 +1,4 @@
-import { authAxios } from "lib/api/axios-instances";
+import { authAxios, defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
 import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
@@ -9,12 +9,15 @@ import {
 } from "lib/interfaces/products/upload-image.interface";
 
 class ProductControlApi {
+  async addView(productId: number) {
+    return await defaultAxios.post(apiUrls.view, { productId });
+  }
+
   async createNewProduct(infoForCreat: IDataForCreating) {
     const { data } = await authAxios.post<IProduct[]>(
       apiUrls.products,
       infoForCreat
     );
-    console.log(data);
     return data;
   }
 

@@ -13,6 +13,7 @@ import {
   removeFromFavoriteRejected,
   removeFromFavoriteTrigger,
 } from "store/favorite-products/favorite-products-actions";
+import { decrementFavoriteCounter } from "store/products/products-actions";
 
 function* removeFromFavoriteWorker({
   payload,
@@ -25,6 +26,7 @@ function* removeFromFavoriteWorker({
     );
 
     yield put(removeFromFavoriteFulfilled(res));
+    yield put(decrementFavoriteCounter(res.productId));
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(

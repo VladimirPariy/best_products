@@ -11,6 +11,10 @@ export const {
   removeProductTrigger,
   removeProductPending,
   updateProductAction,
-  addNewProduct,
   setCurrentPage,
+  incrementViewCounter,
+  incrementPositiveFeedbackCounter,
+  incrementNegativeFeedbackCounter,
+  incrementFavoriteCounter,
+  decrementFavoriteCounter,
 } = productsSlice.actions;

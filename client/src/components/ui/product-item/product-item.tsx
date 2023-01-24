@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import { NavLink, useSearchParams } from "react-router-dom";
 
 import styles from "components/ui/product-item/product-item.module.scss";
+
 import FavoriteCount from "assets/icon/goods-statistics/favorite-count";
 import NegativeShape from "assets/icon/goods-statistics/negative-shape";
 import Shape from "assets/icon/goods-statistics/shape";
@@ -71,6 +72,13 @@ const ProductItem: FC<Props> = (props) => {
     }
   };
 
+  const linkPath =
+    currentLocation[1] === "favorite"
+      ? `${product_id}`
+      : currentLocation[1] === "product" && currentLocation.length > 3
+      ? `../../${product_id}`
+      : `../${product_id}`;
+
   return (
     <div
       className={
@@ -83,15 +91,7 @@ const ProductItem: FC<Props> = (props) => {
       <div className={favoriteClassNames} onClick={clickHandler}>
         <Favorites />
       </div>
-      <NavLink
-        to={
-          currentLocation[1] === "favorite"
-            ? `${product_id}`
-            : currentLocation[1] === "product" && currentLocation.length > 3
-            ? `../../${product_id}`
-            : `../${product_id}`
-        }
-      >
+      <NavLink to={linkPath}>
         {!(searchParams.get("view") === "list") && (
           <>
             <ProductTitle product_title={product_title} />
@@ -105,12 +105,7 @@ const ProductItem: FC<Props> = (props) => {
             <div className={styles.characteristics}>
               {characteristics.map((char, index) => {
                 if (index > 1) return false;
-                return (
-                  <CharacteristicItem
-                    char={char}
-                    key={char.characteristic_id}
-                  />
-                );
+                return <CharacteristicItem char={char} key={index} />;
               })}
             </div>
             <Price price={price} />

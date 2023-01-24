@@ -11,6 +11,7 @@ import {
   addIntoFavoriteTrigger,
 } from "store/favorite-products/favorite-products-actions";
 import FavoriteProductsApi from "lib/api/favorite-products-api";
+import { incrementFavoriteCounter } from "store/products/products-actions";
 
 function* addIntoFavoriteWorker({
   payload,
@@ -23,6 +24,7 @@ function* addIntoFavoriteWorker({
     );
 
     yield put(addIntoFavoriteFulfilled(res));
+    yield put(incrementFavoriteCounter(res.product_id));
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(

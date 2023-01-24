@@ -33,4 +33,6 @@ export const enum apiUrls {
   priceHistoryByProductId = "history/",
 
   favorite = "favorite/", //:userId
+
+  view = "view/",
 }
