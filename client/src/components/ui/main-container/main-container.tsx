@@ -10,6 +10,10 @@ import {
   clearFavorite,
   getFavoriteProductsTrigger,
 } from "store/favorite-products/favorite-products-actions";
+import {
+  clearFeedbacks,
+  getFeedbacksTrigger,
+} from "store/feedbacks/feedbacks-actions";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { userInfoTrigger } from "store/user/user-actions";
 import { selectAuth, selectUser } from "store/user/user-selector";
@@ -39,9 +43,11 @@ const MainContainer: FC = () => {
   useEffect(() => {
     if (user?.user_id) {
       dispatch(getFavoriteProductsTrigger(user.user_id));
+      dispatch(getFeedbacksTrigger(user.user_id));
     }
     if (Object.keys(user).length === 0) {
       dispatch(clearFavorite());
+      dispatch(clearFeedbacks());
     }
   }, [user]);
   return (

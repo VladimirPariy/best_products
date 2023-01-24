@@ -2,6 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { categoriesReducer } from "store/categories/categories-reducer";
 import { commentsReducer } from "store/comments/comments-reducer";
 import { favoriteProductsReducer } from "store/favorite-products/favorite-products-reducer";
+import { feedbacksReducer } from "store/feedbacks/feedbacks-reducer";
 import { modalsReducer } from "store/modals/modals-reducer";
 import { priceHistoryReducer } from "store/price-history/price-history-reducer";
 import { productControlReducer } from "store/product-control/product-control-reducer";
@@ -25,4 +26,5 @@ export const rootReducer = combineReducers({
   priceHistory: priceHistoryReducer,
   favorite: favoriteProductsReducer,
   productControl: productControlReducer,
+  feedbacks: feedbacksReducer,
 });

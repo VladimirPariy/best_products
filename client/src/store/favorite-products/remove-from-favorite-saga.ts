@@ -5,7 +5,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import {
   IDataForChangeFavorite,
   IFulfilledDataForRemoveFavorite,
-} from "lib/interfaces/favorite/favorite";
+} from "lib/interfaces/favorite/favorite.interface";
 import FavoriteProductsApi from "lib/api/favorite-products-api";
 import {
   removeFromFavoriteFulfilled,

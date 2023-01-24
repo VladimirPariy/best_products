@@ -23,6 +23,7 @@ import {
   removeFromFavoriteTrigger,
 } from "store/favorite-products/favorite-products-actions";
 import { selectFavoriteProducts } from "store/favorite-products/favorite-products-selectors";
+import { selectFeedbacks } from "store/feedbacks/feedbacks-selectors";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { selectUser } from "store/user/user-selector";
 
@@ -43,11 +44,14 @@ const ProductItem: FC<Props> = (props) => {
 
   let [searchParams] = useSearchParams();
   const favoriteProductsList = useAppSelector(selectFavoriteProducts);
+  const isFeedback = useAppSelector(selectFeedbacks).find(
+    (item) => item.product === product_id
+  );
   const dispatch = useAppDispatch();
   const { user_id } = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const currentLocation = pathname.split("/");
-
+  console.log(isFeedback);
   const isFavorite = favoriteProductsList.find(
     (item) => item.product_id === product_id
   );

@@ -1,6 +1,6 @@
 import { authAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { IDataForChangeFavorite } from "lib/interfaces/favorite/favorite";
+import { IDataForChangeFavorite } from "lib/interfaces/favorite/favorite.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
 
 class FavoriteProductsApi {

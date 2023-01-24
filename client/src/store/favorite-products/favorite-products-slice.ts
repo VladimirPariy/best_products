@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IDataForChangeFavorite,
   IFulfilledDataForRemoveFavorite,
-} from "lib/interfaces/favorite/favorite";
+} from "lib/interfaces/favorite/favorite.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
 import { ErrorPayload } from "store/store-types";
 

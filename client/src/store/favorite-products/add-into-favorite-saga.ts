@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import { IDataForChangeFavorite } from "lib/interfaces/favorite/favorite";
+import { IDataForChangeFavorite } from "lib/interfaces/favorite/favorite.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
 import {
   addIntoFavoriteFulfilled,

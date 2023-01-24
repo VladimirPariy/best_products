@@ -35,4 +35,6 @@ export const enum apiUrls {
   favorite = "favorite/", //:userId
 
   view = "view/",
+
+  feedbacks = "feedbacks/", // :userId
 }
