@@ -68,21 +68,25 @@ class ProductService {
       .count()
       .as("favorites_amount");
   }
+
   getViewsAmount() {
     return ProductsModel.relatedQuery("views").count().as("views_amount");
   }
+
   getPositiveFeedbacksAmount() {
     return ProductsModel.relatedQuery("feedbacks")
       .count()
       .as("positive_feedbacks_amount")
       .where({ feedback_type: 1 });
   }
+
   getNegativeFeedbacksAmount() {
     return ProductsModel.relatedQuery("feedbacks")
       .count()
       .as("negative_feedbacks_amount")
       .where({ feedback_type: 2 });
   }
+
   getCommentsAmount() {
     return ProductsModel.relatedQuery("comments").count().as("comments_amount");
   }
@@ -133,7 +137,7 @@ class ProductService {
     } else {
       return HttpException.notFound(`Product not found`);
     }
-    return "Product was successfully deleted";
+    return { productId: id };
   }
 
   async createNewProduct(body: IInfoForCreateProduct) {
