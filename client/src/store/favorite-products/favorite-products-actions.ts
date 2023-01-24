@@ -15,4 +15,5 @@ export const {
   addIntoFavoritePending,
   clearFavorite,
   incrementViewFavorite,
+  removeProductFromFavoriteList,
 } = favoriteProductsSlice.actions;

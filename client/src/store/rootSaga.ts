@@ -12,7 +12,7 @@ import { productDetailWatcher } from "store/product-detail/product-detail-saga";
 import { removeImageWatcher } from "store/product-detail/remove-image-saga";
 import { uploadImageWatcher } from "store/product-detail/upload-image-saga";
 import { productsListWatcher } from "store/products/products-list-saga";
-import { removeProductWatcher } from "store/products/remove-product-saga";
+import { removeProductWatcher } from "store/product-control/remove-product-saga";
 import { searchWatcher } from "store/search/search-saga";
 import { changeUserRoleWatcher } from "store/users-list/change-user-role-saga";
 import { removeUserWatcher } from "store/users-list/remove-user-saga";

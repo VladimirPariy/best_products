@@ -6,4 +6,8 @@ export const {
   createProductPending,
   createProductRejected,
   clearProductControl,
+  removeProductTrigger,
+  removeProductPending,
+  removeProductFulfilled,
+  removeProductRejected,
 } = productControlSlice.actions;

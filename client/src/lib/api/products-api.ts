@@ -2,7 +2,6 @@ import { authAxios, defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
 import {
   IGetProductListTrigger,
-  IProduct,
   IProductDataResponse,
 } from "lib/interfaces/products/product.interface";
 import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
@@ -13,15 +12,6 @@ import {
 import { ISearchData } from "lib/interfaces/search/search.interface";
 
 class ProductsApi {
-  async getAllProducts() {
-    const { data } = await defaultAxios.get<IProduct[]>(apiUrls.products);
-    return data;
-  }
-
-  async removeOneProduct(id: number) {
-    return await authAxios.delete<string>(`${apiUrls.one_product_by_id}${id}`);
-  }
-
   async uploadFile({ file, id }: IUploadImage) {
     const { data } = await authAxios.post<IProductImages>(
       `${apiUrls.one_product_by_id}${id}`,

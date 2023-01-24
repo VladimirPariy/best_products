@@ -127,6 +127,57 @@
       }
     }
   }
+
+  .controlContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    > button {
+      height: 100%;
+      width: 100%;
+      font-size: 12px;
+      padding: 5px;
+      background: none;
+      border: none;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      writing-mode: vertical-lr;
+      font-family: inherit;
+    }
+
+    .edit {
+      border-top-right-radius: 10px;
+      background: rgba(6, 150, 40, 1);
+
+      span {
+        writing-mode: vertical-rl;
+
+      }
+    }
+
+    .remove {
+      background: rgba(250, 38, 38, 1);
+      border-bottom-right-radius: 10px;
+
+      span {
+        writing-mode: vertical-rl;
+
+      }
+    }
+
+    .edit:hover {
+      transition: all 300ms ease-in-out;
+      background: rgba(6, 150, 40, 0.8);
+    }
+
+    .remove:hover {
+      background: rgba(250, 38, 38, 0.8);
+      transition: all 300ms ease-in-out;
+    }
+  }
 }
 
 .pileContainer {
@@ -252,6 +303,50 @@
       }
     }
   }
+
+  .controlContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    > button {
+      height: 100%;
+      width: 100%;
+      font-size: 12px;
+      padding: 5px;
+      background: none;
+      border: none;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      >span >a{
+        color: white;
+
+      }
+    }
+
+    .edit {
+      background: rgba(6, 150, 40, 1);
+      border-bottom-left-radius: 10px;
+    }
+
+    .remove {
+      background: rgba(250, 38, 38, 1);
+      border-bottom-right-radius: 10px;
+    }
+
+    .edit:hover {
+      background: rgba(6, 150, 40, 0.8);
+      transition: all 300ms ease-in-out;
+    }
+
+    .remove:hover {
+      background: rgba(250, 38, 38, 0.8);
+      transition: all 300ms ease-in-out;
+    }
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -339,6 +434,12 @@
         }
       }
     }
+
+    .controlContainer > button {
+      font-size: 16px;
+      padding: 8px;
+    }
+
   }
 
   .pileContainer {
@@ -416,6 +517,11 @@
           margin-left: 9px;
         }
       }
+    }
+
+    .controlContainer > button {
+      font-size: 16px;
+      padding: 8px;
     }
   }
 }
@@ -509,6 +615,11 @@
         }
       }
     }
+
+    .controlContainer > button {
+      font-size: 20px;
+      padding: 12px;
+    }
   }
 
   .pileContainer {
@@ -587,6 +698,11 @@
           margin-left: 13.5px;
         }
       }
+    }
+
+    .controlContainer > button {
+      font-size: 20px;
+      padding: 12px;
     }
   }
 }

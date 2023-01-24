@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
 import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
 import { ErrorPayload } from "store/store-types";
 
@@ -43,5 +44,25 @@ export const productControlSlice = createSlice({
     clearProductControl: () => {
       return initialState;
     },
+
+    removeProductFulfilled: (
+      state,
+      { payload }: PayloadAction<IFulfilledDataForRemove>
+    ) => {
+      state.error = null;
+      state.status = false;
+    },
+    removeProductPending: (state) => {
+      state.error = null;
+      state.status = true;
+    },
+    removeProductRejected: (
+      state,
+      { payload }: PayloadAction<ErrorPayload>
+    ) => {
+      state.error = payload;
+      state.status = false;
+    },
+    removeProductTrigger: (_, { payload }: PayloadAction<number>) => {},
   },
 });

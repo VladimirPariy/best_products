@@ -1,5 +1,6 @@
 import { authAxios, defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
+import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
 import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
 import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
@@ -34,7 +35,10 @@ class ProductControlApi {
   }
 
   async removeOneProduct(id: number) {
-    return await authAxios.delete<string>(`${apiUrls.one_product_by_id}${id}`);
+    const { data } = await authAxios.delete<IFulfilledDataForRemove>(
+      `${apiUrls.one_product_by_id}${id}`
+    );
+    return data;
   }
 
   async uploadFile({ file, id }: IUploadImage) {

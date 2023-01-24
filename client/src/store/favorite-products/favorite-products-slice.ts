@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import {
   IDataForChangeFavorite,
-  IFulfilledDataForRemoveFavorite,
+  IFulfilledDataForRemove,
 } from "lib/interfaces/favorite/favorite.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
 import { ErrorPayload } from "store/store-types";
@@ -84,7 +84,7 @@ export const favoriteProductsSlice = createSlice({
     },
     removeFromFavoriteFulfilled: (
       state,
-      { payload }: PayloadAction<IFulfilledDataForRemoveFavorite>
+      { payload }: PayloadAction<IFulfilledDataForRemove>
     ) => {
       state.error = null;
       state.status = false;
@@ -101,6 +101,14 @@ export const favoriteProductsSlice = createSlice({
         (item) => item.product_id === payload
       );
       if (product) product.views_amount += 1;
+    },
+    removeProductFromFavoriteList: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      state.entities = state.entities.filter(
+        (item) => item.product_id !== payload
+      );
     },
   },
 });

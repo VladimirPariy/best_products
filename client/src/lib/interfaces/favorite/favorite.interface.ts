@@ -2,5 +2,5 @@ import { IDataForChangeProduct } from "lib/interfaces/products/data-for-change-p
 
 export interface IDataForChangeFavorite extends IDataForChangeProduct {}
 
-export interface IFulfilledDataForRemoveFavorite
+export interface IFulfilledDataForRemove
   extends Pick<IDataForChangeProduct, "productId"> {}

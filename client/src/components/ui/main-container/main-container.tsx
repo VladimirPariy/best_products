@@ -49,6 +49,7 @@ const MainContainer: FC = () => {
       dispatch(clearFavorite());
       dispatch(clearFeedbacks());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   return (
     <div className={mainContainerClasses}>

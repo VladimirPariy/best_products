@@ -4,7 +4,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 
 import {
   IDataForChangeFavorite,
-  IFulfilledDataForRemoveFavorite,
+  IFulfilledDataForRemove,
 } from "lib/interfaces/favorite/favorite.interface";
 import FavoriteProductsApi from "lib/api/favorite-products-api";
 import {
@@ -20,7 +20,7 @@ function* removeFromFavoriteWorker({
 }: PayloadAction<IDataForChangeFavorite>) {
   yield put(removeFromFavoritePending());
   try {
-    const res: IFulfilledDataForRemoveFavorite = yield call(
+    const res: IFulfilledDataForRemove = yield call(
       FavoriteProductsApi.removeFromFavorite,
       payload
     );

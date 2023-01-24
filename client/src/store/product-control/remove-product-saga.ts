@@ -1,28 +1,29 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import ProductsApi from "lib/api/products-api";
-import { IProduct } from "lib/interfaces/products/product.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 
+import { removeProductFromFavoriteList } from "store/favorite-products/favorite-products-actions";
+import ProductControlApi from "lib/api/product-control-api";
 import {
   removeProductRejected,
   removeProductFulfilled,
   removeProductPending,
   removeProductTrigger,
-} from "store/products/products-actions";
+} from "store/product-control/product-control-actions";
+import { removeProductFromProductList } from "store/products/products-actions";
+import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
 
 function* removeProductWorker(action: PayloadAction<number>) {
   yield put(removeProductPending());
   try {
-    const res: AxiosResponse = yield call(
-      ProductsApi.removeOneProduct,
+    const res: IFulfilledDataForRemove = yield call(
+      ProductControlApi.removeOneProduct,
       action.payload
     );
     console.log(res);
-    if (res.status === 200) {
-      const products: IProduct[] = yield call(ProductsApi.getAllProducts);
-      yield put(removeProductFulfilled(products));
-    }
+    yield put(removeProductFulfilled(res));
+    yield put(removeProductFromProductList(+res.productId));
+    yield put(removeProductFromFavoriteList(+res.productId));
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useLocation } from "react-router";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 
 import styles from "components/ui/product-item/product-item.module.scss";
 
@@ -26,6 +26,7 @@ import { selectFavoriteProducts } from "store/favorite-products/favorite-product
 import { selectFeedbacks } from "store/feedbacks/feedbacks-selectors";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { selectUser } from "store/user/user-selector";
+import { removeProductTrigger } from "store/product-control/product-control-actions";
 
 interface Props extends IProduct {}
 
@@ -44,18 +45,17 @@ const ProductItem: FC<Props> = (props) => {
 
   let [searchParams] = useSearchParams();
   const favoriteProductsList = useAppSelector(selectFavoriteProducts);
-  const isFeedback = useAppSelector(selectFeedbacks).find(
-    (item) => item.product === product_id
-  );
+
   const dispatch = useAppDispatch();
-  const { user_id } = useAppSelector(selectUser);
+  const { user_id, users_roles } = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const currentLocation = pathname.split("/");
-  console.log(isFeedback);
   const isFavorite = favoriteProductsList.find(
     (item) => item.product_id === product_id
   );
-
+  const isFeedback = useAppSelector(selectFeedbacks).find(
+    (item) => item.product === product_id
+  );
   const favoriteClassNames = getClassNameByCondition(
     styles,
     "favorite",
@@ -83,6 +83,9 @@ const ProductItem: FC<Props> = (props) => {
       ? `../../${product_id}`
       : `../${product_id}`;
 
+  const deleteHandler = () => {
+    dispatch(removeProductTrigger(product_id));
+  };
   return (
     <div
       className={
@@ -138,6 +141,18 @@ const ProductItem: FC<Props> = (props) => {
           />
         </div>
       </NavLink>
+      {users_roles?.role_title === "admin" && (
+        <div className={styles.controlContainer}>
+          <button className={styles.edit}>
+            <span>
+              <Link to={"/"}>Edit</Link>
+            </span>
+          </button>
+          <button className={styles.remove} onClick={deleteHandler}>
+            <span>Remove</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

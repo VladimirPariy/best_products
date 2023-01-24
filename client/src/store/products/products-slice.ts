@@ -105,23 +105,14 @@ export const productsSlice = createSlice({
       if (product) product.favorites_amount -= 1;
     },
 
-    removeProductFulfilled: (state, { payload }: PayloadAction<IProduct[]>) => {
-      state.error = null;
-      state.isFetch = false;
-      state.productsList = payload;
-    },
-    removeProductPending: (state) => {
-      state.error = null;
-      state.isFetch = true;
-    },
-    removeProductRejected: (
+    removeProductFromProductList: (
       state,
-      { payload }: PayloadAction<ErrorPayload>
+      { payload }: PayloadAction<number>
     ) => {
-      state.error = payload;
-      state.isFetch = false;
+      state.productsList = state.productsList.filter(
+        (item) => item.product_id !== payload
+      );
     },
-    removeProductTrigger: (_, action: PayloadAction<number>) => {},
 
     updateProductAction: (
       state,
