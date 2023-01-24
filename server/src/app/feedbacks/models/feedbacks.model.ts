@@ -37,14 +37,14 @@ export class FeedbacksModel extends Model {
           to: "users.user_id",
         },
       },
-      // products: {
-      //   relation: Model.HasOneRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "feedbacks.product",
-      //     to: "products.product_id"
-      //   }
-      // }
+      products: {
+        relation: Model.HasOneRelation,
+        modelClass: ProductsModel,
+        join: {
+          from: "feedbacks.product",
+          to: "products.product_id",
+        },
+      },
     };
   }
 
