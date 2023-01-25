@@ -6,4 +6,8 @@ export const {
   getFeedbacksRejected,
   getFeedbacksFulfilled,
   clearFeedbacks,
+  addFeedbackTrigger,
+  addFeedbackPending,
+  addFeedbackRejected,
+  addFeedbackFulfilled,
 } = feedbacksSlice.actions;

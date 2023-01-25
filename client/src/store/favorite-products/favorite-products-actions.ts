@@ -16,4 +16,6 @@ export const {
   clearFavorite,
   incrementViewFavorite,
   removeProductFromFavoriteList,
+  incrementPositiveFeedbackCounterInFavoriteList,
+  incrementNegativeFeedbackCounterInFavoriteList,
 } = favoriteProductsSlice.actions;

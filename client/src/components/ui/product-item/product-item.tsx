@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 import { useLocation } from "react-router";
 import { Link, NavLink, useSearchParams } from "react-router-dom";
 
@@ -23,7 +23,9 @@ import {
   removeFromFavoriteTrigger,
 } from "store/favorite-products/favorite-products-actions";
 import { selectFavoriteProducts } from "store/favorite-products/favorite-products-selectors";
+import { addFeedbackTrigger } from "store/feedbacks/feedbacks-actions";
 import { selectFeedbacks } from "store/feedbacks/feedbacks-selectors";
+import { setVisibilitySignInModal } from "store/modals/modals-actions";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 import { selectUser } from "store/user/user-selector";
 import { removeProductTrigger } from "store/product-control/product-control-actions";
@@ -56,6 +58,7 @@ const ProductItem: FC<Props> = (props) => {
   const isFeedback = useAppSelector(selectFeedbacks).find(
     (item) => item.product === product_id
   );
+
   const favoriteClassNames = getClassNameByCondition(
     styles,
     "favorite",
@@ -65,6 +68,10 @@ const ProductItem: FC<Props> = (props) => {
   );
 
   const clickHandler = () => {
+    if (!user_id) {
+      dispatch(setVisibilitySignInModal(true));
+      return;
+    }
     const isFavorite = favoriteProductsList.find(
       (item) => item.product_id === product_id
     );
@@ -86,6 +93,49 @@ const ProductItem: FC<Props> = (props) => {
   const deleteHandler = () => {
     dispatch(removeProductTrigger(product_id));
   };
+
+  let positiveFeedbackClassName = getClassNameByCondition(
+    styles,
+    "positiveFeedbacks",
+    "feedback",
+    !!isFeedback,
+    ""
+  );
+  let negativeFeedbackClassName = getClassNameByCondition(
+    styles,
+    "negativeFeedbacks",
+    "feedback",
+    !!isFeedback,
+    ""
+  );
+  if (isFeedback?.feedback_type === 1) {
+    positiveFeedbackClassName = `${positiveFeedbackClassName} ${styles.isActive}`;
+  }
+  if (isFeedback?.feedback_type === 0) {
+    negativeFeedbackClassName = `${negativeFeedbackClassName} ${styles.isActive}`;
+  }
+
+  const feedbackHandler = (
+    e: MouseEvent<HTMLDivElement>,
+    feedbackType: number | undefined
+  ) => {
+    e.preventDefault();
+    if (isFeedback) return;
+    if (typeof feedbackType === "undefined") return;
+
+    if (!user_id) {
+      dispatch(setVisibilitySignInModal(true));
+      return;
+    }
+    dispatch(
+      addFeedbackTrigger({
+        feedbackType: feedbackType,
+        userId: user_id,
+        productId: product_id,
+      })
+    );
+  };
+
   return (
     <div
       className={
@@ -128,16 +178,21 @@ const ProductItem: FC<Props> = (props) => {
             value={favorites_amount}
             children={<FavoriteCount />}
             className={styles.favoriteCounter}
+            clickHandler={feedbackHandler}
           />
           <CountItem
             value={positive_feedbacks_amount}
             children={<Shape />}
-            className={styles.positiveFeedbacks}
+            className={positiveFeedbackClassName}
+            clickHandler={feedbackHandler}
+            feedbackType={1}
           />
           <CountItem
             value={negative_feedbacks_amount}
             children={<NegativeShape />}
-            className={styles.negativeFeedbacks}
+            className={negativeFeedbackClassName}
+            feedbackType={0}
+            clickHandler={feedbackHandler}
           />
         </div>
       </NavLink>

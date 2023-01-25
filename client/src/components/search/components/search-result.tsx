@@ -1,10 +1,10 @@
-import { selectCategories } from "store/categories/categories-selectors";
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "components/search/components/search-result.module.scss";
 
 import { selectSearchModal } from "store/modals/modals-selectors";
+import { selectCategories } from "store/categories/categories-selectors";
 import {
   selectSearchError,
   selectSearchProductResult,

@@ -110,5 +110,23 @@ export const favoriteProductsSlice = createSlice({
         (item) => item.product_id !== payload
       );
     },
+    incrementPositiveFeedbackCounterInFavoriteList: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      const product = state.entities.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.positive_feedbacks_amount += 1;
+    },
+    incrementNegativeFeedbackCounterInFavoriteList: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      const product = state.entities.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.negative_feedbacks_amount += 1;
+    },
   },
 });
