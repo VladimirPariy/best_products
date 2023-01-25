@@ -77,14 +77,14 @@ class ProductService {
     return ProductsModel.relatedQuery("feedbacks")
       .count()
       .as("positive_feedbacks_amount")
-      .where({ feedback_type: 1 });
+      .where({ feedback_type: 2 });
   }
 
   getNegativeFeedbacksAmount() {
     return ProductsModel.relatedQuery("feedbacks")
       .count()
       .as("negative_feedbacks_amount")
-      .where({ feedback_type: 2 });
+      .where({ feedback_type: 1 });
   }
 
   getCommentsAmount() {

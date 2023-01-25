@@ -66,5 +66,6 @@ export const enum EndpointsList {
   VIEW = "/",
 
   //feedbacks
+  FEEDBACK = "/",
   FEEDBACKS_BY_USER_ID = "/:id",
 }

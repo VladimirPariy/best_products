@@ -8,8 +8,13 @@ export const createFeedbacksRouter = (): Router => {
 
   feedbacksRouter.get(
     EndpointsList.FEEDBACKS_BY_USER_ID,
-    // authenticateJWT,
+    authenticateJWT,
     FeedbacksController.getFeedbacksByUserId
+  );
+  feedbacksRouter.post(
+    EndpointsList.FEEDBACK,
+    authenticateJWT,
+    FeedbacksController.addFeedback
   );
 
   return feedbacksRouter;

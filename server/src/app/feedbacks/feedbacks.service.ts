@@ -1,7 +1,7 @@
 import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
 
 class FeedbacksService {
-  async getFeedbacksByUserId(userId: number) {
+  getFeedbacks(condition: { user?: number; product?: number }) {
     return FeedbacksModel.query()
       .select([
         "feedbacks.product",
@@ -14,7 +14,25 @@ class FeedbacksService {
         "feedbacks.feedback_type",
         "feedbacks_types.feedback_type_id"
       )
-      .where({ user: userId });
+      .where(condition);
+  }
+
+  async getFeedbacksByUserId(userId: number) {
+    return this.getFeedbacks({ user: userId });
+  }
+
+  async addFeedback(userId: number, productId: number, feedbackType: number) {
+    const feedbackId = feedbackType === 0 ? 1 : 2;
+    const feedbackInsert = await FeedbacksModel.query().insert({
+      user: userId,
+      product: productId,
+      feedback_type: feedbackId,
+    });
+    const feedback = await this.getFeedbacks({
+      user: feedbackInsert.user,
+      product: feedbackInsert.product,
+    });
+    return feedback[0];
   }
 }
 
