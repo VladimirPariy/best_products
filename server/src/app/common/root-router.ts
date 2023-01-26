@@ -13,6 +13,7 @@ import { createFavoriteProductsRouter } from "@/app/favorite-products/favorite-p
 import { createCharacteristicsRouter } from "@/app/characteristics/characteristic.router";
 import { createViewRouter } from "@/app/views/view.router";
 import { createFeedbacksRouter } from "@/app/feedbacks/feedbacks.router";
+import { createStatisticsRouter } from "@/app/statistics/statistics.router";
 
 export const createRootRouter = (): Router => {
   const rootRouter = Router();
@@ -34,6 +35,7 @@ export const createRootRouter = (): Router => {
   );
   rootRouter.use(EndpointsList.ROOT_VIEW, createViewRouter());
   rootRouter.use(EndpointsList.ROOT_FEEDBACK, createFeedbacksRouter());
+  rootRouter.use(EndpointsList.ROOT_STATISTICS, createStatisticsRouter());
 
   return rootRouter;
 };

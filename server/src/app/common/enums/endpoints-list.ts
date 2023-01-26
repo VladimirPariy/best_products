@@ -14,6 +14,7 @@ export const enum EndpointsList {
   ROOT_CHARACTERISTICS = "/characteristics",
   ROOT_VIEW = "/view",
   ROOT_FEEDBACK = "/feedbacks",
+  ROOT_STATISTICS = "/statistics",
 
   //auth-router
   SIGN_UP = "/registration",
@@ -68,4 +69,11 @@ export const enum EndpointsList {
   //feedbacks
   FEEDBACK = "/",
   FEEDBACKS_BY_USER_ID = "/:id",
+
+  //statistics
+  NEW_USERS = "/users",
+  MOST_VIEWS = "/views",
+  MOST_FAVORITES = "/favorites",
+  MOST_COMMENTED = "/comments",
+  HIGHEST_AVERAGE_RATING = "/rating",
 }

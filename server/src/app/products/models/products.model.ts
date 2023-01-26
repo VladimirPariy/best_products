@@ -28,6 +28,8 @@ class ProductsModel extends Model {
   subcategories: SubcategoryModel[];
   characteristics: CharacteristicsModel[];
   users_comments: UsersModel[];
+  positive_feedbacks_amount?: number;
+  negative_feedbacks_amount?: number;
 
   static tableName = "products";
 
