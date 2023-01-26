@@ -9,6 +9,7 @@ import { productControlReducer } from "store/product-control/product-control-red
 import { productDetailReducer } from "store/product-detail/product-detail-reducer";
 import { productsReducer } from "store/products/products-reducer";
 import { searchReducer } from "store/search/search-reducer";
+import { statisticsReducer } from "store/statistics/statistics-reducer";
 import { usersListReducer } from "store/users-list/users-list-reducer";
 import { userReducer } from "store/user/user-reducer";
 import { usersRolesReducer } from "store/users-roles/users-roles-reducer";
@@ -27,4 +28,5 @@ export const rootReducer = combineReducers({
   favorite: favoriteProductsReducer,
   productControl: productControlReducer,
   feedbacks: feedbacksReducer,
+  statistics: statisticsReducer,
 });

@@ -1,15 +1,16 @@
 import React, { FC } from "react";
 
 import UserControlBody from "components/user-control/components/user-control-body";
-import UserControlHead from "components/user-control/components/user-control-head";
-import UserControlWrapper from "components/user-control/components/user-control-wrapper";
+import TableHead from "components/ui/table-head/table-head";
+import TableWrapper from "components/ui/table-wrapper/table-wrapper";
 
 const UserControl: FC = () => {
+  const head = ["№", "Full name", "Email", "Phone number", "Role", ""];
   return (
-    <UserControlWrapper>
-      <UserControlHead />
+    <TableWrapper>
+      <TableHead items={head} />
       <UserControlBody />
-    </UserControlWrapper>
+    </TableWrapper>
   );
 };
 

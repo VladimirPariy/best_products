@@ -15,6 +15,7 @@ import { uploadImageWatcher } from "store/product-detail/upload-image-saga";
 import { productsListWatcher } from "store/products/products-list-saga";
 import { removeProductWatcher } from "store/product-control/remove-product-saga";
 import { searchWatcher } from "store/search/search-saga";
+import { statisticsWatcher } from "store/statistics/statistics-saga";
 import { changeUserRoleWatcher } from "store/users-list/change-user-role-saga";
 import { removeUserWatcher } from "store/users-list/remove-user-saga";
 import { usersRolesWatcher } from "store/users-roles/users-roles-saga";
@@ -50,5 +51,6 @@ export default function* rootSaga() {
     createProductWatcher(),
     getFeedbacksWatcher(),
     addFeedbackWatcher(),
+    statisticsWatcher(),
   ]);
 }

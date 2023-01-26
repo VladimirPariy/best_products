@@ -37,4 +37,10 @@ export const enum apiUrls {
   view = "view/",
 
   feedbacks = "feedbacks/", // :userId
+
+  userStatistic = "statistics/users",
+  popularStatistic = "statistics/views",
+  favoritesStatistic = "statistics/favorites",
+  commentedStatistic = "statistics/comments",
+  ratingStatistic = "statistics/rating",
 }

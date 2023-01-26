@@ -1,0 +1,23 @@
+.tabsListContainer {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 769px) {
+  .tabsListContainer {
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .tabsListContainer {
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+}

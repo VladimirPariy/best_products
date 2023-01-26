@@ -8,7 +8,7 @@ import {
 } from "components/product-detail/product-detail-tabs/components/tabs-enum";
 import { useAppSelector } from "store/store-types";
 import { selectUser } from "store/user/user-selector";
-import TabsItem from "components/product-detail/product-detail-tabs/components/tab-item/tabs-item";
+import TabsItem from "components/ui/tab-item/tabs-item";
 
 interface Props {
   activeHandler: (tab: string) => void;

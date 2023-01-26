@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "components/product-detail/product-detail-tabs/components/tab-item/tabs-item.module.scss";
+import styles from "components/ui/tab-item/tabs-item.module.scss";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 

@@ -1,3 +1,4 @@
+import StatisticsPage from "pages/admin/statistics-page";
 import React, { FC, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -57,6 +58,7 @@ const AppRouter: FC = () => {
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
         <Route index element={<AdminPanel />} />
         <Route path="users" element={<UsersControlPage />} />
+        <Route path="statistics" element={<StatisticsPage />} />
         <Route path="create" element={<AddNewProductPage />} />
         <Route path="products/*">
           <Route path="update/:id" element={<UpdateProduct />} />
