@@ -28,15 +28,24 @@ class ProductService {
   >;
   getProductOrProducts(
     id: number[],
-    comment?: boolean
+    comment?: boolean,
+    withOutFilters?: boolean
   ): Objection.QueryBuilder<ProductsModel, ProductsModel[]>;
   getProductOrProducts(
     id: number,
-    comment?: boolean
+    comment?: boolean,
+    withOutFilters?: boolean
   ): Objection.QueryBuilder<ProductsModel, ProductsModel | undefined>;
-  getProductOrProducts(id?: number | number[], comment?: boolean) {
+  getProductOrProducts(
+    id?: number | number[],
+    comment?: boolean,
+    withOutFilters?: boolean
+  ) {
     const expr =
       "[product_images(selectShotImage), characteristics(selectShotCharacteristic).[parameters(selectShotParameter)], subcategories(selectShotSubcategory).[categories(selectShotCategory)]]";
+    const exprWithOutFilters =
+      "[product_images, characteristics.[parameters], subcategories.[categories]]";
+
     const colArray = [
       "products.*",
       this.getFavoriteAmount(),
@@ -49,17 +58,19 @@ class ProductService {
     }
 
     if (!id) {
-      return ProductsModel.query().select(colArray).withGraphJoined(expr);
+      return ProductsModel.query()
+        .select(colArray)
+        .withGraphJoined(withOutFilters ? exprWithOutFilters : expr);
     } else if (Array.isArray(id)) {
       return ProductsModel.query()
         .findByIds(id)
         .select(colArray)
-        .withGraphFetched(expr);
+        .withGraphFetched(withOutFilters ? exprWithOutFilters : expr);
     } else {
       return ProductsModel.query()
         .findById(id)
         .select(colArray)
-        .withGraphFetched(expr);
+        .withGraphFetched(withOutFilters ? exprWithOutFilters : expr);
     }
   }
 
@@ -108,7 +119,7 @@ class ProductService {
       return HttpException.badRequest("Missing product id");
     }
 
-    const product = await this.getProductOrProducts(+id, true);
+    const product = await this.getProductOrProducts(+id, true, true);
 
     if (!product) {
       return HttpException.internalServErr(
