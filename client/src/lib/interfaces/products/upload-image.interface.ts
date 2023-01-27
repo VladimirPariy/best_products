@@ -5,8 +5,8 @@ export interface IUploadImage {
 
 interface IImages {
   image_id: number;
-  image_title: string;
   product?: number;
+  image_title: string;
   size: number;
 }
 

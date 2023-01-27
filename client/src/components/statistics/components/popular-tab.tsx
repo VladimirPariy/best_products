@@ -1,9 +1,20 @@
 import React, { FC } from "react";
 
-interface Props {}
+import BarChart from "components/ui/chart/bar-chart";
 
-const PopularTab: FC<Props> = (props) => {
-  return <div>popular</div>;
+import { selectStatisticPopular } from "store/statistics/statistics-selectors";
+import { useAppSelector } from "store/store-types";
+
+const PopularTab: FC = () => {
+  const popular = useAppSelector(selectStatisticPopular);
+
+  return (
+    <BarChart
+      label="Views"
+      x={popular.map((item) => item.product_title)}
+      y={popular.map((item) => item.views_amount)}
+    />
+  );
 };
 
 export default PopularTab;

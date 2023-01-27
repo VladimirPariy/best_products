@@ -7,21 +7,21 @@ import {
 import {
   uploadProductImageTrigger,
   uploadProductImageFulfilled,
-  uploadProductImagePending,
-  uploadProductImageRejected,
+  changeProductImageRejected,
+  changeProductImagePending,
 } from "store/product-detail/product-detail-actions";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 
 function* uploadImageWorker({ payload }: PayloadAction<IUploadImage>) {
-  yield put(uploadProductImagePending());
+  yield put(changeProductImagePending());
   try {
     const res: IProductImages = yield call(ProductsApi.uploadFile, payload);
     yield put(uploadProductImageFulfilled(res));
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(
-        uploadProductImageRejected({
+        changeProductImageRejected({
           status_message: error.request.response,
           status: error.request.status,
         })

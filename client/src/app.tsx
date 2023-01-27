@@ -1,3 +1,4 @@
+import Footer from "layout/footer/footer";
 import React, { FC } from "react";
 
 import Header from "layout/header/header";
@@ -18,6 +19,7 @@ const App: FC = () => {
     <main onClick={mainClickHandler}>
       <Header />
       <Content />
+      <Footer />
     </main>
   );
 };

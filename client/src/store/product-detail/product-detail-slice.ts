@@ -66,18 +66,8 @@ export const productDetailSlice = createSlice({
       state.isFetch = false;
       state.productDetail.product_images.push(payload);
     },
-    uploadProductImagePending: (state) => {
-      state.error = null;
-      state.isFetch = true;
-    },
-    uploadProductImageRejected: (
-      state,
-      { payload }: PayloadAction<ErrorPayload>
-    ) => {
-      state.error = payload;
-      state.isFetch = false;
-    },
     uploadProductImageTrigger: (_, action: PayloadAction<IUploadImage>) => {},
+
     removeProductImageFulfilled: (
       state,
       { payload }: PayloadAction<number>
@@ -89,17 +79,18 @@ export const productDetailSlice = createSlice({
           (img) => img.image_id !== payload
         );
     },
-    removeProductImagePending: (state) => {
-      state.isFetch = true;
+    removeProductImageTrigger: (_, action: PayloadAction<{ id: number }>) => {},
+
+    changeProductImagePending: (state) => {
       state.error = null;
+      state.isFetch = true;
     },
-    removeProductImageRejected: (
+    changeProductImageRejected: (
       state,
       { payload }: PayloadAction<ErrorPayload>
     ) => {
-      state.isFetch = false;
       state.error = payload;
+      state.isFetch = false;
     },
-    removeProductImageTrigger: (_, action: PayloadAction<{ id: number }>) => {},
   },
 });

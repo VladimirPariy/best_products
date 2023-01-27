@@ -200,7 +200,7 @@ const ProductItem: FC<Props> = (props) => {
         <div className={styles.controlContainer}>
           <button className={styles.edit}>
             <span>
-              <Link to={"/"}>Edit</Link>
+              <Link to={`/admin/update/${product_id}`}>Edit</Link>
             </span>
           </button>
           <button className={styles.remove} onClick={deleteHandler}>

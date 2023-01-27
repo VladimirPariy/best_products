@@ -1,0 +1,36 @@
+.footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  background: #fff;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
+  justify-content: space-evenly;
+  height: 145px;
+
+  .selectContainer {
+    .title {
+
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .socialLink {
+
+    }
+  }
+
+
+  .logoContainer {
+
+    .logo {
+      display: flex;
+    }
+
+    .copywriting {
+      text-align: center;
+    }
+  }
+}

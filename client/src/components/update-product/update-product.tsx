@@ -1,6 +1,7 @@
-import { AxiosError } from "axios";
+import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
 import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { AxiosError } from "axios";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
@@ -14,10 +15,8 @@ import Slider from "components/ui/slider/slider";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
-import ProductsApi from "lib/api/products-api";
 import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
-// import { ICharacteristic } from "lib/interfaces/characteristics/characteristic";
-import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
+import ProductsApi from "lib/api/products-api";
 import { selectCategories } from "store/categories/categories-selectors";
 import {
   clearProductDetail,
@@ -25,48 +24,52 @@ import {
   removeProductImageTrigger,
   uploadProductImageTrigger,
 } from "store/product-detail/product-detail-actions";
-import { updateProductAction } from "store/products/products-actions";
 import {
   selectProductDetail,
   selectProductImages,
 } from "store/product-detail/product-detail-selector";
+import { updateProductAction } from "store/products/products-actions";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 
-const UpdateProduct: FC = () => {
+interface Props {}
+
+const UpdateProduct: FC<Props> = (props) => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const productDetails = useAppSelector(selectProductDetail);
   const productImages = useAppSelector(selectProductImages);
   const categories = useAppSelector(selectCategories);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<AxiosError | null>(null);
-
-  useEffect(() => {
-    if (id) dispatch(getProductDetailTrigger(+id));
-
-    return function () {
-      dispatch(clearProductDetail());
-    };
-  }, []);
-
   const [categoryId, setCategoryId] = useState<number>(0);
   const [subcategoryId, setSubcategoryId] = useState<number>(0);
   const [productTitle, setProductTitle] = useState<string>("");
   const [productDescription, setProductDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("0");
-  // const [characteristics, setCharacteristics] = useState<ICharacteristic[]>([]);
+  const [characteristics, setCharacteristics] = useState<
+    ICharacteristicsWithParameters[]
+  >([]);
 
-  // useEffect(() => {
-  //   if (Object.keys(productDetails).length > 0) {
-  //     setCategoryId(productDetails.category[0].category_id);
-  //     setSubcategoryId(productDetails.product_subcategory[0].subcategory_id);
-  //     setProductTitle(productDetails.product_title);
-  //     setProductDescription(productDetails.product_description);
-  //     setPrice(productDetails.price);
-  //     setCharacteristics(productDetails.product_characteristics);
-  //   }
-  // }, [productDetails, categories.length]);
+  useEffect(() => {
+    if (id) dispatch(getProductDetailTrigger(+id));
+
+    return () => {
+      dispatch(clearProductDetail());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(productDetails).length > 0) {
+      setCategoryId(productDetails.subcategories[0].categories.category_id);
+      setSubcategoryId(productDetails.subcategories[0].subcategory_id);
+      setProductTitle(productDetails.product_title);
+      setProductDescription(productDetails.product_description);
+      setPrice(productDetails.price);
+      setCharacteristics(productDetails.characteristics);
+    }
+  }, [productDetails, categories.length]);
+
+  console.log(characteristics);
 
   // const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
   //   e.preventDefault();
@@ -79,13 +82,13 @@ const UpdateProduct: FC = () => {
   //     },
   //   ]);
   // };
-  //
+
   // const dropCharacteristic = (id: number) => {
   //   setCharacteristics(
   //     characteristics.filter((char) => char.product_characteristic_id !== id)
   //   );
   // };
-  //
+
   // const changeCharacteristic = (key: string, value: string, id: number) => {
   //   setCharacteristics(
   //     characteristics.map((char) =>
@@ -94,19 +97,19 @@ const UpdateProduct: FC = () => {
   //   );
   // };
 
-  // const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files;
-  //   if (file && file.length > 0) {
-  //     const duplicate = productImages.find((img) => {
-  //       return img.size === file[0].size && img.original_title === file[0].name;
-  //     });
-  //     if (!duplicate && id) {
-  //       const formData = new FormData();
-  //       if (file instanceof FileList) formData.append(`img`, file[0]);
-  //       dispatch(uploadProductImageTrigger({ file: formData, id: +id }));
-  //     }
-  //   }
-  // };
+  const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files;
+    if (file && file.length > 0) {
+      const duplicate = productImages.find((img) => {
+        return img.size === file[0].size && img.original_title === file[0].name;
+      });
+      if (!duplicate && id) {
+        const formData = new FormData();
+        if (file instanceof FileList) formData.append(`img`, file[0]);
+        dispatch(uploadProductImageTrigger({ file: formData, id: +id }));
+      }
+    }
+  };
 
   const dropFile = async (image_id: number) => {
     dispatch(removeProductImageTrigger({ id: image_id }));
@@ -261,18 +264,18 @@ const UpdateProduct: FC = () => {
           {/*      </AddProductCharacteristicContainer>*/}
           {/*    </div>*/}
           {/*  ))}*/}
-          {/*<AddProductImageContainer>*/}
-          {/*  {productImages && (*/}
-          {/*    <Slider*/}
-          {/*      images={productImages}*/}
-          {/*      deleteHandler={dropFile}*/}
-          {/*      onDelete={true}*/}
-          {/*    />*/}
-          {/*  )}*/}
-          {/*</AddProductImageContainer>*/}
-          {/*<BtnForAddImage fileHandler={uploadFileHandler}>*/}
-          {/*  Add images*/}
-          {/*</BtnForAddImage>*/}
+          <AddProductImageContainer>
+            {productImages && (
+              <Slider
+                images={productImages}
+                deleteHandler={dropFile}
+                onDelete={true}
+              />
+            )}
+          </AddProductImageContainer>
+          <BtnForAddImage fileHandler={uploadFileHandler}>
+            Add images
+          </BtnForAddImage>
 
           {/*<Button submitHandler={updateProduct}>Update product</Button>*/}
         </>

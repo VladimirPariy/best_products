@@ -1,4 +1,3 @@
-import StatisticsPage from "pages/admin/statistics-page";
 import React, { FC, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -16,9 +15,11 @@ import {
 import { useAppSelector } from "store/store-types";
 
 import ProtectedRoute from "components/router/protected-route/protected-route";
-import CategoryPage from "pages/products/category-page";
+
 import Home from "pages/home/home";
-import UpdateProduct from "pages/admin/update-product";
+import StatisticsPage from "pages/admin/statistics-page";
+import CategoryPage from "pages/products/category-page";
+import UpdateProductPage from "pages/admin/update-product-page";
 import UsersControlPage from "pages/admin/users-control-page";
 import ProductLayout from "components/product-layout/product-layout";
 import SubcategoryPage from "pages/products/subcategory-page";
@@ -60,10 +61,7 @@ const AppRouter: FC = () => {
         <Route path="users" element={<UsersControlPage />} />
         <Route path="statistics" element={<StatisticsPage />} />
         <Route path="create" element={<AddNewProductPage />} />
-        <Route path="products/*">
-          <Route path="update/:id" element={<UpdateProduct />} />
-          {emptyRoute}
-        </Route>
+        <Route path="update/:id" element={<UpdateProductPage />} />
         {emptyRoute}
       </Route>
       <Route

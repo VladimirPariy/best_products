@@ -10,6 +10,7 @@ export interface ICategory {
   category_title: string;
   icon: string;
 }
+
 export interface ICategoryWithSubcategory extends ICategory {
   subcategories: ISubcategory[];
 }
@@ -17,4 +18,8 @@ export interface ICategoryWithSubcategory extends ICategory {
 export interface ShotSubcategoryWithCategory
   extends Pick<ISubcategory, "subcategory_title" | "subcategory_id"> {
   categories: Omit<ICategory, "icon">;
+}
+
+export interface ISubcategoryWithCategory extends ISubcategory {
+  categories: ICategory;
 }

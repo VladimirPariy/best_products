@@ -1,9 +1,19 @@
 import React, { FC } from "react";
 
-interface Props {}
+import LineChart from "components/ui/chart/line-chart";
 
-const FavoritesTab: FC<Props> = (props) => {
-  return <div>favorites</div>;
+import { selectStatisticFavorites } from "store/statistics/statistics-selectors";
+import { useAppSelector } from "store/store-types";
+
+const FavoritesTab: FC = () => {
+  const favorites = useAppSelector(selectStatisticFavorites);
+  return (
+    <LineChart
+      x={favorites.map((item) => item.product_title)}
+      y={favorites.map((item) => item.favorites_amount)}
+      label="Favorites amount"
+    />
+  );
 };
 
 export default FavoritesTab;

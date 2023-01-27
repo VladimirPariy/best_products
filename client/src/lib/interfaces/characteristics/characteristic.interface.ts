@@ -10,3 +10,7 @@ export interface ICharacteristicsWithParameters
   extends Omit<ICharacteristics, "parameter"> {
   parameters: Omit<IParameters, "subcategory" | "characteristics">;
 }
+
+export interface IFullCharacteristicsWithParameters extends ICharacteristics {
+  parameters: Omit<IParameters, "characteristics">;
+}
