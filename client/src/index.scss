@@ -18,5 +18,7 @@ body {
   min-height: 100vh;
   > main {
     min-height: 100vh;
+    flex-direction: column;
+    display: flex;
   }
 }

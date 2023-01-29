@@ -6,7 +6,6 @@ export const {
   productsListRejected,
   productsListTrigger,
   clearProductsList,
-  updateProductAction,
   setCurrentPage,
   incrementViewCounter,
   incrementFavoriteCounter,
@@ -14,4 +13,5 @@ export const {
   removeProductFromProductList,
   incrementPositiveFeedbackCounter,
   incrementNegativeFeedbackCounter,
+  updateProductInProductList,
 } = productsSlice.actions;

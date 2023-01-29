@@ -1,27 +1,32 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import ProductsApi from "lib/api/products-api";
+import ProductControlApi from "lib/api/product-control-api";
 import {
   IProductImages,
   IUploadImage,
 } from "lib/interfaces/products/upload-image.interface";
 import {
-  uploadProductImageTrigger,
+  productControlPending,
+  productControlRejected,
   uploadProductImageFulfilled,
-  changeProductImageRejected,
-  changeProductImagePending,
-} from "store/product-detail/product-detail-actions";
+  uploadProductImageTrigger,
+} from "store/product-control/product-control-actions";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
+import { addImage } from "store/product-detail/product-detail-actions";
 
 function* uploadImageWorker({ payload }: PayloadAction<IUploadImage>) {
-  yield put(changeProductImagePending());
+  yield put(productControlPending());
   try {
-    const res: IProductImages = yield call(ProductsApi.uploadFile, payload);
-    yield put(uploadProductImageFulfilled(res));
+    const res: IProductImages = yield call(
+      ProductControlApi.uploadFile,
+      payload
+    );
+    yield put(uploadProductImageFulfilled());
+    yield put(addImage(res));
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(
-        changeProductImageRejected({
+        productControlRejected({
           status_message: error.request.response,
           status: error.request.status,
         })

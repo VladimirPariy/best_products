@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
 import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
+import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
+import { IUploadImage } from "lib/interfaces/products/upload-image.interface";
 import { ErrorPayload } from "store/store-types";
 
 interface IInitialState {
@@ -19,16 +21,12 @@ export const productControlSlice = createSlice({
   name: "@@product-control",
   initialState,
   reducers: {
-    createProductTrigger: (
-      _,
-      { payload }: PayloadAction<IDataForCreating>
-    ) => {},
-    createProductPending: (state) => {
+    productControlPending: (state) => {
       state.error = null;
       state.status = true;
       state.success = false;
     },
-    createProductRejected: (
+    productControlRejected: (
       state,
       { payload }: PayloadAction<ErrorPayload>
     ) => {
@@ -36,33 +34,50 @@ export const productControlSlice = createSlice({
       state.status = false;
       state.success = false;
     },
+    clearProductControl: () => {
+      return initialState;
+    },
+
+    createProductTrigger: (
+      _,
+      { payload }: PayloadAction<IDataForCreating>
+    ) => {},
     createProductFulfilled: (state) => {
       state.error = null;
       state.status = false;
       state.success = true;
     },
-    clearProductControl: () => {
-      return initialState;
-    },
 
+    removeProductTrigger: (_, { payload }: PayloadAction<number>) => {},
     removeProductFulfilled: (
       state,
       { payload }: PayloadAction<IFulfilledDataForRemove>
     ) => {
       state.error = null;
       state.status = false;
+      state.success = true;
     },
-    removeProductPending: (state) => {
+
+    updateProductTrigger: (
+      _,
+      { payload }: PayloadAction<UpdatingProductDetailsInterface>
+    ) => {},
+    updateProductFulfilled: (state) => {
       state.error = null;
-      state.status = true;
+      state.status = false;
+      state.success = true;
     },
-    removeProductRejected: (
-      state,
-      { payload }: PayloadAction<ErrorPayload>
-    ) => {
-      state.error = payload;
+
+    uploadProductImageTrigger: (_, action: PayloadAction<IUploadImage>) => {},
+    uploadProductImageFulfilled: (state) => {
+      state.error = null;
       state.status = false;
     },
-    removeProductTrigger: (_, { payload }: PayloadAction<number>) => {},
+
+    removeProductImageTrigger: (_, action: PayloadAction<{ id: number }>) => {},
+    removeProductImageFulfilled: (state) => {
+      state.status = false;
+      state.error = null;
+    },
   },
 });

@@ -5,16 +5,16 @@ import { AxiosError } from "axios";
 import { removeProductFromFavoriteList } from "store/favorite-products/favorite-products-actions";
 import ProductControlApi from "lib/api/product-control-api";
 import {
-  removeProductRejected,
+  productControlPending,
   removeProductFulfilled,
-  removeProductPending,
+  productControlRejected,
   removeProductTrigger,
 } from "store/product-control/product-control-actions";
 import { removeProductFromProductList } from "store/products/products-actions";
 import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
 
 function* removeProductWorker(action: PayloadAction<number>) {
-  yield put(removeProductPending());
+  yield put(productControlPending());
   try {
     const res: IFulfilledDataForRemove = yield call(
       ProductControlApi.removeOneProduct,
@@ -27,7 +27,7 @@ function* removeProductWorker(action: PayloadAction<number>) {
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(
-        removeProductRejected({
+        productControlRejected({
           status_message: error.request.response,
           status: error.request.status,
         })

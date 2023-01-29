@@ -4,7 +4,6 @@ import {
   IProduct,
   IProductDataResponse,
 } from "lib/interfaces/products/product.interface";
-import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
 import { ErrorPayload } from "store/store-types";
 
 interface IInitialState {
@@ -114,38 +113,14 @@ export const productsSlice = createSlice({
       );
     },
 
-    updateProductAction: (
+    updateProductInProductList: (
       state,
-      { payload }: PayloadAction<IProductDetails>
+      { payload }: PayloadAction<IProduct>
     ) => {
-      // const {
-      //   product_id,
-      //  characteristics,
-      //   product_description,
-      //   product_images,
-      //   product_title,
-      //   price,
-      // } = payload;
-      // const modifyProduct: IProduct = {
-      //   product_id,
-      //   characteristics,
-      //   product_description,
-      //   product_images,
-      //   product_title,
-      //   price,
-      // };
-      // return {
-      //   ...state,
-      //   productsList: [
-      //     ...state.productsList.map((prod) => {
-      //       if (prod.product_id === product_id) {
-      //         return modifyProduct;
-      //       } else {
-      //         return prod;
-      //       }
-      //     }),
-      //   ],
-      // };
+      let product = state.productsList.find(
+        (item) => item.product_id === payload.product_id
+      );
+      if (product) product = payload;
     },
   },
 });

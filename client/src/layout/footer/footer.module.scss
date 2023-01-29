@@ -1,36 +1,216 @@
+@font-face {
+  font-family: "Lao Sans Pro";
+  src: url("../../assets/fonts/LaoSansPro-Regular.ttf") format("ttl");
+}
+
 .footer {
   position: relative;
   z-index: 2;
-  display: flex;
   background: #fff;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
-  justify-content: space-evenly;
-  height: 145px;
+  padding: 13px 10px;
 
   .selectContainer {
-    .title {
+    text-align: center;
+    color: rgba(82, 79, 94, 1);
+    font-family: "Lao Sans Pro";
+    margin-bottom: 10px;
 
+    .title {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     .links {
       display: flex;
       flex-direction: column;
+      font-size: 12px;
+      line-height: 16px;
     }
 
     .socialLink {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
 
+      .facebook > svg {
+        max-height: 25px;
+      }
+
+      .instagram > svg {
+        max-height: 22px;
+      }
+
+      .youtube > svg {
+        max-height: 20px;
+      }
     }
   }
 
-
   .logoContainer {
+    display: flex;
+    flex-direction: column;
 
     .logo {
       display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > img {
+        width: 43px;
+        height: 33px;
+        margin-right: 4px;
+      }
+
+      > div {
+        color: #435c6b;
+
+        .logoTitle {
+          font-size: 20px;
+          line-height: 27px;
+          font-weight: 600;
+        }
+
+        .logoText {
+          font-size: 15px;
+          line-height: 16px;
+          margin-bottom: 5px;
+        }
+      }
     }
 
     .copywriting {
+      color: #524f5e;
       text-align: center;
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .footer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 19px 10px;
+    gap: 5px;
+
+    .selectContainer {
+      .title {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      .links {
+        font-size: 15px;
+        line-height: 19px;
+      }
+
+      .socialLink {
+        justify-content: space-between;
+
+        .facebook > svg {
+          max-height: 31px;
+        }
+
+        .instagram > svg {
+          max-height: 28px;
+        }
+
+        .youtube > svg {
+          max-height: 23px;
+        }
+      }
+    }
+
+    .logoContainer {
+      .logo {
+        > img {
+          width: 52px;
+          height: 43px;
+          margin-right: 7px;
+        }
+
+        > div {
+          .logoTitle {
+            font-size: 24px;
+            line-height: 31px;
+          }
+
+          .logoText {
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 7px;
+          }
+        }
+      }
+
+      .copywriting {
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .footer {
+    padding: 26px 10px;
+
+    .selectContainer {
+      .title {
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      .links {
+        font-size: 18px;
+        line-height: 23px;
+      }
+
+      .socialLink {
+        .facebook > svg {
+          max-height: 36px;
+        }
+
+        .instagram > svg {
+          max-height: 33px;
+        }
+
+        .youtube > svg {
+          max-height: 26px;
+        }
+      }
+    }
+
+    .logoContainer {
+      .logo {
+        > img {
+          width: 66px;
+          height: 53px;
+          margin-right: 10px;
+        }
+
+        > div {
+          .logoTitle {
+            font-size: 28px;
+            line-height: 35px;
+          }
+
+          .logoText {
+            font-size: 21px;
+            line-height: 25px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+      .copywriting {
+        font-size: 16px;
+        line-height: 20px;
+      }
     }
   }
 }

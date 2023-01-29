@@ -9,9 +9,10 @@ import { addFeedbackWatcher } from "store/feedbacks/add-feedback-saga";
 import { getFeedbacksWatcher } from "store/feedbacks/get-feedbacks-saga";
 import { priceHistoryWatcher } from "store/price-history/price-history-saga";
 import { createProductWatcher } from "store/product-control/create-product-saga";
+import { updateProductWatcher } from "store/product-control/update-product-saga";
 import { productDetailWatcher } from "store/product-detail/product-detail-saga";
-import { removeImageWatcher } from "store/product-detail/remove-image-saga";
-import { uploadImageWatcher } from "store/product-detail/upload-image-saga";
+import { removeImageWatcher } from "store/product-control/remove-image-saga";
+import { uploadImageWatcher } from "store/product-control/upload-image-saga";
 import { productsListWatcher } from "store/products/products-list-saga";
 import { removeProductWatcher } from "store/product-control/remove-product-saga";
 import { searchWatcher } from "store/search/search-saga";
@@ -52,5 +53,6 @@ export default function* rootSaga() {
     getFeedbacksWatcher(),
     addFeedbackWatcher(),
     statisticsWatcher(),
+    updateProductWatcher(),
   ]);
 }

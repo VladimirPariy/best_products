@@ -34,23 +34,38 @@ const Footer: FC = () => {
       <div className={styles.selectContainer}>
         <div className={styles.title}>Social media</div>
         <div className={styles.socialLink}>
-          <NavLink to={"/"}>
+          <a
+            href="https://www.facebook.com/"
+            className={styles.facebook}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Facebook />
-          </NavLink>
-          <NavLink to={"/"}>
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            className={styles.instagram}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Instagram />
-          </NavLink>
-          <NavLink to={"/"}>
+          </a>
+          <a
+            href="https://www.youtube.com/"
+            className={styles.youtube}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Youtube />
-          </NavLink>
+          </a>
         </div>
       </div>
       <div className={styles.logoContainer}>
         <div className={styles.logo}>
           <img src={logo} alt="logo" />
           <div>
-            <div>BEST PRODUCTS</div>
-            <div>Stay home. Shop online</div>
+            <div className={styles.logoTitle}>BEST PRODUCTS</div>
+            <div className={styles.logoText}>Stay home. Shop online</div>
           </div>
         </div>
         <div className={styles.copywriting}>&#169; Best Products 2022</div>

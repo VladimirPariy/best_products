@@ -1,3 +1,4 @@
+import { useAllParameters } from "lib/hooks/use-all-parameters";
 import React, {
   ChangeEvent,
   FC,
@@ -25,22 +26,15 @@ import Title from "components/ui/title/title";
 import { ValidationMessage } from "lib/enums/validation-message";
 import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 import ProductControlApi from "lib/api/product-control-api";
-import { getCharacteristics } from "lib/api/characteristics-api";
-import { getParameters } from "lib/api/parameters-api";
-import { IParameters } from "lib/interfaces/parameters/parameters.interface";
 import { upFirstChar } from "lib/utils/up-first-char";
 import {
   IDataForCreating,
   ITempChar,
 } from "lib/interfaces/products/creating-product.interface";
 import { IProductImages } from "lib/interfaces/products/upload-image.interface";
-import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
 
 import { selectCategories } from "store/categories/categories-selectors";
-import {
-  clearProductControl,
-  createProductTrigger,
-} from "store/product-control/product-control-actions";
+import { createProductTrigger } from "store/product-control/product-control-actions";
 import {
   selectProductControlStatus,
   selectProductControlSuccess,
@@ -53,6 +47,7 @@ const CreateProduct: FC = () => {
   const categories = useAppSelector(selectCategories);
   const success = useAppSelector(selectProductControlSuccess);
   const isLoading = useAppSelector(selectProductControlStatus);
+  const { allCharacteristics, allParameters } = useAllParameters();
 
   const [categoryId, setCategoryId] = useState(0);
   const [subcategoryId, setSubcategoryId] = useState(0);
@@ -62,10 +57,6 @@ const CreateProduct: FC = () => {
   const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
   const [uploadImages, setUploadImages] = useState<IProductImages[]>([]);
 
-  const [allParameters, setAllParameters] = useState<IParameters[]>([]);
-  const [allCharacteristics, SetAllCharacteristics] = useState<
-    ICharacteristics[]
-  >([]);
   const prevSubcategory = useRef<null | number>(null);
 
   const [errorProductTitle, setErrorProductTitle] =
@@ -81,18 +72,6 @@ const CreateProduct: FC = () => {
     useState<ErrorValidationInterface>(null);
   const [errorUploadImages, setErrorUploadImages] =
     useState<ErrorValidationInterface>(null);
-
-  useEffect(() => {
-    const fetchParametersAndCharacteristics = async () => {
-      setAllParameters(await getParameters());
-      SetAllCharacteristics(await getCharacteristics());
-    };
-    fetchParametersAndCharacteristics();
-    return () => {
-      dispatch(clearProductControl());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -238,7 +217,6 @@ const CreateProduct: FC = () => {
     characteristics,
     uploadImages,
   ]);
-  console.log(price);
   return (
     <ContentContainer>
       <Title>Add new product</Title>

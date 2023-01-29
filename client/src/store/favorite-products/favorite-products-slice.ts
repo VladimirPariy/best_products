@@ -128,5 +128,17 @@ export const favoriteProductsSlice = createSlice({
       );
       if (product) product.negative_feedbacks_amount += 1;
     },
+    updateProductInFavoriteList: (
+      state,
+      { payload }: PayloadAction<IProduct>
+    ) => {
+      console.log(payload);
+      state.entities = state.entities.map((item) => {
+        if (item.product_id === payload.product_id) {
+          return { ...payload };
+        }
+        return item;
+      });
+    },
   },
 });

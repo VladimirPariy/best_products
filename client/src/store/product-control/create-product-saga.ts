@@ -6,12 +6,12 @@ import { AxiosError } from "axios";
 import {
   createProductTrigger,
   createProductFulfilled,
-  createProductRejected,
-  createProductPending,
+  productControlPending,
+  productControlRejected,
 } from "store/product-control/product-control-actions";
 
 function* createProductWorker({ payload }: PayloadAction<IDataForCreating>) {
-  yield put(createProductPending());
+  yield put(productControlPending());
   try {
     yield call(ProductControlApi.createNewProduct, payload);
 
@@ -19,7 +19,7 @@ function* createProductWorker({ payload }: PayloadAction<IDataForCreating>) {
   } catch (error) {
     if (error instanceof AxiosError)
       yield put(
-        createProductRejected({
+        productControlRejected({
           status_message: error.request.response,
           status: error.request.status,
         })

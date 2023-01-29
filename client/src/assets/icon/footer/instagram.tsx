@@ -30,12 +30,12 @@ const Instagram: FC = () => {
           y2="22.157"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0011048" stop-color="#FBE18A" />
-          <stop offset="0.2094" stop-color="#FCBB45" />
-          <stop offset="0.3765" stop-color="#F75274" />
-          <stop offset="0.5238" stop-color="#D53692" />
-          <stop offset="0.7394" stop-color="#8F39CE" />
-          <stop offset="1" stop-color="#5B4FE9" />
+          <stop offset="0.0011048" stopColor="#FBE18A" />
+          <stop offset="0.2094" stopColor="#FCBB45" />
+          <stop offset="0.3765" stopColor="#F75274" />
+          <stop offset="0.5238" stopColor="#D53692" />
+          <stop offset="0.7394" stopColor="#8F39CE" />
+          <stop offset="1" stopColor="#5B4FE9" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_67_4172"
@@ -45,12 +45,12 @@ const Instagram: FC = () => {
           y2="30.8564"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0011048" stop-color="#FBE18A" />
-          <stop offset="0.2094" stop-color="#FCBB45" />
-          <stop offset="0.3765" stop-color="#F75274" />
-          <stop offset="0.5238" stop-color="#D53692" />
-          <stop offset="0.7394" stop-color="#8F39CE" />
-          <stop offset="1" stop-color="#5B4FE9" />
+          <stop offset="0.0011048" stopColor="#FBE18A" />
+          <stop offset="0.2094" stopColor="#FCBB45" />
+          <stop offset="0.3765" stopColor="#F75274" />
+          <stop offset="0.5238" stopColor="#D53692" />
+          <stop offset="0.7394" stopColor="#8F39CE" />
+          <stop offset="1" stopColor="#5B4FE9" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_67_4172"
@@ -60,12 +60,12 @@ const Instagram: FC = () => {
           y2="30.923"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0011048" stop-color="#FBE18A" />
-          <stop offset="0.2094" stop-color="#FCBB45" />
-          <stop offset="0.3765" stop-color="#F75274" />
-          <stop offset="0.5238" stop-color="#D53692" />
-          <stop offset="0.7394" stop-color="#8F39CE" />
-          <stop offset="1" stop-color="#5B4FE9" />
+          <stop offset="0.0011048" stopColor="#FBE18A" />
+          <stop offset="0.2094" stopColor="#FCBB45" />
+          <stop offset="0.3765" stopColor="#F75274" />
+          <stop offset="0.5238" stopColor="#D53692" />
+          <stop offset="0.7394" stopColor="#8F39CE" />
+          <stop offset="1" stopColor="#5B4FE9" />
         </linearGradient>
       </defs>
     </svg>

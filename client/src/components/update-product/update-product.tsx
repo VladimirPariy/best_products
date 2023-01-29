@@ -1,7 +1,5 @@
-import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
 import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { AxiosError } from "axios";
+import { useNavigate, useParams } from "react-router";
 
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
@@ -15,39 +13,41 @@ import Slider from "components/ui/slider/slider";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
-import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
-import ProductsApi from "lib/api/products-api";
+import { useAllParameters } from "lib/hooks/use-all-parameters";
+import { ITempChar } from "lib/interfaces/products/creating-product.interface";
+import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
+import { upFirstChar } from "lib/utils/up-first-char";
 import { selectCategories } from "store/categories/categories-selectors";
+import {
+  removeProductImageTrigger,
+  updateProductTrigger,
+  uploadProductImageTrigger,
+} from "store/product-control/product-control-actions";
 import {
   clearProductDetail,
   getProductDetailTrigger,
-  removeProductImageTrigger,
-  uploadProductImageTrigger,
 } from "store/product-detail/product-detail-actions";
 import {
   selectProductDetail,
   selectProductImages,
 } from "store/product-detail/product-detail-selector";
-import { updateProductAction } from "store/products/products-actions";
 import { useAppDispatch, useAppSelector } from "store/store-types";
 
-interface Props {}
-
-const UpdateProduct: FC<Props> = (props) => {
+const UpdateProduct: FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const productDetails = useAppSelector(selectProductDetail);
   const productImages = useAppSelector(selectProductImages);
   const categories = useAppSelector(selectCategories);
+  const { allCharacteristics, allParameters } = useAllParameters();
+  const navigate = useNavigate();
 
   const [categoryId, setCategoryId] = useState<number>(0);
   const [subcategoryId, setSubcategoryId] = useState<number>(0);
   const [productTitle, setProductTitle] = useState<string>("");
   const [productDescription, setProductDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("0");
-  const [characteristics, setCharacteristics] = useState<
-    ICharacteristicsWithParameters[]
-  >([]);
+  const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
 
   useEffect(() => {
     if (id) dispatch(getProductDetailTrigger(+id));
@@ -65,37 +65,41 @@ const UpdateProduct: FC<Props> = (props) => {
       setProductTitle(productDetails.product_title);
       setProductDescription(productDetails.product_description);
       setPrice(productDetails.price);
-      setCharacteristics(productDetails.characteristics);
+      setCharacteristics(
+        productDetails.characteristics.map((item) => {
+          return {
+            parameter: item.parameters.parameter_id,
+            characteristic: item.characteristic_id,
+            id: item.characteristic_id,
+          };
+        })
+      );
     }
   }, [productDetails, categories.length]);
 
-  console.log(characteristics);
+  const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setCharacteristics([
+      ...characteristics,
+      {
+        parameter: 0,
+        characteristic: 0,
+        id: Date.now(),
+      },
+    ]);
+  };
 
-  // const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   setCharacteristics([
-  //     ...characteristics,
-  //     {
-  //       characteristic_title: "",
-  //       characteristic_description: "",
-  //       product_characteristic_id: Date.now(),
-  //     },
-  //   ]);
-  // };
+  const dropCharacteristic = (id: number) => {
+    setCharacteristics(characteristics.filter((char) => char.id !== id));
+  };
 
-  // const dropCharacteristic = (id: number) => {
-  //   setCharacteristics(
-  //     characteristics.filter((char) => char.product_characteristic_id !== id)
-  //   );
-  // };
-
-  // const changeCharacteristic = (key: string, value: string, id: number) => {
-  //   setCharacteristics(
-  //     characteristics.map((char) =>
-  //       char.product_characteristic_id === id ? { ...char, [key]: value } : char
-  //     )
-  //   );
-  // };
+  const changeCharacteristic = (key: string, value: string, id: number) => {
+    setCharacteristics(
+      characteristics.map((char) =>
+        char.id === id ? { ...char, [key]: value } : char
+      )
+    );
+  };
 
   const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files;
@@ -115,57 +119,55 @@ const UpdateProduct: FC<Props> = (props) => {
     dispatch(removeProductImageTrigger({ id: image_id }));
   };
 
-  // const updateProduct = async () => {
-  //   if (id) {
-  //     let updatingData: UpdatingProductDetails = { id: +id };
-  //     if (categoryId !== productDetails.category[0].category_id) {
-  //       updatingData = { ...updatingData, category: categoryId };
-  //     }
-  //     if (
-  //       subcategoryId !== productDetails.product_subcategory[0].subcategory_id
-  //     ) {
-  //       updatingData = { ...updatingData, product_subcategory: subcategoryId };
-  //     }
-  //     if (productTitle !== productDetails.product_title) {
-  //       updatingData = { ...updatingData, product_title: productTitle };
-  //     }
-  //     if (productDescription !== productDetails.product_description) {
-  //       updatingData = {
-  //         ...updatingData,
-  //         product_description: productDescription,
-  //       };
-  //     }
-  //     if (price !== productDetails.price) {
-  //       updatingData = { ...updatingData, price };
-  //     }
-  //     if (
-  //       JSON.stringify(characteristics) !==
-  //       JSON.stringify(productDetails.product_characteristics)
-  //     ) {
-  //       updatingData = {
-  //         ...updatingData,
-  //         product_characteristics: JSON.stringify(characteristics),
-  //       };
-  //     }
-  //
-  //     try {
-  //       setIsLoading(true);
-  //       await ProductsApi.updateProductDetails(updatingData);
-  //       const { id } = updatingData;
-  //       const updatingProduct: IProductDetails =
-  //         await ProductsApi.getProductDetail(id);
-  //
-  //       console.log(updatingProduct);
-  //       dispatch(updateProductAction(updatingProduct));
-  //     } catch (e) {
-  //       if (e instanceof AxiosError) setError(e);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
-  // };
-  // console.log(characteristics);
+  const updateProduct = async () => {
+    if (id) {
+      let updatingData: UpdatingProductDetailsInterface = { id: +id };
+      if (
+        categoryId !== productDetails.subcategories[0].categories.category_id
+      ) {
+        updatingData = { ...updatingData, category: categoryId };
+      }
+      if (subcategoryId !== productDetails.subcategories[0].subcategory_id) {
+        updatingData = { ...updatingData, product_subcategory: subcategoryId };
+      }
+      if (productTitle !== productDetails.product_title) {
+        updatingData = { ...updatingData, product_title: productTitle };
+      }
+      if (productDescription !== productDetails.product_description) {
+        updatingData = {
+          ...updatingData,
+          product_description: productDescription,
+        };
+      }
+      if (price !== productDetails.price) {
+        updatingData = { ...updatingData, price };
+      }
+      if (
+        JSON.stringify(characteristics) !==
+        JSON.stringify(
+          productDetails.characteristics.map((item) => {
+            return {
+              parameter: item.parameter,
+              characteristic: item.characteristic_id,
+              id: item.characteristic_id,
+            };
+          })
+        )
+      ) {
+        updatingData = {
+          ...updatingData,
+          product_characteristics: JSON.stringify(
+            characteristics.map((item) => item.characteristic)
+          ),
+        };
+      }
 
+      if (Object.keys(updatingData).length === 1) return;
+      // navigate(-1);
+      //
+      dispatch(updateProductTrigger(updatingData));
+    }
+  };
   return (
     <ContentContainer>
       <Title>Update product</Title>
@@ -221,49 +223,66 @@ const UpdateProduct: FC<Props> = (props) => {
             min={0}
           />
 
-          {/*<Button submitHandler={addCharacteristic} isPurpleButton={false}>*/}
-          {/*  Add more characteristic*/}
-          {/*</Button>*/}
+          <Button submitHandler={addCharacteristic} isPurpleButton={false}>
+            Add more characteristic
+          </Button>
 
-          {/*{characteristics.length > 0 &&*/}
-          {/*  characteristics.map((char, index) => (*/}
-          {/*    <div key={char.product_characteristic_id}>*/}
-          {/*      <AddProductCharacteristicTitle index={index} />*/}
-          {/*      <AddProductCharacteristicContainer>*/}
-          {/*        <Input*/}
-          {/*          labelText={"Add characteristic title"}*/}
-          {/*          changeHandler={(e) =>*/}
-          {/*            changeCharacteristic(*/}
-          {/*              "characteristic_title",*/}
-          {/*              e.target.value,*/}
-          {/*              char.product_characteristic_id*/}
-          {/*            )*/}
-          {/*          }*/}
-          {/*          value={char.characteristic_title}*/}
-          {/*        />*/}
-          {/*        <Input*/}
-          {/*          labelText="Enter characteristic description"*/}
-          {/*          changeHandler={(e) =>*/}
-          {/*            changeCharacteristic(*/}
-          {/*              "characteristic_description",*/}
-          {/*              e.target.value,*/}
-          {/*              char.product_characteristic_id*/}
-          {/*            )*/}
-          {/*          }*/}
-          {/*          value={char.characteristic_description}*/}
-          {/*        />*/}
-
-          {/*        <Button*/}
-          {/*          submitHandler={() =>*/}
-          {/*            dropCharacteristic(char.product_characteristic_id)*/}
-          {/*          }*/}
-          {/*          style={{ background: "red" }}*/}
-          {/*        >*/}
-          {/*          Delete*/}
-          {/*        </Button>*/}
-          {/*      </AddProductCharacteristicContainer>*/}
-          {/*    </div>*/}
-          {/*  ))}*/}
+          {characteristics.length > 0 &&
+            characteristics.map((char, index) => (
+              <div key={char.id}>
+                <AddProductCharacteristicTitle index={index} />
+                <AddProductCharacteristicContainer>
+                  <Select
+                    labelTitle="Enter parameter"
+                    changeHandler={(e) =>
+                      changeCharacteristic("parameter", e.target.value, char.id)
+                    }
+                    selectDefaultValue={`${char.parameter}`}
+                    selectTitle="Enter parameter"
+                  >
+                    {allParameters
+                      .filter((item) => item.subcategory === subcategoryId)
+                      .map((item) => (
+                        <option
+                          value={item.parameter_id}
+                          key={item.parameter_id}
+                        >
+                          {upFirstChar(item.parameter_title)}
+                        </option>
+                      ))}
+                  </Select>
+                  <Select
+                    labelTitle="Enter characteristic"
+                    changeHandler={(e) =>
+                      changeCharacteristic(
+                        "characteristic",
+                        e.target.value,
+                        char.id
+                      )
+                    }
+                    selectDefaultValue={`${char.characteristic}`}
+                    selectTitle="Enter characteristic"
+                  >
+                    {allCharacteristics
+                      .filter((item) => +char.parameter === item.parameter)
+                      .map((item) => (
+                        <option
+                          value={item.characteristic_id}
+                          key={item.characteristic_id}
+                        >
+                          {upFirstChar(item.characteristic_title)}
+                        </option>
+                      ))}
+                  </Select>
+                  <Button
+                    submitHandler={() => dropCharacteristic(char.id)}
+                    style={{ background: "red" }}
+                  >
+                    Delete
+                  </Button>
+                </AddProductCharacteristicContainer>
+              </div>
+            ))}
           <AddProductImageContainer>
             {productImages && (
               <Slider
@@ -277,7 +296,7 @@ const UpdateProduct: FC<Props> = (props) => {
             Add images
           </BtnForAddImage>
 
-          {/*<Button submitHandler={updateProduct}>Update product</Button>*/}
+          <Button submitHandler={updateProduct}>Update product</Button>
         </>
       ) : (
         <div>...Loading</div>

@@ -53,14 +53,15 @@ class ProductControlApi {
     return await authAxios.delete(`${apiUrls.prod_images}${id}`);
   }
 
-  async updateProductDetails({
+  async updateProduct({
     id,
     ...infoForUpdate
   }: UpdatingProductDetailsInterface) {
-    return await authAxios.patch<string>(
+    const { data } = await authAxios.patch<string>(
       `${apiUrls.one_product_by_id}${id}`,
       infoForUpdate
     );
+    return data;
   }
 }
 
