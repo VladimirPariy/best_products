@@ -1,7 +1,9 @@
+import Arrow from "assets/icon/general/arrow";
 import React, { FC } from "react";
 import { useLocation } from "react-router";
 
 import styles from "components/breadcrumbs/breadcrumbs.module.scss";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
@@ -9,21 +11,26 @@ const Breadcrumbs: FC<Props> = (props) => {
   const location = useLocation();
 
   const crumbs = location.pathname.split("/");
+  let currentLink = "";
 
-  return (
-    <ul>
-      {crumbs.map((crumb, index) => {
-        if (index === 0) {
-          return <span key={index}></span>;
-        }
-        if (index === crumbs.length - 1) {
-          return <span key={index}>{crumb}</span>;
-        }
+  const breadcrumbs = crumbs.map((item, index, arr) => {
+    currentLink += `${item}/`;
+    if (item === "" || item === "product") {
+      return null;
+    }
+    return (
+      <Link
+        to={`${currentLink.slice(0, -1)}`}
+        key={index}
+        className={styles.crumb}
+      >
+        {item}
+        {arr.length - 1 === index ? "" : <Arrow />}
+      </Link>
+    );
+  });
 
-        return <span key={index}>{crumb} &gt; </span>;
-      })}
-    </ul>
-  );
+  return <div className={styles.breadcrumbs}>{breadcrumbs}</div>;
 };
 
 export default Breadcrumbs;

@@ -1,3 +1,7 @@
+@use "scss/index" as *;
+
 .filter {
+  color: white;
+  background: $active_item_color;
   cursor: pointer;
 }

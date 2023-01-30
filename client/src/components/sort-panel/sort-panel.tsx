@@ -32,6 +32,13 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
   );
 
   useEffect(() => {
+    if (!searchParams.get("view")) {
+      setViewStyle(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.get("view")]);
+
+  useEffect(() => {
     if (viewStyle) {
       searchParams.set("view", "list");
       setSearchParams(searchParams);
@@ -51,7 +58,6 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
       setSearchParams(searchParams);
     }
   }, [searchParams, setSearchParams, sortPrice]);
-
   return (
     <div className={styles.wrapper}>
       <ViewSort

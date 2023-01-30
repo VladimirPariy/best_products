@@ -91,6 +91,7 @@ const UpdateProduct: FC = () => {
         })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     productDetails.subcategories,
     productDetails.product_title,

@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: white;
+  background: $active_item_color;
 
   > svg {
     width: 12px;
@@ -29,6 +31,22 @@
 
   .asc > svg {
     transform: rotate(0deg);
+  }
+}
+
+.priceContainer.ascPriceContainer{
+  box-sizing: border-box;
+  border: 1px solid #000;
+  background: white;
+  .price{
+    color: #000;
+  }
+  > svg >path {
+    fill: #000;
+  }
+  .arrow > svg > path{
+    fill: #000;
+
   }
 }
 

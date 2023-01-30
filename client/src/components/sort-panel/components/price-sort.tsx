@@ -19,8 +19,16 @@ const PriceSort: FC<Props> = ({ changeSort, sortPrice }) => {
     sortPrice,
     "asc"
   );
+
+  const buttonStyle = getClassNameByCondition(
+    styles,
+    "priceContainer",
+    "",
+    sortPrice,
+    "ascPriceContainer"
+  );
   return (
-    <div onClick={changeSort} className={styles.priceContainer}>
+    <div onClick={changeSort} className={buttonStyle}>
       <Arrows />
       <span className={styles.price}>Price</span>
       <span className={sortStyle}>

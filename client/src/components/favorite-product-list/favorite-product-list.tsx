@@ -39,7 +39,7 @@ const FavoriteProductList: FC<Props> = ({ products }) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter]);
+  }, [order, sortedProduct.length]);
 
   useEffect(() => {
     let temp = [...sortedProduct];

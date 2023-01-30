@@ -1,6 +1,10 @@
+@use "scss/index" as *;
+
 .category {
   flex-wrap: wrap;
   cursor: default;
+  color: white;
+  background: $active_item_color;
 }
 
 @media screen and (min-width: 769px) {
