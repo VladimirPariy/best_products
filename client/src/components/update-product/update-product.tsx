@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
+import ErrorContainer from "components/ui/error-container/error-container";
 import AddProductCharacteristicContainer from "components/ui/add-product-characteristic-container/add-product-characteristic-container";
 import AddProductCharacteristicTitle from "components/ui/add-product-characteristic-title/add-product-characteristic-title";
 import AddProductImageContainer from "components/ui/add-product-image-container/add-product-image-container";
@@ -13,16 +14,20 @@ import Slider from "components/ui/slider/slider";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
+import { ValidationMessage } from "lib/enums/validation-message";
+import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 import { useAllParameters } from "lib/hooks/use-all-parameters";
 import { ITempChar } from "lib/interfaces/products/creating-product.interface";
 import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
 import { upFirstChar } from "lib/utils/up-first-char";
+
 import { selectCategories } from "store/categories/categories-selectors";
 import {
   removeProductImageTrigger,
   updateProductTrigger,
   uploadProductImageTrigger,
 } from "store/product-control/product-control-actions";
+import { selectProductControlSuccess } from "store/product-control/product-control-selectors";
 import {
   clearProductDetail,
   getProductDetailTrigger,
@@ -41,6 +46,7 @@ const UpdateProduct: FC = () => {
   const categories = useAppSelector(selectCategories);
   const { allCharacteristics, allParameters } = useAllParameters();
   const navigate = useNavigate();
+  const success = useAppSelector(selectProductControlSuccess);
 
   const [categoryId, setCategoryId] = useState<number>(0);
   const [subcategoryId, setSubcategoryId] = useState<number>(0);
@@ -48,6 +54,16 @@ const UpdateProduct: FC = () => {
   const [productDescription, setProductDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("0");
   const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
+
+  const [errorProductTitle, setErrorProductTitle] =
+    useState<ErrorValidationInterface>(null);
+  const [errorDescription, setErrorDescription] =
+    useState<ErrorValidationInterface>(null);
+  const [errorPrice, setErrorPrice] = useState<ErrorValidationInterface>(null);
+  const [errorCharacteristic, setErrorCharacteristic] =
+    useState<ErrorValidationInterface>(null);
+  const [errorUploadImages, setErrorUploadImages] =
+    useState<ErrorValidationInterface>(null);
 
   useEffect(() => {
     if (id) dispatch(getProductDetailTrigger(+id));
@@ -75,7 +91,14 @@ const UpdateProduct: FC = () => {
         })
       );
     }
-  }, [productDetails, categories.length]);
+  }, [
+    productDetails.subcategories,
+    productDetails.product_title,
+    productDetails.product_description,
+    productDetails.price,
+    productDetails.characteristics,
+    categories.length,
+  ]);
 
   const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -119,7 +142,64 @@ const UpdateProduct: FC = () => {
     dispatch(removeProductImageTrigger({ id: image_id }));
   };
 
+  useEffect(() => {
+    if (success) navigate(-1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [success]);
+
+  useEffect(() => {
+    if (errorProductTitle && productTitle.length > 0) {
+      setErrorProductTitle(null);
+    }
+    if (errorDescription && productDescription.length > 0) {
+      setErrorDescription(null);
+    }
+    if (errorPrice && price.length > 0) {
+      setErrorPrice(null);
+    }
+    if (errorCharacteristic && characteristics.length !== 0) {
+      setErrorCharacteristic(null);
+    }
+
+    if (errorUploadImages && productDetails.product_images.length !== 0) {
+      setErrorUploadImages(null);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    productTitle,
+    price,
+    productDescription,
+    characteristics,
+    productDetails.product_images,
+  ]);
+
   const updateProduct = async () => {
+    if (!productTitle) {
+      setErrorProductTitle(ValidationMessage.required);
+    }
+    if (!price) {
+      setErrorPrice(ValidationMessage.required);
+    }
+    if (!productDescription) {
+      setErrorDescription(ValidationMessage.required);
+    }
+    if (characteristics.length === 0) {
+      setErrorCharacteristic(ValidationMessage.invalidCharacteristics);
+    }
+    if (productDetails.product_images.length === 0) {
+      setErrorUploadImages(ValidationMessage.invalidImages);
+    }
+    if (
+      !productTitle ||
+      !price ||
+      !productDescription ||
+      characteristics.length === 0 ||
+      productDetails.product_images.length === 0
+    ) {
+      return;
+    }
+
     if (id) {
       let updatingData: UpdatingProductDetailsInterface = { id: +id };
       if (
@@ -163,8 +243,6 @@ const UpdateProduct: FC = () => {
       }
 
       if (Object.keys(updatingData).length === 1) return;
-      // navigate(-1);
-      //
       dispatch(updateProductTrigger(updatingData));
     }
   };
@@ -179,8 +257,8 @@ const UpdateProduct: FC = () => {
             selectDefaultValue={`${categoryId}`}
             selectTitle="Choose category"
           >
-            {categories.map((category) => (
-              <option value={category.category_id} key={category.category_id}>
+            {categories.map((category, index) => (
+              <option value={category.category_id} key={index}>
                 {category.category_title}
               </option>
             ))}
@@ -192,14 +270,13 @@ const UpdateProduct: FC = () => {
             selectDefaultValue={`${subcategoryId}`}
             selectTitle="Choose subcategory"
           >
-            {categories[categoryId - 1]?.subcategories.map((subcategory) => (
-              <option
-                value={subcategory.subcategory_id}
-                key={subcategory.subcategory_id}
-              >
-                {subcategory.subcategory_title}
-              </option>
-            ))}
+            {categories[categoryId - 1]?.subcategories.map(
+              (subcategory, index) => (
+                <option value={subcategory.subcategory_id} key={index}>
+                  {subcategory.subcategory_title}
+                </option>
+              )
+            )}
           </Select>
 
           <Input
@@ -207,12 +284,16 @@ const UpdateProduct: FC = () => {
             changeHandler={(e) => setProductTitle(e.target.value)}
             value={productTitle}
             type="text"
+            isError={!!errorProductTitle}
+            children={<ErrorContainer errorText={errorProductTitle} />}
           />
 
           <TextArea
             labelText="Update product description"
             changeHandler={(e) => setProductDescription(e.target.value)}
             value={productDescription}
+            isError={!!errorDescription}
+            children={<ErrorContainer errorText={errorDescription} />}
           />
 
           <Input
@@ -221,15 +302,21 @@ const UpdateProduct: FC = () => {
             value={price}
             type="number"
             min={0}
+            isError={!!errorPrice}
+            children={<ErrorContainer errorText={errorPrice} />}
           />
 
-          <Button submitHandler={addCharacteristic} isPurpleButton={false}>
+          <Button
+            submitHandler={addCharacteristic}
+            isPurpleButton={false}
+            errorNode={<ErrorContainer errorText={errorCharacteristic} />}
+          >
             Add more characteristic
           </Button>
 
           {characteristics.length > 0 &&
             characteristics.map((char, index) => (
-              <div key={char.id}>
+              <div key={index}>
                 <AddProductCharacteristicTitle index={index} />
                 <AddProductCharacteristicContainer>
                   <Select
@@ -242,11 +329,8 @@ const UpdateProduct: FC = () => {
                   >
                     {allParameters
                       .filter((item) => item.subcategory === subcategoryId)
-                      .map((item) => (
-                        <option
-                          value={item.parameter_id}
-                          key={item.parameter_id}
-                        >
+                      .map((item, index) => (
+                        <option value={item.parameter_id} key={index}>
                           {upFirstChar(item.parameter_title)}
                         </option>
                       ))}
@@ -265,11 +349,8 @@ const UpdateProduct: FC = () => {
                   >
                     {allCharacteristics
                       .filter((item) => +char.parameter === item.parameter)
-                      .map((item) => (
-                        <option
-                          value={item.characteristic_id}
-                          key={item.characteristic_id}
-                        >
+                      .map((item, index) => (
+                        <option value={item.characteristic_id} key={index}>
                           {upFirstChar(item.characteristic_title)}
                         </option>
                       ))}
@@ -292,7 +373,10 @@ const UpdateProduct: FC = () => {
               />
             )}
           </AddProductImageContainer>
-          <BtnForAddImage fileHandler={uploadFileHandler}>
+          <BtnForAddImage
+            fileHandler={uploadFileHandler}
+            errorNode={<ErrorContainer errorText={errorUploadImages} />}
+          >
             Add images
           </BtnForAddImage>
 

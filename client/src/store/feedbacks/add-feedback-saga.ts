@@ -4,48 +4,52 @@ import { call, put, takeLatest } from "redux-saga/effects";
 
 import FeedbacksApi from "lib/api/feedbacks-api";
 import {
-  IDataForAddFeedback,
-  IFeedback,
+	IDataForAddFeedback,
+	IFeedback,
 } from "lib/interfaces/feedbacks/feedbacks.interface";
 import {
-  incrementNegativeFeedbackCounterInFavoriteList,
-  incrementPositiveFeedbackCounterInFavoriteList,
+	incrementNegativeFeedbackCounterInFavoriteList,
+	incrementPositiveFeedbackCounterInFavoriteList,
 } from "store/favorite-products/favorite-products-actions";
 import {
-  addFeedbackTrigger,
-  addFeedbackFulfilled,
-  addFeedbackPending,
-  addFeedbackRejected,
+	addFeedbackTrigger,
+	addFeedbackFulfilled,
+	feedbacksPending,
+	feedbacksRejected,
 } from "store/feedbacks/feedbacks-actions";
 import {
-  incrementNegativeFeedbackCounter,
-  incrementPositiveFeedbackCounter,
+	incrementNegativeFeedbackCounter,
+	incrementPositiveFeedbackCounter,
 } from "store/products/products-actions";
 
 function* addFeedbackWorker({ payload }: PayloadAction<IDataForAddFeedback>) {
-  yield put(addFeedbackPending());
-  try {
-    const res: IFeedback = yield call(FeedbacksApi.addFeedback, payload);
-    yield put(addFeedbackFulfilled(res));
-    if (res.feedback_type === 1) {
-      yield put(incrementPositiveFeedbackCounter(res.product));
-      yield put(incrementPositiveFeedbackCounterInFavoriteList(res.product));
-    }
-    if (res.feedback_type === 0) {
-      yield put(incrementNegativeFeedbackCounter(res.product));
-      yield put(incrementNegativeFeedbackCounterInFavoriteList(res.product));
-    }
-  } catch (error) {
-    if (error instanceof AxiosError)
-      yield put(
-        addFeedbackRejected({
-          status_message: error.request.response,
-          status: error.request.status,
-        })
-      );
-  }
+	yield put(feedbacksPending());
+	try {
+		const res: IFeedback = yield call(FeedbacksApi.addFeedback, payload);
+		yield put(addFeedbackFulfilled(res));
+		if (res.feedback_type === 1) {
+			yield put(incrementPositiveFeedbackCounter(res.product));
+			yield put(
+				incrementPositiveFeedbackCounterInFavoriteList(res.product)
+			);
+		}
+		if (res.feedback_type === 0) {
+			yield put(incrementNegativeFeedbackCounter(res.product));
+			yield put(
+				incrementNegativeFeedbackCounterInFavoriteList(res.product)
+			);
+		}
+	} catch (error) {
+		if (error instanceof AxiosError)
+			yield put(
+				feedbacksRejected({
+					status_message: error.request.response,
+					status: error.request.status,
+				})
+			);
+	}
 }
 
 export function* addFeedbackWatcher() {
-  yield takeLatest(addFeedbackTrigger.type, addFeedbackWorker);
+	yield takeLatest(addFeedbackTrigger.type, addFeedbackWorker);
 }

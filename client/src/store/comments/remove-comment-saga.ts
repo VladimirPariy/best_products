@@ -1,7 +1,8 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import CommentsApi from "lib/api/comments-api";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
+
+import CommentsApi from "lib/api/comments-api";
 import {
   removeCommentFulfilled,
   removeCommentPending,
@@ -14,7 +15,6 @@ function* removeCommentWorker({ payload }: PayloadAction<number>) {
   yield put(removeCommentPending());
   try {
     const res: { id: number } = yield call(CommentsApi.removeComment, payload);
-
     yield put(removeCommentFulfilled(res));
     yield put(decrementCommentsAmount());
   } catch (error) {

@@ -1,4 +1,3 @@
-import { useAllParameters } from "lib/hooks/use-all-parameters";
 import React, {
   ChangeEvent,
   FC,
@@ -23,6 +22,7 @@ import Slider from "components/ui/slider/slider";
 import TextArea from "components/ui/text-area/text-area";
 import Title from "components/ui/title/title";
 
+import { useAllParameters } from "lib/hooks/use-all-parameters";
 import { ValidationMessage } from "lib/enums/validation-message";
 import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 import ProductControlApi from "lib/api/product-control-api";

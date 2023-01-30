@@ -1,4 +1,3 @@
-import { Loader } from "components/ui/loader/loader";
 import React, { FC } from "react";
 
 import {
@@ -12,6 +11,7 @@ import { useAppSelector } from "store/store-types";
 import Banner from "pages/home/components/banner";
 import MainPageWrapper from "pages/home/components/main-page-wrapper";
 import SubcategoryLink from "pages/home/components/subcategory-link";
+import { Loader } from "components/ui/loader/loader";
 
 const Home: FC = () => {
   const categories = useAppSelector(selectCategories);

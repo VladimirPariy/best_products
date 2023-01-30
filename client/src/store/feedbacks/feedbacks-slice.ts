@@ -21,35 +21,33 @@ export const feedbacksSlice = createSlice({
   name: "@@feedbacks",
   initialState,
   reducers: {
-    getFeedbacksTrigger: (_, { payload }: PayloadAction<number>) => {},
-    getFeedbacksPending: (state) => {
+    feedbacksPending: (state) => {
       state.error = null;
       state.status = true;
     },
-    getFeedbacksRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
+
+   feedbacksRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.error = payload;
       state.status = false;
     },
+
+    getFeedbacksTrigger: (_, { payload }: PayloadAction<number>) => {},
+
     getFeedbacksFulfilled: (state, { payload }: PayloadAction<IFeedback[]>) => {
       state.error = null;
       state.status = false;
       state.entities = payload;
     },
+
     clearFeedbacks: () => {
       return initialState;
     },
+
     addFeedbackTrigger: (
       _,
       { payload }: PayloadAction<IDataForAddFeedback>
     ) => {},
-    addFeedbackPending: (state) => {
-      state.error = null;
-      state.status = true;
-    },
-    addFeedbackRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
-      state.status = false;
-      state.error = payload;
-    },
+
     addFeedbackFulfilled: (state, { payload }: PayloadAction<IFeedback>) => {
       state.status = false;
       state.error = null;

@@ -24,17 +24,21 @@ export const searchSlice = createSlice({
     clearSearchState: () => {
       return initialState;
     },
+
     searchTrigger: (_, action: PayloadAction<string>) => {},
+
     searchPending: (state) => {
       state.isLoading = true;
       state.error = null;
       state.entities = initialState.entities;
     },
+
     searchRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.isLoading = false;
       state.entities = initialState.entities;
       state.error = payload;
     },
+    
     searchFulfilled: (state, { payload }: PayloadAction<ISearchData>) => {
       state.isLoading = false;
       state.error = null;

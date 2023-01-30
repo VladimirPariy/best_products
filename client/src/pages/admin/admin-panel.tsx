@@ -1,13 +1,14 @@
-import AdminLink from "components/ui/admin-link/admin-link";
-import ContentContainer from "components/ui/content-container/content-container";
-
-import { appUrl } from "lib/enums/app-urls";
 import React, { FC } from "react";
 import {
   AiOutlineBarChart,
   AiOutlineEdit,
   AiOutlineUser,
 } from "react-icons/ai";
+
+import AdminLink from "components/ui/admin-link/admin-link";
+import ContentContainer from "components/ui/content-container/content-container";
+
+import { appUrl } from "lib/enums/app-urls";
 
 export interface IAdminLinks {
   url: string;

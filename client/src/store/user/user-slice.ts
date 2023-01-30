@@ -34,16 +34,19 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.error = null;
     },
+
     userTokenPending: (state) => {
       state.isFetching = true;
       state.token = "";
       state.error = null;
     },
+
     userTokenRejected: (state, action: PayloadAction<ErrorPayload>) => {
       state.error = action.payload;
       state.isFetching = false;
       state.token = "";
     },
+
     userTokenTrigger: (
       _,
       action: PayloadAction<IRegistrationData | ILoginData>
@@ -55,12 +58,14 @@ export const userSlice = createSlice({
       state.error = null;
       state.auth = true;
     },
+
     userInfoPending: (state) => {
       state.isFetching = true;
       state.userInfo = {} as IUser;
       state.error = null;
       state.auth = false;
     },
+
     userInfoRejected: (state, action: PayloadAction<ErrorPayload>) => {
       state.error = action.payload;
       state.userInfo = {} as IUser;
@@ -68,10 +73,13 @@ export const userSlice = createSlice({
       state.auth = false;
       deleteTokenFromStorage();
     },
+
     userInfoTrigger: (_, action: PayloadAction<TokenType>) => {},
+
     clearUser: () => {
       return initialState;
     },
+
     clearUserError: (state) => {
       state.error = null;
     },
@@ -86,14 +94,17 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.error = null;
     },
+
     updateUserPending: (state) => {
       state.isFetching = true;
       state.error = null;
     },
+
     updateUserReject: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.isFetching = false;
       state.error = payload;
     },
+    
     userUpdateTrigger: (_, action: PayloadAction<IUpdateUserData>) => {},
   },
 });

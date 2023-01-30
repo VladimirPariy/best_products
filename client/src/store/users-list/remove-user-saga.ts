@@ -5,29 +5,32 @@ import { AxiosError } from "axios";
 import UserApi from "lib/api/user-api";
 
 import {
-  removeUserFulfilled,
-  removeUserRejected,
-  removeUserPending,
-  removeUserTrigger,
+	removeUserFulfilled,
+	removeUserTrigger,
+	userPending,
+	userRejected,
 } from "store/users-list/users-list-actions";
 
 function* removeUserWorker({ payload }: PayloadAction<number>) {
-  yield put(removeUserPending());
-  try {
-    const res: { userId: number } = yield call(UserApi.removeOneUser, payload);
+	yield put(userPending());
+	try {
+		const res: { userId: number } = yield call(
+			UserApi.removeOneUser,
+			payload
+		);
 
-    yield put(removeUserFulfilled(res));
-  } catch (error) {
-    if (error instanceof AxiosError)
-      yield put(
-        removeUserRejected({
-          status_message: error.request.response,
-          status: error.request.status,
-        })
-      );
-  }
+		yield put(removeUserFulfilled(res));
+	} catch (error) {
+		if (error instanceof AxiosError)
+			yield put(
+				userRejected({
+					status_message: error.request.response,
+					status: error.request.status,
+				})
+			);
+	}
 }
 
 export function* removeUserWatcher() {
-  yield takeLatest(removeUserTrigger.type, removeUserWorker);
+	yield takeLatest(removeUserTrigger.type, removeUserWorker);
 }

@@ -39,10 +39,12 @@ export const statisticsSlice = createSlice({
     clearStatistics: () => {
       return initialState;
     },
+
     getStatisticsPending: (state) => {
       state.status = true;
       state.error = null;
     },
+
     getStatisticsRejected: (
       state,
       { payload }: PayloadAction<ErrorPayload>
@@ -50,6 +52,7 @@ export const statisticsSlice = createSlice({
       state.status = false;
       state.error = payload;
     },
+    
     getStatisticsTrigger: () => {},
 
     getUsersStatisticsFulfilled: (

@@ -22,38 +22,45 @@ export const usersListSlice = createSlice({
     clearUserList: () => {
       return initialState;
     },
+
     usersListTrigger: () => {},
+
     usersListPending: (state) => {
       state.isFetching = true;
       state.error = null;
       state.usersList = [];
     },
+
     usersListRejected: (state, action: PayloadAction<ErrorPayload>) => {
       state.isFetching = false;
       state.error = action.payload;
       state.usersList = [];
     },
+
     usersListFulfilled: (state, action: PayloadAction<IUser[]>) => {
       state.isFetching = false;
       state.error = null;
       state.usersList = action.payload;
     },
 
-    changeUserRoleTrigger: (
-      _,
-      { payload }: PayloadAction<IDataForUpdateUserRole>
-    ) => {},
-    changeUserRolePending: (state) => {
+    userPending: (state) => {
       state.error = null;
       state.isFetching = true;
     },
-    changeUserRoleRejected: (
+
+    userRejected: (
       state,
       { payload }: PayloadAction<ErrorPayload>
     ) => {
       state.error = payload;
       state.isFetching = false;
     },
+
+    changeUserRoleTrigger: (
+      _,
+      { payload }: PayloadAction<IDataForUpdateUserRole>
+    ) => {},
+
     changeUserRoleFulfilled: (state, { payload }: PayloadAction<IUser>) => {
       state.error = null;
       state.isFetching = false;
@@ -67,14 +74,8 @@ export const usersListSlice = createSlice({
     },
 
     removeUserTrigger: (_, { payload }: PayloadAction<number>) => {},
-    removeUserPending: (state) => {
-      state.error = null;
-      state.isFetching = true;
-    },
-    removeUserRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
-      state.error = payload;
-      state.isFetching = false;
-    },
+
+
     removeUserFulfilled: (
       state,
       { payload }: PayloadAction<{ userId: number }>
