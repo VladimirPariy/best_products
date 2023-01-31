@@ -4,7 +4,7 @@ import styles from "components/product-detail/product-detail-info/product-info.m
 
 import { ICounters } from "lib/interfaces/products/product.interface";
 import { IShotImagesInfo } from "lib/interfaces/products/upload-image.interface";
-import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
+import { ICharacteristicsWithParameters } from "lib/interfaces/characteristic.interface";
 
 import ProductCounters from "components/product-detail/product-detail-info/components/product-counters";
 import ProductInfoWrapper from "components/product-detail/product-detail-info/components/product-info-wrapper";

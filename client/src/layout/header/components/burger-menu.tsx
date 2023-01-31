@@ -4,7 +4,7 @@ import styles from "layout/header/components/burger-menu.module.scss";
 
 import { addTwoClassNames } from "lib/utils/add-two-class-names";
 import { selectBurgerMenu } from "store/modals/modals-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { setVisibilityBurgerMenu } from "store/modals/modals-actions";
 
 const BurgerMenu: FC = () => {

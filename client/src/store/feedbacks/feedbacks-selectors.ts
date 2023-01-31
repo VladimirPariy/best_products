@@ -1,7 +1,3 @@
-import { RootState } from "store/store-types";
+import { RootState } from "lib/interfaces/store.types";
 
-const selectFeedbacks = (state: RootState) => state.feedbacks.entities;
-const selectFeedbacksStatus = (state: RootState) => state.feedbacks.status;
-const selectFeedbacksError = (state: RootState) => state.feedbacks.error;
-
-export { selectFeedbacks, selectFeedbacksStatus, selectFeedbacksError };
+export const selectFeedbacks = (state: RootState) => state.feedbacks.entities;

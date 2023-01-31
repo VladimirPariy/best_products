@@ -39,7 +39,7 @@ import {
   selectProductControlStatus,
   selectProductControlSuccess,
 } from "store/product-control/product-control-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 const CreateProduct: FC = () => {
   const dispatch = useAppDispatch();

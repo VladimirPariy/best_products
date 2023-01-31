@@ -5,7 +5,7 @@ import { useScreenWidth } from "lib/hooks/use-screen-width";
 import DesktopHeader from "layout/header/components/desktop-header";
 import PhoneHeader from "layout/header/components/phone-header";
 import { selectBurgerMenu } from "store/modals/modals-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 const Header: FC = () => {
   const userScreenWidth = useScreenWidth();

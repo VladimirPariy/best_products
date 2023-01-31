@@ -11,8 +11,8 @@ import RadioInput from "components/filter-panel/components/radio-input";
 import Separator from "components/filter-panel/components/separator";
 
 import { getProductsParametersById } from "lib/api/parameters-api";
-import { ISubcategory } from "lib/interfaces/categories/categories.interface";
-import { IParameters } from "lib/interfaces/parameters/parameters.interface";
+import { ISubcategory } from "lib/interfaces/categories.interface";
+import { IParameters } from "lib/interfaces/parameters.interface";
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 import { useSetParam } from "lib/hooks/use-set-param";
 import { upFirstChar } from "lib/utils/up-first-char";
@@ -24,7 +24,7 @@ import {
   selectMinPrice,
 } from "store/products/products-selectors";
 import { selectCategories } from "store/categories/categories-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 interface Props {
   isShowFilter: boolean;

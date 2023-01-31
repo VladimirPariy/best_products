@@ -17,7 +17,7 @@ import {
   selectUserError,
   selectUserStatus,
 } from "store/user/user-selector";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { setVisibilitySignUpModal } from "store/modals/modals-actions";
 import { selectSignUpModal } from "store/modals/modals-selectors";
 
@@ -29,7 +29,7 @@ import Input from "components/ui/input/input";
 import Title from "components/ui/title/title";
 import { Loader } from "components/ui/loader/loader";
 
-const RegistrationModal: FC = () => {
+const SignUpModal: FC = () => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);
   const token = useAppSelector(selectToken);
@@ -220,4 +220,4 @@ const RegistrationModal: FC = () => {
   );
 };
 
-export default RegistrationModal;
+export default SignUpModal;

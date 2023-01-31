@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, ReactNode } from "react";
 import cl from "components/ui/button/buttom.module.scss";
-import styles from "components/ui/btn-for-add-image/btn-for-add-images.module.scss";
+import styles from "components/ui/btn-for-add-image/btn-for-add-image.module.scss";
 
 import { addTwoClassNames } from "lib/utils/add-two-class-names";
 

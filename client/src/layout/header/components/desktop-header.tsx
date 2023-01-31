@@ -8,7 +8,7 @@ import User from "layout/header/components/user";
 import UserModal from "layout/header/components/user-modal";
 
 import { selectUserModal } from "store/modals/modals-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 const DesktopHeader: FC = () => {
   const isShowUserModal = useAppSelector(selectUserModal);

@@ -4,8 +4,11 @@ import styles from "components/statistics/statistics.module.scss";
 
 import { statisticTabs } from "components/statistics/statistics-tabs-enum";
 import TabsItem from "components/ui/tab-item/tabs-item";
-import { getStatisticsTrigger } from "store/statistics/statistics-actions";
-import { useAppDispatch } from "store/store-types";
+import {
+  clearStatistics,
+  getStatisticsTrigger,
+} from "store/statistics/statistics-actions";
+import { useAppDispatch } from "lib/interfaces/store.types";
 
 const Statistics: FC = () => {
   const [activeTab, setActiveTab] = useState<string>(statisticTabs[0].title);
@@ -17,6 +20,9 @@ const Statistics: FC = () => {
 
   useEffect(() => {
     dispatch(getStatisticsTrigger());
+    return () => {
+      dispatch(clearStatistics());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

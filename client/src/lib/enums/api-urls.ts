@@ -1,43 +1,29 @@
 export const enum apiUrls {
   BASE_URL = "http://localhost:8000/api/",
   BASE_Image_URL = "http://localhost:8000/",
-
   sign_up = "auth/registration",
   sign_in = "auth/login",
-
   all_users = "user",
-  one_user_by_id = "user/", // :id
-
-  newTokenForUser = "user/token/", // :id ?????????????
-
+  one_user_by_id = "user/",
+  newTokenForUser = "user/token/",
   all_roles = "user/roles",
-  role_by_user_id = "user/roles/", //:id
-
+  role_by_user_id = "user/roles/",
   all_categories = "categories",
-
   products = "products",
-  one_product_by_id = "products/", // :id
+  one_product_by_id = "products/",
   temp_images = "products/temp/",
-  prod_images = "products/img/", //:id
+  prod_images = "products/img/",
   filtered_prod = "products/filter",
-
   parameters = "parameters/",
   characteristics = "characteristics/",
-
   search = "products/search",
-
   addComment = "comments",
   commentById = "comments/", //:id
-  commentsByProductId = "comments/product/", //:id
-
+  commentsByProductId = "comments/product/",
   priceHistoryByProductId = "history/",
-
-  favorite = "favorite/", //:userId
-
+  favorite = "favorite/",
   view = "view/",
-
-  feedbacks = "feedbacks/", // :userId
-
+  feedbacks = "feedbacks/",
   userStatistic = "statistics/users",
   popularStatistic = "statistics/views",
   favoritesStatistic = "statistics/favorites",

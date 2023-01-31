@@ -3,7 +3,7 @@ import React, { FC, MouseEvent, Dispatch, SetStateAction } from "react";
 import styles from "layout/header/components/user-modal.module.scss";
 
 import { deleteTokenFromStorage } from "lib/utils/token-from-storage";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { selectAuth, selectUser } from "store/user/user-selector";
 import { clearUser } from "store/user/user-actions";
 import {

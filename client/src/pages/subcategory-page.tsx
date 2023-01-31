@@ -6,7 +6,7 @@ import { Observer } from "components/observer/observer";
 import ProductsList from "components/products-list/products-list";
 
 import { selectCategories } from "store/categories/categories-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 const SubcategoryPage: FC = () => {
   const location = useLocation();

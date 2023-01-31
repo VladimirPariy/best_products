@@ -5,8 +5,8 @@ import {
   IStatisticsRating,
   IStatisticsUsers,
   IStatisticsCommented,
-} from "lib/interfaces/statistics/statistics.interface";
-import { ErrorPayload } from "store/store-types";
+} from "lib/interfaces/statistics.interface";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   error: null | ErrorPayload;
@@ -52,7 +52,7 @@ export const statisticsSlice = createSlice({
       state.status = false;
       state.error = payload;
     },
-    
+
     getStatisticsTrigger: () => {},
 
     getUsersStatisticsFulfilled: (

@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import ProductControlApi from "lib/api/product-control-api";
 import ProductDetailApi from "lib/api/product-detail-api";
-import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
+import { IProductDetails } from "lib/interfaces/product-details.interface";
 import { incrementViewFavorite } from "store/favorite-products/favorite-products-actions";
 import {
   getProductDetailFulfilled,

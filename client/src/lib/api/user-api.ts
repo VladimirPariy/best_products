@@ -1,6 +1,6 @@
 import { authAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { IDataForUpdateUserRole } from "lib/interfaces/user-role/user-role";
+import { IDataForUpdateUserRole } from "lib/interfaces/user-role.interface";
 import { IUpdateUserData } from "lib/interfaces/user/update-user-data.interface";
 import { IRole, IUser } from "lib/interfaces/user/user.interface";
 

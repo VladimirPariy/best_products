@@ -8,7 +8,7 @@ import Logo from "layout/header/components/logo";
 import SearchBar from "components/search/search-bar";
 import User from "layout/header/components/user";
 import { selectBurgerMenu } from "store/modals/modals-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 const PhoneHeader: FC = () => {
   const checkedBurgerMenu = useAppSelector(selectBurgerMenu);

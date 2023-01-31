@@ -3,7 +3,7 @@ import CommentsApi from "lib/api/comments-api";
 import {
   IDataForAddComment,
   IShotCommentsWithUser,
-} from "lib/interfaces/comments/comments.interface";
+} from "lib/interfaces/comments.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 import {

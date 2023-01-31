@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
+import { IFulfilledDataForRemove } from "lib/interfaces/favorite.interface";
 import { IDataForCreating } from "lib/interfaces/products/creating-product.interface";
 import { UpdatingProductDetailsInterface } from "lib/interfaces/products/updating-product-details.interface";
 import { IUploadImage } from "lib/interfaces/products/upload-image.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   status: boolean;

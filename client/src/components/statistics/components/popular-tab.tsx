@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import BarChart from "components/ui/chart/bar-chart";
 
 import { selectStatisticPopular } from "store/statistics/statistics-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 const PopularTab: FC = () => {
   const popular = useAppSelector(selectStatisticPopular);

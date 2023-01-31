@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICategoryWithSubcategory } from "lib/interfaces/categories/categories.interface";
-import { ErrorPayload } from "store/store-types";
+import { ICategoryWithSubcategory } from "lib/interfaces/categories.interface";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   categoriesList: ICategoryWithSubcategory[];

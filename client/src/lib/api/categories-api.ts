@@ -1,6 +1,6 @@
 import { defaultAxios } from "lib/api/axios-instances";
 import { apiUrls } from "lib/enums/api-urls";
-import { ICategoryWithSubcategory } from "lib/interfaces/categories/categories.interface";
+import { ICategoryWithSubcategory } from "lib/interfaces/categories.interface";
 
 export const categoriesApi = async () => {
   const { data } = await defaultAxios.get<ICategoryWithSubcategory[]>(

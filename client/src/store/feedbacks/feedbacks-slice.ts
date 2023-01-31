@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IDataForAddFeedback,
   IFeedback,
-} from "lib/interfaces/feedbacks/feedbacks.interface";
-import { ErrorPayload } from "store/store-types";
+} from "lib/interfaces/feedbacks.interface";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   entities: IFeedback[];
@@ -26,7 +26,7 @@ export const feedbacksSlice = createSlice({
       state.status = true;
     },
 
-   feedbacksRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
+    feedbacksRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.error = payload;
       state.status = false;
     },

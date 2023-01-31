@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styles from "components/product-detail/product-detail-tabs/components/characteristic-tab/characteristics-tab.module.scss";
 
 import { upFirstChar } from "lib/utils/up-first-char";
-import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
+import { ICharacteristicsWithParameters } from "lib/interfaces/characteristic.interface";
 
 interface Props {
   characteristics: ICharacteristicsWithParameters[];

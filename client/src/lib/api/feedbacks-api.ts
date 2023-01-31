@@ -3,7 +3,7 @@ import { apiUrls } from "lib/enums/api-urls";
 import {
   IDataForAddFeedback,
   IFeedback,
-} from "lib/interfaces/feedbacks/feedbacks.interface";
+} from "lib/interfaces/feedbacks.interface";
 
 class FeedbacksApi {
   async getUserFeedbacks(userId: number) {

@@ -7,7 +7,7 @@ import { validateLatinLetter } from "lib/utils/validate-latin-letter";
 import { ILoginData } from "lib/interfaces/user/login-data.interface";
 import { ErrorValidationInterface } from "lib/interfaces/error-validation.interface";
 
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import {
   clearUser,
   userInfoTrigger,

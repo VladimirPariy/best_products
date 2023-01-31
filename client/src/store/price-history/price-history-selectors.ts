@@ -1,4 +1,4 @@
-import { RootState } from "store/store-types";
+import { RootState } from "lib/interfaces/store.types";
 
 const selectPriceHistory = (state: RootState) => state.priceHistory.entities;
 const selectPriceHistoryStatus = (state: RootState) =>

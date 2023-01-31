@@ -1,9 +1,9 @@
-import Arrow from "assets/icon/general/arrow";
 import React, { FC } from "react";
 import { useLocation } from "react-router";
 
 import styles from "components/breadcrumbs/breadcrumbs.module.scss";
 import { Link } from "react-router-dom";
+import Arrow from "assets/icon/general/arrow";
 
 interface Props {}
 

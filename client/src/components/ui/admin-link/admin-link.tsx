@@ -1,4 +1,4 @@
-import { IAdminLinks } from "pages/admin/admin-panel";
+import { IAdminLinks } from "pages/admin-panel";
 import React, { FC } from "react";
 import styles from "components/ui/admin-link/admin-link.module.scss";
 import { Link } from "react-router-dom";

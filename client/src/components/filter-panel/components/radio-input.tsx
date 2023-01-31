@@ -5,7 +5,7 @@ import styles from "components/filter-panel/components/radio-input.module.scss";
 import {
   ICategoryWithSubcategory,
   ISubcategory,
-} from "lib/interfaces/categories/categories.interface";
+} from "lib/interfaces/categories.interface";
 import { NavLink } from "react-router-dom";
 
 interface Props {

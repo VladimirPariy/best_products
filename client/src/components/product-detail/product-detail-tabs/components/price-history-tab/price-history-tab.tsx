@@ -23,7 +23,7 @@ import {
   selectPriceHistoryError,
   selectPriceHistoryStatus,
 } from "store/price-history/price-history-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 import { Loader } from "components/ui/loader/loader";
 import ErrorContainer from "components/ui/error-container/error-container";
@@ -75,6 +75,15 @@ const PriceHistoryTab: FC<Props> = ({ product_id }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
   return (
     <>
       {isLoading && <Loader color={color} />}
@@ -86,7 +95,7 @@ const PriceHistoryTab: FC<Props> = ({ product_id }) => {
       )}
       {priceHistory?.length > 0 && (
         <div className={styles.chartContainer}>
-          <Line data={data} />
+          <Line data={data} options={options} />
         </div>
       )}
     </>

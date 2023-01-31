@@ -5,7 +5,7 @@ import {
   IStatisticsRating,
   IStatisticsFavorites,
   IStatisticsPopular,
-} from "lib/interfaces/statistics/statistics.interface";
+} from "lib/interfaces/statistics.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 import {

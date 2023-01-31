@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IDataForAddComment,
   IShotCommentsWithUser,
-} from "lib/interfaces/comments/comments.interface";
-import { ErrorPayload } from "store/store-types";
+} from "lib/interfaces/comments.interface";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   status: boolean;

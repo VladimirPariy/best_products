@@ -3,7 +3,7 @@ import { apiUrls } from "lib/enums/api-urls";
 import {
   IDataForAddComment,
   IShotCommentsWithUser,
-} from "lib/interfaces/comments/comments.interface";
+} from "lib/interfaces/comments.interface";
 
 class CommentsApi {
   async getCommentsByProductId(id: number) {

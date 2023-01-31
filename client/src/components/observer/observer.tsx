@@ -7,7 +7,7 @@ import {
   selectProductsStatus,
   selectTotalProductsPage,
 } from "store/products/products-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { setCurrentPage } from "store/products/products-actions";
 
 const Observer: FC = () => {

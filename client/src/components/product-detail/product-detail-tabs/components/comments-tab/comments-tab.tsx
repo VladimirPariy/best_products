@@ -12,7 +12,7 @@ import {
   selectCommentsStatus,
 } from "store/comments/comments-selectors";
 import { setVisibilitySignInModal } from "store/modals/modals-actions";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { selectUser } from "store/user/user-selector";
 
 import { Loader } from "components/ui/loader/loader";

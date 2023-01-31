@@ -13,6 +13,7 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
+    cursor: pointer;
 
     > svg {
       height: 18.5px;
@@ -127,7 +128,7 @@
       }
 
       .feedback {
-        opacity: 0.6;
+        color: rgba(118, 110, 211, 0.6);
       }
 
       .isActive {
@@ -199,6 +200,7 @@
     background: $active_item_color;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
     > svg {
       margin: 9px 0;
@@ -310,7 +312,7 @@
       }
 
       .feedback {
-        opacity: 0.6;
+        color: rgba(118, 110, 211, 0.6);
       }
       .isActive {
         color: #766ed3;

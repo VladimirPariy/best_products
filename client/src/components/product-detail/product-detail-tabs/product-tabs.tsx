@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 
 import { TabsAdminEnum } from "components/product-detail/product-detail-tabs/components/tabs-enum";
-import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
+import { ICharacteristicsWithParameters } from "lib/interfaces/characteristic.interface";
 
 import CharacteristicsTab from "components/product-detail/product-detail-tabs/components/characteristic-tab/characteristics-tab";
 import CommentsTab from "components/product-detail/product-detail-tabs/components/comments-tab/comments-tab";
@@ -10,7 +10,7 @@ import PriceHistoryTab from "components/product-detail/product-detail-tabs/compo
 import TabsList from "components/product-detail/product-detail-tabs/components/tabs-list/tabs-list";
 import ContentContainer from "components/ui/content-container/content-container";
 
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 import { selectUser } from "store/user/user-selector";
 
 interface Props {

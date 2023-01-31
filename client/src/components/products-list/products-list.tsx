@@ -12,7 +12,7 @@ import {
   selectProductsOrderBy,
   selectProductsStatus,
 } from "store/products/products-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 import ProductItem from "components/ui/product-item/product-item";
 import ProductListWrapper from "components/ui/product-list-wrapper/product-list-wrapper";

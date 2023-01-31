@@ -1,7 +1,6 @@
-import { RootState } from "store/store-types";
+import { RootState } from "lib/interfaces/store.types";
 
 const selectProductList = (state: RootState) => state.products.productsList;
-const selectProductsError = (state: RootState) => state.products.error;
 const selectProductsStatus = (state: RootState) => state.products.isFetch;
 const selectCurrentProductPage = (state: RootState) =>
   state.products.currentPage;
@@ -13,7 +12,6 @@ const selectMaxPrice = (state: RootState) => state.products.maxPrice;
 
 export {
   selectProductList,
-  selectProductsError,
   selectProductsStatus,
   selectCurrentProductPage,
   selectTotalProductsPage,

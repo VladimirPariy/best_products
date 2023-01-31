@@ -1,8 +1,8 @@
 import {
   ICategoryWithSubcategory,
   ISubcategory,
-} from "lib/interfaces/categories/categories.interface";
-import { ErrorPayload, RootState } from "store/store-types";
+} from "lib/interfaces/categories.interface";
+import { ErrorPayload, RootState } from "lib/interfaces/store.types";
 
 const selectCategories = (state: RootState): ICategoryWithSubcategory[] =>
   state.categories.categoriesList;

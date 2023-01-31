@@ -6,7 +6,7 @@ import {
   selectCategoriesIsFetching,
   selectSubcategories,
 } from "store/categories/categories-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 import Banner from "pages/home/components/banner";
 import MainPageWrapper from "pages/home/components/main-page-wrapper";

@@ -11,7 +11,7 @@ import {
   removeProductTrigger,
 } from "store/product-control/product-control-actions";
 import { removeProductFromProductList } from "store/products/products-actions";
-import { IFulfilledDataForRemove } from "lib/interfaces/favorite/favorite.interface";
+import { IFulfilledDataForRemove } from "lib/interfaces/favorite.interface";
 
 function* removeProductWorker(action: PayloadAction<number>) {
   yield put(productControlPending());

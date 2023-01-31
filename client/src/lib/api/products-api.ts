@@ -4,7 +4,7 @@ import {
   IGetProductListTrigger,
   IProductDataResponse,
 } from "lib/interfaces/products/product.interface";
-import { ISearchData } from "lib/interfaces/search/search.interface";
+import { ISearchData } from "lib/interfaces/search.interface";
 
 class ProductsApi {
   async getFilteredAndSortedProducts({

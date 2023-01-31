@@ -7,7 +7,7 @@ import { apiUrls } from "lib/enums/api-urls";
 import {
   ICategoryWithSubcategory,
   ISubcategory,
-} from "lib/interfaces/categories/categories.interface";
+} from "lib/interfaces/categories.interface";
 
 interface Props {
   subcategory: ISubcategory;

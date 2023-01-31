@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ISearchData } from "lib/interfaces/search/search.interface";
-import { ErrorPayload } from "store/store-types";
+import { ISearchData } from "lib/interfaces/search.interface";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   entities: ISearchData;
@@ -38,7 +38,7 @@ export const searchSlice = createSlice({
       state.entities = initialState.entities;
       state.error = payload;
     },
-    
+
     searchFulfilled: (state, { payload }: PayloadAction<ISearchData>) => {
       state.isLoading = false;
       state.error = null;

@@ -10,7 +10,7 @@ import {
 } from "store/modals/modals-actions";
 import { selectUserModal } from "store/modals/modals-selectors";
 import { selectUser } from "store/user/user-selector";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 import { apiUrls } from "lib/enums/api-urls";
 

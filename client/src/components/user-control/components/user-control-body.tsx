@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useEffect } from "react";
 
 import styles from "components/user-control/components/user-control-body.module.scss";
 
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { selectUser } from "store/user/user-selector";
 import {
   changeUserRoleTrigger,

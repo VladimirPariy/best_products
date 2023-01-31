@@ -1,4 +1,4 @@
-import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
+import { ICharacteristics } from "lib/interfaces/characteristic.interface";
 
 export interface IParameters {
   characteristics: ICharacteristics[];

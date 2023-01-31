@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IShotPriceHistory } from "lib/interfaces/price-history/price-history.interface";
-import { ErrorPayload } from "store/store-types";
+import { IShotPriceHistory } from "lib/interfaces/price-history.interface";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   status: boolean;

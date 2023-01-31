@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import CreateProduct from "components/create-product/create-product";
 
-const AddNewProductPage: FC = () => {
+const AddNewProductPage: FC = (props) => {
   return <CreateProduct />;
 };
 

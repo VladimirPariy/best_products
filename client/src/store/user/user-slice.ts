@@ -6,7 +6,7 @@ import { TokenType } from "lib/interfaces/user/token.interface";
 import { IUpdateUserData } from "lib/interfaces/user/update-user-data.interface";
 
 import { IUser } from "lib/interfaces/user/user.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 import { deleteTokenFromStorage } from "lib/utils/token-from-storage";
 
 interface IInitialState {
@@ -104,7 +104,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.error = payload;
     },
-    
+
     userUpdateTrigger: (_, action: PayloadAction<IUpdateUserData>) => {},
   },
 });

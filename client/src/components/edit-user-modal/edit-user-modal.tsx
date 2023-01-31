@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 
-import styles from "components/user-acc-modal/user-acc-modal.module.scss";
+import styles from "components/edit-user-modal/edit-user-modal.module.scss";
 
 import { setVisibilityEditUserModal } from "store/modals/modals-actions";
 import { selectEditUserModal } from "store/modals/modals-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import {
   selectUser,
   selectUserError,
@@ -31,7 +31,7 @@ import ModalWrapper from "components/ui/modal-wrapper/modal-wrapper";
 
 import defaultPhoto from "assets/icon/header/user.svg";
 
-const UserAccModal: FC = () => {
+const EditUserModal: FC = () => {
   const {
     first_name,
     last_name,
@@ -331,4 +331,4 @@ const UserAccModal: FC = () => {
   );
 };
 
-export default UserAccModal;
+export default EditUserModal;

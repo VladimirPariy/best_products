@@ -1,7 +1,5 @@
-import { RootState } from "store/store-types";
+import { RootState } from "lib/interfaces/store.types";
 
-const selectStatisticStatus = (state: RootState) => state.statistics.status;
-const selectStatisticError = (state: RootState) => state.statistics.error;
 const selectStatisticFavorites = (state: RootState) =>
   state.statistics.entities.favorites;
 const selectStatisticPopular = (state: RootState) =>
@@ -14,8 +12,6 @@ const selectStatisticCommented = (state: RootState) =>
   state.statistics.entities.commented;
 
 export {
-  selectStatisticStatus,
-  selectStatisticError,
   selectStatisticFavorites,
   selectStatisticPopular,
   selectStatisticRating,

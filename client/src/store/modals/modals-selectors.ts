@@ -1,4 +1,4 @@
-import { RootState } from "store/store-types";
+import { RootState } from "lib/interfaces/store.types";
 
 const selectSearchModal = (state: RootState) => state.modals.searchModal;
 const selectUserModal = (state: RootState) => state.modals.userModal;

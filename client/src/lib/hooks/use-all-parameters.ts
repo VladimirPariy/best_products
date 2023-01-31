@@ -1,10 +1,10 @@
 import { getCharacteristics } from "lib/api/characteristics-api";
 import { getParameters } from "lib/api/parameters-api";
-import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
-import { IParameters } from "lib/interfaces/parameters/parameters.interface";
+import { ICharacteristics } from "lib/interfaces/characteristic.interface";
+import { IParameters } from "lib/interfaces/parameters.interface";
 import { useEffect, useState } from "react";
 import { clearProductControl } from "store/product-control/product-control-actions";
-import { useAppDispatch } from "store/store-types";
+import { useAppDispatch } from "lib/interfaces/store.types";
 
 export const useAllParameters = () => {
   const dispatch = useAppDispatch();

@@ -72,10 +72,8 @@ const LineChart: FC<Props> = ({ x, y, label }) => {
   };
 
   return (
-    <div style={{ height: "720px" }}>
-      <div className={styles.chartContainer}>
-        <Line data={data} options={options} style={{ height: "500" }} />
-      </div>
+    <div className={styles.chartContainer}>
+      <Line data={data} options={options} />
     </div>
   );
 };

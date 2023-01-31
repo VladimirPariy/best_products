@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC } from "react";
 
 import styles from "components/filter-panel/components/characteristic-input.module.scss";
 
-import { ICharacteristics } from "lib/interfaces/characteristics/characteristic.interface";
+import { ICharacteristics } from "lib/interfaces/characteristic.interface";
 import { upFirstChar } from "lib/utils/up-first-char";
 
 interface Props {

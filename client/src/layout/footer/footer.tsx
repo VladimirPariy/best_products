@@ -1,9 +1,10 @@
+import React, { FC } from "react";
+import { NavLink } from "react-router-dom";
+
+import logo from "assets/icon/header/logo.svg";
 import Facebook from "assets/icon/footer/facebook";
 import Instagram from "assets/icon/footer/instagram";
 import Youtube from "assets/icon/footer/youtube";
-import React, { FC } from "react";
-import { NavLink } from "react-router-dom";
-import logo from "assets/icon/header/logo.svg";
 
 import styles from "layout/footer/footer.module.scss";
 

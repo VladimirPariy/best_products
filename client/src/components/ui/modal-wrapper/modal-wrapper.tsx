@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useAppDispatch } from "store/store-types";
+import { useAppDispatch } from "lib/interfaces/store.types";
 import React, { FC, ReactNode } from "react";
 
 import styles from "components/ui/modal-wrapper/modal-wrapper.module.scss";

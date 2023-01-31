@@ -4,29 +4,27 @@ import jwtDecode from "jwt-decode";
 
 import { getTokenFromStorage } from "lib/utils/token-from-storage";
 import { JWT } from "lib/interfaces/jwt-decode.interface";
-import {
-  ICategory,
-  ISubcategory,
-} from "lib/interfaces/categories/categories.interface";
+import { ICategory, ISubcategory } from "lib/interfaces/categories.interface";
 import {
   selectCategories,
   selectSubcategories,
 } from "store/categories/categories-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 
 import ProtectedRoute from "components/router/protected-route/protected-route";
 
 import Home from "pages/home/home";
-import StatisticsPage from "pages/admin/statistics-page";
-import CategoryPage from "pages/products/category-page";
-import UpdateProductPage from "pages/admin/update-product-page";
-import UsersControlPage from "pages/admin/users-control-page";
+import StatisticsPage from "pages/statistics-page";
+import CategoryPage from "pages/category-page";
+import UpdateProductPage from "pages/update-product-page";
+import UsersControlPage from "pages/users-control-page";
 import ProductLayout from "components/product-layout/product-layout";
-import SubcategoryPage from "pages/products/subcategory-page";
-import AdminPanel from "pages/admin/admin-panel";
-import AddNewProductPage from "pages/admin/add-new-product-page";
-import FavoritePage from "pages/favorite/favorite-page";
-import ProductDetailPage from "pages/product-details/product-detail-page";
+import SubcategoryPage from "pages/subcategory-page";
+import AdminPanel from "pages/admin-panel";
+import AddNewProductPage from "pages/add-new-product-page";
+import FavoritePage from "pages/favorite-page";
+import ProductDetailPage from "pages/product-detail-page";
+import NotFoundPage from "pages/not-found-page";
 
 const AppRouter: FC = () => {
   const subcategories = useAppSelector(selectSubcategories);
@@ -45,7 +43,7 @@ const AppRouter: FC = () => {
     if (subcategories) setSubcategoryRoutes(subcategories);
   }, [subcategories, category]);
 
-  const emptyRoute = <Route path="*" element={<div>Empty</div>} />;
+  const emptyRoute = <Route path="*" element={<NotFoundPage />} />;
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -54,6 +52,7 @@ const AppRouter: FC = () => {
         element={<ProductLayout isShowBreadcrumbs={false} />}
       >
         <Route index element={<FavoritePage />} />
+        {emptyRoute}
       </Route>
       <Route path="/favorite/:id" element={<ProductDetailPage />} />
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
@@ -89,6 +88,7 @@ const AppRouter: FC = () => {
             {emptyRoute}
           </Route>
         ))}
+        {emptyRoute}
       </Route>
       <Route path="/product/:id" element={<ProductDetailPage />} />
       {emptyRoute}

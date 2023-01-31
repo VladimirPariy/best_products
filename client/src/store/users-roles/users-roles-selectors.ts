@@ -1,7 +1,4 @@
-import { RootState } from "store/store-types";
+import { RootState } from "lib/interfaces/store.types";
 
-const selectUsersRoles = (state: RootState) => state.usersRoles.rolesList;
-const selectUsersRolesStatus = (state: RootState) => state.usersRoles.isFetch;
-const selectUsersRolesError = (state: RootState) => state.usersRoles.error;
-
-export { selectUsersRoles, selectUsersRolesError, selectUsersRolesStatus };
+export const selectUsersRoles = (state: RootState) =>
+  state.usersRoles.rolesList;

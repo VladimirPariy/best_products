@@ -6,7 +6,7 @@ import Content from "layout/content/content";
 
 import { clearModal } from "store/modals/modals-actions";
 import { selectModal } from "store/modals/modals-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();

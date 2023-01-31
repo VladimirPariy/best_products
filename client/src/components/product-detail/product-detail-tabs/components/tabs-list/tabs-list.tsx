@@ -6,7 +6,7 @@ import {
   TabsAdminEnum,
   TabsUserEnum,
 } from "components/product-detail/product-detail-tabs/components/tabs-enum";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 import { selectUser } from "store/user/user-selector";
 import TabsItem from "components/ui/tab-item/tabs-item";
 

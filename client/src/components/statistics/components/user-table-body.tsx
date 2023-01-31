@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import styles from "components/statistics/components/user-table-body.module.scss";
 
-import { IStatisticsUsers } from "lib/interfaces/statistics/statistics.interface";
+import { IStatisticsUsers } from "lib/interfaces/statistics.interface";
 import { getDate } from "lib/utils/get-date";
 
 interface Props {

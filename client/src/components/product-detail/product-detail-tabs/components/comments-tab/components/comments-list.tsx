@@ -4,13 +4,13 @@ import defaultUserImg from "assets/icon/header/user.svg";
 import styles from "components/product-detail/product-detail-tabs/components/comments-tab/components/comments-list.module.scss";
 
 import { apiUrls } from "lib/enums/api-urls";
-import { IShotCommentsWithUser } from "lib/interfaces/comments/comments.interface";
+import { IShotCommentsWithUser } from "lib/interfaces/comments.interface";
 import { IUser } from "lib/interfaces/user/user.interface";
 import { getDate } from "lib/utils/get-date";
 import { getTime } from "lib/utils/get-time";
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { removeCommentTrigger } from "store/comments/comments-actions";
 import { selectComments } from "store/comments/comments-selectors";
 

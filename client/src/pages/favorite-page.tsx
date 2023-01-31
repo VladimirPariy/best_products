@@ -4,7 +4,7 @@ import NotLogged from "components/ui/not-logged/not-logged";
 import FavoriteProductList from "components/favorite-product-list/favorite-product-list";
 
 import { selectFavoriteProducts } from "store/favorite-products/favorite-products-selectors";
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 import { selectUser } from "store/user/user-selector";
 
 const FavoritePage: FC = () => {

@@ -36,7 +36,7 @@ import {
   selectProductDetail,
   selectProductImages,
 } from "store/product-detail/product-detail-selector";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 const UpdateProduct: FC = () => {
   const { id } = useParams();

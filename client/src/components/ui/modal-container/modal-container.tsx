@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 
-import { useAppSelector } from "store/store-types";
+import { useAppSelector } from "lib/interfaces/store.types";
 import {
   selectEditUserModal,
   selectSignInModal,
   selectSignUpModal,
 } from "store/modals/modals-selectors";
-import RegistrationModal from "components/sign-up-modal/registration-modal";
+import SignUpModal from "components/sign-up-modal/sign-up-modal";
 import SignInModal from "components/sign-in-modal/sign-in-modal";
-import UserAccModal from "components/user-acc-modal/user-acc-modal";
+import EditUserModal from "components/edit-user-modal/edit-user-modal";
 
 const ModalContainer: FC = () => {
   const isShowSignUpModal = useAppSelector(selectSignUpModal);
@@ -17,9 +17,9 @@ const ModalContainer: FC = () => {
 
   return (
     <>
-      {isShowSignUpModal && <RegistrationModal />}
+      {isShowSignUpModal && <SignUpModal />}
       {isShwSignInModal && <SignInModal />}
-      {isShowEditUserModal && <UserAccModal />}
+      {isShowEditUserModal && <EditUserModal />}
     </>
   );
 };

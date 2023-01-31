@@ -2,7 +2,10 @@ import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "components/search/components/search-result.module.scss";
-import { setVisibilitySearchModal } from "store/modals/modals-actions";
+import {
+  setVisibilitySearchModal,
+  setVisibilityBurgerMenu,
+} from "store/modals/modals-actions";
 
 import { selectSearchModal } from "store/modals/modals-selectors";
 import { selectCategories } from "store/categories/categories-selectors";
@@ -11,7 +14,7 @@ import {
   selectSearchStatus,
   selectSearchSubcategoriesResult,
 } from "store/search/search-selector";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { apiUrls } from "lib/enums/api-urls";
 
 const SearchResult: FC = () => {
@@ -26,6 +29,10 @@ const SearchResult: FC = () => {
   if (!isVisibilitySearchModal) {
     return null;
   }
+  const linkClickHandler = () => {
+    dispatch(setVisibilitySearchModal(false));
+    dispatch(setVisibilityBurgerMenu(false));
+  };
 
   return (
     <>
@@ -44,7 +51,7 @@ const SearchResult: FC = () => {
                 if (index >= 3) return null;
                 return (
                   <NavLink
-                    onClick={() => dispatch(setVisibilitySearchModal(false))}
+                    onClick={linkClickHandler}
                     to={`product/${
                       categories.find(
                         (category) => category.category_id === item.category
@@ -70,7 +77,7 @@ const SearchResult: FC = () => {
                   <NavLink
                     to={`/product/${item.product_id}`}
                     key={item.product_id}
-                    onClick={() => dispatch(setVisibilitySearchModal(false))}
+                    onClick={linkClickHandler}
                   >
                     <img
                       src={`${apiUrls.BASE_Image_URL}${item.product_images[0].image_title}`}

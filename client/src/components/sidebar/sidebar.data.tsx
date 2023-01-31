@@ -4,7 +4,7 @@ import Home from "assets/icon/sidebar/home";
 import Favorites from "assets/icon/general/favorites";
 import Categories from "assets/icon/sidebar/categories";
 
-import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
+import { ISidebarList } from "lib/interfaces/sidebar.interface";
 import { appUrl } from "lib/enums/app-urls";
 
 export const sidebarList: ISidebarList[] = [

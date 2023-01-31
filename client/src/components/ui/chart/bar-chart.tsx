@@ -70,10 +70,8 @@ const BarChart: FC<Props> = ({ x, y, label }) => {
   };
 
   return (
-    <div style={{ height: "720px" }}>
-      <div className={styles.chartContainer}>
-        <Bar options={options} data={data} style={{ height: "500" }} />
-      </div>
+    <div className={styles.chartContainer}>
+      <Bar options={options} data={data} style={{ height: "500" }} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { ISubcategory } from "lib/interfaces/categories/categories.interface";
+import { ISubcategory } from "lib/interfaces/categories.interface";
 import { IProductImages } from "lib/interfaces/products/upload-image.interface";
 
 export interface IProductDataResponse {

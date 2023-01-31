@@ -12,9 +12,9 @@ import { sidebarList } from "components/sidebar/sidebar.data";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 import { setVisibilityBurgerMenu } from "store/modals/modals-actions";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { categoriesTrigger } from "store/categories/categories-actions";
-import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
+import { ISidebarList } from "lib/interfaces/sidebar.interface";
 import { selectCategories } from "store/categories/categories-selectors";
 
 const Sidebar: FC = () => {

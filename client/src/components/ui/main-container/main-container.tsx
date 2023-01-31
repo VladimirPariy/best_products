@@ -14,7 +14,7 @@ import {
   clearFeedbacks,
   getFeedbacksTrigger,
 } from "store/feedbacks/feedbacks-actions";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { userInfoTrigger } from "store/user/user-actions";
 import { selectAuth, selectUser } from "store/user/user-selector";
 import { getTokenFromStorage } from "lib/utils/token-from-storage";

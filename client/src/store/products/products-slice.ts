@@ -4,7 +4,7 @@ import {
   IProduct,
   IProductDataResponse,
 } from "lib/interfaces/products/product.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   isFetch: boolean;
@@ -106,7 +106,7 @@ export const productsSlice = createSlice({
       );
       if (product) product.favorites_amount += 1;
     },
-    
+
     decrementFavoriteCounter: (state, { payload }: PayloadAction<number>) => {
       const product = state.productsList.find(
         (item) => item.product_id === payload

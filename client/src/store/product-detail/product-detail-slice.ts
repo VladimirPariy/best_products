@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IProductDetails } from "lib/interfaces/product-detail/product-details.interface";
+import { IProductDetails } from "lib/interfaces/product-details.interface";
 import { IProductImages } from "lib/interfaces/products/upload-image.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   error: null | ErrorPayload;

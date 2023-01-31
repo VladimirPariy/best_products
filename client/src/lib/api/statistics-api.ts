@@ -6,7 +6,7 @@ import {
   IStatisticsPopular,
   IStatisticsRating,
   IStatisticsUsers,
-} from "lib/interfaces/statistics/statistics.interface";
+} from "lib/interfaces/statistics.interface";
 
 class StatisticsApi {
   async getNewUsers() {

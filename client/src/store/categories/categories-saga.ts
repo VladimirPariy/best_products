@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 
 import { categoriesApi } from "lib/api/categories-api";
-import { ICategoryWithSubcategory } from "lib/interfaces/categories/categories.interface";
+import { ICategoryWithSubcategory } from "lib/interfaces/categories.interface";
 import {
   categoriesFulfilled,
   categoriesPending,

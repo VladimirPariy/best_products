@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { ISearchData } from "lib/interfaces/search/search.interface";
+import { ISearchData } from "lib/interfaces/search.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError, AxiosResponse } from "axios";
 

@@ -7,7 +7,7 @@ import { useDebounce } from "lib/hooks/use-debounce";
 import { setVisibilitySearchModal } from "store/modals/modals-actions";
 import { selectSearchModal } from "store/modals/modals-selectors";
 import { clearSearchState, searchTrigger } from "store/search/search-action";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 interface ISearchInputProps {
   children: ReactNode;

@@ -1,6 +1,6 @@
-import { upFirstChar } from "lib/utils/up-first-char";
 import React, { FC } from "react";
 import styles from "components/sort-panel/components/category-scoreboard.module.scss";
+import { upFirstChar } from "lib/utils/up-first-char";
 
 interface Props {
   category: string;

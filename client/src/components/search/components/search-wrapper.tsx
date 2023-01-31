@@ -1,9 +1,9 @@
-import { setVisibilitySearchModal } from "store/modals/modals-actions";
-import { selectSearchModal } from "store/modals/modals-selectors";
-import { useAppDispatch, useAppSelector } from "store/store-types";
 import React, { FC, ReactNode } from "react";
 
 import styles from "components/search/components/search-wrapper.module.scss";
+import { setVisibilitySearchModal } from "store/modals/modals-actions";
+import { selectSearchModal } from "store/modals/modals-selectors";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 interface Props {
   children: ReactNode;

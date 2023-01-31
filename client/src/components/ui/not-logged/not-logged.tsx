@@ -6,7 +6,7 @@ import {
   setVisibilitySignInModal,
   setVisibilitySignUpModal,
 } from "store/modals/modals-actions";
-import { useAppDispatch } from "store/store-types";
+import { useAppDispatch } from "lib/interfaces/store.types";
 
 const NotLogged: FC = () => {
   const dispatch = useAppDispatch();

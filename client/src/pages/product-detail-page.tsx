@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 
 import { getProductDetailTrigger } from "store/product-detail/product-detail-actions";
 import { selectProductDetail } from "store/product-detail/product-detail-selector";
-import { useAppDispatch, useAppSelector } from "store/store-types";
+import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 import ProductDetailLayout from "components/product-detail/product-detail-layout/product-detail-layout";
 import ProductTabs from "components/product-detail/product-detail-tabs/product-tabs";

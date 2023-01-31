@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IRole } from "lib/interfaces/user/user.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   rolesList: IRole[];

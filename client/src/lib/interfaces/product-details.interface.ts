@@ -1,5 +1,5 @@
-import { ISubcategoryWithCategory } from "lib/interfaces/categories/categories.interface";
-import { IFullCharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
+import { ISubcategoryWithCategory } from "lib/interfaces/categories.interface";
+import { IFullCharacteristicsWithParameters } from "lib/interfaces/characteristic.interface";
 import { IProductImages } from "lib/interfaces/products/upload-image.interface";
 
 export interface IProductDetails {

@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import CommentsApi from "lib/api/comments-api";
-import { IShotCommentsWithUser } from "lib/interfaces/comments/comments.interface";
+import { IShotCommentsWithUser } from "lib/interfaces/comments.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 import {

@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { priceHistoryApi } from "lib/api/price-history-api";
-import { IShotPriceHistory } from "lib/interfaces/price-history/price-history.interface";
+import { IShotPriceHistory } from "lib/interfaces/price-history.interface";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosError } from "axios";
 import {

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IDataForUpdateUserRole } from "lib/interfaces/user-role/user-role";
+import { IDataForUpdateUserRole } from "lib/interfaces/user-role.interface";
 import { IUser } from "lib/interfaces/user/user.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
   isFetching: boolean;
@@ -48,10 +48,7 @@ export const usersListSlice = createSlice({
       state.isFetching = true;
     },
 
-    userRejected: (
-      state,
-      { payload }: PayloadAction<ErrorPayload>
-    ) => {
+    userRejected: (state, { payload }: PayloadAction<ErrorPayload>) => {
       state.error = payload;
       state.isFetching = false;
     },
@@ -74,7 +71,6 @@ export const usersListSlice = createSlice({
     },
 
     removeUserTrigger: (_, { payload }: PayloadAction<number>) => {},
-
 
     removeUserFulfilled: (
       state,

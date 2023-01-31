@@ -1,4 +1,4 @@
-import { IParameters } from "lib/interfaces/parameters/parameters.interface";
+import { IParameters } from "lib/interfaces/parameters.interface";
 
 export interface ICharacteristics {
   characteristic_id: number;

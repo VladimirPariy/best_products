@@ -1,151 +1,145 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import {
-	IDataForChangeFavorite,
-	IFulfilledDataForRemove,
-} from "lib/interfaces/favorite/favorite.interface";
+  IDataForChangeFavorite,
+  IFulfilledDataForRemove,
+} from "lib/interfaces/favorite.interface";
 import { IProduct } from "lib/interfaces/products/product.interface";
-import { ErrorPayload } from "store/store-types";
+import { ErrorPayload } from "lib/interfaces/store.types";
 
 interface IInitialState {
-	status: boolean;
-	error: null | ErrorPayload;
-	entities: IProduct[];
+  status: boolean;
+  error: null | ErrorPayload;
+  entities: IProduct[];
 }
 
 const initialState: IInitialState = {
-	status: false,
-	error: null,
-	entities: [],
+  status: false,
+  error: null,
+  entities: [],
 };
 
 export const favoriteProductsSlice = createSlice({
-	name: "@@favorite",
-	initialState,
-	reducers: {
-		getFavoriteProductsTrigger: (
-			_,
-			{ payload }: PayloadAction<number>
-		) => {},
+  name: "@@favorite",
+  initialState,
+  reducers: {
+    getFavoriteProductsTrigger: (_, { payload }: PayloadAction<number>) => {},
 
-		getFavoriteProductsPending: state => {
-			state.error = null;
-			state.status = true;
-			state.entities = [];
-		},
+    getFavoriteProductsPending: (state) => {
+      state.error = null;
+      state.status = true;
+      state.entities = [];
+    },
 
-		getFavoriteProductsFulfilled: (
-			state,
-			{ payload }: PayloadAction<IProduct[]>
-		) => {
-			state.error = null;
-			state.status = false;
-			state.entities = payload;
-		},
+    getFavoriteProductsFulfilled: (
+      state,
+      { payload }: PayloadAction<IProduct[]>
+    ) => {
+      state.error = null;
+      state.status = false;
+      state.entities = payload;
+    },
 
-		getFavoriteProductsRejected: (
-			state,
-			{ payload }: PayloadAction<ErrorPayload>
-		) => {
-			state.error = payload;
-			state.status = false;
-			state.entities = [];
-		},
+    getFavoriteProductsRejected: (
+      state,
+      { payload }: PayloadAction<ErrorPayload>
+    ) => {
+      state.error = payload;
+      state.status = false;
+      state.entities = [];
+    },
 
-		changeFavoritePending: state => {
-			state.error = null;
-			state.status = true;
-		},
+    changeFavoritePending: (state) => {
+      state.error = null;
+      state.status = true;
+    },
 
-		changeFavoriteRejected: (
-			state,
-			{ payload }: PayloadAction<ErrorPayload>
-		) => {
-			state.status = false;
-			state.error = payload;
-		},
-    
-		addIntoFavoriteTrigger: (
-			_,
-			{ payload }: PayloadAction<IDataForChangeFavorite>
-		) => {},
+    changeFavoriteRejected: (
+      state,
+      { payload }: PayloadAction<ErrorPayload>
+    ) => {
+      state.status = false;
+      state.error = payload;
+    },
 
-		addIntoFavoriteFulfilled: (
-			state,
-			{ payload }: PayloadAction<IProduct>
-		) => {
-			state.error = null;
-			state.status = false;
-			state.entities = state.entities.concat(payload);
-		},
+    addIntoFavoriteTrigger: (
+      _,
+      { payload }: PayloadAction<IDataForChangeFavorite>
+    ) => {},
 
-		removeFromFavoriteTrigger: (
-			_,
-			{ payload }: PayloadAction<IDataForChangeFavorite>
-		) => {},
+    addIntoFavoriteFulfilled: (state, { payload }: PayloadAction<IProduct>) => {
+      state.error = null;
+      state.status = false;
+      state.entities = state.entities.concat(payload);
+    },
 
-		removeFromFavoriteFulfilled: (
-			state,
-			{ payload }: PayloadAction<IFulfilledDataForRemove>
-		) => {
-			state.error = null;
-			state.status = false;
-			state.entities = state.entities.filter(
-				item => item.product_id !== payload.productId
-			);
-		},
+    removeFromFavoriteTrigger: (
+      _,
+      { payload }: PayloadAction<IDataForChangeFavorite>
+    ) => {},
 
-		clearFavorite: () => {
-			return initialState;
-		},
+    removeFromFavoriteFulfilled: (
+      state,
+      { payload }: PayloadAction<IFulfilledDataForRemove>
+    ) => {
+      state.error = null;
+      state.status = false;
+      state.entities = state.entities.filter(
+        (item) => item.product_id !== payload.productId
+      );
+    },
 
-		incrementViewFavorite: (state, { payload }: PayloadAction<number>) => {
-			const product = state.entities.find(
-				item => item.product_id === payload
-			);
-			if (product) product.views_amount += 1;
-		},
+    clearFavorite: () => {
+      return initialState;
+    },
 
-		removeProductFromFavoriteList: (
-			state,
-			{ payload }: PayloadAction<number>
-		) => {
-			state.entities = state.entities.filter(
-				item => item.product_id !== payload
-			);
-		},
+    incrementViewFavorite: (state, { payload }: PayloadAction<number>) => {
+      const product = state.entities.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.views_amount += 1;
+    },
 
-		incrementPositiveFeedbackCounterInFavoriteList: (
-			state,
-			{ payload }: PayloadAction<number>
-		) => {
-			const product = state.entities.find(
-				item => item.product_id === payload
-			);
-			if (product) product.positive_feedbacks_amount += 1;
-		},
+    removeProductFromFavoriteList: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      state.entities = state.entities.filter(
+        (item) => item.product_id !== payload
+      );
+    },
 
-		incrementNegativeFeedbackCounterInFavoriteList: (
-			state,
-			{ payload }: PayloadAction<number>
-		) => {
-			const product = state.entities.find(
-				item => item.product_id === payload
-			);
-			if (product) product.negative_feedbacks_amount += 1;
-		},
+    incrementPositiveFeedbackCounterInFavoriteList: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      const product = state.entities.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.positive_feedbacks_amount += 1;
+    },
 
-		updateProductInFavoriteList: (
-			state,
-			{ payload }: PayloadAction<IProduct>
-		) => {
-			console.log(payload);
-			state.entities = state.entities.map(item => {
-				if (item.product_id === payload.product_id) {
-					return { ...payload };
-				}
-				return item;
-			});
-		},
-	},
+    incrementNegativeFeedbackCounterInFavoriteList: (
+      state,
+      { payload }: PayloadAction<number>
+    ) => {
+      const product = state.entities.find(
+        (item) => item.product_id === payload
+      );
+      if (product) product.negative_feedbacks_amount += 1;
+    },
+
+    updateProductInFavoriteList: (
+      state,
+      { payload }: PayloadAction<IProduct>
+    ) => {
+      console.log(payload);
+      state.entities = state.entities.map((item) => {
+        if (item.product_id === payload.product_id) {
+          return { ...payload };
+        }
+        return item;
+      });
+    },
+  },
 });

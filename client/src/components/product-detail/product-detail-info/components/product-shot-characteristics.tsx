@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import styles from "components/product-detail/product-detail-info/components/product-shot-characteristics.module.scss";
 
-import { ICharacteristicsWithParameters } from "lib/interfaces/characteristics/characteristic.interface";
+import { ICharacteristicsWithParameters } from "lib/interfaces/characteristic.interface";
 import { upFirstChar } from "lib/utils/up-first-char";
 
 interface Props {

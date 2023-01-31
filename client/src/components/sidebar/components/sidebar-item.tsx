@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import styles from "components/sidebar/components/sidebar-item.module.scss";
 
-import { ISidebarList } from "lib/interfaces/sidebar/sidebar.interface";
+import { ISidebarList } from "lib/interfaces/sidebar.interface";
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 
 interface Props {

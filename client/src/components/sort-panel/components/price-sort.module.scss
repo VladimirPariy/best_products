@@ -34,19 +34,18 @@
   }
 }
 
-.priceContainer.ascPriceContainer{
+.priceContainer.ascPriceContainer {
   box-sizing: border-box;
   border: 1px solid #000;
   background: white;
-  .price{
+  .price {
     color: #000;
   }
-  > svg >path {
+  > svg > path {
     fill: #000;
   }
-  .arrow > svg > path{
+  .arrow > svg > path {
     fill: #000;
-
   }
 }
 
