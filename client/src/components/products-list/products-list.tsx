@@ -1,3 +1,4 @@
+import { Loader } from "components/ui/loader/loader";
 import React, { FC, useEffect, useState } from "react";
 
 import {
@@ -83,6 +84,7 @@ const ProductsList: FC<Props> = (props) => {
       (maxPrice && +maxPrice !== maxPriceFromServer) ||
       selectedParameters !== selectedParams
     ) {
+      console.log(1);
       dispatch(clearProductsList());
       dispatch(
         productsListTrigger({
@@ -101,7 +103,6 @@ const ProductsList: FC<Props> = (props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order, category, subcategoryId, minPrice, maxPrice, selectedParameters]);
-
   return (
     <>
       {products.length > 0 && (
@@ -111,6 +112,7 @@ const ProductsList: FC<Props> = (props) => {
           ))}
         </ProductListWrapper>
       )}
+      {isLoading ? <Loader color={"#766ed3"} /> : null}
     </>
   );
 };
