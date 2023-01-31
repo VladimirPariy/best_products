@@ -1,8 +1,8 @@
 import Objection, { Model } from "objection";
 
-import { FeedbacksTypesModel } from "@/app/feedbacks/models/feedbacks-types.model";
-import { ProductsModel } from "@/app/products/models/products.model";
-import { UsersModel } from "@/app/users/models/users.model";
+import { FeedbacksTypesModel } from "./feedbacks-types.model";
+import { ProductsModel } from "../../products/models/products.model";
+import { UsersModel } from "../../users/models/users.model";
 
 export class FeedbacksModel extends Model {
   user: number;

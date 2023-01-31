@@ -1,6 +1,6 @@
 import { Model, QueryBuilder } from "objection";
 
-import { ProductsModel } from "@/app/products/models/products.model";
+import { ProductsModel } from "./products.model";
 
 class ProductsImagesModel extends Model {
   image_id: number;

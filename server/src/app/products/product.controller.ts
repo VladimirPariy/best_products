@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import ProductService from "@/app/products/product.service";
+import { HttpException } from "../common/errors/exceptions";
+import ProductService from "./product.service";
 
 class ProductController {
   async getAllProducts(req: Request, res: Response, next: NextFunction) {

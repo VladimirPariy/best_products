@@ -1,5 +1,5 @@
-import { HttpException } from "@/app/common/errors/exceptions";
-import { CommentsModel } from "@/app/comments/comments.model";
+import { HttpException } from "../common/errors/exceptions";
+import { CommentsModel } from "./comments.model";
 
 class CommentsService {
   async getCommentsByProductId(id: number) {

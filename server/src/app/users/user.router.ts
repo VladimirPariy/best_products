@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { authenticateJWT } from "@/app/common/middlewares/auth-middleware";
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
-import UserController from "@/app/users/user.controller";
-import { checkRole } from "@/app/common/middlewares/role-middleware";
+import { authenticateJWT } from "../common/middlewares/auth-middleware";
+import { EndpointsList } from "../common/enums/endpoints-list";
+import UserController from "./user.controller";
+import { checkRole } from "../common/middlewares/role-middleware";
 
 export const createUserRouter = (): Router => {
   const userRouter = Router();

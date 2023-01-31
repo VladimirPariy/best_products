@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import { checkToken } from "@/app/common/middlewares/auth-middleware";
+import { HttpException } from "../errors/exceptions";
+import { checkToken } from "./auth-middleware";
 
 export function checkRole(role: string) {
   return function (req: Request, res: Response, next: NextFunction) {

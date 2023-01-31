@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { NextFunction, Request, Response } from "express";
-import { HttpException } from "@/app/common/errors/exceptions";
+import { HttpException } from "../errors/exceptions";
 import { ValidationError } from "yup";
 
 export const signInSchema = yup.object({

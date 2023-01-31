@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import StatisticsService from "@/app/statistics/statistics.service";
+import StatisticsService from "./statistics.service";
 
 class StatisticsController {
   async getNewUsers(req: Request, res: Response) {

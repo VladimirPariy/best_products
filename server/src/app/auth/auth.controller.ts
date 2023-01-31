@@ -1,8 +1,8 @@
 import { Response, Request, NextFunction } from "express";
 
-import AuthService from "@/app/auth/auth.service";
+import AuthService from "./auth.service";
 
-import { HttpException } from "@/app/common/errors/exceptions";
+import { HttpException } from "../common/errors/exceptions";
 
 class AuthController {
   async registration(req: Request, res: Response, next: NextFunction) {

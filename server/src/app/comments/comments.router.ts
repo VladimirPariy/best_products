@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
-import { authenticateJWT } from "@/app/common/middlewares/auth-middleware";
-import { checkRole } from "@/app/common/middlewares/role-middleware";
-import CommentsController from "@/app/comments/comments.controller";
+import { EndpointsList } from "../common/enums/endpoints-list";
+import { authenticateJWT } from "../common/middlewares/auth-middleware";
+import { checkRole } from "../common/middlewares/role-middleware";
+import CommentsController from "./comments.controller";
 
 export const createCommentsRouter = (): Router => {
   const commentsRouter = Router();

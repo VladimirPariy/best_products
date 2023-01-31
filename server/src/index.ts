@@ -1,13 +1,12 @@
-import "./plugins/modul-alias";
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
+import { EndpointsList } from "./app/common/enums/endpoints-list";
 import express, { Express } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import fileUpload from "express-fileupload";
 
-import { connectingDb } from "@/database/connectingDb";
-import { ErrorHandler } from "@/app/common/middlewares/exceptions-middleware";
-import { createRootRouter } from "@/app/common/root-router";
+import { connectingDb } from "./database/connectingDb";
+import { ErrorHandler } from "./app/common/middlewares/exceptions-middleware";
+import { createRootRouter } from "./app/common/root-router";
 import path from "path";
 
 dotenv.config();

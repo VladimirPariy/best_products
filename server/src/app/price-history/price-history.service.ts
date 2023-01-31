@@ -1,4 +1,4 @@
-import { PriceHistoryModel } from "@/app/price-history/price-history.model";
+import { PriceHistoryModel } from "./price-history.model";
 
 class PriceHistoryService {
   async getPriceHistoryByProductId(id: number) {

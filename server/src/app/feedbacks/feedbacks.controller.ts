@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import FeedbacksService from "@/app/feedbacks/feedbacks.service";
+import { HttpException } from "../common/errors/exceptions";
+import FeedbacksService from "./feedbacks.service";
 
 class FeedbacksController {
   async getFeedbacksByUserId(req: Request, res: Response, next: NextFunction) {

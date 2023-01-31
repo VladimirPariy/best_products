@@ -19,7 +19,7 @@ export const enum EndpointsList {
   //auth-router
   SIGN_UP = "/registration",
   SIGN_IN = "/login",
-  ME = "/me", //????????????????
+  AUTH = "/me",
 
   //user-router
   ALL_USERS = "/",
@@ -30,8 +30,6 @@ export const enum EndpointsList {
 
   //categories
   CATEGORIES_WITH_SUBCATEGORIES = "/",
-  SUBCATEGORIES = "/subcategories",
-  CATEGORIES = "/categories",
 
   //products
   PRODUCTS = "/",

@@ -10,16 +10,16 @@ import {
   IProductImage,
   IProductSubcategory,
   IUpdatingProductFields,
-} from "@/app/products/product.interfaces";
-import { HttpException } from "@/app/common/errors/exceptions";
-import { ProductsModel } from "@/app/products/models/products.model";
-import { CategoriesModel } from "@/app/categories/models/categories.model";
-import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
-import { ProductsImagesModel } from "@/app/products/models/products-images.model";
-import { TempImagesModel } from "@/app/products/models/temp-images.model";
-import { ProductSubcategoryModal } from "@/app/categories/models/product-subcategories.model";
-import { ProductCharacteristicModel } from "@/app/characteristics/models/product-characteristics.model";
-import { knexInstance } from "@/database/connectingDb";
+} from "./product.interfaces";
+import { HttpException } from "../common/errors/exceptions";
+import { ProductsModel } from "./models/products.model";
+import { CategoriesModel } from "../categories/models/categories.model";
+import { SubcategoryModel } from "../categories/models/subcatigories.model";
+import { ProductsImagesModel } from "./models/products-images.model";
+import { TempImagesModel } from "./models/temp-images.model";
+import { ProductSubcategoryModal } from "../categories/models/product-subcategories.model";
+import { ProductCharacteristicModel } from "../characteristics/models/product-characteristics.model";
+import { knexInstance } from "../../database/connectingDb";
 
 class ProductService {
   getProductOrProducts(): Objection.QueryBuilder<
@@ -112,7 +112,7 @@ class ProductService {
       );
     }
     return products;
-  }
+  } ///
 
   async getProductDetailsById(id: number | string) {
     if (!id) {
@@ -304,14 +304,13 @@ class ProductService {
         );
       }
     }
-
     if (productInfo.product_characteristics) {
       const characteristics: number[] = JSON.parse(
         productInfo.product_characteristics
       );
       const modifyChar = characteristics.map((char) => ({
         product: +id,
-        characteristic: char,
+        characteristic: +char,
       }));
 
       await ProductCharacteristicModel.query().del().where("product", id);
@@ -327,7 +326,7 @@ class ProductService {
       }
     }
 
-    return `Product was successfully updating`;
+    return this.getProductOrProducts(+id);
   }
 
   async uploadImage(id: number, file: fileUpload.FileArray | null | undefined) {

@@ -1,17 +1,17 @@
 import { Router } from "express";
 
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
-import AuthController from "@/app/auth/auth.controller";
+import { EndpointsList } from "../common/enums/endpoints-list";
+import AuthController from "./auth.controller";
 
 import {
   signUpSchema,
   validatingSignUp,
-} from "@/app/common/validations/sign-up-validation";
+} from "../common/validations/sign-up-validation";
 import {
   signInSchema,
   validatingSignIn,
-} from "@/app/common/validations/sign-in-validation";
-import { authenticateJWT } from "@/app/common/middlewares/auth-middleware";
+} from "../common/validations/sign-in-validation";
+import { authenticateJWT } from "../common/middlewares/auth-middleware";
 
 export const createAuthRouter = (): Router => {
   const authRouter = Router();
@@ -26,7 +26,7 @@ export const createAuthRouter = (): Router => {
     validatingSignIn(signInSchema),
     AuthController.login
   );
-  authRouter.get(EndpointsList.ME, authenticateJWT, AuthController.check);
+  authRouter.get(EndpointsList.AUTH, authenticateJWT, AuthController.check);
 
   return authRouter;
 };

@@ -1,4 +1,4 @@
-import { CharacteristicsModel } from "@/app/characteristics/models/characteristics.model";
+import { CharacteristicsModel } from "./models/characteristics.model";
 
 class CharacteristicService {
   async getAllCharacteristics() {

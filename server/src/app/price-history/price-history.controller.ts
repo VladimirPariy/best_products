@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import PriceHistoryService from "@/app/price-history/price-history.service";
+import { HttpException } from "../common/errors/exceptions";
+import PriceHistoryService from "./price-history.service";
 
 class PriceHistoryController {
   async getPriceHistoryByProductId(

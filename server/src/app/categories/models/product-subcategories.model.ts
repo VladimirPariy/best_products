@@ -1,7 +1,7 @@
 import { Model } from "objection";
 
-import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
-import { ProductsModel } from "@/app/products/models/products.model";
+import { SubcategoryModel } from "./subcatigories.model";
+import { ProductsModel } from "../../products/models/products.model";
 
 export class ProductSubcategoryModal extends Model {
   product: number;

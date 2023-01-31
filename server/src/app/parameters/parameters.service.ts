@@ -1,6 +1,6 @@
-import { HttpException } from "@/app/common/errors/exceptions";
-import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
-import { ParametersModel } from "@/app/parameters/parameters.model";
+import { HttpException } from "../common/errors/exceptions";
+import { SubcategoryModel } from "../categories/models/subcatigories.model";
+import { ParametersModel } from "./parameters.model";
 
 class ParametersService {
   async getParametersBySubcategoryId(id: number) {

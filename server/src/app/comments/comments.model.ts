@@ -1,7 +1,7 @@
 import Objection, { Model, QueryBuilder } from "objection";
 
-import { UsersModel } from "@/app/users/models/users.model";
-import { ProductsModel } from "@/app/products/models/products.model";
+import { UsersModel } from "../users/models/users.model";
+import { ProductsModel } from "../products/models/products.model";
 
 export class CommentsModel extends Model {
   comment_id: number;

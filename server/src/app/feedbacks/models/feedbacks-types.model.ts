@@ -1,6 +1,6 @@
 import { Model } from "objection";
 
-import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
+import { FeedbacksModel } from "./feedbacks.model";
 
 class FeedbacksTypesModel extends Model {
   feedback_type_id: number;

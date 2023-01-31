@@ -1,10 +1,10 @@
 import { Router } from "express";
 
-import { authenticateJWT } from "@/app/common/middlewares/auth-middleware";
-import { checkRole } from "@/app/common/middlewares/role-middleware";
-import productController from "@/app/products/product.controller";
+import { authenticateJWT } from "../common/middlewares/auth-middleware";
+import { checkRole } from "../common/middlewares/role-middleware";
+import productController from "./product.controller";
 
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
+import { EndpointsList } from "../common/enums/endpoints-list";
 
 export const createProductsRouter = (): Router => {
   const productsRouter = Router();

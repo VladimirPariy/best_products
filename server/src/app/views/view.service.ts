@@ -1,4 +1,4 @@
-import { ViewsModel } from "@/app/views/views.model";
+import { ViewsModel } from "./views.model";
 
 class ViewService {
   async addView(productId: number) {

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
-import { authenticateJWT } from "@/app/common/middlewares/auth-middleware";
-import FavoriteProductsController from "@/app/favorite-products/favorite-products.controller";
+import { EndpointsList } from "../common/enums/endpoints-list";
+import { authenticateJWT } from "../common/middlewares/auth-middleware";
+import FavoriteProductsController from "./favorite-products.controller";
 
 export const createFavoriteProductsRouter = (): Router => {
   const favoriteProductsRouter = Router();

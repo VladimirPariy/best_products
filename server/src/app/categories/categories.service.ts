@@ -1,4 +1,4 @@
-import { CategoriesModel } from "@/app/categories/models/categories.model";
+import { CategoriesModel } from "./models/categories.model";
 
 class CategoriesService {
   async allCategories() {

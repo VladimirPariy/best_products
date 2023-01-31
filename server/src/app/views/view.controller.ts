@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import ViewService from "@/app/views/view.service";
+import { HttpException } from "../common/errors/exceptions";
+import ViewService from "./view.service";
 
 class ViewController {
   async addView(req: Request, res: Response, next: NextFunction) {

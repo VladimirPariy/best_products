@@ -1,6 +1,6 @@
 import { Model, QueryBuilder } from "objection";
-import { ParametersModel } from "@/app/parameters/parameters.model";
-import { ProductCharacteristicModel } from "@/app/characteristics/models/product-characteristics.model";
+import { ParametersModel } from "../../parameters/parameters.model";
+import { ProductCharacteristicModel } from "./product-characteristics.model";
 
 export class CharacteristicsModel extends Model {
   characteristic_id: number;

@@ -1,6 +1,6 @@
-import { UsersModel } from "@/app/users/models/users.model";
-import { ProductsModel } from "@/app/products/models/products.model";
-import ProductService from "@/app/products/product.service";
+import { UsersModel } from "../users/models/users.model";
+import { ProductsModel } from "../products/models/products.model";
+import ProductService from "../products/product.service";
 
 class StatisticsService {
   async getNewUsers() {

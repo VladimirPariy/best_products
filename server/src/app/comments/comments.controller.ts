@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import CommentsService from "@/app/comments/comments.service";
+import { HttpException } from "../common/errors/exceptions";
+import CommentsService from "./comments.service";
 
 class CommentsController {
   async getCommentsByProductId(

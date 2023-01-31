@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 
-import CategoriesService from "@/app/categories/categories.service";
+import CategoriesService from "./categories.service";
 
 class CategoriesController {
   async getAll(req: Request, res: Response) {

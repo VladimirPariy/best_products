@@ -1,7 +1,7 @@
 import Objection, { Model } from "objection";
 
-import { ProductsModel } from "@/app/products/models/products.model";
-import { UsersModel } from "@/app/users/models/users.model";
+import { ProductsModel } from "../products/models/products.model";
+import { UsersModel } from "../users/models/users.model";
 
 export class FavoriteProductsModel extends Model {
   user: number;

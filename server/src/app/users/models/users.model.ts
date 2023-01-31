@@ -1,11 +1,9 @@
 import Objection, { Model, QueryBuilder } from "objection";
 
-import { ViewsModel } from "@/app/views/views.model";
-import { CommentsModel } from "@/app/comments/comments.model";
-import { FavoriteProductsModel } from "@/app/favorite-products/favorite-products.model";
-import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
-import { RolesModel } from "@/app/users/models/roles.model";
-import { ProductsModel } from "@/app/products/models/products.model";
+import { CommentsModel } from "../../comments/comments.model";
+import { FavoriteProductsModel } from "../../favorite-products/favorite-products.model";
+import { FeedbacksModel } from "../../feedbacks/models/feedbacks.model";
+import { RolesModel } from "./roles.model";
 
 class UsersModel extends Model {
   user_id: string;
@@ -79,49 +77,6 @@ class UsersModel extends Model {
           to: "users.user_id",
         },
       },
-
-      // users_products_comments: {
-      //   relation: Model.ManyToManyRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "users.user_id",
-      //     through: {
-      //       from: "comments.user",
-      //       extra: ["comment_id", "comment_msg", "created_at", "updated_at"],
-      //       to: "comments.product",
-      //     },
-      //     to: "products.product_id",
-      //   },
-      // },
-
-      // users_products_feedbacks: {
-      //   relation: Model.ManyToManyRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "users.user_id",
-      //     through: {
-      //       from: "feedbacks.user",
-      //       extra: ["feedback_type", "created_at", "updated_at"],
-      //       to: "feedbacks.product",
-      //     },
-      //     to: "products.product_id",
-      //   },
-      // },
-      //
-      // users_favorite_products: {
-      //   relation: Model.ManyToManyRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "users.user_id",
-      //     through: {
-      //       from: "favorite_products.user",
-      //       extra: ["created_at", "updated_at"],
-      //       to: "favorite_products.product",
-      //     },
-      //     to: "products.product_id",
-      //   },
-      // },
-      //
     };
   }
 

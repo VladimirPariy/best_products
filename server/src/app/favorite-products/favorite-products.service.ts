@@ -1,6 +1,6 @@
-import { FavoriteProductsModel } from "@/app/favorite-products/favorite-products.model";
-import ProductService from "@/app/products/product.service";
-import { HttpException } from "@/app/common/errors/exceptions";
+import { FavoriteProductsModel } from "./favorite-products.model";
+import ProductService from "../products/product.service";
+import { HttpException } from "../common/errors/exceptions";
 
 class FavoriteProductsService {
   async getFavoriteProductsByUserId(id: number) {

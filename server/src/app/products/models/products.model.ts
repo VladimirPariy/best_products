@@ -1,16 +1,16 @@
 import { Model } from "objection";
 
-import { ProductSubcategoryModal } from "@/app/categories/models/product-subcategories.model";
-import { CommentsModel } from "@/app/comments/comments.model";
-import { FavoriteProductsModel } from "@/app/favorite-products/favorite-products.model";
-import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
-import { ProductCharacteristicModel } from "@/app/characteristics/models/product-characteristics.model";
-import { PriceHistoryModel } from "@/app/price-history/price-history.model";
-import { ProductsImagesModel } from "@/app/products/models/products-images.model";
-import { ViewsModel } from "@/app/views/views.model";
-import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
-import { CharacteristicsModel } from "@/app/characteristics/models/characteristics.model";
-import { UsersModel } from "@/app/users/models/users.model";
+import { ProductSubcategoryModal } from "../../categories/models/product-subcategories.model";
+import { CommentsModel } from "../../comments/comments.model";
+import { FavoriteProductsModel } from "../../favorite-products/favorite-products.model";
+import { FeedbacksModel } from "../../feedbacks/models/feedbacks.model";
+import { ProductCharacteristicModel } from "../../characteristics/models/product-characteristics.model";
+import { PriceHistoryModel } from "../../price-history/price-history.model";
+import { ProductsImagesModel } from "./products-images.model";
+import { ViewsModel } from "../../views/views.model";
+import { SubcategoryModel } from "../../categories/models/subcatigories.model";
+import { CharacteristicsModel } from "../../characteristics/models/characteristics.model";
+import { UsersModel } from "../../users/models/users.model";
 
 class ProductsModel extends Model {
   product_id: number;
@@ -140,32 +140,6 @@ class ProductsModel extends Model {
           to: "users.user_id",
         },
       },
-      // users_feedbacks: {
-      // 	relation: Model.ManyToManyRelation,
-      // 	modelClass: UsersModel,
-      // 	join: {
-      // 		from: "products.product_id",
-      // 		through: {
-      // 			from: "feedbacks.product",
-      // 			extra: ["feedback_type", "created_at", "updated_at"],
-      // 			to: "feedbacks.user"
-      // 		},
-      // 		to: "users.user_id"
-      // 	}
-      // },
-      // users_favorite_products: {
-      // 	relation: Model.ManyToManyRelation,
-      // 	modelClass: UsersModel,
-      // 	join: {
-      // 		from: "products.product_id",
-      // 		through: {
-      // 			from: "favorite_products.product",
-      // 			extra: ["created_at", "updated_at"],
-      // 			to: "favorite_products.user"
-      // 		},
-      // 		to: "users.user_id"
-      // 	}
-      // },
     };
   }
 }

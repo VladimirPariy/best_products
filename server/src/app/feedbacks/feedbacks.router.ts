@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { EndpointsList } from "@/app/common/enums/endpoints-list";
-import FeedbacksController from "@/app/feedbacks/feedbacks.controller";
-import { authenticateJWT } from "@/app/common/middlewares/auth-middleware";
+import { EndpointsList } from "../common/enums/endpoints-list";
+import FeedbacksController from "./feedbacks.controller";
+import { authenticateJWT } from "../common/middlewares/auth-middleware";
 
 export const createFeedbacksRouter = (): Router => {
   const feedbacksRouter = Router();

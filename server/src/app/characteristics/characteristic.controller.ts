@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import CharacteristicService from "@/app/characteristics/characteristic.service";
+import CharacteristicService from "../characteristics/characteristic.service";
 
 class CharacteristicController {
   async getAllCharacteristics(req: Request, res: Response) {

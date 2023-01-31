@@ -1,4 +1,4 @@
-import { FeedbacksModel } from "@/app/feedbacks/models/feedbacks.model";
+import { FeedbacksModel } from "./models/feedbacks.model";
 
 class FeedbacksService {
   getFeedbacks(condition: { user?: number; product?: number }) {

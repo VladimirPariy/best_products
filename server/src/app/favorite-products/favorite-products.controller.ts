@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import FavoriteProductsService from "@/app/favorite-products/favorite-products.service";
+import { HttpException } from "../common/errors/exceptions";
+import FavoriteProductsService from "./favorite-products.service";
 
 class FavoriteProductsController {
   async getFavoriteProductsByUserId(

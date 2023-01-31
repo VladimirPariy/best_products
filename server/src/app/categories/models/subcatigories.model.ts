@@ -1,7 +1,6 @@
-import {Model, QueryBuilder} from "objection";
+import { Model, QueryBuilder } from "objection";
 
-import { ProductsModel } from "@/app/products/models/products.model";
-import { CategoriesModel } from "@/app/categories/models/categories.model";
+import { CategoriesModel } from "./categories.model";
 
 export class SubcategoryModel extends Model {
   subcategory_id: number;
@@ -11,14 +10,14 @@ export class SubcategoryModel extends Model {
   static tableName = "subcategories";
 
   static idColumn = "subcategory_id";
-	
-	static get modifiers() {
-		return {
-			selectShotSubcategory: (builder: QueryBuilder<any, any>) => {
-				builder.select("subcategory_id", "subcategory_title");
-			},
-		};
-	}
+
+  static get modifiers() {
+    return {
+      selectShotSubcategory: (builder: QueryBuilder<any, any>) => {
+        builder.select("subcategory_id", "subcategory_title");
+      },
+    };
+  }
 
   static get relationMappings() {
     return {
@@ -30,18 +29,6 @@ export class SubcategoryModel extends Model {
           to: "categories.category_id",
         },
       },
-      // products: {
-      //   relation: Model.ManyToManyRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "subcategories.subcategory_id",
-      //     through: {
-      //       from: "product_subcategories.subcategory",
-      //       to: "product_subcategories.product",
-      //     },
-      //     to: "products.product_id",
-      //   },
-      // },
     };
   }
 }

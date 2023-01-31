@@ -1,7 +1,7 @@
 import { Response, NextFunction, Request } from "express";
 import jwt from "jsonwebtoken";
 
-import { HttpException } from "@/app/common/errors/exceptions";
+import { HttpException } from "../errors/exceptions";
 
 export const checkToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(" ")[1];

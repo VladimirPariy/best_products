@@ -1,7 +1,5 @@
 import Objection, { Model } from "objection";
 
-import { ProductsModel } from "@/app/products/models/products.model";
-
 class ViewsModel extends Model {
   view_id: number;
   product: number;
@@ -14,19 +12,6 @@ class ViewsModel extends Model {
 
   static get idColumn() {
     return "view_id";
-  }
-
-  static get relationMappings() {
-    return {
-      // products: {
-      //   relation: Model.HasOneRelation,
-      //   modelClass: ProductsModel,
-      //   join: {
-      //     from: "views.product",
-      //     to: "products.product_id"
-      //   }
-      // }
-    };
   }
 
   $beforeInsert() {

@@ -1,6 +1,6 @@
 import { Model, QueryBuilder } from "objection";
-import { SubcategoryModel } from "@/app/categories/models/subcatigories.model";
-import { CharacteristicsModel } from "@/app/characteristics/models/characteristics.model";
+import { SubcategoryModel } from "../categories/models/subcatigories.model";
+import { CharacteristicsModel } from "../characteristics/models/characteristics.model";
 
 export class ParametersModel extends Model {
   parameter_id: number;

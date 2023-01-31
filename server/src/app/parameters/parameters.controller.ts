@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import { HttpException } from "@/app/common/errors/exceptions";
-import ParametersService from "@/app/parameters/parameters.service";
+import { HttpException } from "../common/errors/exceptions";
+import ParametersService from "./parameters.service";
 
 class ParametersController {
   async getParametersBySubcategoryId(

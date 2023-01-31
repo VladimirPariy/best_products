@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 
-import UserService from "@/app/users/user.service";
-import { HttpException } from "@/app/common/errors/exceptions";
+import UserService from "./user.service";
+import { HttpException } from "../common/errors/exceptions";
 
 class UserController {
   async getAllUsers(req: Request, res: Response, next: NextFunction) {

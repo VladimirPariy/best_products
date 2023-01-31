@@ -3,11 +3,11 @@ import { Request } from "express";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
-import { RolesModel } from "@/app/users/models/roles.model";
-import { generateJwtToken } from "@/app/common/utils/generate-jwt-token";
-import { HttpException } from "@/app/common/errors/exceptions";
-import { IUserUpdatingFields } from "@/app/users/user.interfaces";
-import { UsersModel } from "@/app/users/models/users.model";
+import { RolesModel } from "./models/roles.model";
+import { generateJwtToken } from "../common/utils/generate-jwt-token";
+import { HttpException } from "../common/errors/exceptions";
+import { IUserUpdatingFields } from "./user.interfaces";
+import { UsersModel } from "./models/users.model";
 
 class UserService {
   async getAllUsers() {
@@ -55,7 +55,6 @@ class UserService {
   }
 
   async updateUserById(id: string, { body, files }: Request) {
-    // Валидация полей. Любые не предусмотренные - будут отброшены.
     const allowedFields = [
       "first_name",
       "last_name",
