@@ -7,10 +7,10 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "dev": "nodemon --watch src src/index.ts",
-    "up": "knex migrate:up --knexfile dist/database/knexfile.js",
-    "down": "knex migrate:down --knexfile dist/database/knexfile.js",
+    "up": "knex migrate:up --knexfile src/database/knexfile.ts",
+    "down": "knex migrate:down --knexfile src/database/knexfile.ts",
     "latest": "knex migrate:latest --knexfile src/database/knexfile.ts",
-    "seed": "knex seed:run --knexfile dist/database/knexfile.js",
+    "seed": "knex seed:run --knexfile src/database/knexfile.ts",
     "ts": "tsc",
     "prettier": "npx prettier --write ."
   },

@@ -1,1 +1,1 @@
-web: bash knex migrate:up --knexfile ./dist/database/knexfile.js && bash knex seed:run --knexfile ./dist/database/knexfile.js && npm start
+web: bash knex migrate:rollback && bash knex migrate:up && bash knex seed:run && npm start
