@@ -1,6 +1,6 @@
 export const enum apiUrls {
-  BASE_URL = "https://ancient-fjord-68876.herokuapp.com/api/",
-  BASE_Image_URL = "https://ancient-fjord-68876.herokuapp.com/",
+  BASE_URL = " http://localhost:8000/api/",
+  BASE_Image_URL = "http://localhost:8000/",
   sign_up = "auth/registration",
   sign_in = "auth/login",
   all_users = "user",
@@ -18,7 +18,7 @@ export const enum apiUrls {
   characteristics = "characteristics/",
   search = "products/search",
   addComment = "comments",
-  commentById = "comments/", //:id
+  commentById = "comments/",
   commentsByProductId = "comments/product/",
   priceHistoryByProductId = "history/",
   favorite = "favorite/",
