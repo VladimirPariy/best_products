@@ -17,7 +17,6 @@ class FeedbacksApi {
       apiUrls.feedbacks,
       dataForAddFeedback
     );
-    console.log(data);
     return data;
   }
 }

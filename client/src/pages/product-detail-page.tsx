@@ -2,12 +2,16 @@ import React, { FC, useEffect } from "react";
 import { useLocation } from "react-router";
 
 import { getProductDetailTrigger } from "store/product-detail/product-detail-actions";
-import { selectProductDetail } from "store/product-detail/product-detail-selector";
+import {
+  selectProductDetail,
+  selectProductDetailStatus,
+} from "store/product-detail/product-detail-selector";
 import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 import ProductDetailLayout from "components/product-detail/product-detail-layout/product-detail-layout";
 import ProductTabs from "components/product-detail/product-detail-tabs/product-tabs";
 import ProductInfo from "components/product-detail/product-detail-info/product-info";
+import { Loader } from "components/ui/loader/loader";
 
 const ProductDetailPage: FC = () => {
   const location = useLocation().pathname.split("/");
@@ -15,6 +19,7 @@ const ProductDetailPage: FC = () => {
   const dispatch = useAppDispatch();
 
   const productDetail = useAppSelector(selectProductDetail);
+  const isLoading = useAppSelector(selectProductDetailStatus);
 
   const {
     positive_feedbacks_amount,
@@ -37,24 +42,30 @@ const ProductDetailPage: FC = () => {
 
   return (
     <ProductDetailLayout>
-      <ProductInfo
-        images={product_images}
-        title={product_title}
-        counters={{
-          positive_feedbacks_amount,
-          negative_feedbacks_amount,
-          favorites_amount,
-          views_amount,
-        }}
-        price={price}
-        characteristics={characteristics}
-      />
-      <ProductTabs
-        characteristics={characteristics}
-        description={product_description}
-        comments_amount={comments_amount}
-        product_id={product_id}
-      />
+      {Object.keys(productDetail).length && !isLoading ? (
+        <>
+          <ProductInfo
+            images={product_images}
+            title={product_title}
+            counters={{
+              positive_feedbacks_amount,
+              negative_feedbacks_amount,
+              favorites_amount,
+              views_amount,
+            }}
+            price={price}
+            characteristics={characteristics}
+          />
+          <ProductTabs
+            characteristics={characteristics}
+            description={product_description}
+            comments_amount={comments_amount}
+            product_id={product_id}
+          />
+        </>
+      ) : (
+        <Loader color={"#766ed3"} />
+      )}
     </ProductDetailLayout>
   );
 };
