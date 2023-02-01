@@ -1,6 +1,6 @@
 export const enum apiUrls {
-  BASE_URL = "http://localhost:8000/api/",
-  BASE_Image_URL = "http://localhost:8000/",
+  BASE_URL = "https://ancient-fjord-68876.herokuapp.com/api/", // http://localhost:8000/api/
+  BASE_Image_URL = "https://ancient-fjord-68876.herokuapp.com/", //http://localhost:8000/
   sign_up = "auth/registration",
   sign_in = "auth/login",
   all_users = "user",
