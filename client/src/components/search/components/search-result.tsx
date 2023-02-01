@@ -17,7 +17,11 @@ import {
 import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { apiUrls } from "lib/enums/api-urls";
 
-const SearchResult: FC = () => {
+interface Props {
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchResult: FC<Props> = ({ setSearch }) => {
   const dispatch = useAppDispatch();
   const isVisibilitySearchModal = useAppSelector(selectSearchModal);
   const productResult = useAppSelector(selectSearchProductResult);
@@ -32,6 +36,7 @@ const SearchResult: FC = () => {
   const linkClickHandler = () => {
     dispatch(setVisibilitySearchModal(false));
     dispatch(setVisibilityBurgerMenu(false));
+    setSearch("");
   };
 
   return (

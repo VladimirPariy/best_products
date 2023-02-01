@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, ReactNode, useEffect, useState } from "react";
+import React, { FC, MouseEvent, ReactNode, useEffect } from "react";
 
 import styles from "components/search/components/search-input.module.scss";
 import SearchIcon from "assets/icon/header/search-icon";
@@ -11,13 +11,17 @@ import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 interface ISearchInputProps {
   children: ReactNode;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchInput: FC<ISearchInputProps> = ({ children }) => {
+const SearchInput: FC<ISearchInputProps> = ({
+  children,
+  setSearch,
+  search,
+}) => {
   const dispatch = useAppDispatch();
   const isVisibilitySearchModal = useAppSelector(selectSearchModal);
-
-  const [search, setSearch] = useState("");
 
   const debouncedSearchTerm: string = useDebounce<string>(search, 1000);
 
