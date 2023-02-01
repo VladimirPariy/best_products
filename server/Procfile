@@ -1,1 +1,1 @@
-web: bash knex migrate:rollback && bash knex migrate:up && bash knex seed:run && npm start
+web: npm start

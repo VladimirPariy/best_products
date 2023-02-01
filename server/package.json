@@ -12,7 +12,10 @@
     "latest": "knex migrate:latest --knexfile src/database/knexfile.ts",
     "seed": "knex seed:run --knexfile src/database/knexfile.ts",
     "ts": "tsc",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "prod:up": "knex migrate:up --knexfile dist/database/knexfile.js",
+    "prod:down": "knex migrate:down --knexfile dist/database/knexfile.js",
+    "prod:seed": "knex seed:run --knexfile dist/database/knexfile.js"
   },
   "author": "",
   "license": "ISC",
