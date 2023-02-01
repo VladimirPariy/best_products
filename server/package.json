@@ -5,17 +5,21 @@
   "main": "./dist/index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "tsc && node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "dev": "nodemon --watch src src/index.ts",
-    "up": "knex migrate:up --knexfile src/database/knexfile.ts",
-    "down": "knex migrate:down --knexfile src/database/knexfile.ts",
+    "up": "knex migrate:up --knexfile dist/database/knexfile.js",
+    "down": "knex migrate:down --knexfile dist/database/knexfile.js",
     "latest": "knex migrate:latest --knexfile src/database/knexfile.ts",
-    "seed": "knex seed:run --knexfile src/database/knexfile.ts",
+    "seed": "knex seed:run --knexfile dist/database/knexfile.js",
     "ts": "tsc",
     "prettier": "npx prettier --write ."
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "16.18.1",
+    "npm": "8.19.3"
+  },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "bcryptjs": "^2.4.3",

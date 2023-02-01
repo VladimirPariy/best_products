@@ -1,5 +1,5 @@
 export const enum apiUrls {
-  BASE_URL = " http://localhost:8000/api/",
+  BASE_URL = "http://localhost:8000/api/",
   BASE_Image_URL = "http://localhost:8000/",
   sign_up = "auth/registration",
   sign_in = "auth/login",
