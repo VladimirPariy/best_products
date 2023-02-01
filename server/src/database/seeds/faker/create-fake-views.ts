@@ -17,10 +17,10 @@ const addFakeView = (id: number, knex: Knex) => {
 };
 
 export const createViews = (knex: Knex) => {
-  let j = 0;
+  let j = 1;
   let arr = [];
   for (let i = 1; i <= 200; i++) {
-    for (let k = 0; k < 500; k++) {
+    for (let k = 0; k < 100; k++) {
       arr.push(addFakeView(j, knex));
       j++;
     }

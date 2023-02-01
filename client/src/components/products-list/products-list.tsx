@@ -1,5 +1,5 @@
-import { Loader } from "components/ui/loader/loader";
-import React, { FC, useEffect, useState } from "react";
+import {Loader} from "components/ui/loader/loader";
+import React, {FC, useEffect, useState} from "react";
 
 import {
   clearProductsList,
@@ -13,7 +13,7 @@ import {
   selectProductsOrderBy,
   selectProductsStatus,
 } from "store/products/products-selectors";
-import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
+import {useAppDispatch, useAppSelector} from "lib/interfaces/store.types";
 
 import ProductItem from "components/ui/product-item/product-item";
 import ProductListWrapper from "components/ui/product-list-wrapper/product-list-wrapper";
@@ -84,7 +84,6 @@ const ProductsList: FC<Props> = (props) => {
       (maxPrice && +maxPrice !== maxPriceFromServer) ||
       selectedParameters !== selectedParams
     ) {
-      console.log(1);
       dispatch(clearProductsList());
       dispatch(
         productsListTrigger({
@@ -108,11 +107,11 @@ const ProductsList: FC<Props> = (props) => {
       {products.length > 0 && (
         <ProductListWrapper>
           {products.map((product) => (
-            <ProductItem {...product} key={product.product_id} />
+            <ProductItem {...product} key={product.product_id}/>
           ))}
         </ProductListWrapper>
       )}
-      {isLoading ? <Loader color={"#766ed3"} /> : null}
+      {isLoading ? <Loader color={"#766ed3"}/> : null}
     </>
   );
 };
