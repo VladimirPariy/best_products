@@ -3,60 +3,22 @@ import { Router } from "express";
 import { authenticateJWT } from "../common/middlewares/auth-middleware";
 import { checkRole } from "../common/middlewares/role-middleware";
 import productController from "./product.controller";
-
-import { EndpointsList } from "../common/enums/endpoints-list";
+import { Roles } from "../common/enums/Roles";
 
 export const createProductsRouter = (): Router => {
   const productsRouter = Router();
 
-  productsRouter.get(EndpointsList.PRODUCTS, productController.getAllProducts);
-  productsRouter.get(
-    EndpointsList.FILTERED_PRODUCTS,
-    productController.getFilteredProductsByCategory
-  );
-  productsRouter.get(
-    EndpointsList.SEARCH,
-    productController.searchProductsAndSubcategory
-  );
-  productsRouter.get(
-    EndpointsList.ONE_PRODUCT_BY_ID,
-    productController.getProductDetailsById
-  );
-  productsRouter.delete(
-    EndpointsList.ONE_PRODUCT_BY_ID,
-    [checkRole("1"), authenticateJWT],
-    productController.removeProduct
-  );
-  productsRouter.patch(
-    EndpointsList.ONE_PRODUCT_BY_ID,
-    [checkRole("1"), authenticateJWT],
-    productController.updateProduct
-  );
-  productsRouter.post(
-    EndpointsList.PRODUCTS,
-    [checkRole("1"), authenticateJWT],
-    productController.createNewProduct
-  );
-  productsRouter.post(
-    EndpointsList.TEMP_IMAGES,
-    [checkRole("1"), authenticateJWT],
-    productController.uploadTempImages
-  );
-  productsRouter.delete(
-    EndpointsList.REMOVE_TEMP_IMAGES,
-    [checkRole("1"), authenticateJWT],
-    productController.removeTempImage
-  );
-  productsRouter.post(
-    EndpointsList.ONE_PRODUCT_BY_ID,
-    [checkRole("1"), authenticateJWT],
-    productController.uploadImage
-  );
-  productsRouter.delete(
-    EndpointsList.REMOVE_IMAGE,
-    [checkRole("1"), authenticateJWT],
-    productController.removeImage
-  );
+  productsRouter.get("/", productController.getAllProducts);
+  productsRouter.get("/filter", productController.getFilteredProductsByCategory);
+  productsRouter.get("/search", productController.searchProductsAndSubcategory);
+  productsRouter.get("/:id", productController.getProductDetailsById);
+  productsRouter.delete("/:id", [checkRole(Roles.Admin), authenticateJWT], productController.removeProduct);
+  productsRouter.patch("/:id", [checkRole(Roles.Admin), authenticateJWT], productController.updateProduct);
+  productsRouter.post("/", [checkRole(Roles.Admin), authenticateJWT], productController.createNewProduct);
+  productsRouter.post("/temp", [checkRole(Roles.Admin), authenticateJWT], productController.uploadTempImages);
+  productsRouter.delete("/temp/:id", [checkRole(Roles.Admin), authenticateJWT], productController.removeTempImage);
+  productsRouter.post("/:id", [checkRole(Roles.Admin), authenticateJWT], productController.uploadImage);
+  productsRouter.delete("/img/:id", [checkRole(Roles.Admin), authenticateJWT], productController.removeImage);
 
   return productsRouter;
 };

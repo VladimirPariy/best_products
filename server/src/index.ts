@@ -1,4 +1,3 @@
-import { EndpointsList } from "./app/common/enums/endpoints-list";
 import express, { Express } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
@@ -9,13 +8,9 @@ import { ErrorHandler } from "./app/common/middlewares/exceptions-middleware";
 import { createRootRouter } from "./app/common/root-router";
 import path from "path";
 
-dotenv.config();
-
-const PORT = process.env.PORT || 8000;
-const HOST = "localhost";
-
 const createWebServer = (): Express => {
   const app = express();
+  dotenv.config();
 
   app.use(cors());
 
@@ -24,13 +19,15 @@ const createWebServer = (): Express => {
   app.use(fileUpload({}));
   app.use(express.urlencoded({ extended: true }));
 
-  app.use(EndpointsList.API, createRootRouter());
+  app.use("/api", createRootRouter());
 
   app.use(ErrorHandler);
   return app;
 };
 
 const start = async (app: Express) => {
+  const PORT = process.env.PORT || 8000;
+  const HOST = process.env.HOST || "localhost";
   try {
     app.listen(PORT);
     connectingDb();

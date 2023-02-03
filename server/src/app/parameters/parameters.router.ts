@@ -1,21 +1,14 @@
 import { Router } from "express";
-import { EndpointsList } from "../common/enums/endpoints-list";
 import ParametersController from "../parameters/parameters.controller";
 import { checkRole } from "../common/middlewares/role-middleware";
 import { authenticateJWT } from "../common/middlewares/auth-middleware";
+import { Roles } from "../common/enums/Roles";
 
 export const createParametersRouter = (): Router => {
   const parametersRouter = Router();
 
-  parametersRouter.get(
-    EndpointsList.PARAMETERS,
-    [checkRole("1"), authenticateJWT],
-    ParametersController.getAllParameters
-  );
-  parametersRouter.get(
-    EndpointsList.PARAMETERS_BY_SUBCATEGORY_ID,
-    ParametersController.getParametersBySubcategoryId
-  );
+  parametersRouter.get("/", [checkRole(Roles.Admin), authenticateJWT], ParametersController.getAllParameters);
+  parametersRouter.get("/:subcategoryId", ParametersController.getParametersBySubcategoryId);
 
   return parametersRouter;
 };

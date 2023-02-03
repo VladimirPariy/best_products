@@ -1,7 +1,5 @@
 import { Router } from "express";
 
-import { EndpointsList } from "./enums/endpoints-list";
-
 import { createAuthRouter } from "../auth/auth.router";
 import { createCategoriesRouter } from "../categories/categories.router";
 import { createProductsRouter } from "../products/product.router";
@@ -14,28 +12,25 @@ import { createCharacteristicsRouter } from "../characteristics/characteristic.r
 import { createViewRouter } from "../views/view.router";
 import { createFeedbacksRouter } from "../feedbacks/feedbacks.router";
 import { createStatisticsRouter } from "../statistics/statistics.router";
+import { Roles } from "./enums/Roles";
+import { checkRole } from "./middlewares/role-middleware";
+import { authenticateJWT } from "./middlewares/auth-middleware";
 
 export const createRootRouter = (): Router => {
   const rootRouter = Router();
 
-  rootRouter.use(EndpointsList.ROOT_AUTH, createAuthRouter());
-  rootRouter.use(EndpointsList.ROOT_USER, createUserRouter());
-  rootRouter.use(EndpointsList.ROOT_CATEGORIES, createCategoriesRouter());
-  rootRouter.use(EndpointsList.ROOT_PRODUCTS, createProductsRouter());
-  rootRouter.use(EndpointsList.ROOT_PARAMETERS, createParametersRouter());
-  rootRouter.use(EndpointsList.ROOT_COMMENTS, createCommentsRouter());
-  rootRouter.use(EndpointsList.ROOT_PRICE_HISTORY, createPriceHistoryRouter());
-  rootRouter.use(
-    EndpointsList.ROOT_FAVORITE_PRODUCTS,
-    createFavoriteProductsRouter()
-  );
-  rootRouter.use(
-    EndpointsList.ROOT_CHARACTERISTICS,
-    createCharacteristicsRouter()
-  );
-  rootRouter.use(EndpointsList.ROOT_VIEW, createViewRouter());
-  rootRouter.use(EndpointsList.ROOT_FEEDBACK, createFeedbacksRouter());
-  rootRouter.use(EndpointsList.ROOT_STATISTICS, createStatisticsRouter());
+  rootRouter.use("/auth", createAuthRouter());
+  rootRouter.use("/user", authenticateJWT, createUserRouter());
+  rootRouter.use("/categories", createCategoriesRouter());
+  rootRouter.use("/products", createProductsRouter());
+  rootRouter.use("/parameters", createParametersRouter());
+  rootRouter.use("/comments", createCommentsRouter());
+  rootRouter.use("/history", [checkRole(Roles.Admin), authenticateJWT], createPriceHistoryRouter());
+  rootRouter.use("/favorite", authenticateJWT, createFavoriteProductsRouter());
+  rootRouter.use("/characteristics", [checkRole(Roles.Admin), authenticateJWT], createCharacteristicsRouter());
+  rootRouter.use("/view", createViewRouter());
+  rootRouter.use("/feedbacks", authenticateJWT, createFeedbacksRouter());
+  rootRouter.use("/statistics", [checkRole(Roles.Admin), authenticateJWT], createStatisticsRouter());
 
   return rootRouter;
 };

@@ -1,47 +1,18 @@
 import { Router } from "express";
-import { authenticateJWT } from "../common/middlewares/auth-middleware";
-import { EndpointsList } from "../common/enums/endpoints-list";
 import UserController from "./user.controller";
 import { checkRole } from "../common/middlewares/role-middleware";
+import { Roles } from "../common/enums/Roles";
 
 export const createUserRouter = (): Router => {
   const userRouter = Router();
 
-  userRouter.get(
-    EndpointsList.ALL_USERS,
-    [checkRole("1"), authenticateJWT],
-    UserController.getAllUsers
-  );
-  userRouter.get(
-    EndpointsList.ROLE_LIST,
-    [checkRole("1"), authenticateJWT],
-    UserController.getAllRoles
-  );
-  userRouter.patch(
-    EndpointsList.ROLE_BY_USER_ID,
-    [checkRole("1"), authenticateJWT],
-    UserController.updateRole
-  );
-  userRouter.get(
-    EndpointsList.ONE_USER_BY_ID,
-    authenticateJWT,
-    UserController.getUserInfo
-  );
-  userRouter.patch(
-    EndpointsList.ONE_USER_BY_ID,
-    authenticateJWT,
-    UserController.updateUserInfo
-  );
-  userRouter.delete(
-    EndpointsList.ONE_USER_BY_ID,
-    [checkRole("1"), authenticateJWT],
-    UserController.removeUser
-  );
-  userRouter.get(
-    EndpointsList.TOKEN_BY_USER_ID,
-    authenticateJWT,
-    UserController.getNewToken
-  );
+  userRouter.get("/", [checkRole(Roles.Admin)], UserController.getAllUsers);
+  userRouter.get("/roles", [checkRole(Roles.Admin)], UserController.getAllRoles);
+  userRouter.patch("/roles/:id", [checkRole(Roles.Admin)], UserController.updateRole);
+  userRouter.get("/:id", UserController.getUserInfo);
+  userRouter.patch("/:id", UserController.updateUserInfo);
+  userRouter.delete("/:id", [checkRole(Roles.Admin)], UserController.removeUser);
+  userRouter.get("/token/:id", UserController.getNewToken);
 
   return userRouter;
 };

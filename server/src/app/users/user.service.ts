@@ -8,8 +8,19 @@ import { generateJwtToken } from "../common/utils/generate-jwt-token";
 import { HttpException } from "../common/errors/exceptions";
 import { IUserUpdatingFields } from "./user.interfaces";
 import { UsersModel } from "./models/users.model";
+import { IDataForCreatingUser } from "../auth/auth.interface";
 
 class UserService {
+  async createUser(data: IDataForCreatingUser) {
+    const { firstName, lastName, email, encryptedPass, isGetUpdate } = data;
+    return UsersModel.query().insert({
+      email,
+      password: encryptedPass,
+      first_name: firstName,
+      last_name: lastName,
+      is_get_update: isGetUpdate,
+    });
+  }
   async getAllUsers() {
     const users = await UsersModel.query().withGraphFetched("users_roles");
     if (!Object.keys(users)) {
@@ -27,42 +38,24 @@ class UserService {
   }
 
   async updateUserRoleById(user_id: number, role: number) {
-    const updatedUser = await UsersModel.query()
-      .findById(user_id)
-      .update({ role });
+    const updatedUser = await UsersModel.query().findById(user_id).update({ role });
     if (!updatedUser) {
       return HttpException.internalServErr("Role change request failed");
     }
-    return await this.getUserById(user_id);
+    return this.getUserById(user_id);
   }
 
   async getUserByEmailOrPhoneNumber(login: string) {
-    const user = await UsersModel.query()
-      .skipUndefined()
-      .where({ email: login })
-      .orWhere({ phone_number: login });
+    const user = await UsersModel.query().skipUndefined().where({ email: login }).orWhere({ phone_number: login });
     return user[0];
   }
 
   async getUserById(id: number) {
-    const user = await UsersModel.query()
-      .findById(id)
-      .withGraphFetched("users_roles");
-    if (!user) {
-      return HttpException.notFound(`User not found`);
-    }
-    return user;
+    return UsersModel.query().findById(id).withGraphFetched("users_roles");
   }
 
   async updateUserById(id: string, { body, files }: Request) {
-    const allowedFields = [
-      "first_name",
-      "last_name",
-      "email",
-      "password",
-      "phone_number",
-      "is_get_update",
-    ];
+    const allowedFields = ["first_name", "last_name", "email", "password", "phone_number", "is_get_update"];
     let userInfo = {} as IUserUpdatingFields;
     for (const field in body) {
       if (allowedFields.includes(field)) {
@@ -90,20 +83,13 @@ class UserService {
     }
 
     if (userInfo.email || userInfo.phone_number) {
-      const user = await UsersModel.query()
-        .skipUndefined()
-        .where({ email: userInfo.email })
-        .orWhere({ phone_number: userInfo.phone_number });
+      const user = await UsersModel.query().skipUndefined().where({ email: userInfo.email }).orWhere({ phone_number: userInfo.phone_number });
       if (user.length > 0) {
-        return HttpException.alreadyExists(
-          "User with the same email or phone exist"
-        );
+        return HttpException.alreadyExists("User with the same email or phone exist");
       }
     }
 
-    const updateInfo = await UsersModel.query()
-      .patch(userInfo)
-      .where({ user_id: +id });
+    const updateInfo = await UsersModel.query().patch(userInfo).where({ user_id: +id });
     if (!updateInfo) {
       return HttpException.internalServErr(`Unsuccessful updating user`);
     }
@@ -112,14 +98,11 @@ class UserService {
 
   async createNewToken(id: number) {
     const user = await this.getUserById(id);
-    if (user instanceof HttpException) {
-      return user;
-    }
+    if (!user) throw HttpException.internalServErr(`User not found`);
+
     const token = generateJwtToken(user.user_id, user.email, user.role);
     if (!token) {
-      return HttpException.internalServErr(
-        `Unsuccessful attempt to create token`
-      );
+      return HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
     return token;
   }
