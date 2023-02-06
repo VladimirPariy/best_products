@@ -1,7 +1,18 @@
-import { HttpException } from "../common/errors/exceptions";
 import { CommentsModel } from "./comments.model";
+import { ICreateCommentData } from "./comment.interface";
 
-class CommentsService {
+export default class CommentsService {
+  private static instance: CommentsService;
+
+  private constructor() {}
+
+  public static getInstance(): CommentsService {
+    if (!CommentsService.instance) {
+      CommentsService.instance = new CommentsService();
+    }
+    return CommentsService.instance;
+  }
+
   async getCommentsByProductId(id: number) {
     return CommentsModel.query()
       .where({ product: id })
@@ -9,30 +20,20 @@ class CommentsService {
       .withGraphFetched("users(selectShotUserInfo)");
   }
 
-  async createComment(productId: number, userId: number, message: string) {
-    const insertingComment = await CommentsModel.query().insert({
+  async createComment(payload: ICreateCommentData) {
+    const { productId, userId, message } = payload;
+    return CommentsModel.query().insert({
       user: userId,
       product: productId,
       comment_msg: message,
     });
-    if (!insertingComment) {
-      return HttpException.internalServErr(
-        "Unsuccessful inserting comment into table"
-      );
-    }
-    return CommentsModel.query()
-      .findById(insertingComment.$id())
-      .modify("selectShotComment")
-      .withGraphFetched("users(selectShotUserInfo)");
+  }
+
+  async getCommentByID(id: number) {
+    return CommentsModel.query().findById(id).modify("selectShotComment").withGraphFetched("users(selectShotUserInfo)");
   }
 
   async removeCommentById(id: number) {
-    const removedComment = await CommentsModel.query().deleteById(id);
-    if (!removedComment) {
-      return HttpException.notFound("Comment not found");
-    }
-    return { id };
+    return CommentsModel.query().deleteById(id);
   }
 }
-
-export default new CommentsService();

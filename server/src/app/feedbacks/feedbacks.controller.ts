@@ -2,37 +2,43 @@ import { Response, Request, NextFunction } from "express";
 
 import { HttpException } from "../common/errors/exceptions";
 import FeedbacksService from "./feedbacks.service";
+import { paramsSchema } from "../common/validations/params-validation";
+import { addFeedbackSchema } from "../common/validations/feedback-validation";
 
-class FeedbacksController {
-  async getFeedbacksByUserId(req: Request, res: Response, next: NextFunction) {
-    const { id } = req.params;
-    if (!id || isNaN(+id)) {
-      return next(HttpException.badRequest("User id is missing or invalid"));
+const instanceFeedbacksService = FeedbacksService.getInstance();
+
+export default class FeedbacksController {
+  private static instance: FeedbacksController;
+
+  private constructor() {}
+
+  public static getInstance(): FeedbacksController {
+    if (!FeedbacksController.instance) {
+      FeedbacksController.instance = new FeedbacksController();
     }
-    const data = await FeedbacksService.getFeedbacksByUserId(+id);
+    return FeedbacksController.instance;
+  }
+
+  async getFeedbacksByUserId(req: Request, res: Response) {
+    const { id } = await paramsSchema.validate(req.params);
+
+    const data = await instanceFeedbacksService.getFeedbacksByUserId(id);
     res.status(200).send(data);
   }
 
-  async addFeedback(req: Request, res: Response, next: NextFunction) {
-    const { userId, productId, feedbackType } = req.body;
-    if (typeof feedbackType === "undefined" || isNaN(+userId)) {
-      return next(HttpException.badRequest("User id is missing or invalid"));
-    }
-    if (typeof feedbackType === "undefined" || isNaN(+productId)) {
-      return next(HttpException.badRequest("Product id is missing or invalid"));
-    }
-    if (typeof feedbackType === "undefined" || isNaN(+feedbackType)) {
-      return next(
-        HttpException.badRequest("Feedback type is missing or invalid")
-      );
-    }
-    const data = await FeedbacksService.addFeedback(
-      userId,
-      productId,
-      feedbackType
+  async addFeedback(req: Request, res: Response) {
+    const payload = await addFeedbackSchema.validate(req.body);
+
+    const insertedFeedback = await instanceFeedbacksService.addFeedback(
+      payload
     );
-    res.status(200).send(data);
+    const { user, product } = insertedFeedback;
+    const feedback =
+      await instanceFeedbacksService.getFeedbackByUserAndProductID(
+        user,
+        product
+      );
+
+    res.status(200).send(feedback);
   }
 }
-
-export default new FeedbacksController();

@@ -21,11 +21,19 @@ import { ProductSubcategoryModal } from "../categories/models/product-subcategor
 import { ProductCharacteristicModel } from "../characteristics/models/product-characteristics.model";
 import { knexInstance } from "../../database/connectingDb";
 
-class ProductService {
-  getProductOrProducts(): Objection.QueryBuilder<
-    ProductsModel,
-    ProductsModel[]
-  >;
+export default class ProductService {
+  private static instance: ProductService;
+
+  private constructor() {}
+
+  public static getInstance(): ProductService {
+    if (!ProductService.instance) {
+      ProductService.instance = new ProductService();
+    }
+    return ProductService.instance;
+  }
+
+  getProductOrProducts(): Objection.QueryBuilder<ProductsModel, ProductsModel[]>;
   getProductOrProducts(
     id: number[],
     comment?: boolean,
@@ -36,15 +44,10 @@ class ProductService {
     comment?: boolean,
     withOutFilters?: boolean
   ): Objection.QueryBuilder<ProductsModel, ProductsModel | undefined>;
-  getProductOrProducts(
-    id?: number | number[],
-    comment?: boolean,
-    withOutFilters?: boolean
-  ) {
+  getProductOrProducts(id?: number | number[], comment?: boolean, withOutFilters?: boolean) {
     const expr =
       "[product_images(selectShotImage), characteristics(selectShotCharacteristic).[parameters(selectShotParameter)], subcategories(selectShotSubcategory).[categories(selectShotCategory)]]";
-    const exprWithOutFilters =
-      "[product_images, characteristics.[parameters], subcategories.[categories]]";
+    const exprWithOutFilters = "[product_images, characteristics.[parameters], subcategories.[categories]]";
 
     const colArray = [
       "products.*",
@@ -75,9 +78,7 @@ class ProductService {
   }
 
   getFavoriteAmount() {
-    return ProductsModel.relatedQuery("favorite_products")
-      .count()
-      .as("favorites_amount");
+    return ProductsModel.relatedQuery("favorite_products").count().as("favorites_amount");
   }
 
   getViewsAmount() {
@@ -85,17 +86,11 @@ class ProductService {
   }
 
   getPositiveFeedbacksAmount() {
-    return ProductsModel.relatedQuery("feedbacks")
-      .count()
-      .as("positive_feedbacks_amount")
-      .where({ feedback_type: 2 });
+    return ProductsModel.relatedQuery("feedbacks").count().as("positive_feedbacks_amount").where({ feedback_type: 2 });
   }
 
   getNegativeFeedbacksAmount() {
-    return ProductsModel.relatedQuery("feedbacks")
-      .count()
-      .as("negative_feedbacks_amount")
-      .where({ feedback_type: 1 });
+    return ProductsModel.relatedQuery("feedbacks").count().as("negative_feedbacks_amount").where({ feedback_type: 1 });
   }
 
   getCommentsAmount() {
@@ -103,13 +98,9 @@ class ProductService {
   }
 
   async getAllProducts() {
-    const products = await ProductsModel.query().withGraphFetched(
-      "[product_images, characteristics.[parameters]]"
-    );
+    const products = await ProductsModel.query().withGraphFetched("[product_images, characteristics.[parameters]]");
     if (!products.length) {
-      return HttpException.internalServErr(
-        "Unsuccessful selecting data from table"
-      );
+      return HttpException.internalServErr("Unsuccessful selecting data from table");
     }
     return products;
   } ///
@@ -122,9 +113,7 @@ class ProductService {
     const product = await this.getProductOrProducts(+id, true, true);
 
     if (!product) {
-      return HttpException.internalServErr(
-        `Unsuccessful selecting data into table`
-      );
+      return HttpException.internalServErr(`Unsuccessful selecting data into table`);
     }
 
     return product;
@@ -152,15 +141,7 @@ class ProductService {
   }
 
   async createNewProduct(body: IInfoForCreateProduct) {
-    const {
-      category,
-      subcategory,
-      productTitle,
-      productDescription,
-      price,
-      characteristics,
-      images,
-    } = body;
+    const { category, subcategory, productTitle, productDescription, price, characteristics, images } = body;
     if (
       !category ||
       !subcategory ||
@@ -173,16 +154,14 @@ class ProductService {
       return HttpException.badRequest("Missing required fields");
     }
 
-    const modifyCharacteristicsObject = (
-      JSON.parse(characteristics) as number[]
-    ).map((item) => ({ characteristic: item }));
+    const modifyCharacteristicsObject = (JSON.parse(characteristics) as number[]).map((item) => ({
+      characteristic: item,
+    }));
 
-    const modifyImagesObject = (JSON.parse(images) as IProductImage[]).map(
-      (img) => {
-        const { original_title, image_title, size } = img;
-        return { original_title, image_title, size };
-      }
-    );
+    const modifyImagesObject = (JSON.parse(images) as IProductImage[]).map((img) => {
+      const { original_title, image_title, size } = img;
+      return { original_title, image_title, size };
+    });
     const price_history: IPriceHistory = { price_at_timestamp: +price };
     const product_subcategory: IProductSubcategory = {
       subcategory: +subcategory,
@@ -216,9 +195,7 @@ class ProductService {
 
     for (const img in file) {
       const fileName = `${uuidv4()}.jpg`;
-      await (file[img] as UploadedFile).mv(
-        path.resolve(__dirname, "..", "..", "static", fileName)
-      );
+      await (file[img] as UploadedFile).mv(path.resolve(__dirname, "..", "..", "static", fileName));
 
       const image = await TempImagesModel.query().insert({
         size: (file[img] as UploadedFile).size,
@@ -226,9 +203,7 @@ class ProductService {
         image_title: fileName,
       });
       if (!Object.keys(image).length) {
-        return HttpException.internalServErr(
-          `Unsuccessful inserting data into table`
-        );
+        return HttpException.internalServErr(`Unsuccessful inserting data into table`);
       }
 
       return image;
@@ -269,16 +244,10 @@ class ProductService {
         .update({ subcategory: productInfo.product_subcategory })
         .where("product", id);
       if (!updateSubcategory) {
-        return HttpException.internalServErr(
-          `Unsuccessful updating subcategory into table`
-        );
+        return HttpException.internalServErr(`Unsuccessful updating subcategory into table`);
       }
     }
-    if (
-      productInfo.product_description ||
-      productInfo.product_title ||
-      productInfo.price
-    ) {
+    if (productInfo.product_description || productInfo.product_title || productInfo.price) {
       let checkByUndefined = {};
       if (productInfo.product_description) {
         checkByUndefined = {
@@ -295,19 +264,13 @@ class ProductService {
       if (productInfo.price) {
         checkByUndefined = { ...checkByUndefined, price: productInfo.price };
       }
-      const updateProduct = await ProductsModel.query()
-        .update(checkByUndefined)
-        .where(ProductsModel.idColumn, id);
+      const updateProduct = await ProductsModel.query().update(checkByUndefined).where(ProductsModel.idColumn, id);
       if (!updateProduct) {
-        return HttpException.internalServErr(
-          `Unsuccessful title, description or price updating into table`
-        );
+        return HttpException.internalServErr(`Unsuccessful title, description or price updating into table`);
       }
     }
     if (productInfo.product_characteristics) {
-      const characteristics: number[] = JSON.parse(
-        productInfo.product_characteristics
-      );
+      const characteristics: number[] = JSON.parse(productInfo.product_characteristics);
       const modifyChar = characteristics.map((char) => ({
         product: +id,
         characteristic: +char,
@@ -315,14 +278,10 @@ class ProductService {
 
       await ProductCharacteristicModel.query().del().where("product", id);
 
-      const insertNewChar = await knexInstance(
-        "product_characteristics"
-      ).insert(modifyChar);
+      const insertNewChar = await knexInstance("product_characteristics").insert(modifyChar);
 
       if (!insertNewChar.length) {
-        return HttpException.internalServErr(
-          `Unsuccessful characteristics updating`
-        );
+        return HttpException.internalServErr(`Unsuccessful characteristics updating`);
       }
     }
 
@@ -339,9 +298,7 @@ class ProductService {
 
     for (const img in file) {
       const fileName = `${uuidv4()}.jpg`;
-      await (file[img] as UploadedFile).mv(
-        path.resolve(__dirname, "..", "..", "static", fileName)
-      );
+      await (file[img] as UploadedFile).mv(path.resolve(__dirname, "..", "..", "static", fileName));
 
       const image = await ProductsImagesModel.query().insert({
         product: id,
@@ -350,9 +307,7 @@ class ProductService {
         image_title: fileName,
       });
       if (!Object.keys(image).length) {
-        return HttpException.internalServErr(
-          `Unsuccessful inserting data into table`
-        );
+        return HttpException.internalServErr(`Unsuccessful inserting data into table`);
       }
 
       return image;
@@ -363,9 +318,7 @@ class ProductService {
     if (!id) {
       return HttpException.badRequest("Missing image id");
     }
-    const removed = await ProductsImagesModel.query()
-      .del()
-      .where({ image_id: id });
+    const removed = await ProductsImagesModel.query().del().where({ image_id: id });
     return { removed };
   }
 
@@ -376,13 +329,11 @@ class ProductService {
     limit: number,
     filter: string
   ) {
-    if (isNaN(page) || isNaN(limit))
-      return HttpException.badRequest("Page or limit not a number");
+    if (isNaN(page) || isNaN(limit)) return HttpException.badRequest("Page or limit not a number");
     const findCategory = await CategoriesModel.query().where({
       category_title: category,
     });
-    if (findCategory.length === 0)
-      return HttpException.badRequest("No specified category");
+    if (findCategory.length === 0) return HttpException.badRequest("No specified category");
     const products = await this.getProductOrProducts()
       .where("subcategories.category", findCategory[0].category_id)
       .orderBy("price", orderBy);
@@ -402,25 +353,16 @@ class ProductService {
       const isAppropriate: boolean[] = [];
 
       normalizedFilter.subcategoryId &&
-        isAppropriate.push(
-          product.subcategories[0].subcategory_id ===
-            +normalizedFilter.subcategoryId
-        );
+        isAppropriate.push(product.subcategories[0].subcategory_id === +normalizedFilter.subcategoryId);
 
-      normalizedFilter.minPrice &&
-        isAppropriate.push(product.price >= +normalizedFilter.minPrice);
+      normalizedFilter.minPrice && isAppropriate.push(product.price >= +normalizedFilter.minPrice);
 
-      normalizedFilter.maxPrice &&
-        isAppropriate.push(product.price <= +normalizedFilter.maxPrice);
+      normalizedFilter.maxPrice && isAppropriate.push(product.price <= +normalizedFilter.maxPrice);
 
       if (normalizedFilter.selectedParameters) {
         const arrSelectedParam = normalizedFilter.selectedParameters.split(",");
-        const charIds = product.characteristics.map(
-          (char) => char.characteristic_id
-        );
-        isAppropriate.push(
-          arrSelectedParam.some((param) => charIds.includes(+param))
-        );
+        const charIds = product.characteristics.map((char) => char.characteristic_id);
+        isAppropriate.push(arrSelectedParam.some((param) => charIds.includes(+param)));
       }
       return isAppropriate.every((el) => el);
     });
@@ -455,13 +397,7 @@ class ProductService {
       .withGraphJoined("product_images")
       .where("products.product_title", "like", `%${query}%`);
 
-    const subcategories = await SubcategoryModel.query().where(
-      "subcategory_title",
-      "like",
-      `%${query}%`
-    );
+    const subcategories = await SubcategoryModel.query().where("subcategory_title", "like", `%${query}%`);
     return { products, subcategories };
   }
 }
-
-export default new ProductService();

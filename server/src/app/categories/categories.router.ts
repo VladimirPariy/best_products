@@ -5,7 +5,9 @@ import CategoriesController from "./categories.controller";
 export const createCategoriesRouter = (): Router => {
   const categoriesRouter = Router();
 
-  categoriesRouter.get("/", CategoriesController.getAll);
+  const instanceCategoriesController = CategoriesController.getInstance();
+
+  categoriesRouter.get("/", instanceCategoriesController.getAll);
 
   return categoriesRouter;
 };

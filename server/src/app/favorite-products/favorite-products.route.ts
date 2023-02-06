@@ -1,12 +1,15 @@
 import { Router } from "express";
 import FavoriteProductsController from "./favorite-products.controller";
+import { tryCatch } from "../common/utils/try-catch";
 
 export const createFavoriteProductsRouter = (): Router => {
   const favoriteProductsRouter = Router();
 
-  favoriteProductsRouter.get("/:id", FavoriteProductsController.getFavoriteProductsByUserId);
-  favoriteProductsRouter.post("/", FavoriteProductsController.addProductIntoFavorite);
-  favoriteProductsRouter.delete("/", FavoriteProductsController.removeProductFromFavorite);
+  const instanceFavoriteProductsController = FavoriteProductsController.getInstance();
+
+  favoriteProductsRouter.get("/:id", tryCatch(instanceFavoriteProductsController.getFavoriteProductsByUserId));
+  favoriteProductsRouter.post("/", tryCatch(instanceFavoriteProductsController.addProductIntoFavorite));
+  favoriteProductsRouter.delete("/", tryCatch(instanceFavoriteProductsController.removeProductFromFavorite));
 
   return favoriteProductsRouter;
 };

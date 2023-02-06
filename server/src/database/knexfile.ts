@@ -24,5 +24,5 @@ const options =
       };
 
 module.exports = {
-  options,
+  development: options,
 };

@@ -9,9 +9,9 @@ export const createForeignKeyHelper = <T>(
 ) => {
   if (defaultTo) {
     table.integer(field).unsigned().notNullable().defaultTo(defaultTo);
-    table.foreign(field).references(refer).inTable(referTable);
+    table.foreign(field).references(refer).inTable(referTable).onDelete("CASCADE");
     return;
   }
   table.integer(field).unsigned().notNullable();
-  table.foreign(field).references(refer).inTable(referTable);
+  table.foreign(field).references(refer).inTable(referTable).onDelete("CASCADE");
 };

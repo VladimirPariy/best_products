@@ -1,46 +1,42 @@
 import { FavoriteProductsModel } from "./favorite-products.model";
-import ProductService from "../products/product.service";
-import { HttpException } from "../common/errors/exceptions";
+import { IDataForChangeFavoriteStatus } from "./favorite-products.interface";
 
-class FavoriteProductsService {
-  async getFavoriteProductsByUserId(id: number) {
-    const favoriteProducts = await FavoriteProductsModel.query()
-      .where({ user: id })
-      .then((data) => data.map((item) => item.product));
-    return ProductService.getProductOrProducts(favoriteProducts);
+export default class FavoriteProductsService {
+  private static instance: FavoriteProductsService;
+
+  private constructor() {}
+
+  public static getInstance(): FavoriteProductsService {
+    if (!FavoriteProductsService.instance) {
+      FavoriteProductsService.instance = new FavoriteProductsService();
+    }
+    return FavoriteProductsService.instance;
   }
 
-  async addProductIntoFavorite(userId: number, productId: number) {
-    const isExistInList = await FavoriteProductsModel.query()
-      .where({ user: userId })
-      .andWhere({ product: productId });
-    if (isExistInList.length > 0) {
-      return HttpException.alreadyExists(
-        "The product is already in the favorite list"
-      );
-    }
-    const addedInfo = await FavoriteProductsModel.query().insert({
+  async getFavoriteProductsByUserId(id: number) {
+    return FavoriteProductsModel.query().where({ user: id });
+  }
+
+  async addProductIntoFavorite(data: IDataForChangeFavoriteStatus) {
+    const { productId, userId } = data;
+    return FavoriteProductsModel.query().insert({
       user: userId,
       product: productId,
     });
-    return ProductService.getProductOrProducts(addedInfo.product);
   }
 
-  async removeProductFromFavorite(userId: number, productId: number) {
-    const isExistInList = await FavoriteProductsModel.query()
+  async getProductFromFavoriteList(data: IDataForChangeFavoriteStatus) {
+    const { productId, userId } = data;
+    return FavoriteProductsModel.query()
       .where({ user: userId })
       .andWhere({ product: productId });
-    if (isExistInList.length === 0) {
-      return HttpException.alreadyExists(
-        "The product is already removed from the favorite list"
-      );
-    }
-    const removed = await FavoriteProductsModel.query()
+  }
+
+  async removeProductFromFavorite(data: IDataForChangeFavoriteStatus) {
+    const { productId, userId } = data;
+    return FavoriteProductsModel.query()
       .where({ user: userId })
       .andWhere({ product: productId })
       .del();
-    return { userId, productId, status: "Successful removed", amount: removed };
   }
 }
-
-export default new FavoriteProductsService();

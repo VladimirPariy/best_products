@@ -1,12 +1,12 @@
 import knex from "knex";
 import { Model } from "objection";
-const { options } = require("./knexfile");
+const { development } = require("./knexfile");
 
 const connectingDb = () => {
-  const db = knex(options);
+  const db = knex(development);
   Model.knex(db);
 };
 
 export { connectingDb };
 
-export const knexInstance = knex(options);
+export const knexInstance = knex(development);

@@ -1,59 +1,80 @@
-import { Response, Request, NextFunction } from "express";
+import { Response, Request } from "express";
 
-import { HttpException } from "../common/errors/exceptions";
 import FavoriteProductsService from "./favorite-products.service";
+import ProductService from "../products/product.service";
+import { paramsSchema } from "../common/validations/params-validation";
+import { userManipulationSchema } from "../common/validations/user-manipulation-validation";
+import { HttpException } from "../common/errors/exceptions";
 
-class FavoriteProductsController {
-  async getFavoriteProductsByUserId(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    const { id } = req.params;
-    if (isNaN(+id) || !id) {
-      return next(HttpException.badRequest("Missing user id"));
+const instanceFavoriteProductsService = FavoriteProductsService.getInstance();
+const instanceProductService = ProductService.getInstance();
+
+export default class FavoriteProductsController {
+  private static instance: FavoriteProductsController;
+
+  private constructor() {}
+
+  public static getInstance(): FavoriteProductsController {
+    if (!FavoriteProductsController.instance) {
+      FavoriteProductsController.instance = new FavoriteProductsController();
     }
-    const data = await FavoriteProductsService.getFavoriteProductsByUserId(+id);
-    res.status(200).send(data);
+    return FavoriteProductsController.instance;
   }
 
-  async addProductIntoFavorite(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    const { productId, userId } = req.body;
-    if (!productId || !userId) {
-      return next(HttpException.badRequest("Missing user id or product id"));
-    }
-    if (isNaN(+productId) || isNaN(+userId)) {
-      return next(HttpException.badRequest("Product id or user id is invalid"));
-    }
-    const data = await FavoriteProductsService.addProductIntoFavorite(
-      +userId,
-      +productId
+  async getFavoriteProductsByUserId(req: Request, res: Response) {
+    const payload = await paramsSchema.validate(req.params);
+
+    const favoriteProductsIDs = await instanceFavoriteProductsService
+      .getFavoriteProductsByUserId(payload.id)
+      .then((data) => data.map((item) => item.product));
+
+    const products = await instanceProductService.getProductOrProducts(
+      favoriteProductsIDs
     );
-    data instanceof HttpException ? next(data) : res.status(200).send(data);
+
+    res.status(200).send(products);
   }
 
-  async removeProductFromFavorite(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    const { productId, userId } = req.body;
-    if (!productId || !userId) {
-      return next(HttpException.badRequest("Missing user id or product id"));
+  async addProductIntoFavorite(req: Request, res: Response) {
+    const payload = await userManipulationSchema.validate(req.body);
+
+    const isExistInFavoriteList =
+      await instanceFavoriteProductsService.getProductFromFavoriteList(payload);
+    if (isExistInFavoriteList.length > 0) {
+      throw HttpException.alreadyExists(
+        "The product is already in the favorite list"
+      );
     }
-    if (isNaN(+productId) || isNaN(+userId)) {
-      return next(HttpException.badRequest("Product id or user id is invalid"));
-    }
-    const data = await FavoriteProductsService.removeProductFromFavorite(
-      +userId,
-      +productId
+
+    const addedProduct =
+      await instanceFavoriteProductsService.addProductIntoFavorite(payload);
+
+    const products = await instanceProductService.getProductOrProducts(
+      addedProduct.product
     );
-    data instanceof HttpException ? next(data) : res.status(200).send(data);
+
+    res.status(200).send(products);
+  }
+
+  async removeProductFromFavorite(req: Request, res: Response) {
+    const payload = await userManipulationSchema.validate(req.body);
+
+    const isExistInFavoriteList =
+      await instanceFavoriteProductsService.getProductFromFavoriteList(payload);
+    if (isExistInFavoriteList.length === 0) {
+      throw HttpException.alreadyExists(
+        "The product is already removed from the favorite list"
+      );
+    }
+
+    const removedAmount =
+      await instanceFavoriteProductsService.removeProductFromFavorite(payload);
+
+    res.status(200).send({
+      userId: payload.userId,
+      productId: payload.productId,
+      status: "Successful removed",
+      amount: removedAmount,
+    });
   }
 }
-
-export default new FavoriteProductsController();
