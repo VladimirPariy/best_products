@@ -1,12 +1,19 @@
+export const enum Tabs {
+  Description = "Description",
+  Characteristics = "Characteristics",
+  Comments = "Comments",
+  PriceDynamics = "Price dynamics",
+}
+
 export const TabsAdminEnum = [
-  { value: "Description" },
-  { value: "Characteristics" },
-  { value: "Comments" },
-  { value: "Price dynamics" },
+  Tabs.Description,
+  Tabs.Characteristics,
+  Tabs.Comments,
+  Tabs.PriceDynamics,
 ];
 
 export const TabsUserEnum = [
-  { value: "Description" },
-  { value: "Characteristics" },
-  { value: "Comments" },
+  Tabs.Description,
+  Tabs.Characteristics,
+  Tabs.Comments,
 ];

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 
-import { TabsAdminEnum } from "components/product-detail/product-detail-tabs/components/tabs-enum";
+import { Tabs } from "components/product-detail/product-detail-tabs/components/tabs-enum";
 import { ICharacteristicsWithParameters } from "lib/interfaces/characteristic.interface";
 
 import CharacteristicsTab from "components/product-detail/product-detail-tabs/components/characteristic-tab/characteristics-tab";
@@ -22,19 +22,36 @@ interface Props {
 
 const ProductTabs: FC<Props> = (props) => {
   const { description, comments_amount, characteristics, product_id } = props;
-  const [activeTab, setActiveTab] = useState<string>(TabsAdminEnum[0].value);
+  const [activeTab, setActiveTab] = useState<string>(Tabs.Description);
 
   const user = useAppSelector(selectUser);
 
   useEffect(() => {
     if (user?.role !== 1) {
-      setActiveTab(TabsAdminEnum[0].value);
+      setActiveTab(Tabs.Description);
     }
   }, [user]);
 
   const tabHandler = (tab: string) => {
     setActiveTab(tab);
   };
+
+  let currentTab: JSX.Element | null = null;
+
+  switch (activeTab) {
+    case Tabs.Description:
+      currentTab = <DescriptionTab description={description} />;
+      break;
+    case Tabs.Characteristics:
+      currentTab = <CharacteristicsTab characteristics={characteristics} />;
+      break;
+    case Tabs.Comments:
+      currentTab = <CommentsTab product_id={product_id} />;
+      break;
+    case Tabs.PriceDynamics:
+      currentTab = <PriceHistoryTab product_id={product_id} />;
+      break;
+  }
 
   return (
     <ContentContainer>
@@ -43,18 +60,7 @@ const ProductTabs: FC<Props> = (props) => {
         activeTab={activeTab}
         commentsAmount={comments_amount}
       />
-      {activeTab === TabsAdminEnum[0].value && (
-        <DescriptionTab description={description} />
-      )}
-      {activeTab === TabsAdminEnum[1].value && (
-        <CharacteristicsTab characteristics={characteristics} />
-      )}
-      {activeTab === TabsAdminEnum[2].value && (
-        <CommentsTab product_id={product_id} />
-      )}
-      {activeTab === TabsAdminEnum[3].value && (
-        <PriceHistoryTab product_id={product_id} />
-      )}
+      {currentTab}
     </ContentContainer>
   );
 };

@@ -19,31 +19,18 @@ interface Props {
 const TabsList: FC<Props> = ({ activeHandler, activeTab, commentsAmount }) => {
   const user = useAppSelector(selectUser);
 
+  const tabs = user?.role === 1 ? TabsAdminEnum : TabsUserEnum;
   return (
     <div className={styles.tabsListContainer}>
-      {user?.role === 1
-        ? TabsAdminEnum.map((item) => (
-            <TabsItem
-              key={item.value}
-              value={item.value}
-              activeHandler={activeHandler}
-              active={activeTab}
-              commentLength={
-                item.value === "Comments" ? commentsAmount : undefined
-              }
-            />
-          ))
-        : TabsUserEnum.map((item) => (
-            <TabsItem
-              key={item.value}
-              value={item.value}
-              activeHandler={activeHandler}
-              active={activeTab}
-              commentLength={
-                item.value === "Comments" ? commentsAmount : undefined
-              }
-            />
-          ))}
+      {tabs.map((item) => (
+        <TabsItem
+          key={item}
+          value={item}
+          activeHandler={activeHandler}
+          active={activeTab}
+          commentLength={item === "Comments" ? commentsAmount : undefined}
+        />
+      ))}
     </div>
   );
 };

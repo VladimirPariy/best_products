@@ -17,7 +17,7 @@ const ProtectedRoute: FC<Props> = ({
   if (!isAllowed)
     return <Navigate to={redirectPath} state={{ from: location }} />;
 
-  return children ? <>children</> : <Outlet />;
+  return children ? <>{children}</> : <Outlet />;
 };
 
 export default ProtectedRoute;
