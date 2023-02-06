@@ -1,7 +1,6 @@
 import express, { Express } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import fileUpload from "express-fileupload";
 
 import { connectingDb } from "./database/connectingDb";
 import { ErrorHandler } from "./app/common/middlewares/exceptions-middleware";
@@ -16,7 +15,7 @@ const createWebServer = (): Express => {
 
   app.use(express.json());
   app.use(express.static(path.resolve(__dirname, "static")));
-  app.use(fileUpload({}));
+
   app.use(express.urlencoded({ extended: true }));
 
   app.use("/api", createRootRouter());

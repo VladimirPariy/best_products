@@ -44,14 +44,11 @@ export default class UserController {
   async updateUserInfo(req: Request, res: Response) {
     const { id } = await paramsSchema.validate(req.user);
 
-    const img = req.files?.img;
-    if (Array.isArray(img)) throw HttpException.badRequest("Attached array of pictures");
+    const img = req.file;
 
     let body: Partial<IUserUpdatingFields> = { ...req.body };
     if (img) {
-      const fileName = `${uuidv4()}.jpg`;
-      await img.mv(path.resolve(__dirname, "..", "..", "static", fileName));
-      body = { ...body, user_photo: fileName };
+      body = { ...body, user_photo: img.filename };
     }
 
     const payload = await updateUserSchema.validate(body);
