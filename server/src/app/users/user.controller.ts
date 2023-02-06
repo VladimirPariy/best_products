@@ -45,14 +45,12 @@ export default class UserController {
     const { id } = await paramsSchema.validate(req.user);
 
     const img = req.file;
-
     let body: Partial<IUserUpdatingFields> = { ...req.body };
     if (img) {
       body = { ...body, user_photo: img.filename };
     }
 
     const payload = await updateUserSchema.validate(body);
-
     if (payload.password) payload.password = await bcrypt.hash(payload.password, 7);
 
     if (payload.email || payload.phone_number) {
