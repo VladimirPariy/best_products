@@ -1,13 +1,14 @@
 @use "./variables" as *;
+@use "sass:map";
 
 @mixin tablet {
-  @media screen and (min-width: $tablet-width) {
+  @media screen and (min-width: map.get($window-width, tablet)) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media screen and (min-width: $desktop-width) {
+  @media screen and (min-width: map.get($window-width, desktop)) {
     @content;
   }
 }
