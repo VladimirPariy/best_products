@@ -51,6 +51,8 @@ const ProductTabs: FC<Props> = (props) => {
     case Tabs.PriceDynamics:
       currentTab = <PriceHistoryTab product_id={product_id} />;
       break;
+    default:
+      currentTab = <DescriptionTab description={description} />;
   }
 
   return (
