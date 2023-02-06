@@ -1,4 +1,4 @@
-export const enum Tabs {
+export enum Tabs {
   Description = "Description",
   Characteristics = "Characteristics",
   Comments = "Comments",
