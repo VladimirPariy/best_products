@@ -16,21 +16,28 @@ interface Props {
   views_amount: number;
 }
 
+interface ICounter {
+  counter: number;
+  icon: JSX.Element;
+}
+
 const ProductCounters: FC<Props> = ({
   positive_feedbacks_amount,
   negative_feedbacks_amount,
   views_amount,
   favorites_amount,
 }) => {
+  const counters: ICounter[] = [
+    { counter: views_amount, icon: <Views /> },
+    { counter: favorites_amount, icon: <FavoriteCount /> },
+    { counter: positive_feedbacks_amount, icon: <Shape /> },
+    { counter: negative_feedbacks_amount, icon: <NegativeShape /> },
+  ];
   return (
     <div className={styles.counterContainer}>
-      <ProductCounter counter={views_amount} icon={<Views />} />
-      <ProductCounter counter={favorites_amount} icon={<FavoriteCount />} />
-      <ProductCounter counter={positive_feedbacks_amount} icon={<Shape />} />
-      <ProductCounter
-        counter={negative_feedbacks_amount}
-        icon={<NegativeShape />}
-      />
+      {counters.map((item, index) => (
+        <ProductCounter key={index} counter={item.counter} icon={item.icon} />
+      ))}
     </div>
   );
 };

@@ -21,7 +21,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .link {
     padding: 10px;
     font-size: 20px;
@@ -32,7 +32,7 @@
     }
   }
 }
-@media screen and (min-width: 1025px) {
+@include desktop {
   .link {
     padding: 12px;
     font-size: 24px;

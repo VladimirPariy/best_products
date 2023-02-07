@@ -1,16 +1,18 @@
+@use "scss/index" as *;
+
 .view > svg {
   height: 100%;
   width: 35px;
   cursor: pointer;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .view > svg {
     width: 40px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .view > svg {
     height: 100%;
     width: 55px;

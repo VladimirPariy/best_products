@@ -26,6 +26,18 @@ import FavoritePage from "pages/favorite-page";
 import ProductDetailPage from "pages/product-detail-page";
 import NotFoundPage from "pages/not-found-page";
 
+interface IAdminRoute {
+  path: string;
+  elem: JSX.Element;
+}
+
+const adminRoutes: IAdminRoute[] = [
+  { path: "users", elem: <UsersControlPage /> },
+  { path: "statistics", elem: <StatisticsPage /> },
+  { path: "create", elem: <AddNewProductPage /> },
+  { path: "update/:id", elem: <UpdateProductPage /> },
+];
+
 const AppRouter: FC = () => {
   const subcategories = useAppSelector(selectSubcategories);
   const [subcategoryRoutes, setSubcategoryRoutes] = useState<ISubcategory[]>(
@@ -57,10 +69,9 @@ const AppRouter: FC = () => {
       <Route path="/favorite/:id" element={<ProductDetailPage />} />
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
         <Route index element={<AdminPanel />} />
-        <Route path="users" element={<UsersControlPage />} />
-        <Route path="statistics" element={<StatisticsPage />} />
-        <Route path="create" element={<AddNewProductPage />} />
-        <Route path="update/:id" element={<UpdateProductPage />} />
+        {adminRoutes.map((item) => (
+          <Route path={item.path} element={item.elem} key={item.path} />
+        ))}
         {emptyRoute}
       </Route>
       <Route

@@ -247,6 +247,31 @@ const UpdateProduct: FC = () => {
       dispatch(updateProductTrigger(updatingData));
     }
   };
+
+  const categoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCategoryId(+e.target.value);
+  };
+  const subcategoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSubcategoryId(+e.target.value);
+  };
+  const productNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setProductTitle(e.target.value);
+  };
+  const descriptionHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setProductDescription(e.target.value);
+  };
+  const priceHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrice(e.target.value);
+  };
+  const parameterHandler = (e: ChangeEvent<HTMLSelectElement>, id: number) => {
+    changeCharacteristic("parameter", e.target.value, id);
+  };
+  const characteristicHandler = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    id: number
+  ) => {
+    changeCharacteristic("characteristic", e.target.value, id);
+  };
   return (
     <ContentContainer>
       <Title>Update product</Title>
@@ -254,7 +279,7 @@ const UpdateProduct: FC = () => {
         <>
           <Select
             labelTitle="Choose category"
-            changeHandler={(e) => setCategoryId(+e.target.value)}
+            changeHandler={categoryHandler}
             selectDefaultValue={`${categoryId}`}
             selectTitle="Choose category"
           >
@@ -267,7 +292,7 @@ const UpdateProduct: FC = () => {
 
           <Select
             labelTitle="Choose subcategory"
-            changeHandler={(e) => setSubcategoryId(+e.target.value)}
+            changeHandler={subcategoryHandler}
             selectDefaultValue={`${subcategoryId}`}
             selectTitle="Choose subcategory"
           >
@@ -282,7 +307,7 @@ const UpdateProduct: FC = () => {
 
           <Input
             labelText="Update product name"
-            changeHandler={(e) => setProductTitle(e.target.value)}
+            changeHandler={productNameHandler}
             value={productTitle}
             type="text"
             isError={!!errorProductTitle}
@@ -291,7 +316,7 @@ const UpdateProduct: FC = () => {
 
           <TextArea
             labelText="Update product description"
-            changeHandler={(e) => setProductDescription(e.target.value)}
+            changeHandler={descriptionHandler}
             value={productDescription}
             isError={!!errorDescription}
             children={<ErrorContainer errorText={errorDescription} />}
@@ -299,7 +324,7 @@ const UpdateProduct: FC = () => {
 
           <Input
             labelText="Update price"
-            changeHandler={(e) => setPrice(e.target.value)}
+            changeHandler={priceHandler}
             value={price}
             type="number"
             min={0}
@@ -322,9 +347,7 @@ const UpdateProduct: FC = () => {
                 <AddProductCharacteristicContainer>
                   <Select
                     labelTitle="Enter parameter"
-                    changeHandler={(e) =>
-                      changeCharacteristic("parameter", e.target.value, char.id)
-                    }
+                    changeHandler={(e) => parameterHandler(e, char.id)}
                     selectDefaultValue={`${char.parameter}`}
                     selectTitle="Enter parameter"
                   >
@@ -338,13 +361,7 @@ const UpdateProduct: FC = () => {
                   </Select>
                   <Select
                     labelTitle="Enter characteristic"
-                    changeHandler={(e) =>
-                      changeCharacteristic(
-                        "characteristic",
-                        e.target.value,
-                        char.id
-                      )
-                    }
+                    changeHandler={(e) => characteristicHandler(e, char.id)}
                     selectDefaultValue={`${char.characteristic}`}
                     selectTitle="Enter characteristic"
                   >

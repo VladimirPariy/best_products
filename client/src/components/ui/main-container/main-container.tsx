@@ -51,9 +51,13 @@ const MainContainer: FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  const isShowAdminPanel = role_title && role_title === "admin" && (
+    <AdminPanelLink />
+  );
   return (
     <div className={mainContainerClasses}>
-      {role_title && role_title === "admin" && <AdminPanelLink />}
+      {isShowAdminPanel}
       <AppRouter />
     </div>
   );

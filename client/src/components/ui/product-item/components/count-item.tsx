@@ -19,8 +19,11 @@ const CountItem: FC<Props> = ({
   clickHandler,
   feedbackType,
 }) => {
+  const onClickHandler = (e: MouseEvent<HTMLDivElement>) => {
+    clickHandler?.(e, feedbackType);
+  };
   return (
-    <div className={className} onClick={(e) => clickHandler?.(e, feedbackType)}>
+    <div className={className} onClick={onClickHandler}>
       <span className={styles.icon}>{children}</span>
       <span>{value}</span>
     </div>

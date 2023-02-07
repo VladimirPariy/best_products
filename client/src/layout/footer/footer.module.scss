@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 @font-face {
   font-family: "Lao Sans Pro";
   src: url("../../assets/fonts/LaoSansPro-Regular.ttf") format("ttl");
@@ -90,7 +92,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .footer {
     display: flex;
     justify-content: space-evenly;
@@ -155,7 +157,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .footer {
     padding: 26px 10px;
 

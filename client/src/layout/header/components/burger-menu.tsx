@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC } from "react";
 
 import styles from "layout/header/components/burger-menu.module.scss";
 
@@ -7,21 +7,30 @@ import { selectBurgerMenu } from "store/modals/modals-selectors";
 import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { setVisibilityBurgerMenu } from "store/modals/modals-actions";
 
+const burger = [
+  addTwoClassNames(styles, "line", "line1"),
+  addTwoClassNames(styles, "line", "line2"),
+  addTwoClassNames(styles, "line", "line3"),
+];
+
 const BurgerMenu: FC = () => {
   const dispatch = useAppDispatch();
   const checkedBurgerMenu = useAppSelector(selectBurgerMenu);
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setVisibilityBurgerMenu(e.target.checked));
+  };
   return (
     <div className={styles.burger_menu}>
       <input
         type="checkbox"
         className={styles.burgerCheckbox}
         checked={checkedBurgerMenu}
-        onChange={(e) => dispatch(setVisibilityBurgerMenu(e.target.checked))}
+        onChange={changeHandler}
       />
       <div className={styles.hamburger_lines}>
-        <span className={addTwoClassNames(styles, "line", "line1")}></span>
-        <span className={addTwoClassNames(styles, "line", "line2")}></span>
-        <span className={addTwoClassNames(styles, "line", "line3")}></span>
+        {burger.map((item, index) => (
+          <span className={item} key={index}></span>
+        ))}
       </div>
     </div>
   );

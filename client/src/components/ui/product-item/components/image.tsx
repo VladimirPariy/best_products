@@ -10,15 +10,14 @@ interface Props {
 }
 
 const Image: FC<Props> = ({ product_images }) => {
+  const path = `${apiUrls.BASE_Image_URL}${
+    product_images.slice().sort((a, b) => a.image_id - b.image_id)[0]
+      .image_title
+  }`;
+
   return (
     <div className={styles.image}>
-      <img
-        src={`${apiUrls.BASE_Image_URL}${
-          product_images.slice().sort((a, b) => a.image_id - b.image_id)[0]
-            .image_title
-        }`}
-        alt="product img"
-      />
+      <img src={path} alt="product img" />
     </div>
   );
 };

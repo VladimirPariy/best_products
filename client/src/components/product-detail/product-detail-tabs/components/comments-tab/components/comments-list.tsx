@@ -26,20 +26,22 @@ const CommentsList: FC<Props> = ({ sort, user }) => {
   const comments = useAppSelector(selectComments);
 
   const dupComments = [...comments];
+
   const sortedComments = (array: IShotCommentsWithUser[], order: boolean) => {
     if (order) {
       return array.sort((a, b) =>
         new Date(a.updated_at) > new Date(b.updated_at) ? 1 : -1
       );
-    } else {
-      return array.sort((a, b) =>
-        new Date(a.updated_at) < new Date(b.updated_at) ? 1 : -1
-      );
     }
+    return array.sort((a, b) =>
+      new Date(a.updated_at) < new Date(b.updated_at) ? 1 : -1
+    );
   };
+
   const removeComment = (id: number) => {
     dispatch(removeCommentTrigger(id));
   };
+
   return (
     <>
       {sortedComments(dupComments, sort).map((item) => (

@@ -1,4 +1,4 @@
-@use "../../../scss/index" as *;
+@use "scss/index" as *;
 
 .userModal {
   width: 100%;
@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet{
   .userModal {
     position: absolute;
     top: 99px;
@@ -108,7 +108,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop{
   .userModal {
     top: 109px;
     right: 23px;

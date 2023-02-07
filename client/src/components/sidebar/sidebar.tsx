@@ -1,3 +1,7 @@
+import Favorites from "assets/icon/general/favorites";
+import Categories from "assets/icon/sidebar/categories";
+import Home from "assets/icon/sidebar/home";
+import { appUrl } from "lib/enums/app-urls";
 import React, { FC, useEffect, useState, MouseEvent } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -8,7 +12,6 @@ import ClothingIcon from "assets/icon/sidebar/clothing";
 import ElectronicsIcon from "assets/icon/sidebar/electronics";
 
 import SidebarItem from "components/sidebar/components/sidebar-item";
-import { sidebarList } from "components/sidebar/sidebar.data";
 
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
 import { setVisibilityBurgerMenu } from "store/modals/modals-actions";
@@ -16,6 +19,12 @@ import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 import { categoriesTrigger } from "store/categories/categories-actions";
 import { ISidebarList } from "lib/interfaces/sidebar.interface";
 import { selectCategories } from "store/categories/categories-selectors";
+
+export const sidebarList: ISidebarList[] = [
+  { title: "Home", icon: <Home />, url: appUrl.home, id: 1 },
+  { title: "Favorites", icon: <Favorites />, url: appUrl.favorites, id: 2 },
+  { title: "Categories", icon: <Categories />, url: appUrl.categories, id: 3 },
+];
 
 const Sidebar: FC = () => {
   const categories = useAppSelector(selectCategories);
@@ -121,12 +130,21 @@ const Sidebar: FC = () => {
       );
     }
   }, [categories]);
+  const burgerMenuHandler = () => {
+    dispatch(setVisibilityBurgerMenu(false));
+  };
+  const mouseEnterHandler = () => {
+    setOnHover(true);
+  };
+  const mouseLeaveHandler = () => {
+    setOnHover(false);
+  };
   return (
     <aside>
       <nav
         className={onHoveredWrapper}
-        onMouseEnter={() => setOnHover(true)}
-        onMouseLeave={() => setOnHover(false)}
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
       >
         <ul>
           {sidebarList.map((item) => (
@@ -157,7 +175,7 @@ const Sidebar: FC = () => {
                 <li
                   key={subcategory.id}
                   className={styles.subcategoryItem}
-                  onClick={() => dispatch(setVisibilityBurgerMenu(false))}
+                  onClick={burgerMenuHandler}
                 >
                   <NavLink
                     to={subcategory.url}

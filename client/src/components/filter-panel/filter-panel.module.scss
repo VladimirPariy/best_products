@@ -140,7 +140,7 @@
   top: 190px;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .filterPanelController {
     top: 100px;
     width: 320px;
@@ -217,7 +217,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .filterPanelController {
     width: 430px;
 

@@ -58,7 +58,7 @@
   border: 2px solid $active_item_color;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .msgContainer {
     gap: 15px;
     margin-bottom: 30px;
@@ -100,7 +100,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .msgContainer {
     gap: 20px;
     margin-bottom: 40px;

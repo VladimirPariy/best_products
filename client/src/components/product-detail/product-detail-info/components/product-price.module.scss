@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .priceContainer {
   display: flex;
   align-items: center;
@@ -17,7 +19,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .priceContainer {
     gap: 24px;
     justify-content: start;
@@ -35,7 +37,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .priceContainer {
     gap: 33px;
     margin-bottom: 20px;

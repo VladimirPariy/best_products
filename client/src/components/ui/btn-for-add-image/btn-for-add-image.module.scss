@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .error {
   color: red;
   margin-top: 4px;
@@ -6,7 +8,7 @@
   line-height: 11px;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .error {
     margin-top: 5.5px;
     font-size: 10px;
@@ -14,7 +16,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .error {
     margin-top: 7px;
     font-size: 12px;

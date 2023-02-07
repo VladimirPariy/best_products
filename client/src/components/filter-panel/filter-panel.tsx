@@ -159,6 +159,15 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
     ""
   );
 
+  const subcategoryHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSubcategoryId(+e.target.value);
+  };
+  const minPriceHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setMinPrice(+e.target.value);
+  };
+  const maxPriceHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setMaxPrice(+e.target.value);
+  };
   return (
     <>
       {isShowFilter && (
@@ -174,7 +183,7 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
                     <RadioInput
                       categories={categories}
                       subcategory={subcategory}
-                      changeHandler={(e) => setSubcategoryId(+e.target.value)}
+                      changeHandler={subcategoryHandler}
                       subcategoryId={subcategoryId}
                       isLink={pathArray[1] !== "favorite"}
                       key={
@@ -192,13 +201,13 @@ const FilterPanel: FC<Props> = ({ isShowFilter }) => {
             <div className={styles.inputContainer}>
               <PriceInput
                 value={minPrice}
-                changeHandler={(e) => setMinPrice(+e.target.value)}
+                changeHandler={minPriceHandler}
                 title="minPrice"
               />
               <Separator />
               <PriceInput
                 value={maxPrice}
-                changeHandler={(e) => setMaxPrice(+e.target.value)}
+                changeHandler={maxPriceHandler}
                 title="maxPrice"
               />
             </div>

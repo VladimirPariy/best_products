@@ -10,8 +10,7 @@
   padding-top: 110px;
 }
 
-
-@include tablet{
+@include tablet {
   .mainContainer {
     padding: 115px 50px 30px 115px;
   }
@@ -21,7 +20,7 @@
   }
 }
 
-@include desktop{
+@include desktop {
   .mainContainer {
     padding: 125px 70px 40px 150px;
   }
@@ -30,4 +29,3 @@
     padding-top: 175px;
   }
 }
-

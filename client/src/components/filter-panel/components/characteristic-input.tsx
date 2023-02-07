@@ -16,14 +16,13 @@ const CharacteristicInput: FC<Props> = ({
   selectedParameters,
   changeHandler,
 }) => {
+  const isChecked = !!selectedParameters.find(
+    (param) => param === `${char.characteristic_id}`
+  );
   return (
     <label key={char.characteristic_id} className={styles.charTitle}>
       <input
-        checked={
-          !!selectedParameters.find(
-            (param) => param === `${char.characteristic_id}`
-          )
-        }
+        checked={isChecked}
         type="checkbox"
         value={char.characteristic_id}
         onChange={changeHandler}

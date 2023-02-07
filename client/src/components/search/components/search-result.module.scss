@@ -61,7 +61,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .searchBackground {
     top: 85px;
   }
@@ -107,7 +107,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .searchResultContainer {
     width: 100%;
 
@@ -116,6 +116,7 @@
         padding: 13px 35px;
         font-size: 20px;
       }
+
       .subcategoryContainer {
         > a > div {
           padding: 13px 35px;

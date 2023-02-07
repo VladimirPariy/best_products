@@ -56,47 +56,36 @@ const Slider: FC<Props> = (props) => {
     setElementShift((prev) => prev + SHIFT);
   };
 
-  // const [prevImage, setPrevImages] = useState()
-  // useEffect(() => {
-  //   setPrevImages(!images.length && !isLoading
-  //     ? defaultImg
-  //     : images[imgSerialNr - 1]
-  //       ?
-  //       : defaultImg)
-  // }, [images])
-
   const shiftingSlider =
     elementShift > -76 && elementShift < 1 ? 0 : elementShift + 3 * SHIFT;
 
+  const removeImageHandler = () => {
+    if (deleteHandler) deleteHandler(images[imgSerialNr - 1].image_id);
+  };
+
+  const path = `${apiUrls.BASE_Image_URL}${
+    images[imgSerialNr - 1]?.image_title
+  }`;
+
+  const previewImage = images.length ? path : defaultImg;
+
+  const getImageClassName = (index: number) => {
+    return index === imgSerialNr - 1 ? styles.active : undefined;
+  };
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.previewImgContainer}>
           {onDelete && images.length > 0 && (
-            <button
-              onClick={() =>
-                deleteHandler && deleteHandler(images[imgSerialNr - 1].image_id)
-              }
-              className={styles.deleteImg}
-            >
+            <button onClick={removeImageHandler} className={styles.deleteImg}>
               X
             </button>
           )}
-          {images.length ? (
-            <img
-              src={`${apiUrls.BASE_Image_URL}${
-                images[imgSerialNr - 1]?.image_title
-              }`}
-              alt="product"
-              className={styles.previewImages}
-            />
-          ) : (
-            <img
-              src={defaultImg}
-              alt="product"
-              className={styles.previewImages}
-            />
-          )}
+          <img
+            src={previewImage}
+            alt="product"
+            className={styles.previewImages}
+          />
         </div>
         <div className={styles.sliderContainer}>
           <button className={styles.btnPver} onClick={onPrevIdeaHandler}>
@@ -109,12 +98,7 @@ const Slider: FC<Props> = (props) => {
             >
               {images.length > 0 && imgSerialNr > 0 ? (
                 images.map((item, index) => (
-                  <div
-                    className={
-                      index === imgSerialNr - 1 ? styles.active : undefined
-                    }
-                    key={index}
-                  >
+                  <div className={getImageClassName(index)} key={index}>
                     <img
                       src={`${apiUrls.BASE_Image_URL}${item.image_title}`}
                       alt="product"

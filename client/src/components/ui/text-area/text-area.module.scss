@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .label.error {
   color: red;
 
@@ -47,12 +49,13 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .label.error {
     .textArea {
       border: 1.5px solid red;
       outline: 1.5px solid red;
     }
+
     .inputExplanation {
       > div {
         margin-top: 5.5px;
@@ -82,12 +85,13 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .label.error {
     .textArea {
       border: 2px solid red;
       outline: 2px solid red;
     }
+
     .inputExplanation {
       > div {
         margin-top: 7px;

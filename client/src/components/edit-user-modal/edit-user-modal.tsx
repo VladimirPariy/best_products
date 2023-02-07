@@ -219,6 +219,125 @@ const EditUserModal: FC = () => {
       localStorage.setItem("token", token);
     }
   }, [token]);
+  const firstNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setFirstName(e.target.value);
+  };
+  const lastNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setLastName(e.target.value);
+  };
+  const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmailAddress(e.target.value);
+  };
+  const phoneHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+  };
+  const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewPassword(e.target.value);
+  };
+  const confirmPasswordHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setConfirmNewPassword(e.target.value);
+  };
+
+  const emailError =
+    !!errorEmail || serverError?.status_message ? (
+      <div>
+        {errorEmail ||
+          (serverError &&
+            serverError.status === 409 &&
+            JSON.parse(serverError?.status_message).message)}
+      </div>
+    ) : undefined;
+
+  const phoneError =
+    !!errorPhone || serverError?.status_message ? (
+      <div>
+        {errorPhone ||
+          (serverError &&
+            serverError.status === 409 &&
+            JSON.parse(serverError?.status_message).message)}
+      </div>
+    ) : undefined;
+
+  const passwordError = !!(
+    errorPassword ||
+    (!validateLatinLetter(newPassword) && newPassword)
+  ) && <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>;
+
+  const confirmPasswordError = !!(
+    errorConfirmPassword ||
+    (!validateLatinLetter(confirmNewPassword) && confirmNewPassword)
+  ) ? (
+    <div>{errorConfirmPassword || ValidationMessage.onlyLatinLetter}</div>
+  ) : undefined;
+
+  const confirmPasswordErrorCondition =
+    !!errorConfirmPassword ||
+    !!(!validateLatinLetter(confirmNewPassword) && confirmNewPassword);
+
+  const passwordErrorCondition =
+    !!errorPassword || !!(!validateLatinLetter(newPassword) && newPassword);
+
+  const phoneErrorCondition =
+    !!(errorPhone || serverError?.status === 409) && !!phone;
+
+  const emailErrorCondition = !!errorEmail || serverError?.status === 409;
+
+  const submitButtonFilling = isLoading ? (
+    <Loader size={23} />
+  ) : (
+    "Save All Changes"
+  );
+
+  const inputs = [
+    {
+      label: "First Name",
+      handler: firstNameHandler,
+      value: firstName,
+      errorCondition: !!errorFirstName,
+      children: <ErrorContainer errorText={errorFirstName} />,
+      type: "text",
+    },
+    {
+      label: "Last Name",
+      handler: lastNameHandler,
+      value: lastName,
+      errorCondition: !!errorLastName,
+      children: <ErrorContainer errorText={errorLastName} />,
+      type: "text",
+    },
+    {
+      label: "Email address",
+      handler: emailHandler,
+      value: emailAddress,
+      errorCondition: emailErrorCondition,
+      children: emailError,
+      type: "text",
+    },
+    {
+      label: "Phone",
+      handler: phoneHandler,
+      value: phone,
+      errorCondition: phoneErrorCondition,
+      children: phoneError,
+      type: "tel",
+    },
+    {
+      label: "New password",
+      handler: passwordHandler,
+      value: newPassword,
+      errorCondition: passwordErrorCondition,
+      children: passwordError,
+      type: "password",
+    },
+    {
+      label: "Confirm new password",
+      handler: confirmPasswordHandler,
+      value: confirmNewPassword,
+      errorCondition: confirmPasswordErrorCondition,
+      children: confirmPasswordError,
+      type: "password",
+    },
+  ];
   return (
     <ModalWrapper
       setVisible={setVisibilityEditUserModal}
@@ -234,96 +353,24 @@ const EditUserModal: FC = () => {
           </BtnForAddImage>
         </div>
         <div className={styles.userInfoContainer}>
-          <Input
-            labelText="First Name"
-            changeHandler={(e) => setFirstName(e.target.value)}
-            value={firstName}
-            isError={!!errorFirstName}
-            children={<ErrorContainer errorText={errorFirstName} />}
-          />
-          <Input
-            labelText="Last Name"
-            changeHandler={(e) => setLastName(e.target.value)}
-            value={lastName}
-            isError={!!errorLastName}
-            children={<ErrorContainer errorText={errorLastName} />}
-          />
-          <Input
-            labelText="Email address"
-            changeHandler={(e) => setEmailAddress(e.target.value)}
-            value={emailAddress}
-            isError={!!errorEmail || serverError?.status === 409}
-            children={
-              !!errorEmail || serverError?.status_message ? (
-                <div>
-                  {errorEmail ||
-                    (serverError &&
-                      serverError.status === 409 &&
-                      JSON.parse(serverError?.status_message).message)}
-                </div>
-              ) : undefined
-            }
-          />
-          <Input
-            labelText="Phone"
-            changeHandler={(e) => setPhone(e.target.value)}
-            value={phone}
-            type="tel"
-            isError={!!(errorPhone || serverError?.status === 409) && !!phone}
-            children={
-              !!errorPhone || serverError?.status_message ? (
-                <div>
-                  {errorPhone ||
-                    (serverError &&
-                      serverError.status === 409 &&
-                      JSON.parse(serverError?.status_message).message)}
-                </div>
-              ) : undefined
-            }
-          />
-          <Input
-            labelText="New password"
-            changeHandler={(e) => setNewPassword(e.target.value)}
-            value={newPassword}
-            isError={
-              !!errorPassword ||
-              !!(!validateLatinLetter(newPassword) && newPassword)
-            }
-            children={
-              !!(
-                errorPassword ||
-                (!validateLatinLetter(newPassword) && newPassword)
-              ) && (
-                <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>
-              )
-            }
-          />
-          <Input
-            labelText="Confirm new password"
-            changeHandler={(e) => setConfirmNewPassword(e.target.value)}
-            value={confirmNewPassword}
-            isError={
-              !!errorConfirmPassword ||
-              !!(!validateLatinLetter(confirmNewPassword) && confirmNewPassword)
-            }
-            children={
-              !!(
-                errorConfirmPassword ||
-                (!validateLatinLetter(confirmNewPassword) && confirmNewPassword)
-              ) ? (
-                <div>
-                  {errorConfirmPassword || ValidationMessage.onlyLatinLetter}
-                </div>
-              ) : undefined
-            }
-          />
+          {inputs.map((item) => (
+            <Input
+              key={item.label}
+              labelText={item.label}
+              changeHandler={item.handler}
+              value={item.value}
+              isError={item.errorCondition}
+              children={item.children}
+              type={item.type}
+            />
+          ))}
           <ModalCheckbox value={getUpdates} changeHandler={setGetUpdates}>
             Get updates on our shop news and promotions
           </ModalCheckbox>
           <Button
             submitHandler={updateHandling}
             type="button"
-            children={isLoading ? <Loader size={23} /> : "Save All Changes"}
+            children={submitButtonFilling}
           />
         </div>
       </div>

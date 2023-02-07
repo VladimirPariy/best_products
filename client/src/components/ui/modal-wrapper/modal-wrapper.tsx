@@ -1,9 +1,9 @@
+import React, { FC, ReactNode, MouseEvent } from "react";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useAppDispatch } from "lib/interfaces/store.types";
-import React, { FC, ReactNode } from "react";
 
 import styles from "components/ui/modal-wrapper/modal-wrapper.module.scss";
 import { getClassNameByCondition } from "lib/utils/get-class-by-condition";
+import { useAppDispatch } from "lib/interfaces/store.types";
 
 interface Props {
   children: ReactNode;
@@ -27,10 +27,17 @@ const ModalWrapper: FC<Props> = (props) => {
     "accModal",
     !!isAccModal
   );
+
+  const modalHandler = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+  const closeModalArea = () => {
+    dispatch(setVisible(false));
+  };
   return (
-    <div onClick={() => dispatch(setVisible(false))} className={wrapperClasses}>
+    <div onClick={closeModalArea} className={wrapperClasses}>
       <div className={styles.container}>
-        <div className={modal} onClick={(e) => e.stopPropagation()}>
+        <div className={modal} onClick={modalHandler}>
           {children}
         </div>
       </div>

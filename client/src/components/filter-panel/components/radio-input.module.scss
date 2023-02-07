@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 a {
   text-decoration: none;
   color: #524f5e;
@@ -45,7 +47,7 @@ a {
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .subcategoryTitle {
     gap: 20px;
 
@@ -62,7 +64,7 @@ a {
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .subcategoryTitle {
     gap: 20px;
 

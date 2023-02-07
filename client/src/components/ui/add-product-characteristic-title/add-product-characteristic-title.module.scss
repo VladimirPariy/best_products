@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .characteristicTitle {
   text-align: center;
   font-size: 12px;
@@ -5,14 +7,14 @@
   margin-top: 10px;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .characteristicTitle {
     font-size: 14px;
     margin-top: 13px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .characteristicTitle {
     font-size: 16px;
     margin-top: 17px;

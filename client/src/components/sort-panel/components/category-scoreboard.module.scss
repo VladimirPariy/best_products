@@ -7,13 +7,13 @@
   background: $active_item_color;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .category .categoryTitle {
     margin-left: 6px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .category .categoryTitle {
     margin-left: 10px;
   }

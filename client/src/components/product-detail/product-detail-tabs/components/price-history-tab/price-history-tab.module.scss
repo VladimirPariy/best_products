@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .chartContainer {
   height: 250px;
   display: flex;
@@ -5,13 +7,13 @@
   justify-content: center;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .chartContainer {
     height: 380px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .chartContainer {
     height: 520px;
   }

@@ -55,7 +55,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .charTitle {
     font-size: 19px;
     display: flex;
@@ -85,7 +85,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .charTitle {
     font-size: 22px;
     gap: 22px;

@@ -10,9 +10,11 @@ interface Props {
 }
 
 const ViewSort: FC<Props> = ({ viewStyle, changeView }) => {
+  const viewIcon = viewStyle ? <View /> : <View1 />;
+
   return (
     <div onClick={changeView} className={styles.view}>
-      {viewStyle ? <View /> : <View1 />}
+      {viewIcon}
     </div>
   );
 };

@@ -35,7 +35,7 @@
   color: $active_item_color;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .error {
     margin-top: 5.5px;
     font-size: 10px;
@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .error {
     margin-top: 7px;
     font-size: 12px;

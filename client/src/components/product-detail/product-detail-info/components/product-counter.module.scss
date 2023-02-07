@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .counterContainer {
   display: flex;
   align-items: center;
@@ -20,7 +22,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .counterContainer > .count {
     font-size: 20px;
   }
@@ -30,7 +32,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .counterContainer > .count {
     font-size: 24px;
   }

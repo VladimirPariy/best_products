@@ -67,10 +67,13 @@ const FavoriteProductList: FC<Props> = ({ products }) => {
 
   return (
     <ProductListWrapper>
-      {filteredProduct.map((item) => (
-        <ProductItem {...item} key={item.product_id} />
-      ))}
-      {filteredProduct.length === 0 && <EmptyFavorite />}
+      {filteredProduct.length ? (
+        filteredProduct.map((item) => (
+          <ProductItem {...item} key={item.product_id} />
+        ))
+      ) : (
+        <EmptyFavorite />
+      )}
     </ProductListWrapper>
   );
 };

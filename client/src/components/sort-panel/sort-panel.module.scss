@@ -23,7 +23,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .wrapper {
     margin-top: 20px;
     height: 75px;
@@ -38,7 +38,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .wrapper {
     margin-top: 25px;
     height: 85px;

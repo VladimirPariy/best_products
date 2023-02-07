@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .counterContainer {
   display: flex;
   justify-content: space-evenly;
@@ -5,13 +7,13 @@
   flex-wrap: wrap;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .counterContainer {
     gap: 15px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .counterContainer {
     gap: 20px;
   }

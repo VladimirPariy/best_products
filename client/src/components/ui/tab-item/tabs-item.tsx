@@ -24,10 +24,19 @@ const TabsItem: FC<Props> = ({
     active === value,
     ""
   );
+
+  const clickHandler = () => {
+    activeHandler(value);
+  };
+
+  const commentLengthNode = typeof commentLength !== "undefined" && (
+    <div>({commentLength})</div>
+  );
+
   return (
-    <div onClick={() => activeHandler(value)} className={tabClassName}>
+    <div onClick={clickHandler} className={tabClassName}>
       {value}
-      {typeof commentLength !== "undefined" && <div>({commentLength})</div>}
+      {commentLengthNode}
     </div>
   );
 };

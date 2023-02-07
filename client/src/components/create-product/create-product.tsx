@@ -217,12 +217,41 @@ const CreateProduct: FC = () => {
     characteristics,
     uploadImages,
   ]);
+
+  const categoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCategoryId(+e.target.value);
+  };
+
+  const subcategoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSubcategoryId(+e.target.value);
+  };
+  const productTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setProductTitle(e.target.value);
+  };
+  const productDescriptionHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setProductDescription(e.target.value);
+  };
+  const priceHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrice(e.target.value);
+  };
+  const charParameterHandler = (
+    e: ChangeEvent<HTMLSelectElement>,
+    id: number
+  ) => {
+    changeCharacteristic("parameter", e.target.value, id);
+  };
+  const charCharacteristicHandler = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    id: number
+  ) => {
+    changeCharacteristic("characteristic", e.target.value, id);
+  };
   return (
     <ContentContainer>
       <Title>Add new product</Title>
       <Select
         labelTitle="Choose category"
-        changeHandler={(e) => setCategoryId(+e.target.value)}
+        changeHandler={categoryHandler}
         selectDefaultValue="0"
         selectTitle="Choose category"
         errorNode={<ErrorContainer errorText={errorCategory} />}
@@ -236,7 +265,7 @@ const CreateProduct: FC = () => {
       </Select>
       <Select
         labelTitle="Choose subcategory"
-        changeHandler={(e) => setSubcategoryId(+e.target.value)}
+        changeHandler={subcategoryHandler}
         selectDefaultValue="0"
         selectTitle="Choose subcategory"
         errorNode={<ErrorContainer errorText={errorSubcategory} />}
@@ -254,7 +283,7 @@ const CreateProduct: FC = () => {
 
       <Input
         labelText="Enter product title"
-        changeHandler={(e) => setProductTitle(e.target.value)}
+        changeHandler={productTitleHandler}
         value={productTitle}
         type="text"
         isError={!!errorProductTitle}
@@ -263,7 +292,7 @@ const CreateProduct: FC = () => {
 
       <TextArea
         labelText="Enter product description"
-        changeHandler={(e) => setProductDescription(e.target.value)}
+        changeHandler={productDescriptionHandler}
         value={productDescription}
         isError={!!errorDescription}
         children={<ErrorContainer errorText={errorDescription} />}
@@ -271,7 +300,7 @@ const CreateProduct: FC = () => {
 
       <Input
         labelText="Enter price"
-        changeHandler={(e) => setPrice(e.target.value)}
+        changeHandler={priceHandler}
         value={price}
         type="number"
         min={0}
@@ -295,9 +324,7 @@ const CreateProduct: FC = () => {
             <AddProductCharacteristicContainer>
               <Select
                 labelTitle="Enter parameter"
-                changeHandler={(e) =>
-                  changeCharacteristic("parameter", e.target.value, char.id)
-                }
+                changeHandler={(e) => charParameterHandler(e, char.id)}
                 selectDefaultValue="0"
                 selectTitle="Enter parameter"
               >
@@ -311,13 +338,7 @@ const CreateProduct: FC = () => {
               </Select>
               <Select
                 labelTitle="Enter characteristic"
-                changeHandler={(e) =>
-                  changeCharacteristic(
-                    "characteristic",
-                    e.target.value,
-                    char.id
-                  )
-                }
+                changeHandler={(e) => charCharacteristicHandler(e, char.id)}
                 selectDefaultValue="0"
                 selectTitle="Enter characteristic"
               >

@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
   align-items: center;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .wrapper {
     flex-direction: row-reverse;
     justify-content: start;
@@ -14,7 +16,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .wrapper {
     flex-direction: row-reverse;
     gap: 45px;

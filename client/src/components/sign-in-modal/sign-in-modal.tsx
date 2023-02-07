@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ChangeEvent, MouseEvent, FC, useEffect, useState } from "react";
 
 import styles from "components/sign-in-modal/sign-in-modal.module.scss";
 
@@ -128,44 +128,74 @@ const SignInModal: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
+  const changeLoginHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setLogin(e.target.value);
+  };
+
+  const changePasswordHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const passwordError = !!(
+    errorPassword ||
+    (!validateLatinLetter(password) && password)
+  ) ? (
+    <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>
+  ) : undefined;
+
+  const passwordErrorCondition =
+    !!errorPassword || !!(!validateLatinLetter(password) && password);
+
+  const containerHandler = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+  const fillingSubmitButton = isLoading ? <Loader size={27} /> : "Continue";
+
+  const inputs = [
+    {
+      label: "Email address or mobile phone number",
+      handler: changeLoginHandler,
+      value: login,
+      errorCondition: !!errorLogin,
+      children: <ErrorContainer errorText={errorLogin} />,
+      type: "text",
+    },
+    {
+      label: "Password",
+      handler: changePasswordHandler,
+      value: password,
+      errorCondition: passwordErrorCondition,
+      children: passwordError,
+      type: "password",
+    },
+  ];
+
   return (
     <ModalWrapper
       setVisible={setVisibilitySignInModal}
       isVisible={isShowSignInModal}
     >
-      <div onClick={(e) => e.stopPropagation()}>
+      <div onClick={containerHandler}>
         <Title>SIGN IN</Title>
-        <Input
-          labelText="Email address or mobile phone number"
-          changeHandler={(e) => setLogin(e.target.value)}
-          value={login}
-          isError={!!errorLogin}
-          children={<ErrorContainer errorText={errorLogin} />}
-        />
-        <Input
-          labelText="Password"
-          type="password"
-          changeHandler={(e) => setPassword(e.target.value)}
-          value={password}
-          isError={
-            !!errorPassword || !!(!validateLatinLetter(password) && password)
-          }
-          children={
-            !!(
-              errorPassword ||
-              (!validateLatinLetter(password) && password)
-            ) ? (
-              <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>
-            ) : undefined
-          }
-        />
+        {inputs.map((item, index) => (
+          <Input
+            key={index}
+            labelText={item.label}
+            type={item.type}
+            changeHandler={item.handler}
+            value={item.value}
+            isError={item.errorCondition}
+            children={item.children}
+          />
+        ))}
+
         <ModalCheckbox value={isRemember} changeHandler={setIsRemember}>
           Remember me
         </ModalCheckbox>
         <Button
           submitHandler={loginHandler}
           type="button"
-          children={isLoading ? <Loader size={27} /> : "Continue"}
+          children={fillingSubmitButton}
         />
 
         <div className={styles.separator}>

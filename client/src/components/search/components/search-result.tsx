@@ -39,17 +39,24 @@ const SearchResult: FC<Props> = ({ setSearch }) => {
     setSearch("");
   };
 
+  const loadingCondition = isVisibilitySearchModal && isFetch && (
+    <div>Loading</div>
+  );
+  const emptySearch = isVisibilitySearchModal &&
+    !isFetch &&
+    subcategoryResult.length === 0 &&
+    productResult.length === 0 && (
+      <div className={styles.emptySearch}>Enter a query</div>
+    );
+
+  const separator = productResult?.length > 0 &&
+    subcategoryResult?.length > 0 && <div className={styles.separator}></div>;
   return (
     <>
       <div className={styles.searchResultContainer}>
         <div className={styles.modal}>
-          {isVisibilitySearchModal &&
-            !isFetch &&
-            subcategoryResult.length === 0 &&
-            productResult.length === 0 && (
-              <div className={styles.emptySearch}>Enter a query</div>
-            )}
-          {isVisibilitySearchModal && isFetch && <div>Loading</div>}
+          {emptySearch}
+          {loadingCondition}
           {subcategoryResult?.length > 0 && (
             <div className={styles.subcategoryContainer}>
               {subcategoryResult.map((item, index) => {
@@ -70,9 +77,7 @@ const SearchResult: FC<Props> = ({ setSearch }) => {
               })}
             </div>
           )}
-          {productResult?.length > 0 && subcategoryResult?.length > 0 && (
-            <div className={styles.separator}></div>
-          )}
+          {separator}
           {productResult?.length > 0 && (
             <div className={styles.productContainer}>
               <div className={styles.title}>Goods</div>

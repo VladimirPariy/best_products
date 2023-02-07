@@ -1,4 +1,4 @@
-@use "../../../scss/index" as *;
+@use "scss/index" as *;
 
 .userContainer {
   margin: 0;
@@ -16,7 +16,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .userContainer {
     margin-right: 20px;
     width: 55px;
@@ -28,7 +28,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .userContainer {
     margin-right: 32px;
     width: 62px;

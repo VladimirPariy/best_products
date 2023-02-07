@@ -1,4 +1,10 @@
-import React, { FC, MouseEvent, ReactNode, useEffect } from "react";
+import React, {
+  ChangeEvent,
+  FC,
+  MouseEvent,
+  ReactNode,
+  useEffect,
+} from "react";
 
 import styles from "components/search/components/search-input.module.scss";
 import SearchIcon from "assets/icon/header/search-icon";
@@ -41,6 +47,9 @@ const SearchInput: FC<ISearchInputProps> = ({
     }
   };
 
+  const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
   return (
     <div className={styles.searchInputContainer} onClick={visibleModalHandler}>
       <button className={styles.searchButton} type="submit">
@@ -52,7 +61,7 @@ const SearchInput: FC<ISearchInputProps> = ({
           type="text"
           placeholder="Search"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={searchHandler}
         />
         {children}
       </div>

@@ -26,35 +26,25 @@ const RadioInput: FC<Props> = ({
   const category = categories.find(
     (category) => category.category_id === subcategory.category
   );
-  return isLink ? (
-    <NavLink
-      to={`/product/${category?.category_title}/${subcategory.subcategory_title}`}
-    >
-      <label className={styles.subcategoryTitle}>
-        <input
-          type="radio"
-          value={subcategory.subcategory_id}
-          name="subcategory"
-          checked={subcategory.subcategory_id === subcategoryId}
-          onChange={changeHandler}
-          className={styles.subcategoryRadio}
-        />
-        {subcategory.subcategory_title}
-      </label>
-    </NavLink>
-  ) : (
+  const isChecked = subcategory.subcategory_id === subcategoryId;
+
+  const input = (
     <label className={styles.subcategoryTitle}>
       <input
         type="radio"
         value={subcategory.subcategory_id}
         name="subcategory"
-        checked={subcategory.subcategory_id === subcategoryId}
+        checked={isChecked}
         onChange={changeHandler}
         className={styles.subcategoryRadio}
       />
       {subcategory.subcategory_title}
     </label>
   );
+
+  const path = `/product/${category?.category_title}/${subcategory.subcategory_title}`;
+
+  return isLink ? <NavLink to={path}>{input}</NavLink> : input;
 };
 
 export default RadioInput;

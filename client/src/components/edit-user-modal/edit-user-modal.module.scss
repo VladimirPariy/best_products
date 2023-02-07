@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .container {
   .photoContainer {
     display: flex;
@@ -17,7 +19,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .container {
     display: flex;
     gap: 40px;
@@ -44,7 +46,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .container {
     gap: 125px;
 

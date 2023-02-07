@@ -2,13 +2,26 @@ import React, { FC, useEffect, useState } from "react";
 
 import styles from "components/statistics/statistics.module.scss";
 
-import { statisticTabs } from "components/statistics/statistics-tabs-enum";
 import TabsItem from "components/ui/tab-item/tabs-item";
 import {
   clearStatistics,
   getStatisticsTrigger,
 } from "store/statistics/statistics-actions";
 import { useAppDispatch } from "lib/interfaces/store.types";
+
+import CommentedTab from "components/statistics/components/commented-tab";
+import FavoritesTab from "components/statistics/components/favorites-tab";
+import HighestRatingTab from "components/statistics/components/highest-rating-tab";
+import PopularTab from "components/statistics/components/popular-tab";
+import UsersTab from "components/statistics/components/users-tab";
+
+const statisticTabs = [
+  { title: "New users", tab: <UsersTab /> },
+  { title: "Most popular", tab: <PopularTab /> },
+  { title: "Highest rating", tab: <HighestRatingTab /> },
+  { title: "Most commented", tab: <CommentedTab /> },
+  { title: "Most favorites", tab: <FavoritesTab /> },
+];
 
 const Statistics: FC = () => {
   const [activeTab, setActiveTab] = useState<string>(statisticTabs[0].title);

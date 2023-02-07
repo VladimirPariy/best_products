@@ -18,6 +18,7 @@ const Breadcrumbs: FC<Props> = (props) => {
     if (item === "" || item === "product") {
       return null;
     }
+    const isArrowIcon = arr.length - 1 === index ? "" : <Arrow />;
     return (
       <Link
         to={`${currentLink.slice(0, -1)}`}
@@ -25,7 +26,7 @@ const Breadcrumbs: FC<Props> = (props) => {
         className={styles.crumb}
       >
         {item}
-        {arr.length - 1 === index ? "" : <Arrow />}
+        {isArrowIcon}
       </Link>
     );
   });

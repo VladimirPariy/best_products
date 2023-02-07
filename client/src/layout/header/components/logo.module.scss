@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .logoContainer {
   display: flex;
   align-items: center;
@@ -16,7 +18,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .logoContainer {
     .logoImage {
       width: 3.5rem;
@@ -31,7 +33,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .logoContainer {
     .logoImage {
       width: 4rem;

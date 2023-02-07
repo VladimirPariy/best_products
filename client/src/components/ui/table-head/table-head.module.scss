@@ -1,3 +1,4 @@
+@use "scss/index" as *;
 .tableHead {
   border: 1px solid #111;
   font-weight: 600;
@@ -13,13 +14,13 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .tableHead > tr > td {
     padding: 5px 10px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .tableHead > tr > td {
     padding: 10px 15px;
   }

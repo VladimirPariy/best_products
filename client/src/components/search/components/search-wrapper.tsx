@@ -13,11 +13,11 @@ const SearchWrapper: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch();
   const isVisibilitySearchModal = useAppSelector(selectSearchModal);
 
+  const searchHandler = () => {
+    dispatch(setVisibilitySearchModal(false));
+  };
   return (
-    <div
-      className={styles.searchContainer}
-      onClick={() => dispatch(setVisibilitySearchModal(false))}
-    >
+    <div className={styles.searchContainer} onClick={searchHandler}>
       {isVisibilitySearchModal && (
         <div className={styles.searchBackground}></div>
       )}

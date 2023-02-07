@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
 
 import styles from "layout/header/header.module.scss";
 
@@ -18,6 +18,9 @@ const PhoneHeader: FC = () => {
       : styles["not_visible_burger_menu_content"]
   }`;
 
+  const menuHandler = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
   return (
     <>
       <section className={styles.headerContainer}>
@@ -25,7 +28,7 @@ const PhoneHeader: FC = () => {
           <Logo />
           <BurgerMenu />
         </div>
-        <div className={classNameByMenu} onClick={(e) => e.stopPropagation()}>
+        <div className={classNameByMenu} onClick={menuHandler}>
           <SearchBar />
           <User />
           <Sidebar />

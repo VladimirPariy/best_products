@@ -55,7 +55,7 @@ aside {
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   aside {
     position: relative;
     max-width: 64px;
@@ -112,7 +112,7 @@ aside {
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   aside {
     max-width: 78.5px;
 

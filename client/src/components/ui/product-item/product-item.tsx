@@ -136,15 +136,44 @@ const ProductItem: FC<Props> = (props) => {
     );
   };
 
+  const containerClassName =
+    searchParams.get("view") === "list"
+      ? styles.listContainer
+      : styles.pileContainer;
+
+  const counters = [
+    {
+      value: views_amount,
+      children: <Views />,
+      className: styles.views,
+      handler: undefined,
+      feedbackType: undefined,
+    },
+    {
+      value: favorites_amount,
+      children: <FavoriteCount />,
+      className: styles.favoriteCounter,
+      handler: undefined,
+      feedbackType: undefined,
+    },
+    {
+      value: positive_feedbacks_amount,
+      children: <Shape />,
+      className: positiveFeedbackClassName,
+      handler: feedbackHandler,
+      feedbackType: 1,
+    },
+    {
+      value: negative_feedbacks_amount,
+      children: <NegativeShape />,
+      className: negativeFeedbackClassName,
+      handler: feedbackHandler,
+      feedbackType: 0,
+    },
+  ];
+
   return (
-    <div
-      className={
-        searchParams.get("view") === "list"
-          ? styles.listContainer
-          : styles.pileContainer
-      }
-      key={product_id}
-    >
+    <div className={containerClassName} key={product_id}>
       <div className={favoriteClassNames} onClick={clickHandler}>
         <Favorites />
       </div>
@@ -169,30 +198,16 @@ const ProductItem: FC<Props> = (props) => {
           </div>
         )}
         <div className={styles.containerForCounters}>
-          <CountItem
-            value={views_amount}
-            children={<Views />}
-            className={styles.views}
-          />
-          <CountItem
-            value={favorites_amount}
-            children={<FavoriteCount />}
-            className={styles.favoriteCounter}
-          />
-          <CountItem
-            value={positive_feedbacks_amount}
-            children={<Shape />}
-            className={positiveFeedbackClassName}
-            clickHandler={feedbackHandler}
-            feedbackType={1}
-          />
-          <CountItem
-            value={negative_feedbacks_amount}
-            children={<NegativeShape />}
-            className={negativeFeedbackClassName}
-            feedbackType={0}
-            clickHandler={feedbackHandler}
-          />
+          {counters.map((item, index) => (
+            <CountItem
+              key={index}
+              value={item.value}
+              children={item.children}
+              className={item.className}
+              feedbackType={item.feedbackType}
+              clickHandler={item.handler}
+            />
+          ))}
         </div>
       </NavLink>
       {users_roles?.role_title === "admin" && (

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 
 import { validateLatinLetter } from "lib/utils/validate-latin-letter";
 import { ValidationMessage } from "lib/enums/validation-message";
@@ -131,90 +131,135 @@ const SignUpModal: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
+  const firstNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setFirstName(e.target.value);
+  };
+
+  const lastNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setLastName(e.target.value);
+  };
+
+  const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const confirmPasswordHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const fillingSubmitHandler = isLoading ? (
+    <Loader size={27} />
+  ) : (
+    "Create account"
+  );
+
+  const fillingConfirmPassword = !!(
+    errorConfirmPassword ||
+    (!validateLatinLetter(confirmPassword) && confirmPassword)
+  ) ? (
+    <div>{errorConfirmPassword || ValidationMessage.onlyLatinLetter}</div>
+  ) : undefined;
+
+  const confirmPasswordErrorCondition =
+    !!errorConfirmPassword ||
+    !!(!validateLatinLetter(confirmPassword) && confirmPassword);
+
+  const passwordErrorCondition =
+    !!errorPassword || !!(!validateLatinLetter(password) && password);
+
+  const fillingEmail =
+    !!errorEmail || serverError?.status_message ? (
+      <div>
+        {errorEmail ||
+          (serverError &&
+            serverError.status === 409 &&
+            JSON.parse(serverError?.status_message).message)}
+      </div>
+    ) : undefined;
+
+  const fillingPassword = (
+    <>
+      Password must contain at least five characters. A strong password contains
+      a combination of letters, numbers and symbols.
+      {!!(errorPassword || (!validateLatinLetter(password) && password)) && (
+        <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>
+      )}
+    </>
+  );
+
+  const emailErrorCondition = !!errorEmail || serverError?.status === 409;
+
+  const inputs = [
+    {
+      value: firstName,
+      handler: firstNameHandler,
+      label: "First name",
+      errorCondition: !!errorFirstName,
+      children: <ErrorContainer errorText={errorFirstName} />,
+      type: "text",
+    },
+    {
+      value: lastName,
+      handler: lastNameHandler,
+      label: "Last name",
+      errorCondition: !!errorLastName,
+      children: <ErrorContainer errorText={errorLastName} />,
+      type: "text",
+    },
+    {
+      value: email,
+      handler: emailHandler,
+      label: "Email address",
+      errorCondition: emailErrorCondition,
+      children: fillingEmail,
+      type: "text",
+    },
+    {
+      value: password,
+      handler: passwordHandler,
+      label: "Password",
+      errorCondition: passwordErrorCondition,
+      children: fillingPassword,
+      type: "password",
+    },
+    {
+      value: confirmPassword,
+      handler: confirmPasswordHandler,
+      label: "Confirm password",
+      errorCondition: confirmPasswordErrorCondition,
+      children: fillingConfirmPassword,
+      type: "password",
+    },
+  ];
   return (
     <ModalWrapper
       setVisible={setVisibilitySignUpModal}
       isVisible={isShowSignUpModal}
     >
       <Title>SIGN UP</Title>
-
-      <Input
-        value={firstName}
-        changeHandler={(e) => setFirstName(e.target.value)}
-        labelText="First name"
-        isError={!!errorFirstName}
-        children={<ErrorContainer errorText={errorFirstName} />}
-      />
-      <Input
-        value={lastName}
-        changeHandler={(e) => setLastName(e.target.value)}
-        labelText="Last name"
-        isError={!!errorLastName}
-        children={<ErrorContainer errorText={errorLastName} />}
-      />
-      <Input
-        value={email}
-        changeHandler={(e) => setEmail(e.target.value)}
-        labelText="Email address"
-        isError={!!errorEmail || serverError?.status === 409}
-        children={
-          !!errorEmail || serverError?.status_message ? (
-            <div>
-              {errorEmail ||
-                (serverError &&
-                  serverError.status === 409 &&
-                  JSON.parse(serverError?.status_message).message)}
-            </div>
-          ) : undefined
-        }
-      />
-      <Input
-        value={password}
-        changeHandler={(e) => setPassword(e.target.value)}
-        labelText="Password"
-        type="password"
-        isError={
-          !!errorPassword || !!(!validateLatinLetter(password) && password)
-        }
-      >
-        <>
-          Password must contain at least five characters. A strong password
-          contains a combination of letters, numbers and symbols.
-          {!!(
-            errorPassword ||
-            (!validateLatinLetter(password) && password)
-          ) && <div>{errorPassword || ValidationMessage.onlyLatinLetter}</div>}
-        </>
-      </Input>
-      <Input
-        value={confirmPassword}
-        changeHandler={(e) => setConfirmPassword(e.target.value)}
-        labelText="Confirm password"
-        type="password"
-        isError={
-          !!errorConfirmPassword ||
-          !!(!validateLatinLetter(confirmPassword) && confirmPassword)
-        }
-        children={
-          !!(
-            errorConfirmPassword ||
-            (!validateLatinLetter(confirmPassword) && confirmPassword)
-          ) ? (
-            <div>
-              {errorConfirmPassword || ValidationMessage.onlyLatinLetter}
-            </div>
-          ) : undefined
-        }
-      />
+      {inputs.map((item, index) => (
+        <Input
+          key={index}
+          value={item.value}
+          changeHandler={item.handler}
+          labelText={item.label}
+          type={item.type}
+          isError={item.errorCondition}
+          children={item.children}
+        />
+      ))}
       <ModalCheckbox value={isGetUpdate} changeHandler={setIsGetUpdates}>
         Get updates on our shop news and promotions
       </ModalCheckbox>
-
       <Button
         submitHandler={registrationHandler}
         isPurpleButton={true}
         type="button"
-        children={isLoading ? <Loader size={27} /> : "Create account"}
+        children={fillingSubmitHandler}
       />
     </ModalWrapper>
   );

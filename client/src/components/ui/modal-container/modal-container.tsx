@@ -15,13 +15,22 @@ const ModalContainer: FC = () => {
   const isShwSignInModal = useAppSelector(selectSignInModal);
   const isShowEditUserModal = useAppSelector(selectEditUserModal);
 
-  return (
-    <>
-      {isShowSignUpModal && <SignUpModal />}
-      {isShwSignInModal && <SignInModal />}
-      {isShowEditUserModal && <EditUserModal />}
-    </>
-  );
+  let modal: JSX.Element | null;
+  switch (true) {
+    case isShowSignUpModal:
+      modal = <SignUpModal />;
+      break;
+    case isShwSignInModal:
+      modal = <SignInModal />;
+      break;
+    case isShowEditUserModal:
+      modal = <EditUserModal />;
+      break;
+    default:
+      modal = null;
+  }
+
+  return modal;
 };
 
 export default ModalContainer;

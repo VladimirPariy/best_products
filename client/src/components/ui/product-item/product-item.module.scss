@@ -164,6 +164,9 @@
 
       span {
         writing-mode: vertical-rl;
+        > a {
+          color: white;
+        }
       }
     }
 
@@ -366,7 +369,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .listContainer {
     margin: 25px 0;
 
@@ -542,7 +545,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .listContainer {
     margin: 35px 0;
 

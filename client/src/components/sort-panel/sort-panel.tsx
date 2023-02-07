@@ -58,17 +58,23 @@ const SortPanel: FC<Props> = ({ setIsShowFilter }) => {
       setSearchParams(searchParams);
     }
   }, [searchParams, setSearchParams, sortPrice]);
+
+  const viewHandler = () => {
+    setViewStyle((prev) => !prev);
+  };
+
+  const sortHandler = () => {
+    setSortPrice((prev) => !prev);
+  };
+
+  const toggleFilterHandler = () => {
+    setIsShowFilter((prev) => !prev);
+  };
   return (
     <div className={styles.wrapper}>
-      <ViewSort
-        viewStyle={viewStyle}
-        changeView={() => setViewStyle((prev) => !prev)}
-      />
-      <PriceSort
-        changeSort={() => setSortPrice((prev) => !prev)}
-        sortPrice={sortPrice}
-      />
-      <ToggleFilter toggle={() => setIsShowFilter((prev) => !prev)} />
+      <ViewSort viewStyle={viewStyle} changeView={viewHandler} />
+      <PriceSort changeSort={sortHandler} sortPrice={sortPrice} />
+      <ToggleFilter toggle={toggleFilterHandler} />
       <CategoryScoreboard category={category} />
     </div>
   );

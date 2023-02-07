@@ -1,3 +1,4 @@
+@use "scss/index" as *;
 .tabsListContainer {
   display: flex;
   justify-content: space-evenly;
@@ -6,7 +7,7 @@
   margin-bottom: 20px;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .tabsListContainer {
     gap: 10px;
     margin-top: 20px;
@@ -14,7 +15,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .tabsListContainer {
     gap: 15px;
     margin-top: 30px;

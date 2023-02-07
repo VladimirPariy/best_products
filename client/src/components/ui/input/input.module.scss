@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .label.error {
   color: red;
 
@@ -49,7 +51,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .label.error {
     .input {
       border: 1.5px solid red;
@@ -84,7 +86,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .label.error {
     .input {
       border: 2px solid red;

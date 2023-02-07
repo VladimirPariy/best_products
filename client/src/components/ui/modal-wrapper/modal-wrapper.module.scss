@@ -1,4 +1,4 @@
-@use "../../../scss/index" as *;
+@use "scss/index" as *;
 
 .modalWrapper {
   position: fixed;
@@ -50,7 +50,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .modalWrapper.active .container .modal {
     margin: 85px 70px 0;
     padding: 24px 43px 37px;

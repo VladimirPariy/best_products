@@ -19,11 +19,11 @@ const SortButton: FC<Props> = ({ setSort, sort }) => {
     !sort,
     ""
   );
+  const sortHandler = () => {
+    setSort((prev) => !prev);
+  };
   return (
-    <button
-      onClick={() => setSort((prev) => !prev)}
-      className={styles.commentsSort}
-    >
+    <button onClick={sortHandler} className={styles.commentsSort}>
       <span className={styles.arrowsSort}>
         <Arrows />
       </span>

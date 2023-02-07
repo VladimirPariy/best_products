@@ -12,4 +12,7 @@ $full: 100%;
 $h_screen: 100vh;
 $w_screen: 100vw;
 
-$window-width: (desktop:"1200px", tablet:"600px")
+$window-width: (
+  desktop: "1025px",
+  tablet: "769px",
+);

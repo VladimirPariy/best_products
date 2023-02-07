@@ -1,3 +1,5 @@
+@use "scss/index" as *;
+
 .mainPage {
   margin: 0 auto;
   max-width: 1180px;
@@ -7,14 +9,14 @@
   gap: 15px;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet{
   .mainPage {
     max-width: 1240px;
     gap: 30px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop{
   .mainPage {
     justify-content: space-between;
     max-width: 1260px;

@@ -27,13 +27,16 @@ const SidebarItem: FC<Props> = ({ item, onHover, clickHandler }) => {
     onHover
   );
 
+  const linkHandler = (e: MouseEvent<HTMLAnchorElement>) => {
+    clickHandler && clickHandler(e, item);
+  };
+
+  const activeClassName = (data: { isActive: boolean; isPending: boolean }) => {
+    return data.isActive ? styles.active : null;
+  };
   return (
     <li className={onHoveredLink}>
-      <NavLink
-        to={item.url}
-        className={(data) => (data.isActive ? styles.active : null)}
-        onClick={(e) => clickHandler && clickHandler(e, item)}
-      >
+      <NavLink to={item.url} className={activeClassName} onClick={linkHandler}>
         <div className={styles.icon}>{item.icon}</div>
         <div className={onHoveredTitle}>{item.title}</div>
       </NavLink>

@@ -60,7 +60,7 @@ li:first-child > .active > .icon > svg > path {
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .link {
     margin: 0 0.33rem 1rem;
 
@@ -90,7 +90,7 @@ li:first-child > .active > .icon > svg > path {
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .link {
     margin: 0 0.33rem 1.375rem;
 

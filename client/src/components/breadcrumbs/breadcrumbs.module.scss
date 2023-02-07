@@ -23,7 +23,7 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .breadcrumbs {
     font-size: 18px;
     line-height: 22px;
@@ -39,7 +39,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .breadcrumbs {
     font-size: 22px;
     line-height: 27px;

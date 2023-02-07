@@ -13,7 +13,7 @@
   flex-direction: column;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .contentContainer {
     padding: 40px 50px;
     font-size: 14px;
@@ -21,7 +21,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .contentContainer {
     padding: 45px 55px;
     font-size: 16px;

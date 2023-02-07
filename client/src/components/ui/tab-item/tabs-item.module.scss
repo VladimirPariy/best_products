@@ -17,14 +17,14 @@
   background: $active_item_color;
 }
 
-@media screen and (min-width: 769px) {
+@include tablet {
   .tab {
     padding: 12px 12px;
     font-size: 17px;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include desktop {
   .tab {
     padding: 18px 17px;
     font-size: 24px;
