@@ -5,10 +5,7 @@ import jwtDecode from "jwt-decode";
 import { getTokenFromStorage } from "lib/utils/token-from-storage";
 import { JWT } from "lib/interfaces/jwt-decode.interface";
 import { ICategory, ISubcategory } from "lib/interfaces/categories.interface";
-import {
-  selectCategories,
-  selectSubcategories,
-} from "store/categories/categories-selectors";
+import { selectCategories, selectSubcategories } from "store/categories/categories-selectors";
 import { useAppSelector } from "lib/interfaces/store.types";
 
 import ProtectedRoute from "components/router/protected-route/protected-route";
@@ -61,6 +58,8 @@ const AppRouter: FC = () => {
   const [subcategories, setSubcategories] = useState<ISubcategory[]>([]);
   const categoriesFromServer = useAppSelector(selectCategories);
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subcategoriesRoutes, setSubcategoriesRoutes] = useState<ISubcategoryRoute[]>([]);
+  const [categoriesRoutes, setCategoriesRoutes] = useState<ICategoryRoute[]>([]);
 
   const token = getTokenFromStorage();
   const decode: JWT = token && jwtDecode(token);
@@ -70,10 +69,6 @@ const AppRouter: FC = () => {
     if (categoriesFromServer) setCategories(categoriesFromServer);
     if (subcategoriesFromServer) setSubcategories(subcategoriesFromServer);
   }, [subcategoriesFromServer, categoriesFromServer]);
-
-  const [subcategoriesRoutes, setSubcategoriesRoutes] = useState<
-    ISubcategoryRoute[]
-  >([]);
 
   useEffect(() => {
     if (subcategories.length)
@@ -86,22 +81,12 @@ const AppRouter: FC = () => {
       );
   }, [subcategories]);
 
-  const [categoriesRoutes, setCategoriesRoutes] = useState<ICategoryRoute[]>(
-    []
-  );
-
   useEffect(() => {
     if (categories.length && subcategoriesRoutes.length)
       setCategoriesRoutes([
         ...categories.map((item) => ({
           path: `${item.category_title}/*`,
-          children: [
-            { index: true, elem: <CategoryPage /> },
-            ...subcategoriesRoutes.filter(
-              (sub) => sub.category === item.category_id
-            ),
-            { path: "*", elem: <NotFoundPage /> },
-          ],
+          children: [{ index: true, elem: <CategoryPage /> }, ...subcategoriesRoutes.filter((sub) => sub.category === item.category_id), { path: "*", elem: <NotFoundPage /> }],
         })),
         { path: "*", elem: <NotFoundPage /> },
       ]);
@@ -110,34 +95,18 @@ const AppRouter: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route
-        path="/favorite/*"
-        element={<ProductLayout isShowBreadcrumbs={false} />}
-      >
+      <Route path="/favorite/*" element={<ProductLayout isShowBreadcrumbs={false} />}>
         {favoriteRoutes.map((item, index) => (
-          <Route
-            index={item.index}
-            element={item.elem}
-            path={item.path}
-            key={index}
-          />
+          <Route index={item.index} element={item.elem} path={item.path} key={index} />
         ))}
       </Route>
       <Route path="/favorite/:id" element={<ProductDetailPage />} />
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
         {adminRoutes.map((item, index) => (
-          <Route
-            index={item.index}
-            element={item.elem}
-            path={item.path}
-            key={index}
-          />
+          <Route index={item.index} element={item.elem} path={item.path} key={index} />
         ))}
       </Route>
-      <Route
-        path="/product/*"
-        element={<ProductLayout isShowBreadcrumbs={true} />}
-      >
+      <Route path="/product/*" element={<ProductLayout isShowBreadcrumbs={true} />}>
         {categoriesRoutes.map((item, i) => {
           if (!item.children) {
             return <Route path={item.path} element={item.elem} key={i} />;
@@ -145,12 +114,7 @@ const AppRouter: FC = () => {
           return (
             <Route path={item.path} key={item.path}>
               {item.children?.map((child, index) => (
-                <Route
-                  path={child.path}
-                  index={child.index}
-                  element={child.elem}
-                  key={index}
-                />
+                <Route path={child.path} index={child.index} element={child.elem} key={index} />
               ))}
             </Route>
           );
