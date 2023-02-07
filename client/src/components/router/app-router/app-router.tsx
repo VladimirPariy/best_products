@@ -26,36 +26,87 @@ import FavoritePage from "pages/favorite-page";
 import ProductDetailPage from "pages/product-detail-page";
 import NotFoundPage from "pages/not-found-page";
 
-interface IAdminRoute {
-  path: string;
+interface IRoute {
+  path?: string;
+  index?: boolean;
   elem: JSX.Element;
 }
 
-const adminRoutes: IAdminRoute[] = [
+interface ISubcategoryRoute extends IRoute {
+  category: number;
+}
+
+interface ICategoryRoute {
+  path: string;
+  children?: Partial<ISubcategoryRoute>[];
+  elem?: JSX.Element;
+}
+
+const adminRoutes: IRoute[] = [
+  { index: true, elem: <AdminPanel /> },
   { path: "users", elem: <UsersControlPage /> },
   { path: "statistics", elem: <StatisticsPage /> },
   { path: "create", elem: <AddNewProductPage /> },
   { path: "update/:id", elem: <UpdateProductPage /> },
+  { path: "*", elem: <NotFoundPage /> },
+];
+
+const favoriteRoutes: IRoute[] = [
+  { index: true, elem: <FavoritePage /> },
+  { path: "*", elem: <NotFoundPage /> },
 ];
 
 const AppRouter: FC = () => {
-  const subcategories = useAppSelector(selectSubcategories);
-  const [subcategoryRoutes, setSubcategoryRoutes] = useState<ISubcategory[]>(
-    []
-  );
-  const category = useAppSelector(selectCategories);
-  const [categoryRoutes, setCategoryRoutes] = useState<ICategory[]>([]);
+  const subcategoriesFromServer = useAppSelector(selectSubcategories);
+  const [subcategories, setSubcategories] = useState<ISubcategory[]>([]);
+  const categoriesFromServer = useAppSelector(selectCategories);
+  const [categories, setCategories] = useState<ICategory[]>([]);
 
   const token = getTokenFromStorage();
   const decode: JWT = token && jwtDecode(token);
   const isAllowed = !!token && typeof decode !== "string" && decode?.role === 1;
 
   useEffect(() => {
-    if (category) setCategoryRoutes(category);
-    if (subcategories) setSubcategoryRoutes(subcategories);
-  }, [subcategories, category]);
+    if (categoriesFromServer) setCategories(categoriesFromServer);
+    if (subcategoriesFromServer) setSubcategories(subcategoriesFromServer);
+  }, [subcategoriesFromServer, categoriesFromServer]);
 
-  const emptyRoute = <Route path="*" element={<NotFoundPage />} />;
+  const [subcategoriesRoutes, setSubcategoriesRoutes] = useState<
+    ISubcategoryRoute[]
+  >([]);
+
+  useEffect(() => {
+    if (subcategories.length)
+      setSubcategoriesRoutes(
+        subcategories.map((item) => ({
+          path: item.subcategory_title,
+          elem: <SubcategoryPage />,
+          category: item.category,
+        }))
+      );
+  }, [subcategories]);
+
+  const [categoriesRoutes, setCategoriesRoutes] = useState<ICategoryRoute[]>(
+    []
+  );
+
+  useEffect(() => {
+    if (categories.length && subcategoriesRoutes.length)
+      setCategoriesRoutes([
+        ...categories.map((item) => ({
+          path: `${item.category_title}/*`,
+          children: [
+            { index: true, elem: <CategoryPage /> },
+            ...subcategoriesRoutes.filter(
+              (sub) => sub.category === item.category_id
+            ),
+            { path: "*", elem: <NotFoundPage /> },
+          ],
+        })),
+        { path: "*", elem: <NotFoundPage /> },
+      ]);
+  }, [categories, subcategoriesRoutes]);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -63,46 +114,51 @@ const AppRouter: FC = () => {
         path="/favorite/*"
         element={<ProductLayout isShowBreadcrumbs={false} />}
       >
-        <Route index element={<FavoritePage />} />
-        {emptyRoute}
+        {favoriteRoutes.map((item, index) => (
+          <Route
+            index={item.index}
+            element={item.elem}
+            path={item.path}
+            key={index}
+          />
+        ))}
       </Route>
       <Route path="/favorite/:id" element={<ProductDetailPage />} />
       <Route path="/admin/*" element={<ProtectedRoute isAllowed={isAllowed} />}>
-        <Route index element={<AdminPanel />} />
-        {adminRoutes.map((item) => (
-          <Route path={item.path} element={item.elem} key={item.path} />
+        {adminRoutes.map((item, index) => (
+          <Route
+            index={item.index}
+            element={item.elem}
+            path={item.path}
+            key={index}
+          />
         ))}
-        {emptyRoute}
       </Route>
       <Route
         path="/product/*"
         element={<ProductLayout isShowBreadcrumbs={true} />}
       >
-        {categoryRoutes.map((categoryRoute) => (
-          <Route
-            path={`${categoryRoute.category_title}/*`}
-            key={categoryRoute.category_id}
-          >
-            <Route index element={<CategoryPage />} />
-            {subcategoryRoutes
-              .filter(
-                (subcategoryRoute) =>
-                  subcategoryRoute.category === categoryRoute.category_id
-              )
-              .map((subcategory) => (
+        {categoriesRoutes.map((item, i) => {
+          if (!item.children) {
+            return <Route path={item.path} element={item.elem} key={i} />;
+          }
+          return (
+            <Route path={item.path} key={item.path}>
+              {item.children?.map((child, index) => (
                 <Route
-                  path={subcategory.subcategory_title}
-                  element={<SubcategoryPage />}
-                  key={subcategory.subcategory_id}
+                  path={child.path}
+                  index={child.index}
+                  element={child.elem}
+                  key={index}
                 />
               ))}
-            {emptyRoute}
-          </Route>
-        ))}
-        {emptyRoute}
+            </Route>
+          );
+        })}
       </Route>
       <Route path="/product/:id" element={<ProductDetailPage />} />
-      {emptyRoute}
+      <Route path="/404" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

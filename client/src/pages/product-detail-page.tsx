@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import { getProductDetailTrigger } from "store/product-detail/product-detail-actions";
 import {
@@ -14,6 +14,7 @@ import ProductInfo from "components/product-detail/product-detail-info/product-i
 import { Loader } from "components/ui/loader/loader";
 
 const ProductDetailPage: FC = () => {
+  const navigate = useNavigate();
   const location = useLocation().pathname.split("/");
   const currentProductId = +location[location.length - 1];
   const dispatch = useAppDispatch();
@@ -39,6 +40,11 @@ const ProductDetailPage: FC = () => {
       dispatch(getProductDetailTrigger(currentProductId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentProductId]);
+
+  useEffect(() => {
+    if (isNaN(+location[location.length - 1])) navigate("/404");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ProductDetailLayout>

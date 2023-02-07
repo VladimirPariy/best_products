@@ -9,14 +9,14 @@
   gap: 15px;
 }
 
-@include tablet{
+@include tablet {
   .mainPage {
     max-width: 1240px;
     gap: 30px;
   }
 }
 
-@include desktop{
+@include desktop {
   .mainPage {
     justify-content: space-between;
     max-width: 1260px;

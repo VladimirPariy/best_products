@@ -45,7 +45,7 @@
   }
 }
 
-@include tablet{
+@include tablet {
   .userModal {
     position: absolute;
     top: 99px;
@@ -108,7 +108,7 @@
   }
 }
 
-@include desktop{
+@include desktop {
   .userModal {
     top: 109px;
     right: 23px;
