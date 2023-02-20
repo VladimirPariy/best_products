@@ -28,9 +28,7 @@ const addFakeProductCharacteristics = (
 
   const product = faker.helpers.arrayElement(productID);
 
-  const subcategory = prod.find(
-    (prod) => prod.product === product
-  )?.subcategory;
+  const subcategory = prod.find((prod) => prod.product === product)?.subcategory;
   const parameters = param
     .filter((parameter) => parameter.subcategory === subcategory)
     .map((item) => item.parameter_id);
@@ -48,11 +46,7 @@ const addFakeProductCharacteristics = (
   };
 };
 
-export const createProductCharacteristics = (
-  prod: IProd[],
-  param: IParam[],
-  chars: IChar[]
-) => {
+export const createProductCharacteristics = (prod: IProd[], param: IParam[], chars: IChar[]) => {
   let arr = [];
   let index = 1;
   for (let i = 1; i <= 200; i++) {

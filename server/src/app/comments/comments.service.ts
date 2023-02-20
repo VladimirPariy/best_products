@@ -30,7 +30,10 @@ export default class CommentsService {
   }
 
   async getCommentByID(id: number) {
-    return CommentsModel.query().findById(id).modify("selectShotComment").withGraphFetched("users(selectShotUserInfo)");
+    return CommentsModel.query()
+      .findById(id)
+      .modify("selectShotComment")
+      .withGraphFetched("users(selectShotUserInfo)");
   }
 
   async removeCommentById(id: number) {

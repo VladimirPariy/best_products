@@ -1,12 +1,9 @@
 import { Response, Request } from "express";
-
 import UserService from "./user.service";
 import { HttpException } from "../common/errors/exceptions";
 import { paramsSchema } from "../common/validations/params-validation";
 import { roleSchema } from "../common/validations/role-validation";
 import { IUserUpdatingFields } from "./user.interfaces";
-import { v4 as uuidv4 } from "uuid";
-import path from "path";
 import bcrypt from "bcryptjs";
 import { updateUserSchema } from "../common/validations/update-user-validation";
 import { generateJwtToken } from "../common/utils/generate-jwt-token";
@@ -54,8 +51,12 @@ export default class UserController {
     if (payload.password) payload.password = await bcrypt.hash(payload.password, 7);
 
     if (payload.email || payload.phone_number) {
-      const user = await instanceUserService.findUserByEmailOrPhoneNumber(payload.email, payload.phone_number);
-      if (user.length > 0) throw HttpException.alreadyExists("User with the same email or phone exist");
+      const user = await instanceUserService.findUserByEmailOrPhoneNumber(
+        payload.email,
+        payload.phone_number
+      );
+      if (user.length > 0)
+        throw HttpException.alreadyExists("User with the same email or phone exist");
     }
 
     const patchedUserAmount = await instanceUserService.updateUserById(id, payload);

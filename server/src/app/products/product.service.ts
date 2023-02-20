@@ -47,7 +47,8 @@ export default class ProductService {
   getProductOrProducts(id?: number | number[], comment?: boolean, withOutFilters?: boolean) {
     const expr =
       "[product_images(selectShotImage), characteristics(selectShotCharacteristic).[parameters(selectShotParameter)], subcategories(selectShotSubcategory).[categories(selectShotCategory)]]";
-    const exprWithOutFilters = "[product_images, characteristics.[parameters], subcategories.[categories]]";
+    const exprWithOutFilters =
+      "[product_images, characteristics.[parameters], subcategories.[categories]]";
 
     const colArray = [
       "products.*",
@@ -86,11 +87,17 @@ export default class ProductService {
   }
 
   getPositiveFeedbacksAmount() {
-    return ProductsModel.relatedQuery("feedbacks").count().as("positive_feedbacks_amount").where({ feedback_type: 2 });
+    return ProductsModel.relatedQuery("feedbacks")
+      .count()
+      .as("positive_feedbacks_amount")
+      .where({ feedback_type: 2 });
   }
 
   getNegativeFeedbacksAmount() {
-    return ProductsModel.relatedQuery("feedbacks").count().as("negative_feedbacks_amount").where({ feedback_type: 1 });
+    return ProductsModel.relatedQuery("feedbacks")
+      .count()
+      .as("negative_feedbacks_amount")
+      .where({ feedback_type: 1 });
   }
 
   getCommentsAmount() {
@@ -98,7 +105,9 @@ export default class ProductService {
   }
 
   async getAllProducts() {
-    const products = await ProductsModel.query().withGraphFetched("[product_images, characteristics.[parameters]]");
+    const products = await ProductsModel.query().withGraphFetched(
+      "[product_images, characteristics.[parameters]]"
+    );
     if (!products.length) {
       return HttpException.internalServErr("Unsuccessful selecting data from table");
     }
@@ -141,7 +150,15 @@ export default class ProductService {
   }
 
   async createNewProduct(body: IInfoForCreateProduct) {
-    const { category, subcategory, productTitle, productDescription, price, characteristics, images } = body;
+    const {
+      category,
+      subcategory,
+      productTitle,
+      productDescription,
+      price,
+      characteristics,
+      images,
+    } = body;
     if (
       !category ||
       !subcategory ||
@@ -264,9 +281,13 @@ export default class ProductService {
       if (productInfo.price) {
         checkByUndefined = { ...checkByUndefined, price: productInfo.price };
       }
-      const updateProduct = await ProductsModel.query().update(checkByUndefined).where(ProductsModel.idColumn, id);
+      const updateProduct = await ProductsModel.query()
+        .update(checkByUndefined)
+        .where(ProductsModel.idColumn, id);
       if (!updateProduct) {
-        return HttpException.internalServErr(`Unsuccessful title, description or price updating into table`);
+        return HttpException.internalServErr(
+          `Unsuccessful title, description or price updating into table`
+        );
       }
     }
     if (productInfo.product_characteristics) {
@@ -353,7 +374,9 @@ export default class ProductService {
       const isAppropriate: boolean[] = [];
 
       normalizedFilter.subcategoryId &&
-        isAppropriate.push(product.subcategories[0].subcategory_id === +normalizedFilter.subcategoryId);
+        isAppropriate.push(
+          product.subcategories[0].subcategory_id === +normalizedFilter.subcategoryId
+        );
 
       normalizedFilter.minPrice && isAppropriate.push(product.price >= +normalizedFilter.minPrice);
 
@@ -397,7 +420,11 @@ export default class ProductService {
       .withGraphJoined("product_images")
       .where("products.product_title", "like", `%${query}%`);
 
-    const subcategories = await SubcategoryModel.query().where("subcategory_title", "like", `%${query}%`);
+    const subcategories = await SubcategoryModel.query().where(
+      "subcategory_title",
+      "like",
+      `%${query}%`
+    );
     return { products, subcategories };
   }
 }

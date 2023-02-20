@@ -14,8 +14,7 @@ export default class CharacteristicController {
   }
 
   async getAllCharacteristics(req: Request, res: Response) {
-    const data =
-      await CharacteristicService.getInstance().getAllCharacteristics();
+    const data = await CharacteristicService.getInstance().getAllCharacteristics();
     res.status(200).send(data);
   }
 }

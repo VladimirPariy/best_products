@@ -8,16 +8,9 @@ export const createAuthRouter = (): Router => {
 
   const instanceAuthController = AuthController.getInstance();
 
-  authRouter.post(
-    "/registration",
-    tryCatch(instanceAuthController.registration)
-  );
+  authRouter.post("/registration", tryCatch(instanceAuthController.registration));
   authRouter.post("/login", tryCatch(instanceAuthController.login));
-  authRouter.get(
-    "/me",
-    authenticateJWT,
-    tryCatch(instanceAuthController.check)
-  );
+  authRouter.get("/me", authenticateJWT, tryCatch(instanceAuthController.check));
 
   return authRouter;
 };

@@ -1,28 +1,31 @@
-import { Response, Request, NextFunction } from "express";
-
-import { HttpException } from "../common/errors/exceptions";
+import { paramsSchema } from "./../common/validations/params-validation";
+import { Response, Request } from "express";
 import ParametersService from "./parameters.service";
 
+const instanceParametersService = ParametersService.getInstance();
+
 class ParametersController {
-  async getParametersBySubcategoryId(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    const { subcategoryId } = req.params;
-    if (!subcategoryId || isNaN(+subcategoryId)) {
-      return next(HttpException.badRequest("Missing subcategory id"));
+  private static instance: ParametersController;
+
+  private constructor() {}
+
+  public static getInstance(): ParametersController {
+    if (!ParametersController.instance) {
+      ParametersController.instance = new ParametersController();
     }
-    const data = await ParametersService.getParametersBySubcategoryId(
-      +subcategoryId
-    );
-    data instanceof HttpException ? next(data) : res.status(200).send(data);
+    return ParametersController.instance;
   }
 
   async getAllParameters(req: Request, res: Response) {
-    const data = await ParametersService.getAllParameters();
+    const data = await instanceParametersService.getAllParameters();
+    res.status(200).send(data);
+  }
+
+  async getParametersBySubcategoryId(req: Request, res: Response) {
+    const { id } = await paramsSchema.validate(req.params);
+    const data = await instanceParametersService.getParametersBySubcategoryId(id);
     res.status(200).send(data);
   }
 }
 
-export default new ParametersController();
+export default ParametersController;

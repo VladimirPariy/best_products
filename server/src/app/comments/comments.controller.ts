@@ -31,7 +31,8 @@ export default class CommentsController {
     const payload = await createCommentsSchema.validate(req.body);
 
     const insertedComment = await instanceCommentsService.createComment(payload);
-    if (!insertedComment) throw HttpException.internalServErr("Unsuccessful inserting comment into table");
+    if (!insertedComment)
+      throw HttpException.internalServErr("Unsuccessful inserting comment into table");
 
     const data = await instanceCommentsService.getCommentByID(insertedComment.$id());
 

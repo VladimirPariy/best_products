@@ -7,10 +7,7 @@ export const createFeedbacksRouter = (): Router => {
 
   const instanceFeedbacksController = FeedbacksController.getInstance();
 
-  feedbacksRouter.get(
-    "/:id",
-    tryCatch(instanceFeedbacksController.getFeedbacksByUserId)
-  );
+  feedbacksRouter.get("/:id", tryCatch(instanceFeedbacksController.getFeedbacksByUserId));
   feedbacksRouter.post("/", tryCatch(instanceFeedbacksController.addFeedback));
 
   return feedbacksRouter;

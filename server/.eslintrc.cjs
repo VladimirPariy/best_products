@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   env: {
     browser: true,
@@ -11,5 +12,11 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["@typescript-eslint"],
-  rules: {},
+  rules: {
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      { allow: ["private-constructors", "protected-constructors", "decoratedFunctions"] },
+    ],
+  },
 };

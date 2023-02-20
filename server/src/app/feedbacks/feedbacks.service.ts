@@ -43,8 +43,7 @@ export default class FeedbacksService {
   }
 
   async addFeedback(data: IDataForAddFeedback) {
-    const { userId, productId, feedbackType } = data;
-    const feedbackId = feedbackType ? Feedback.Positive : Feedback.Negative;
+    const { feedbackId, productId, userId } = data;
     return FeedbacksModel.query().insert({
       user: userId,
       product: productId,

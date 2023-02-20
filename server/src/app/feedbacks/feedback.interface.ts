@@ -1,5 +1,7 @@
+import { Feedback } from "../common/enums/Feedback";
+
 export interface IDataForAddFeedback {
   userId: number;
   productId: number;
-  feedbackType: number;
+  feedbackId: Feedback;
 }

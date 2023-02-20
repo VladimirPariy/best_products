@@ -39,7 +39,10 @@ export default class UserService {
   }
 
   async getUserByLogin(login: string) {
-    const user = await UsersModel.query().skipUndefined().where({ email: login }).orWhere({ phone_number: login });
+    const user = await UsersModel.query()
+      .skipUndefined()
+      .where({ email: login })
+      .orWhere({ phone_number: login });
     return user[0];
   }
 

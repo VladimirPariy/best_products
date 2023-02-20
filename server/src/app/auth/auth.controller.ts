@@ -44,9 +44,7 @@ export default class AuthController {
 
     const token = generateJwtToken(user.user_id, user.email, user.role);
     if (!token) {
-      throw HttpException.internalServErr(
-        `Unsuccessful attempt to create token`
-      );
+      throw HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
 
     res.status(200).send(token);
@@ -66,15 +64,9 @@ export default class AuthController {
       throw HttpException.badRequest(`User inputted invalid password`);
     }
 
-    const token = generateJwtToken(
-      candidate.user_id,
-      candidate.email,
-      candidate.role
-    );
+    const token = generateJwtToken(candidate.user_id, candidate.email, candidate.role);
     if (!token) {
-      throw HttpException.internalServErr(
-        `Unsuccessful attempt to create token`
-      );
+      throw HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
 
     res.status(200).send(token);
@@ -85,9 +77,7 @@ export default class AuthController {
 
     const token = generateJwtToken(user.user_id, user.email, user.role);
     if (!token) {
-      throw HttpException.internalServErr(
-        `Unsuccessful attempt to create token`
-      );
+      throw HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
     res.status(200).send(token);
   }

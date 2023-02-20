@@ -12,7 +12,11 @@ export const createUserRouter = (): Router => {
 
   userRouter.get("/", [checkRole(Roles.Admin)], tryCatch(instanceUserController.getAllUsers));
   userRouter.get("/roles", [checkRole(Roles.Admin)], tryCatch(instanceUserController.getAllRoles));
-  userRouter.patch("/roles/:id", [checkRole(Roles.Admin)], tryCatch(instanceUserController.updateRole));
+  userRouter.patch(
+    "/roles/:id",
+    [checkRole(Roles.Admin)],
+    tryCatch(instanceUserController.updateRole)
+  );
   userRouter.get("/:id", tryCatch(instanceUserController.getUserInfo));
   userRouter.patch("/:id", upload.single("img"), tryCatch(instanceUserController.updateUserInfo));
   userRouter.delete("/:id", [checkRole(Roles.Admin)], tryCatch(instanceUserController.removeUser));

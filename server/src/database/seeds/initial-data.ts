@@ -55,7 +55,5 @@ export async function seed(knex: Knex): Promise<void> {
   const prod = await knexInstance.select("*").from("product_subcategories");
   const param = await knexInstance.select("*").from("parameters");
   const chars = await knexInstance.select("*").from("characteristics");
-  await knex("product_characteristics").insert(
-    createProductCharacteristics(prod, param, chars)
-  );
+  await knex("product_characteristics").insert(createProductCharacteristics(prod, param, chars));
 }

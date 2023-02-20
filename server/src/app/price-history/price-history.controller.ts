@@ -1,21 +1,24 @@
-import { Response, Request, NextFunction } from "express";
-
-import { HttpException } from "../common/errors/exceptions";
+import { Response, Request } from "express";
+import { paramsSchema } from "../common/validations/params-validation";
 import PriceHistoryService from "./price-history.service";
 
+const instancePriceHistoryService = PriceHistoryService.getInstance();
+
 class PriceHistoryController {
-  async getPriceHistoryByProductId(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    const { id } = req.params;
-    if (isNaN(+id) || !id) {
-      return next(HttpException.badRequest("Missing product id"));
+  private static instance: PriceHistoryController;
+  private constructor() {}
+  public static getInstance(): PriceHistoryController {
+    if (!PriceHistoryController.instance) {
+      PriceHistoryController.instance = new PriceHistoryController();
     }
-    const data = await PriceHistoryService.getPriceHistoryByProductId(+id);
+    return PriceHistoryController.instance;
+  }
+
+  async getPriceHistoryByProductId(req: Request, res: Response) {
+    const { id } = await paramsSchema.validate(req.params);
+    const data = await instancePriceHistoryService.getPriceHistoryByProductId(id);
     res.status(200).send(data);
   }
 }
 
-export default new PriceHistoryController();
+export default PriceHistoryController;

@@ -1,17 +1,26 @@
-import { Response, Request, NextFunction } from "express";
-
-import { HttpException } from "../common/errors/exceptions";
+import { Response, Request } from "express";
+import { viewSchema } from "../common/validations/view-validation";
 import ViewService from "./view.service";
 
+const instanceViewService = ViewService.getInstance();
+
 class ViewController {
-  async addView(req: Request, res: Response, next: NextFunction) {
-    const { productId } = req.body;
-    if (!productId || isNaN(+productId)) {
-      return next(HttpException.badRequest("Product id missing or invalid"));
+  private static instance: ViewController;
+
+  private constructor() {}
+
+  public static getInstance(): ViewController {
+    if (!ViewController.instance) {
+      ViewController.instance = new ViewController();
     }
-    const data = await ViewService.addView(+productId);
+    return ViewController.instance;
+  }
+
+  async addView(req: Request, res: Response) {
+    const { productId } = await viewSchema.validate(req.body);
+    const data = await instanceViewService.addView(productId);
     res.status(200).send(data);
   }
 }
 
-export default new ViewController();
+export default ViewController;

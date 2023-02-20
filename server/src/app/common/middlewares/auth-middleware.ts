@@ -11,11 +11,7 @@ export const checkToken = (req: Request, res: Response, next: NextFunction) => {
   return token;
 };
 
-export const authenticateJWT = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
   const token = checkToken(req, res, next);
   if (token) {
     jwt.verify(token, process.env.SECRET || "", (err, user) => {

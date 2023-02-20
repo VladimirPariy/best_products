@@ -10,9 +10,7 @@ const createRandomUser = (i: number) => {
   const is_get_update = faker.helpers.arrayElement(["0", "1"]);
   const role = faker.helpers.arrayElement(["1", "2"]);
   const password =
-    role === "2"
-      ? faker.helpers.arrayElement(["user1"])
-      : faker.helpers.arrayElement(["admin"]);
+    role === "2" ? faker.helpers.arrayElement(["user1"]) : faker.helpers.arrayElement(["admin"]);
 
   const encryptedPass = bcrypt.hashSync(password, 7);
   return {

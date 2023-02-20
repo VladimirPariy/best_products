@@ -28,9 +28,7 @@ export default class FavoriteProductsController {
       .getFavoriteProductsByUserId(payload.id)
       .then((data) => data.map((item) => item.product));
 
-    const products = await instanceProductService.getProductOrProducts(
-      favoriteProductsIDs
-    );
+    const products = await instanceProductService.getProductOrProducts(favoriteProductsIDs);
 
     res.status(200).send(products);
   }
@@ -38,20 +36,16 @@ export default class FavoriteProductsController {
   async addProductIntoFavorite(req: Request, res: Response) {
     const payload = await userManipulationSchema.validate(req.body);
 
-    const isExistInFavoriteList =
-      await instanceFavoriteProductsService.getProductFromFavoriteList(payload);
+    const isExistInFavoriteList = await instanceFavoriteProductsService.getProductFromFavoriteList(
+      payload
+    );
     if (isExistInFavoriteList.length > 0) {
-      throw HttpException.alreadyExists(
-        "The product is already in the favorite list"
-      );
+      throw HttpException.alreadyExists("The product is already in the favorite list");
     }
 
-    const addedProduct =
-      await instanceFavoriteProductsService.addProductIntoFavorite(payload);
+    const addedProduct = await instanceFavoriteProductsService.addProductIntoFavorite(payload);
 
-    const products = await instanceProductService.getProductOrProducts(
-      addedProduct.product
-    );
+    const products = await instanceProductService.getProductOrProducts(addedProduct.product);
 
     res.status(200).send(products);
   }
@@ -59,16 +53,14 @@ export default class FavoriteProductsController {
   async removeProductFromFavorite(req: Request, res: Response) {
     const payload = await userManipulationSchema.validate(req.body);
 
-    const isExistInFavoriteList =
-      await instanceFavoriteProductsService.getProductFromFavoriteList(payload);
+    const isExistInFavoriteList = await instanceFavoriteProductsService.getProductFromFavoriteList(
+      payload
+    );
     if (isExistInFavoriteList.length === 0) {
-      throw HttpException.alreadyExists(
-        "The product is already removed from the favorite list"
-      );
+      throw HttpException.alreadyExists("The product is already removed from the favorite list");
     }
 
-    const removedAmount =
-      await instanceFavoriteProductsService.removeProductFromFavorite(payload);
+    const removedAmount = await instanceFavoriteProductsService.removeProductFromFavorite(payload);
 
     res.status(200).send({
       userId: payload.userId,

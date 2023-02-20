@@ -7,9 +7,18 @@ export const createFavoriteProductsRouter = (): Router => {
 
   const instanceFavoriteProductsController = FavoriteProductsController.getInstance();
 
-  favoriteProductsRouter.get("/:id", tryCatch(instanceFavoriteProductsController.getFavoriteProductsByUserId));
-  favoriteProductsRouter.post("/", tryCatch(instanceFavoriteProductsController.addProductIntoFavorite));
-  favoriteProductsRouter.delete("/", tryCatch(instanceFavoriteProductsController.removeProductFromFavorite));
+  favoriteProductsRouter.get(
+    "/:id",
+    tryCatch(instanceFavoriteProductsController.getFavoriteProductsByUserId)
+  );
+  favoriteProductsRouter.post(
+    "/",
+    tryCatch(instanceFavoriteProductsController.addProductIntoFavorite)
+  );
+  favoriteProductsRouter.delete(
+    "/",
+    tryCatch(instanceFavoriteProductsController.removeProductFromFavorite)
+  );
 
   return favoriteProductsRouter;
 };

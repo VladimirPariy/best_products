@@ -27,9 +27,7 @@ export default class FavoriteProductsService {
 
   async getProductFromFavoriteList(data: IDataForChangeFavoriteStatus) {
     const { productId, userId } = data;
-    return FavoriteProductsModel.query()
-      .where({ user: userId })
-      .andWhere({ product: productId });
+    return FavoriteProductsModel.query().where({ user: userId }).andWhere({ product: productId });
   }
 
   async removeProductFromFavorite(data: IDataForChangeFavoriteStatus) {

@@ -20,12 +20,7 @@ class PriceHistoryModel extends Model {
   static get modifiers() {
     return {
       selectShotPriceHistory: (builder: QueryBuilder<any, any>) => {
-        builder.select(
-          "created_at",
-          "price_at_timestamp",
-          "price_history_id",
-          "updated_at"
-        );
+        builder.select("created_at", "price_at_timestamp", "price_history_id", "updated_at");
       },
     };
   }

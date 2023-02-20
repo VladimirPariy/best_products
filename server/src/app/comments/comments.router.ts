@@ -10,15 +10,8 @@ export const createCommentsRouter = (): Router => {
 
   const instanceCommentsController = CommentsController.getInstance();
 
-  commentsRouter.get(
-    "/product/:id",
-    tryCatch(instanceCommentsController.getCommentsByProductId)
-  );
-  commentsRouter.post(
-    "/",
-    authenticateJWT,
-    tryCatch(instanceCommentsController.createComment)
-  );
+  commentsRouter.get("/product/:id", tryCatch(instanceCommentsController.getCommentsByProductId));
+  commentsRouter.post("/", authenticateJWT, tryCatch(instanceCommentsController.createComment));
   commentsRouter.delete(
     "/:id",
     [checkRole(Roles.Admin), authenticateJWT],

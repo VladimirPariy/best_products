@@ -4,13 +4,9 @@ import CharacteristicController from "../characteristics/characteristic.controll
 export const createCharacteristicsRouter = (): Router => {
   const characteristicsRouter = Router();
 
-  const instanceCharacteristicController =
-    CharacteristicController.getInstance();
+  const instanceCharacteristicController = CharacteristicController.getInstance();
 
-  characteristicsRouter.get(
-    "/",
-    instanceCharacteristicController.getAllCharacteristics
-  );
+  characteristicsRouter.get("/", instanceCharacteristicController.getAllCharacteristics);
 
   return characteristicsRouter;
 };

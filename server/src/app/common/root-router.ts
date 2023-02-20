@@ -27,10 +27,18 @@ export const createRootRouter = (): Router => {
   rootRouter.use("/comments", createCommentsRouter());
   rootRouter.use("/history", [checkRole(Roles.Admin), authenticateJWT], createPriceHistoryRouter());
   rootRouter.use("/favorite", authenticateJWT, createFavoriteProductsRouter());
-  rootRouter.use("/characteristics", [checkRole(Roles.Admin), authenticateJWT], createCharacteristicsRouter());
+  rootRouter.use(
+    "/characteristics",
+    [checkRole(Roles.Admin), authenticateJWT],
+    createCharacteristicsRouter()
+  );
   rootRouter.use("/view", createViewRouter());
   rootRouter.use("/feedbacks", authenticateJWT, createFeedbacksRouter());
-  rootRouter.use("/statistics", [checkRole(Roles.Admin), authenticateJWT], createStatisticsRouter());
+  rootRouter.use(
+    "/statistics",
+    [checkRole(Roles.Admin), authenticateJWT],
+    createStatisticsRouter()
+  );
 
   return rootRouter;
 };
