@@ -7,7 +7,6 @@ import { upload } from "../common/middlewares/multer";
 
 export const createUserRouter = (): Router => {
   const userRouter = Router();
-
   const instanceUserController = UserController.getInstance();
 
   userRouter.get("/", [checkRole(Roles.Admin)], tryCatch(instanceUserController.getAllUsers));

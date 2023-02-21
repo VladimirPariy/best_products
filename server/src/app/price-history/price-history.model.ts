@@ -1,8 +1,7 @@
 import Objection, { Model, QueryBuilder } from "objection";
-
 import { ProductsModel } from "../products/models/products.model";
 
-class PriceHistoryModel extends Model {
+export class PriceHistoryModel extends Model {
   price_history_id: number;
   product: number;
   price_at_timestamp: number;
@@ -47,5 +46,3 @@ class PriceHistoryModel extends Model {
     this.updated_at = PriceHistoryModel.fn.now();
   }
 }
-
-export { PriceHistoryModel };

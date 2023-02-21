@@ -1,6 +1,11 @@
 import { CategoriesModel } from "./models/categories.model";
 
 export default class CategoriesService {
+  async allCategories() {
+    return CategoriesModel.query().withGraphJoined("subcategories");
+  }
+
+  //singleton
   private static instance: CategoriesService;
   private constructor() {}
 
@@ -9,9 +14,5 @@ export default class CategoriesService {
       CategoriesService.instance = new CategoriesService();
     }
     return CategoriesService.instance;
-  }
-
-  async allCategories() {
-    return CategoriesModel.query().withGraphJoined("subcategories");
   }
 }

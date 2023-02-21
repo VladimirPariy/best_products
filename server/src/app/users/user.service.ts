@@ -4,17 +4,6 @@ import { UsersModel } from "./models/users.model";
 import { IDataForCreatingUser } from "../auth/auth.interface";
 
 export default class UserService {
-  private static instance: UserService;
-
-  private constructor() {}
-
-  public static getInstance(): UserService {
-    if (!UserService.instance) {
-      UserService.instance = new UserService();
-    }
-    return UserService.instance;
-  }
-
   async createUser(data: IDataForCreatingUser) {
     const { firstName, lastName, email, encryptedPass, isGetUpdate } = data;
     return UsersModel.query().insert({
@@ -60,5 +49,15 @@ export default class UserService {
 
   async removeOneById(id: number) {
     return UsersModel.query().deleteById(id);
+  }
+
+  //singleton
+  private static instance: UserService;
+  private constructor() {}
+  public static getInstance(): UserService {
+    if (!UserService.instance) {
+      UserService.instance = new UserService();
+    }
+    return UserService.instance;
   }
 }

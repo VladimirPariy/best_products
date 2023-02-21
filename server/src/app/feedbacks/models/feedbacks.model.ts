@@ -1,5 +1,4 @@
 import Objection, { Model } from "objection";
-
 import { FeedbacksTypesModel } from "./feedbacks-types.model";
 import { ProductsModel } from "../../products/models/products.model";
 import { UsersModel } from "../../users/models/users.model";

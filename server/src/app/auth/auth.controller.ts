@@ -1,25 +1,13 @@
 import { Response, Request } from "express";
 import bcrypt from "bcryptjs";
-
 import UserService from "../users/user.service";
-
-import { signUpSchema } from "../common/validations/sign-up-validation";
-import { signInSchema } from "../common/validations/sign-in-validation";
+import { signUpSchema } from "./validation/sign-up-validation";
+import { signInSchema } from "./validation/sign-in-validation";
 import { HttpException } from "../common/errors/exceptions";
 import { generateJwtToken } from "../common/utils/generate-jwt-token";
 
 const instanceUserService = UserService.getInstance();
-
 export default class AuthController {
-  private static instance: AuthController;
-  private constructor() {}
-  public static getInstance(): AuthController {
-    if (!AuthController.instance) {
-      AuthController.instance = new AuthController();
-    }
-    return AuthController.instance;
-  }
-
   async registration(req: Request, res: Response) {
     const payload = await signUpSchema.validate(req.body);
 
@@ -40,7 +28,9 @@ export default class AuthController {
     });
 
     const user = await instanceUserService.getUserById(+newUser.user_id);
-    if (!user) throw HttpException.internalServErr(`User not found`);
+    if (!user) {
+      throw HttpException.internalServErr(`User not found`);
+    }
 
     const token = generateJwtToken(user.user_id, user.email, user.role);
     if (!token) {
@@ -80,5 +70,15 @@ export default class AuthController {
       throw HttpException.internalServErr(`Unsuccessful attempt to create token`);
     }
     res.status(200).send(token);
+  }
+
+  //singleton
+  private static instance: AuthController;
+  private constructor() {}
+  public static getInstance(): AuthController {
+    if (!AuthController.instance) {
+      AuthController.instance = new AuthController();
+    }
+    return AuthController.instance;
   }
 }

@@ -2,50 +2,52 @@ import { Router } from "express";
 
 import { authenticateJWT } from "../common/middlewares/auth-middleware";
 import { checkRole } from "../common/middlewares/role-middleware";
-import productController from "./product.controller";
+import ProductController from "./product.controller";
 import { Roles } from "../common/enums/Roles";
+import { tryCatch } from "../common/utils/try-catch";
 
 export const createProductsRouter = (): Router => {
   const productsRouter = Router();
+  const instanceProductController = ProductController.getInstance();
 
-  productsRouter.get("/", productController.getAllProducts);
-  productsRouter.get("/filter", productController.getFilteredProductsByCategory);
-  productsRouter.get("/search", productController.searchProductsAndSubcategory);
-  productsRouter.get("/:id", productController.getProductDetailsById);
+  productsRouter.get("/", tryCatch(instanceProductController.getAllProducts));
+  productsRouter.get("/filter", tryCatch(instanceProductController.getFilteredProductsByCategory));
+  productsRouter.get("/search", tryCatch(instanceProductController.searchProductsAndSubcategory));
+  productsRouter.get("/:id", tryCatch(instanceProductController.getProductDetailsById));
   productsRouter.delete(
     "/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.removeProduct
+    tryCatch(instanceProductController.removeProduct)
   );
   productsRouter.patch(
     "/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.updateProduct
+    tryCatch(instanceProductController.updateProduct)
   );
   productsRouter.post(
     "/",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.createNewProduct
+    tryCatch(instanceProductController.createNewProduct)
   );
   productsRouter.post(
     "/temp",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.uploadTempImages
+    tryCatch(instanceProductController.uploadTempImages)
   );
   productsRouter.delete(
     "/temp/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.removeTempImage
+    tryCatch(instanceProductController.removeTempImage)
   );
   productsRouter.post(
     "/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.uploadImage
+    tryCatch(instanceProductController.uploadImage)
   );
   productsRouter.delete(
     "/img/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    productController.removeImage
+    tryCatch(instanceProductController.removeImage)
   );
 
   return productsRouter;

@@ -1,6 +1,6 @@
 import { Model } from "objection";
 
-class TempImagesModel extends Model {
+export class TempImagesModel extends Model {
   image_id: number;
   image_title: string;
   original_title: string;
@@ -14,5 +14,3 @@ class TempImagesModel extends Model {
     return "image_id";
   }
 }
-
-export { TempImagesModel };

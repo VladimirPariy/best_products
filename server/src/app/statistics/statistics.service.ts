@@ -4,16 +4,7 @@ import ProductService from "../products/product.service";
 
 const instanceProductService = ProductService.getInstance();
 
-class StatisticsService {
-  private static instance: StatisticsService;
-  private constructor() {}
-  public static getInstance(): StatisticsService {
-    if (!StatisticsService.instance) {
-      StatisticsService.instance = new StatisticsService();
-    }
-    return StatisticsService.instance;
-  }
-
+export default class StatisticsService {
   async getNewUsers() {
     return UsersModel.query()
       .select(["user_id", "first_name", "last_name", "email", "phone_number", "created_at"])
@@ -62,6 +53,14 @@ class StatisticsService {
       instanceProductService.getNegativeFeedbacksAmount(),
     ]);
   }
-}
 
-export default StatisticsService;
+  // singleton
+  private static instance: StatisticsService;
+  private constructor() {}
+  public static getInstance(): StatisticsService {
+    if (!StatisticsService.instance) {
+      StatisticsService.instance = new StatisticsService();
+    }
+    return StatisticsService.instance;
+  }
+}

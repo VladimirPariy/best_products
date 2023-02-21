@@ -4,7 +4,6 @@ import StatisticsController from "../statistics/statistics.controller";
 
 export const createStatisticsRouter = (): Router => {
   const statisticsRouter = Router();
-
   const instanceStatisticsController = StatisticsController.getInstance();
 
   statisticsRouter.get("/users", tryCatch(instanceStatisticsController.getNewUsers));

@@ -1,6 +1,5 @@
 import { Response, NextFunction, Request } from "express";
 import jwt from "jsonwebtoken";
-
 import { HttpException } from "../errors/exceptions";
 
 export const checkToken = (req: Request, res: Response, next: NextFunction) => {
@@ -15,7 +14,9 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
   const token = checkToken(req, res, next);
   if (token) {
     jwt.verify(token, process.env.SECRET || "", (err, user) => {
-      if (err) return next(HttpException.forbidden("Token is invalid"));
+      if (err) {
+        return next(HttpException.forbidden("Token is invalid"));
+      }
       req.user = user;
     });
 

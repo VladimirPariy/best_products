@@ -1,8 +1,7 @@
 import { Model, QueryBuilder } from "objection";
-
 import { ProductsModel } from "./products.model";
 
-class ProductsImagesModel extends Model {
+export class ProductsImagesModel extends Model {
   image_id: number;
   product: number;
   image_title: string;
@@ -38,5 +37,3 @@ class ProductsImagesModel extends Model {
     };
   }
 }
-
-export { ProductsImagesModel };

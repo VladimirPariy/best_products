@@ -4,7 +4,14 @@ import PriceHistoryService from "./price-history.service";
 
 const instancePriceHistoryService = PriceHistoryService.getInstance();
 
-class PriceHistoryController {
+export default class PriceHistoryController {
+  async getPriceHistoryByProductId(req: Request, res: Response) {
+    const { id } = await paramsSchema.validate(req.params);
+    const data = await instancePriceHistoryService.getPriceHistoryByProductId(id);
+    res.status(200).send(data);
+  }
+
+  //singleton
   private static instance: PriceHistoryController;
   private constructor() {}
   public static getInstance(): PriceHistoryController {
@@ -13,12 +20,4 @@ class PriceHistoryController {
     }
     return PriceHistoryController.instance;
   }
-
-  async getPriceHistoryByProductId(req: Request, res: Response) {
-    const { id } = await paramsSchema.validate(req.params);
-    const data = await instancePriceHistoryService.getPriceHistoryByProductId(id);
-    res.status(200).send(data);
-  }
 }
-
-export default PriceHistoryController;

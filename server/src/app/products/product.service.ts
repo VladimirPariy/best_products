@@ -22,17 +22,6 @@ import { ProductCharacteristicModel } from "../characteristics/models/product-ch
 import { knexInstance } from "../../database/connectingDb";
 
 export default class ProductService {
-  private static instance: ProductService;
-
-  private constructor() {}
-
-  public static getInstance(): ProductService {
-    if (!ProductService.instance) {
-      ProductService.instance = new ProductService();
-    }
-    return ProductService.instance;
-  }
-
   getProductOrProducts(): Objection.QueryBuilder<ProductsModel, ProductsModel[]>;
   getProductOrProducts(
     id: number[],
@@ -426,5 +415,15 @@ export default class ProductService {
       `%${query}%`
     );
     return { products, subcategories };
+  }
+
+  //singleton
+  private static instance: ProductService;
+  private constructor() {}
+  public static getInstance(): ProductService {
+    if (!ProductService.instance) {
+      ProductService.instance = new ProductService();
+    }
+    return ProductService.instance;
   }
 }

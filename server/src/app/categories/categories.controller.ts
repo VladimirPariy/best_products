@@ -1,8 +1,13 @@
 import { Response, Request } from "express";
-
 import CategoriesService from "./categories.service";
 
 export default class CategoriesController {
+  async getAll(req: Request, res: Response) {
+    const data = await CategoriesService.getInstance().allCategories();
+    res.status(200).send(data);
+  }
+
+  //singleton
   private static instance: CategoriesController;
   private constructor() {}
 
@@ -11,10 +16,5 @@ export default class CategoriesController {
       CategoriesController.instance = new CategoriesController();
     }
     return CategoriesController.instance;
-  }
-
-  async getAll(req: Request, res: Response) {
-    const data = await CategoriesService.getInstance().allCategories();
-    res.status(200).send(data);
   }
 }

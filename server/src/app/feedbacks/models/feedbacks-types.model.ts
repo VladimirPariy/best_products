@@ -2,7 +2,7 @@ import { Model } from "objection";
 
 import { FeedbacksModel } from "./feedbacks.model";
 
-class FeedbacksTypesModel extends Model {
+export class FeedbacksTypesModel extends Model {
   feedback_type_id: number;
   // in project using positive and negative feedback types (0 - negative; 1 - positive)
   type: number;
@@ -28,5 +28,3 @@ class FeedbacksTypesModel extends Model {
     };
   }
 }
-
-export { FeedbacksTypesModel };

@@ -8,16 +8,16 @@ export class HttpException extends Error {
     this.message = message;
   }
 
-  static forbidden(message: string) {
-    return new HttpException(message, 403);
-  }
-
-  static internalServErr(message: string) {
-    return new HttpException(message, 500);
-  }
-
   static badRequest(message: string) {
     return new HttpException(message, 400);
+  }
+
+  static unauthorized(message: string) {
+    return new HttpException(message, 401);
+  }
+
+  static forbidden(message: string) {
+    return new HttpException(message, 403);
   }
 
   static notFound(message: string) {
@@ -28,7 +28,7 @@ export class HttpException extends Error {
     return new HttpException(message, 409);
   }
 
-  static unauthorized(message: string) {
-    return new HttpException(message, 401);
+  static internalServErr(message: string) {
+    return new HttpException(message, 500);
   }
 }

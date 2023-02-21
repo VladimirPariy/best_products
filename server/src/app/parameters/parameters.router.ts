@@ -7,7 +7,6 @@ import { tryCatch } from "../common/utils/try-catch";
 
 export const createParametersRouter = (): Router => {
   const parametersRouter = Router();
-
   const instanceParametersController = ParametersController.getInstance();
 
   parametersRouter.get(

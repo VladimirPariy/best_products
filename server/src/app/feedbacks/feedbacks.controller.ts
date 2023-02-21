@@ -9,17 +9,6 @@ import { Feedback } from "../common/enums/Feedback";
 const instanceFeedbacksService = FeedbacksService.getInstance();
 
 export default class FeedbacksController {
-  private static instance: FeedbacksController;
-
-  private constructor() {}
-
-  public static getInstance(): FeedbacksController {
-    if (!FeedbacksController.instance) {
-      FeedbacksController.instance = new FeedbacksController();
-    }
-    return FeedbacksController.instance;
-  }
-
   async getFeedbacksByUserId(req: Request, res: Response) {
     const { id } = await paramsSchema.validate(req.params);
 
@@ -30,6 +19,7 @@ export default class FeedbacksController {
   async addFeedback(req: Request, res: Response) {
     const payload = await addFeedbackSchema.validate(req.body);
     const { feedbackType, productId, userId } = payload;
+
     const feedbackId = feedbackType ? Feedback.Positive : Feedback.Negative;
     const insertedFeedback = await instanceFeedbacksService.addFeedback({
       feedbackId,
@@ -43,5 +33,15 @@ export default class FeedbacksController {
     const feedback = await instanceFeedbacksService.getFeedbackByUserAndProductID(user, product);
 
     res.status(200).send(feedback);
+  }
+
+  //singleton
+  private static instance: FeedbacksController;
+  private constructor() {}
+  public static getInstance(): FeedbacksController {
+    if (!FeedbacksController.instance) {
+      FeedbacksController.instance = new FeedbacksController();
+    }
+    return FeedbacksController.instance;
   }
 }

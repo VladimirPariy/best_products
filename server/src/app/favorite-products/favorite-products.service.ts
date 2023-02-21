@@ -2,17 +2,6 @@ import { FavoriteProductsModel } from "./favorite-products.model";
 import { IDataForChangeFavoriteStatus } from "./favorite-products.interface";
 
 export default class FavoriteProductsService {
-  private static instance: FavoriteProductsService;
-
-  private constructor() {}
-
-  public static getInstance(): FavoriteProductsService {
-    if (!FavoriteProductsService.instance) {
-      FavoriteProductsService.instance = new FavoriteProductsService();
-    }
-    return FavoriteProductsService.instance;
-  }
-
   async getFavoriteProductsByUserId(id: number) {
     return FavoriteProductsModel.query().where({ user: id });
   }
@@ -36,5 +25,15 @@ export default class FavoriteProductsService {
       .where({ user: userId })
       .andWhere({ product: productId })
       .del();
+  }
+
+  //singleton
+  private static instance: FavoriteProductsService;
+  private constructor() {}
+  public static getInstance(): FavoriteProductsService {
+    if (!FavoriteProductsService.instance) {
+      FavoriteProductsService.instance = new FavoriteProductsService();
+    }
+    return FavoriteProductsService.instance;
   }
 }

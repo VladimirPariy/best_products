@@ -4,18 +4,7 @@ import ParametersService from "./parameters.service";
 
 const instanceParametersService = ParametersService.getInstance();
 
-class ParametersController {
-  private static instance: ParametersController;
-
-  private constructor() {}
-
-  public static getInstance(): ParametersController {
-    if (!ParametersController.instance) {
-      ParametersController.instance = new ParametersController();
-    }
-    return ParametersController.instance;
-  }
-
+export default class ParametersController {
   async getAllParameters(req: Request, res: Response) {
     const data = await instanceParametersService.getAllParameters();
     res.status(200).send(data);
@@ -26,6 +15,14 @@ class ParametersController {
     const data = await instanceParametersService.getParametersBySubcategoryId(id);
     res.status(200).send(data);
   }
-}
 
-export default ParametersController;
+  //singleton
+  private static instance: ParametersController;
+  private constructor() {}
+  public static getInstance(): ParametersController {
+    if (!ParametersController.instance) {
+      ParametersController.instance = new ParametersController();
+    }
+    return ParametersController.instance;
+  }
+}

@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-
 import { HttpException } from "../errors/exceptions";
 import { checkToken } from "./auth-middleware";
 

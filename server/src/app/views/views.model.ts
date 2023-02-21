@@ -1,6 +1,6 @@
 import Objection, { Model } from "objection";
 
-class ViewsModel extends Model {
+export class ViewsModel extends Model {
   view_id: number;
   product: number;
   created_at: Objection.FunctionBuilder;
@@ -23,5 +23,3 @@ class ViewsModel extends Model {
     this.updated_at = ViewsModel.fn.now();
   }
 }
-
-export { ViewsModel };

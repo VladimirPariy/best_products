@@ -1,5 +1,4 @@
 import { Model } from "objection";
-
 import { ProductSubcategoryModal } from "../../categories/models/product-subcategories.model";
 import { CommentsModel } from "../../comments/comments.model";
 import { FavoriteProductsModel } from "../../favorite-products/favorite-products.model";
@@ -12,7 +11,7 @@ import { SubcategoryModel } from "../../categories/models/subcatigories.model";
 import { CharacteristicsModel } from "../../characteristics/models/characteristics.model";
 import { UsersModel } from "../../users/models/users.model";
 
-class ProductsModel extends Model {
+export class ProductsModel extends Model {
   product_id: number;
   product_title!: string;
   product_description!: string;
@@ -143,5 +142,3 @@ class ProductsModel extends Model {
     };
   }
 }
-
-export { ProductsModel };

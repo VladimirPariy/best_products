@@ -4,7 +4,6 @@ import { tryCatch } from "../common/utils/try-catch";
 
 export const createFavoriteProductsRouter = (): Router => {
   const favoriteProductsRouter = Router();
-
   const instanceFavoriteProductsController = FavoriteProductsController.getInstance();
 
   favoriteProductsRouter.get(

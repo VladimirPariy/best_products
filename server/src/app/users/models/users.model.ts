@@ -1,11 +1,10 @@
 import Objection, { Model, QueryBuilder } from "objection";
-
 import { CommentsModel } from "../../comments/comments.model";
 import { FavoriteProductsModel } from "../../favorite-products/favorite-products.model";
 import { FeedbacksModel } from "../../feedbacks/models/feedbacks.model";
 import { RolesModel } from "./roles.model";
 
-class UsersModel extends Model {
+export class UsersModel extends Model {
   user_id: string;
   first_name: string;
   last_name: string;
@@ -89,5 +88,3 @@ class UsersModel extends Model {
     this.updated_at = UsersModel.fn.now();
   }
 }
-
-export { UsersModel };

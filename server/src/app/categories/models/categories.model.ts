@@ -1,5 +1,4 @@
 import { Model, QueryBuilder } from "objection";
-
 import { SubcategoryModel } from "./subcatigories.model";
 
 export class CategoriesModel extends Model {

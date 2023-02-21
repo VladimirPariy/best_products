@@ -1,19 +1,7 @@
 import { FeedbacksModel } from "./models/feedbacks.model";
-import { Feedback } from "../common/enums/Feedback";
 import { IDataForAddFeedback } from "./feedback.interface";
 
 export default class FeedbacksService {
-  private static instance: FeedbacksService;
-
-  private constructor() {}
-
-  public static getInstance(): FeedbacksService {
-    if (!FeedbacksService.instance) {
-      FeedbacksService.instance = new FeedbacksService();
-    }
-    return FeedbacksService.instance;
-  }
-
   getFeedbacks(condition: { user?: number; product?: number }) {
     return FeedbacksModel.query()
       .select([
@@ -49,5 +37,15 @@ export default class FeedbacksService {
       product: productId,
       feedback_type: feedbackId,
     });
+  }
+
+  //singleton
+  private static instance: FeedbacksService;
+  private constructor() {}
+  public static getInstance(): FeedbacksService {
+    if (!FeedbacksService.instance) {
+      FeedbacksService.instance = new FeedbacksService();
+    }
+    return FeedbacksService.instance;
   }
 }

@@ -5,7 +5,6 @@ import { tryCatch } from "../common/utils/try-catch";
 
 export const createAuthRouter = (): Router => {
   const authRouter = Router();
-
   const instanceAuthController = AuthController.getInstance();
 
   authRouter.post("/registration", tryCatch(instanceAuthController.registration));

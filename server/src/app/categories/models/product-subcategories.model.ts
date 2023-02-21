@@ -1,5 +1,4 @@
 import { Model } from "objection";
-
 import { SubcategoryModel } from "./subcatigories.model";
 import { ProductsModel } from "../../products/models/products.model";
 

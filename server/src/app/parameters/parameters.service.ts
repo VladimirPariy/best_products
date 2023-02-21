@@ -2,16 +2,7 @@ import { HttpException } from "../common/errors/exceptions";
 import { SubcategoryModel } from "../categories/models/subcatigories.model";
 import { ParametersModel } from "./parameters.model";
 
-class ParametersService {
-  private static instance: ParametersService;
-  private constructor() {}
-  public static getInstance(): ParametersService {
-    if (!ParametersService.instance) {
-      ParametersService.instance = new ParametersService();
-    }
-    return ParametersService.instance;
-  }
-
+export default class ParametersService {
   async getAllParameters() {
     return ParametersModel.query();
   }
@@ -26,6 +17,14 @@ class ParametersService {
       .withGraphJoined("characteristics")
       .where("subcategory", subcategory.subcategory_id);
   }
-}
 
-export default ParametersService;
+  //singleton
+  private static instance: ParametersService;
+  private constructor() {}
+  public static getInstance(): ParametersService {
+    if (!ParametersService.instance) {
+      ParametersService.instance = new ParametersService();
+    }
+    return ParametersService.instance;
+  }
+}

@@ -1,6 +1,6 @@
 import { Model } from "objection";
 
-class RolesModel extends Model {
+export class RolesModel extends Model {
   role_id: number;
   role_title: string;
 
@@ -12,5 +12,3 @@ class RolesModel extends Model {
     return "role_id";
   }
 }
-
-export { RolesModel };

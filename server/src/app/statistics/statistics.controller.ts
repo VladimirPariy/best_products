@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import StatisticsService from "./statistics.service";
-import { wilson_score } from "../common/utils/wilson_score";
+import { wilson_score } from "./util/wilson_score";
 import { IProductAverageRating } from "./statistics.interface";
 
 const instanceStatisticsService = StatisticsService.getInstance();

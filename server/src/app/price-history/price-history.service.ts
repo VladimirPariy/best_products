@@ -1,6 +1,11 @@
 import { PriceHistoryModel } from "./price-history.model";
 
-class PriceHistoryService {
+export default class PriceHistoryService {
+  async getPriceHistoryByProductId(id: number) {
+    return PriceHistoryModel.query().where({ product: id });
+  }
+
+  //singleton
   private static instance: PriceHistoryService;
   private constructor() {}
   public static getInstance(): PriceHistoryService {
@@ -9,10 +14,4 @@ class PriceHistoryService {
     }
     return PriceHistoryService.instance;
   }
-
-  async getPriceHistoryByProductId(id: number) {
-    return PriceHistoryModel.query().where({ product: id });
-  }
 }
-
-export default PriceHistoryService;

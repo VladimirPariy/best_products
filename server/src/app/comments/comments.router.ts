@@ -7,7 +7,6 @@ import { tryCatch } from "../common/utils/try-catch";
 
 export const createCommentsRouter = (): Router => {
   const commentsRouter = Router();
-
   const instanceCommentsController = CommentsController.getInstance();
 
   commentsRouter.get("/product/:id", tryCatch(instanceCommentsController.getCommentsByProductId));
