@@ -1,4 +1,4 @@
-import { paramsSchema } from "./../common/validations/params-validation";
+import { paramsSchema } from "../common/validations/params-validation";
 import { Response, Request } from "express";
 import ParametersService from "./parameters.service";
 

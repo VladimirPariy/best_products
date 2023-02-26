@@ -23,388 +23,449 @@ import { upFirstChar } from "lib/utils/up-first-char";
 
 import { selectCategories } from "store/categories/categories-selectors";
 import {
-  removeProductImageTrigger,
-  updateProductTrigger,
-  uploadProductImageTrigger,
+	removeProductImageTrigger,
+	updateProductTrigger,
+	uploadProductImageTrigger,
 } from "store/product-control/product-control-actions";
 import { selectProductControlSuccess } from "store/product-control/product-control-selectors";
 import {
-  clearProductDetail,
-  getProductDetailTrigger,
+	clearProductDetail,
+	getProductDetailTrigger,
 } from "store/product-detail/product-detail-actions";
 import {
-  selectProductDetail,
-  selectProductImages,
+	selectProductDetail,
+	selectProductImages,
 } from "store/product-detail/product-detail-selector";
 import { useAppDispatch, useAppSelector } from "lib/interfaces/store.types";
 
 const UpdateProduct: FC = () => {
-  const { id } = useParams();
-  const dispatch = useAppDispatch();
-  const productDetails = useAppSelector(selectProductDetail);
-  const productImages = useAppSelector(selectProductImages);
-  const categories = useAppSelector(selectCategories);
-  const { allCharacteristics, allParameters } = useAllParameters();
-  const navigate = useNavigate();
-  const success = useAppSelector(selectProductControlSuccess);
+	const { id } = useParams();
+	const dispatch = useAppDispatch();
+	const productDetails = useAppSelector(selectProductDetail);
+	const productImages = useAppSelector(selectProductImages);
+	const categories = useAppSelector(selectCategories);
+	const { allCharacteristics, allParameters } = useAllParameters();
+	const navigate = useNavigate();
+	const success = useAppSelector(selectProductControlSuccess);
 
-  const [categoryId, setCategoryId] = useState<number>(0);
-  const [subcategoryId, setSubcategoryId] = useState<number>(0);
-  const [productTitle, setProductTitle] = useState<string>("");
-  const [productDescription, setProductDescription] = useState<string>("");
-  const [price, setPrice] = useState<string>("0");
-  const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
+	const [categoryId, setCategoryId] = useState<number>(0);
+	const [subcategoryId, setSubcategoryId] = useState<number>(0);
+	const [productTitle, setProductTitle] = useState<string>("");
+	const [productDescription, setProductDescription] = useState<string>("");
+	const [price, setPrice] = useState<string>("0");
+	const [characteristics, setCharacteristics] = useState<ITempChar[]>([]);
 
-  const [errorProductTitle, setErrorProductTitle] =
-    useState<ErrorValidationInterface>(null);
-  const [errorDescription, setErrorDescription] =
-    useState<ErrorValidationInterface>(null);
-  const [errorPrice, setErrorPrice] = useState<ErrorValidationInterface>(null);
-  const [errorCharacteristic, setErrorCharacteristic] =
-    useState<ErrorValidationInterface>(null);
-  const [errorUploadImages, setErrorUploadImages] =
-    useState<ErrorValidationInterface>(null);
+	const [errorProductTitle, setErrorProductTitle] =
+		useState<ErrorValidationInterface>(null);
+	const [errorDescription, setErrorDescription] =
+		useState<ErrorValidationInterface>(null);
+	const [errorPrice, setErrorPrice] =
+		useState<ErrorValidationInterface>(null);
+	const [errorCharacteristic, setErrorCharacteristic] =
+		useState<ErrorValidationInterface>(null);
+	const [errorUploadImages, setErrorUploadImages] =
+		useState<ErrorValidationInterface>(null);
 
-  useEffect(() => {
-    if (id) dispatch(getProductDetailTrigger(+id));
+	useEffect(() => {
+		if (id) dispatch(getProductDetailTrigger(+id));
 
-    return () => {
-      dispatch(clearProductDetail());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+		return () => {
+			dispatch(clearProductDetail());
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-  useEffect(() => {
-    if (Object.keys(productDetails).length > 0) {
-      setCategoryId(productDetails.subcategories[0].categories.category_id);
-      setSubcategoryId(productDetails.subcategories[0].subcategory_id);
-      setProductTitle(productDetails.product_title);
-      setProductDescription(productDetails.product_description);
-      setPrice(productDetails.price);
-      setCharacteristics(
-        productDetails.characteristics.map((item) => {
-          return {
-            parameter: item.parameters.parameter_id,
-            characteristic: item.characteristic_id,
-            id: item.characteristic_id,
-          };
-        })
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    productDetails.subcategories,
-    productDetails.product_title,
-    productDetails.product_description,
-    productDetails.price,
-    productDetails.characteristics,
-    categories.length,
-  ]);
+	useEffect(() => {
+		if (Object.keys(productDetails).length > 0) {
+			setCategoryId(
+				productDetails.subcategories[0].categories.category_id
+			);
+			setSubcategoryId(productDetails.subcategories[0].subcategory_id);
+			setProductTitle(productDetails.product_title);
+			setProductDescription(productDetails.product_description);
+			setPrice(productDetails.price);
+			setCharacteristics(
+				productDetails.characteristics.map((item) => {
+					return {
+						parameter: item.parameters.parameter_id,
+						characteristic: item.characteristic_id,
+						id: item.characteristic_id,
+					};
+				})
+			);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [
+		productDetails.subcategories,
+		productDetails.product_title,
+		productDetails.product_description,
+		productDetails.price,
+		productDetails.characteristics,
+		categories.length,
+	]);
 
-  const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setCharacteristics([
-      ...characteristics,
-      {
-        parameter: 0,
-        characteristic: 0,
-        id: Date.now(),
-      },
-    ]);
-  };
+	const addCharacteristic = (e: MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		setCharacteristics([
+			...characteristics,
+			{
+				parameter: 0,
+				characteristic: 0,
+				id: Date.now(),
+			},
+		]);
+	};
 
-  const dropCharacteristic = (id: number) => {
-    setCharacteristics(characteristics.filter((char) => char.id !== id));
-  };
+	const dropCharacteristic = (id: number) => {
+		setCharacteristics(characteristics.filter((char) => char.id !== id));
+	};
 
-  const changeCharacteristic = (key: string, value: string, id: number) => {
-    setCharacteristics(
-      characteristics.map((char) =>
-        char.id === id ? { ...char, [key]: value } : char
-      )
-    );
-  };
+	const changeCharacteristic = (key: string, value: string, id: number) => {
+		setCharacteristics(
+			characteristics.map((char) =>
+				char.id === id ? { ...char, [key]: value } : char
+			)
+		);
+	};
 
-  const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files;
-    if (file && file.length > 0) {
-      const duplicate = productImages.find((img) => {
-        return img.size === file[0].size && img.original_title === file[0].name;
-      });
-      if (!duplicate && id) {
-        const formData = new FormData();
-        if (file instanceof FileList) formData.append(`img`, file[0]);
-        dispatch(uploadProductImageTrigger({ file: formData, id: +id }));
-      }
-    }
-  };
+	const uploadFileHandler = async (event: ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files;
+		if (file && file.length > 0) {
+			const duplicate = productImages.find((img) => {
+				return (
+					img.size === file[0].size &&
+					img.original_title === file[0].name
+				);
+			});
+			if (!duplicate && id) {
+				const formData = new FormData();
+				if (file instanceof FileList) formData.append(`img`, file[0]);
+				dispatch(
+					uploadProductImageTrigger({ file: formData, id: +id })
+				);
+			}
+		}
+	};
 
-  const dropFile = async (image_id: number) => {
-    dispatch(removeProductImageTrigger({ id: image_id }));
-  };
+	const dropFile = async (image_id: number) => {
+		dispatch(removeProductImageTrigger({ id: image_id }));
+	};
 
-  useEffect(() => {
-    if (success) navigate(-1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [success]);
+	useEffect(() => {
+		if (success) navigate(-1);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [success]);
 
-  useEffect(() => {
-    if (errorProductTitle && productTitle.length > 0) {
-      setErrorProductTitle(null);
-    }
-    if (errorDescription && productDescription.length > 0) {
-      setErrorDescription(null);
-    }
-    if (errorPrice && price.length > 0) {
-      setErrorPrice(null);
-    }
-    if (errorCharacteristic && characteristics.length !== 0) {
-      setErrorCharacteristic(null);
-    }
+	useEffect(() => {
+		if (errorProductTitle && productTitle.length > 0) {
+			setErrorProductTitle(null);
+		}
+		if (errorDescription && productDescription.length > 0) {
+			setErrorDescription(null);
+		}
+		if (errorPrice && price.length > 0) {
+			setErrorPrice(null);
+		}
+		if (errorCharacteristic && characteristics.length !== 0) {
+			setErrorCharacteristic(null);
+		}
 
-    if (errorUploadImages && productDetails.product_images.length !== 0) {
-      setErrorUploadImages(null);
-    }
+		if (errorUploadImages && productDetails.product_images.length !== 0) {
+			setErrorUploadImages(null);
+		}
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    productTitle,
-    price,
-    productDescription,
-    characteristics,
-    productDetails.product_images,
-  ]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [
+		productTitle,
+		price,
+		productDescription,
+		characteristics,
+		productDetails.product_images,
+	]);
 
-  const updateProduct = async () => {
-    if (!productTitle) {
-      setErrorProductTitle(ValidationMessage.required);
-    }
-    if (!price) {
-      setErrorPrice(ValidationMessage.required);
-    }
-    if (!productDescription) {
-      setErrorDescription(ValidationMessage.required);
-    }
-    if (characteristics.length === 0) {
-      setErrorCharacteristic(ValidationMessage.invalidCharacteristics);
-    }
-    if (productDetails.product_images.length === 0) {
-      setErrorUploadImages(ValidationMessage.invalidImages);
-    }
-    if (
-      !productTitle ||
-      !price ||
-      !productDescription ||
-      characteristics.length === 0 ||
-      productDetails.product_images.length === 0
-    ) {
-      return;
-    }
+	const updateProduct = async () => {
+		if (!productTitle) {
+			setErrorProductTitle(ValidationMessage.required);
+		}
+		if (!price) {
+			setErrorPrice(ValidationMessage.required);
+		}
+		if (!productDescription) {
+			setErrorDescription(ValidationMessage.required);
+		}
+		if (characteristics.length === 0) {
+			setErrorCharacteristic(ValidationMessage.invalidCharacteristics);
+		}
+		if (productDetails.product_images.length === 0) {
+			setErrorUploadImages(ValidationMessage.invalidImages);
+		}
+		if (
+			!productTitle ||
+			!price ||
+			!productDescription ||
+			characteristics.length === 0 ||
+			productDetails.product_images.length === 0
+		) {
+			return;
+		}
 
-    if (id) {
-      let updatingData: UpdatingProductDetailsInterface = { id: +id };
-      if (
-        categoryId !== productDetails.subcategories[0].categories.category_id
-      ) {
-        updatingData = { ...updatingData, category: categoryId };
-      }
-      if (subcategoryId !== productDetails.subcategories[0].subcategory_id) {
-        updatingData = { ...updatingData, product_subcategory: subcategoryId };
-      }
-      if (productTitle !== productDetails.product_title) {
-        updatingData = { ...updatingData, product_title: productTitle };
-      }
-      if (productDescription !== productDetails.product_description) {
-        updatingData = {
-          ...updatingData,
-          product_description: productDescription,
-        };
-      }
-      if (price !== productDetails.price) {
-        updatingData = { ...updatingData, price };
-      }
-      if (
-        JSON.stringify(characteristics) !==
-        JSON.stringify(
-          productDetails.characteristics.map((item) => {
-            return {
-              parameter: item.parameter,
-              characteristic: item.characteristic_id,
-              id: item.characteristic_id,
-            };
-          })
-        )
-      ) {
-        updatingData = {
-          ...updatingData,
-          product_characteristics: JSON.stringify(
-            characteristics.map((item) => item.characteristic)
-          ),
-        };
-      }
+		if (id) {
+			let updatingData: UpdatingProductDetailsInterface = { id: +id };
+			if (
+				categoryId !==
+				productDetails.subcategories[0].categories.category_id
+			) {
+				updatingData = { ...updatingData, category: categoryId };
+			}
+			if (
+				subcategoryId !== productDetails.subcategories[0].subcategory_id
+			) {
+				updatingData = {
+					...updatingData,
+					product_subcategory: subcategoryId,
+				};
+			}
+			if (productTitle !== productDetails.product_title) {
+				updatingData = { ...updatingData, product_title: productTitle };
+			}
+			if (productDescription !== productDetails.product_description) {
+				updatingData = {
+					...updatingData,
+					product_description: productDescription,
+				};
+			}
+			if (price !== productDetails.price) {
+				updatingData = { ...updatingData, price };
+			}
+			if (
+				JSON.stringify(characteristics) !==
+				JSON.stringify(
+					productDetails.characteristics.map((item) => {
+						return {
+							parameter: item.parameter,
+							characteristic: item.characteristic_id,
+							id: item.characteristic_id,
+						};
+					})
+				)
+			) {
+				updatingData = {
+					...updatingData,
+					product_characteristics: JSON.stringify(
+						characteristics.map((item) => item.characteristic)
+					),
+				};
+			}
 
-      if (Object.keys(updatingData).length === 1) return;
-      dispatch(updateProductTrigger(updatingData));
-    }
-  };
+			console.log(updatingData);
 
-  const categoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setCategoryId(+e.target.value);
-  };
-  const subcategoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSubcategoryId(+e.target.value);
-  };
-  const productNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setProductTitle(e.target.value);
-  };
-  const descriptionHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setProductDescription(e.target.value);
-  };
-  const priceHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setPrice(e.target.value);
-  };
-  const parameterHandler = (e: ChangeEvent<HTMLSelectElement>, id: number) => {
-    changeCharacteristic("parameter", e.target.value, id);
-  };
-  const characteristicHandler = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    id: number
-  ) => {
-    changeCharacteristic("characteristic", e.target.value, id);
-  };
-  return (
-    <ContentContainer>
-      <Title>Update product</Title>
-      {categoryId > 0 && subcategoryId > 0 ? (
-        <>
-          <Select
-            labelTitle="Choose category"
-            changeHandler={categoryHandler}
-            selectDefaultValue={`${categoryId}`}
-            selectTitle="Choose category"
-          >
-            {categories.map((category, index) => (
-              <option value={category.category_id} key={index}>
-                {category.category_title}
-              </option>
-            ))}
-          </Select>
+			if (Object.keys(updatingData).length === 1) return;
+			dispatch(updateProductTrigger(updatingData));
+		}
+	};
 
-          <Select
-            labelTitle="Choose subcategory"
-            changeHandler={subcategoryHandler}
-            selectDefaultValue={`${subcategoryId}`}
-            selectTitle="Choose subcategory"
-          >
-            {categories[categoryId - 1]?.subcategories.map(
-              (subcategory, index) => (
-                <option value={subcategory.subcategory_id} key={index}>
-                  {subcategory.subcategory_title}
-                </option>
-              )
-            )}
-          </Select>
+	const categoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+		setCategoryId(+e.target.value);
+	};
+	const subcategoryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+		setSubcategoryId(+e.target.value);
+	};
+	const productNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		setProductTitle(e.target.value);
+	};
+	const descriptionHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+		setProductDescription(e.target.value);
+	};
+	const priceHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		setPrice(e.target.value);
+	};
+	const parameterHandler = (
+		e: ChangeEvent<HTMLSelectElement>,
+		id: number
+	) => {
+		changeCharacteristic("parameter", e.target.value, id);
+	};
+	const characteristicHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>,
+		id: number
+	) => {
+		changeCharacteristic("characteristic", e.target.value, id);
+	};
+	return (
+		<ContentContainer>
+			<Title>Update product</Title>
+			{categoryId > 0 && subcategoryId > 0 ? (
+				<>
+					<Select
+						labelTitle='Choose category'
+						changeHandler={categoryHandler}
+						selectDefaultValue={`${categoryId}`}
+						selectTitle='Choose category'
+					>
+						{categories.map((category, index) => (
+							<option
+								value={category.category_id}
+								key={index}
+							>
+								{category.category_title}
+							</option>
+						))}
+					</Select>
 
-          <Input
-            labelText="Update product name"
-            changeHandler={productNameHandler}
-            value={productTitle}
-            type="text"
-            isError={!!errorProductTitle}
-            children={<ErrorContainer errorText={errorProductTitle} />}
-          />
+					<Select
+						labelTitle='Choose subcategory'
+						changeHandler={subcategoryHandler}
+						selectDefaultValue={`${subcategoryId}`}
+						selectTitle='Choose subcategory'
+					>
+						{categories[categoryId - 1]?.subcategories.map(
+							(subcategory, index) => (
+								<option
+									value={subcategory.subcategory_id}
+									key={index}
+								>
+									{subcategory.subcategory_title}
+								</option>
+							)
+						)}
+					</Select>
 
-          <TextArea
-            labelText="Update product description"
-            changeHandler={descriptionHandler}
-            value={productDescription}
-            isError={!!errorDescription}
-            children={<ErrorContainer errorText={errorDescription} />}
-          />
+					<Input
+						labelText='Update product name'
+						changeHandler={productNameHandler}
+						value={productTitle}
+						type='text'
+						isError={!!errorProductTitle}
+						children={
+							<ErrorContainer errorText={errorProductTitle} />
+						}
+					/>
 
-          <Input
-            labelText="Update price"
-            changeHandler={priceHandler}
-            value={price}
-            type="number"
-            min={0}
-            isError={!!errorPrice}
-            children={<ErrorContainer errorText={errorPrice} />}
-          />
+					<TextArea
+						labelText='Update product description'
+						changeHandler={descriptionHandler}
+						value={productDescription}
+						isError={!!errorDescription}
+						children={
+							<ErrorContainer errorText={errorDescription} />
+						}
+					/>
 
-          <Button
-            submitHandler={addCharacteristic}
-            isPurpleButton={false}
-            errorNode={<ErrorContainer errorText={errorCharacteristic} />}
-          >
-            Add more characteristic
-          </Button>
+					<Input
+						labelText='Update price'
+						changeHandler={priceHandler}
+						value={price}
+						type='number'
+						min={0}
+						isError={!!errorPrice}
+						children={<ErrorContainer errorText={errorPrice} />}
+					/>
 
-          {characteristics.length > 0 &&
-            characteristics.map((char, index) => (
-              <div key={index}>
-                <AddProductCharacteristicTitle index={index} />
-                <AddProductCharacteristicContainer>
-                  <Select
-                    labelTitle="Enter parameter"
-                    changeHandler={(e) => parameterHandler(e, char.id)}
-                    selectDefaultValue={`${char.parameter}`}
-                    selectTitle="Enter parameter"
-                  >
-                    {allParameters
-                      .filter((item) => item.subcategory === subcategoryId)
-                      .map((item, index) => (
-                        <option value={item.parameter_id} key={index}>
-                          {upFirstChar(item.parameter_title)}
-                        </option>
-                      ))}
-                  </Select>
-                  <Select
-                    labelTitle="Enter characteristic"
-                    changeHandler={(e) => characteristicHandler(e, char.id)}
-                    selectDefaultValue={`${char.characteristic}`}
-                    selectTitle="Enter characteristic"
-                  >
-                    {allCharacteristics
-                      .filter((item) => +char.parameter === item.parameter)
-                      .map((item, index) => (
-                        <option value={item.characteristic_id} key={index}>
-                          {upFirstChar(item.characteristic_title)}
-                        </option>
-                      ))}
-                  </Select>
-                  <Button
-                    submitHandler={() => dropCharacteristic(char.id)}
-                    style={{ background: "red" }}
-                  >
-                    Delete
-                  </Button>
-                </AddProductCharacteristicContainer>
-              </div>
-            ))}
-          <AddProductImageContainer>
-            {productImages && (
-              <Slider
-                images={productImages}
-                deleteHandler={dropFile}
-                onDelete={true}
-              />
-            )}
-          </AddProductImageContainer>
-          <BtnForAddImage
-            fileHandler={uploadFileHandler}
-            errorNode={<ErrorContainer errorText={errorUploadImages} />}
-          >
-            Add images
-          </BtnForAddImage>
+					<Button
+						submitHandler={addCharacteristic}
+						isPurpleButton={false}
+						errorNode={
+							<ErrorContainer errorText={errorCharacteristic} />
+						}
+					>
+						Add more characteristic
+					</Button>
 
-          <Button submitHandler={updateProduct}>Update product</Button>
-        </>
-      ) : (
-        <div>...Loading</div>
-      )}
-    </ContentContainer>
-  );
+					{characteristics.length > 0 &&
+						characteristics.map((char, index) => (
+							<div key={index}>
+								<AddProductCharacteristicTitle index={index} />
+								<AddProductCharacteristicContainer>
+									<Select
+										labelTitle='Enter parameter'
+										changeHandler={(e) =>
+											parameterHandler(e, char.id)
+										}
+										selectDefaultValue={`${char.parameter}`}
+										selectTitle='Enter parameter'
+									>
+										{allParameters
+											.filter(
+												(item) =>
+													item.subcategory ===
+													subcategoryId
+											)
+											.map((item, index) => (
+												<option
+													value={item.parameter_id}
+													key={index}
+												>
+													{upFirstChar(
+														item.parameter_title
+													)}
+												</option>
+											))}
+									</Select>
+									<Select
+										labelTitle='Enter characteristic'
+										changeHandler={(e) =>
+											characteristicHandler(e, char.id)
+										}
+										selectDefaultValue={`${char.characteristic}`}
+										selectTitle='Enter characteristic'
+									>
+										{allCharacteristics
+											.filter(
+												(item) =>
+													+char.parameter ===
+													item.parameter
+											)
+											.map((item, index) => (
+												<option
+													value={
+														item.characteristic_id
+													}
+													key={index}
+												>
+													{upFirstChar(
+														item.characteristic_title
+													)}
+												</option>
+											))}
+									</Select>
+									<Button
+										submitHandler={() =>
+											dropCharacteristic(char.id)
+										}
+										style={{ background: "red" }}
+									>
+										Delete
+									</Button>
+								</AddProductCharacteristicContainer>
+							</div>
+						))}
+					<AddProductImageContainer>
+						{productImages && (
+							<Slider
+								images={productImages}
+								deleteHandler={dropFile}
+								onDelete={true}
+							/>
+						)}
+					</AddProductImageContainer>
+					<BtnForAddImage
+						fileHandler={uploadFileHandler}
+						errorNode={
+							<ErrorContainer errorText={errorUploadImages} />
+						}
+					>
+						Add images
+					</BtnForAddImage>
+
+					<Button submitHandler={updateProduct}>
+						Update product
+					</Button>
+				</>
+			) : (
+				<div>...Loading</div>
+			)}
+		</ContentContainer>
+	);
 };
 
 export default UpdateProduct;

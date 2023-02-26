@@ -28,6 +28,25 @@ export interface IUpdatingProductFields {
   category?: number;
   product_title?: string;
   product_description?: string;
-  price?: string;
+  price?: number;
   product_characteristics?: string;
+}
+
+export interface ICreateProduct {
+  product_title: string;
+  product_description: string;
+  price: number;
+  price_history: IPriceHistory[];
+  product_images: IProductImage[];
+  product_subcategory: IProductSubcategory[];
+  product_characteristics: { characteristic: number }[];
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IFieldsForUpdateProduct
+  extends Pick<IUpdatingProductFields, "product_description" | "price" | "product_title"> {}
+
+export interface IInsertCharacteristic {
+  product: number;
+  characteristic: number;
 }

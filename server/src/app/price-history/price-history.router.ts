@@ -4,7 +4,6 @@ import PriceHistoryController from "./price-history.controller";
 
 export const createPriceHistoryRouter = (): Router => {
   const priceHistoryRouter = Router();
-
   const instancePriceHistoryController = PriceHistoryController.getInstance();
 
   priceHistoryRouter.get(

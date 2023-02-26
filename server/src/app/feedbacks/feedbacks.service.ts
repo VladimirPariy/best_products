@@ -30,8 +30,8 @@ export default class FeedbacksService {
     return feedback[0];
   }
 
-  async addFeedback(data: IDataForAddFeedback) {
-    const { feedbackId, productId, userId } = data;
+  async addFeedback(payload: IDataForAddFeedback) {
+    const { feedbackId, productId, userId } = payload;
     return FeedbacksModel.query().insert({
       user: userId,
       product: productId,

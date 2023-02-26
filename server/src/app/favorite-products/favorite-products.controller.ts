@@ -10,10 +10,10 @@ const instanceProductService = ProductService.getInstance();
 
 export default class FavoriteProductsController {
   async getFavoriteProductsByUserId(req: Request, res: Response) {
-    const payload = await paramsSchema.validate(req.params);
+    const { id } = await paramsSchema.validate(req.params);
 
     const favoriteProductsIDs = await instanceFavoriteProductsService
-      .getFavoriteProductsByUserId(payload.id)
+      .getFavoriteProductsByUserId(id)
       .then((data) => data.map((item) => item.product));
     const products = await instanceProductService.getProductOrProducts(favoriteProductsIDs);
 

@@ -1,20 +1,11 @@
 import { Response, Request } from "express";
 import StatisticsService from "./statistics.service";
-import { wilson_score } from "./util/wilson_score";
+import { wilson_score } from "../common/utils/wilson_score";
 import { IProductAverageRating } from "./statistics.interface";
 
 const instanceStatisticsService = StatisticsService.getInstance();
 
-class StatisticsController {
-  private static instance: StatisticsController;
-  private constructor() {}
-  public static getInstance(): StatisticsController {
-    if (!StatisticsController.instance) {
-      StatisticsController.instance = new StatisticsController();
-    }
-    return StatisticsController.instance;
-  }
-
+export default class StatisticsController {
   async getNewUsers(req: Request, res: Response) {
     const data = await instanceStatisticsService.getNewUsers();
     res.status(200).send(data);
@@ -53,6 +44,14 @@ class StatisticsController {
 
     res.status(200).send(productWithAverageRating);
   }
-}
 
-export default StatisticsController;
+  //singleton
+  private static instance: StatisticsController;
+  private constructor() {}
+  public static getInstance(): StatisticsController {
+    if (!StatisticsController.instance) {
+      StatisticsController.instance = new StatisticsController();
+    }
+    return StatisticsController.instance;
+  }
+}

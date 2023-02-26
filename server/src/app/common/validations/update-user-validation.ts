@@ -18,7 +18,7 @@ export const updateUserSchema = yup
     is_get_update: yup.boolean(),
     user_photo: yup.string(),
   })
-  .test("at least one", (value) => {
+  .test("There are no fields to update", (value) => {
     const isAtLeastOne =
       !value.email &&
       !value.first_name &&

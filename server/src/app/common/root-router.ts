@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import { createAuthRouter } from "../auth/auth.router";
 import { createCategoriesRouter } from "../categories/categories.router";
 import { createProductsRouter } from "../products/product.router";
@@ -21,19 +20,19 @@ export const createRootRouter = (): Router => {
 
   rootRouter.use("/auth", createAuthRouter());
   rootRouter.use("/user", authenticateJWT, createUserRouter());
-  rootRouter.use("/categories", createCategoriesRouter());
   rootRouter.use("/products", createProductsRouter());
+  rootRouter.use("/categories", createCategoriesRouter());
   rootRouter.use("/parameters", createParametersRouter());
   rootRouter.use("/comments", createCommentsRouter());
   rootRouter.use("/history", [checkRole(Roles.Admin), authenticateJWT], createPriceHistoryRouter());
   rootRouter.use("/favorite", authenticateJWT, createFavoriteProductsRouter());
+  rootRouter.use("/view", createViewRouter());
+  rootRouter.use("/feedbacks", authenticateJWT, createFeedbacksRouter());
   rootRouter.use(
     "/characteristics",
     [checkRole(Roles.Admin), authenticateJWT],
     createCharacteristicsRouter()
   );
-  rootRouter.use("/view", createViewRouter());
-  rootRouter.use("/feedbacks", authenticateJWT, createFeedbacksRouter());
   rootRouter.use(
     "/statistics",
     [checkRole(Roles.Admin), authenticateJWT],

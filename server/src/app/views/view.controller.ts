@@ -7,8 +7,9 @@ const instanceViewService = ViewService.getInstance();
 export default class ViewController {
   async addView(req: Request, res: Response) {
     const { productId } = await viewSchema.validate(req.body);
-    const data = await instanceViewService.addView(productId);
-    res.status(200).send(data);
+    const view = await instanceViewService.addView(productId);
+
+    res.status(200).send({ productId: view.product });
   }
 
   //singleton

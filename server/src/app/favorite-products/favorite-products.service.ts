@@ -6,21 +6,18 @@ export default class FavoriteProductsService {
     return FavoriteProductsModel.query().where({ user: id });
   }
 
-  async addProductIntoFavorite(data: IDataForChangeFavoriteStatus) {
-    const { productId, userId } = data;
+  async addProductIntoFavorite({ productId, userId }: IDataForChangeFavoriteStatus) {
     return FavoriteProductsModel.query().insert({
       user: userId,
       product: productId,
     });
   }
 
-  async getProductFromFavoriteList(data: IDataForChangeFavoriteStatus) {
-    const { productId, userId } = data;
+  async getProductFromFavoriteList({ productId, userId }: IDataForChangeFavoriteStatus) {
     return FavoriteProductsModel.query().where({ user: userId }).andWhere({ product: productId });
   }
 
-  async removeProductFromFavorite(data: IDataForChangeFavoriteStatus) {
-    const { productId, userId } = data;
+  async removeProductFromFavorite({ productId, userId }: IDataForChangeFavoriteStatus) {
     return FavoriteProductsModel.query()
       .where({ user: userId })
       .andWhere({ product: productId })

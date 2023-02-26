@@ -36,17 +36,22 @@ export default class UserController {
       body = { ...body, user_photo: img.filename };
     }
     const payload = await updateUserSchema.validate(body);
-    if (payload.password) payload.password = await bcrypt.hash(payload.password, 7);
+    if (payload.password) {
+      payload.password = await bcrypt.hash(payload.password, 7);
+    }
     if (payload.email || payload.phone_number) {
       const user = await instanceUserService.findUserByEmailOrPhoneNumber(
         payload.email,
         payload.phone_number
       );
-      if (user.length > 0)
+      if (user.length > 0) {
         throw HttpException.alreadyExists("User with the same email or phone exist");
+      }
     }
     const patchedUserAmount = await instanceUserService.updateUserById(id, payload);
-    if (!patchedUserAmount) throw HttpException.internalServErr(`Unsuccessful updating user`);
+    if (!patchedUserAmount) {
+      throw HttpException.internalServErr(`Unsuccessful updating user`);
+    }
 
     res.status(200).send({
       userId: id,
@@ -60,9 +65,13 @@ export default class UserController {
     const { id } = await paramsSchema.validate(req.user);
 
     const user = await instanceUserService.getUserById(id);
-    if (!user) throw HttpException.internalServErr(`User not found`);
+    if (!user) {
+      throw HttpException.internalServErr(`User not found`);
+    }
     const token = generateJwtToken(user.user_id, user.email, user.role);
-    if (!token) throw HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    if (!token) {
+      throw HttpException.internalServErr(`Unsuccessful attempt to create token`);
+    }
 
     res.status(200).send(token);
   }
@@ -72,7 +81,9 @@ export default class UserController {
     const { role } = await roleSchema.validate(req.body);
 
     const updatedUser = await instanceUserService.updateUserRoleById(id, role);
-    if (!updatedUser) throw HttpException.internalServErr("Role change request failed");
+    if (!updatedUser) {
+      throw HttpException.internalServErr("Role change request failed");
+    }
     const user = await instanceUserService.getUserById(id);
 
     res.status(200).send(user);

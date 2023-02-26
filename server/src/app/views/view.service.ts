@@ -2,8 +2,7 @@ import { ViewsModel } from "./views.model";
 
 export default class ViewService {
   async addView(productId: number) {
-    const view = await ViewsModel.query().insert({ product: productId });
-    return { productId: view.product };
+    return ViewsModel.query().insert({ product: productId });
   }
 
   //singleton

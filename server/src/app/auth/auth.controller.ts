@@ -1,8 +1,8 @@
 import { Response, Request } from "express";
 import bcrypt from "bcryptjs";
 import UserService from "../users/user.service";
-import { signUpSchema } from "./validation/sign-up-validation";
-import { signInSchema } from "./validation/sign-in-validation";
+import { signUpSchema } from "../common/validations/sign-up-validation";
+import { signInSchema } from "../common/validations/sign-in-validation";
 import { HttpException } from "../common/errors/exceptions";
 import { generateJwtToken } from "../common/utils/generate-jwt-token";
 

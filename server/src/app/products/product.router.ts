@@ -1,10 +1,10 @@
 import { Router } from "express";
-
+import { upload } from "../common/middlewares/multer";
 import { authenticateJWT } from "../common/middlewares/auth-middleware";
 import { checkRole } from "../common/middlewares/role-middleware";
-import ProductController from "./product.controller";
 import { Roles } from "../common/enums/Roles";
 import { tryCatch } from "../common/utils/try-catch";
+import ProductController from "./product.controller";
 
 export const createProductsRouter = (): Router => {
   const productsRouter = Router();
@@ -14,15 +14,10 @@ export const createProductsRouter = (): Router => {
   productsRouter.get("/filter", tryCatch(instanceProductController.getFilteredProductsByCategory));
   productsRouter.get("/search", tryCatch(instanceProductController.searchProductsAndSubcategory));
   productsRouter.get("/:id", tryCatch(instanceProductController.getProductDetailsById));
-  productsRouter.delete(
-    "/:id",
-    [checkRole(Roles.Admin), authenticateJWT],
-    tryCatch(instanceProductController.removeProduct)
-  );
-  productsRouter.patch(
-    "/:id",
-    [checkRole(Roles.Admin), authenticateJWT],
-    tryCatch(instanceProductController.updateProduct)
+  productsRouter.post(
+    "/temp",
+    [checkRole(Roles.Admin), authenticateJWT, upload.single("img")],
+    tryCatch(instanceProductController.uploadTempImages)
   );
   productsRouter.post(
     "/",
@@ -30,24 +25,29 @@ export const createProductsRouter = (): Router => {
     tryCatch(instanceProductController.createNewProduct)
   );
   productsRouter.post(
-    "/temp",
+    "/:id",
+    [checkRole(Roles.Admin), authenticateJWT, upload.single("img")],
+    tryCatch(instanceProductController.uploadImage)
+  );
+  productsRouter.patch(
+    "/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    tryCatch(instanceProductController.uploadTempImages)
+    tryCatch(instanceProductController.updateProduct)
+  );
+  productsRouter.delete(
+    "/img/:id",
+    [checkRole(Roles.Admin), authenticateJWT],
+    tryCatch(instanceProductController.removeImage)
   );
   productsRouter.delete(
     "/temp/:id",
     [checkRole(Roles.Admin), authenticateJWT],
     tryCatch(instanceProductController.removeTempImage)
   );
-  productsRouter.post(
+  productsRouter.delete(
     "/:id",
     [checkRole(Roles.Admin), authenticateJWT],
-    tryCatch(instanceProductController.uploadImage)
-  );
-  productsRouter.delete(
-    "/img/:id",
-    [checkRole(Roles.Admin), authenticateJWT],
-    tryCatch(instanceProductController.removeImage)
+    tryCatch(instanceProductController.removeProduct)
   );
 
   return productsRouter;
